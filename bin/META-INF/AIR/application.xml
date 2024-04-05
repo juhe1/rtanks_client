@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<application xmlns="http://ns.adobe.com/air/application/26.0">
+	<id>RTanksOnline</id>
+    <versionNumber>1.0</versionNumber>
+    <filename>RTanks Online</filename>
+    <name>RTanks Online</name>
+    <copyright>Copyright (c) 2023 RTanks Online</copyright>
+    <initialWindow>
+        <title>RTanks</title>
+        <content>StandaloneLoader-2.0.swf?prelauncher=/Prelauncher.swf&amp;swf=/RTanksLoader.swf&amp;balancer=/socket.cfg&amp;resources=http://93.159.221.94:8080/resources&amp;chinese=false&amp;locale=ru</content>
+		<visible>true</visible>
+		<renderMode>direct</renderMode>
+		<depthAndStencil>true</depthAndStencil>
+        <maximizable>false</maximizable>
+    </initialWindow>
+    <icon>
+        <image16x16>icons/icon16.png</image16x16>
+        <image32x32>icons/icon32.png</image32x32>
+        <image48x48>icons/icon48.png</image48x48>
+        <image128x128>icons/icon128.png</image128x128>
+    </icon>
+</application>
