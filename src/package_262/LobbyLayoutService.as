@@ -14,7 +14,7 @@ package package_262
    import package_53.name_94;
    import package_54.name_102;
    import package_75.name_274;
-   import package_95.name_298;
+   import package_95.IStorageService;
    import platform.client.fp10.core.type.name_70;
    import projects.tanks.client.commons.models.layout.LayoutState;
    import projects.tanks.clients.flash.commons.models.layout.name_790;
@@ -23,15 +23,15 @@ package package_262
    public class LobbyLayoutService extends EventDispatcher implements name_94
    {
       
-      public static var alertService:name_42 = OSGi.getInstance().name_6(name_42) as name_42;
+      public static var alertService:name_42 = OSGi.getInstance().getService(name_42) as name_42;
       
-      public static var storageService:name_298 = OSGi.getInstance().name_6(name_298) as name_298;
+      public static var storageService:IStorageService = OSGi.getInstance().getService(IStorageService) as IStorageService;
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
-      public static var battleInfoService:name_274 = OSGi.getInstance().name_6(name_274) as name_274;
+      public static var battleInfoService:name_274 = OSGi.getInstance().getService(name_274) as name_274;
       
-      public static var dialogWindowsDispatcherService:name_549 = OSGi.getInstance().name_6(name_549) as name_549;
+      public static var dialogWindowsDispatcherService:name_549 = OSGi.getInstance().getService(name_549) as name_549;
        
       
       private var var_1582:name_70;

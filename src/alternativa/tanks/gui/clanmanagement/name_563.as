@@ -4,7 +4,7 @@ package alternativa.tanks.gui.clanmanagement
    import alternativa.tanks.gui.TabPanel;
    import alternativa.tanks.gui.name_649;
    import flash.events.Event;
-   import forms.name_1838;
+   import forms.TankWindowWithHeader;
    import package_12.name_24;
    import package_124.name_42;
    import package_13.Long;
@@ -56,7 +56,7 @@ package alternativa.tanks.gui.clanmanagement
       {
          this.var_1170 = new TabPanel();
          super();
-         var_1169 = name_1838.name_1844(name_390.const_1169);
+         var_1169 = TankWindowWithHeader.createWindow(name_390.const_1169);
          this.clanObject = param1;
          addChild(var_1169);
          this.init();

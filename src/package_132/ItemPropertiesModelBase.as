@@ -21,7 +21,7 @@ package package_132
       
       public function ItemPropertiesModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_1651(this);
          this.var_25 = Long.getLong(988366120,-592971316);
          super();

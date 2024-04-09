@@ -1,16 +1,16 @@
 package alternativa.tanks.models.weapon.machinegun
 {
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
-   import alternativa.physics.name_660;
+   import alternativa.model.IModel;
+   import alternativa.physics.Body;
    import alternativa.tanks.battle.BattleUtils;
    import alternativa.tanks.models.battlefield.logic.class_23;
    import alternativa.tanks.models.battlefield.name_128;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
-   import alternativa.tanks.models.weapon.name_1074;
+   import alternativa.tanks.models.tank.ITank;
+   import alternativa.tanks.models.weapon.IWeaponController;
    import alternativa.tanks.models.weapon.name_911;
    import alternativa.tanks.models.weapon.shared.CommonTargetSystem;
    import alternativa.tanks.models.weapon.shared.name_1709;
@@ -19,7 +19,7 @@ package alternativa.tanks.models.weapon.machinegun
    import flash.utils.Dictionary;
    import flash.utils.getTimer;
    import package_1.Main;
-   import package_161.name_1448;
+   import package_161.IWeaponWeakeningModel;
    import package_167.name_1454;
    import package_278.name_1288;
    import package_278.name_905;
@@ -27,7 +27,7 @@ package alternativa.tanks.models.weapon.machinegun
    import package_358.class_74;
    import package_37.Vector3;
    import package_4.ClientObject;
-   import package_41.name_320;
+   import package_41.ItemProperty;
    import package_41.Vector3dData;
    import package_52.WeaponsManager;
    import package_6.ObjectRegister;
@@ -38,19 +38,19 @@ package alternativa.tanks.models.weapon.machinegun
    import scpacker.networking.Network;
    import scpacker.networking.name_2;
    
-   public class MachineGunModel extends class_73 implements class_74, name_1074, class_75, class_11, class_23
+   public class MachineGunModel extends class_73 implements class_74, IWeaponController, class_75, class_11, class_23
    {
        
       
       private var modelService:name_32;
       
-      private var var_11:name_83;
+      private var var_11:IBattleField;
       
       private var var_13:TankModel;
       
       private var var_728:name_1188;
       
-      private var var_730:name_1448;
+      private var var_730:IWeaponWeakeningModel;
       
       private var name_106:TankData;
       
@@ -106,7 +106,7 @@ package alternativa.tanks.models.weapon.machinegun
       
       private var var_1032:MachineGunEffects;
       
-      private var var_1044:name_660;
+      private var var_1044:Body;
       
       private var var_1033:name_1288;
       
@@ -128,12 +128,12 @@ package alternativa.tanks.models.weapon.machinegun
          this.var_1034 = 0;
          this.var_1023 = 100000;
          super();
-         var_365.push(name_66,name_1074,class_75,class_11);
+         _interfaces.push(IModel,IWeaponController,class_75,class_11);
       }
       
-      public function name_1436() : name_320
+      public function name_1436() : ItemProperty
       {
-         return name_320.name_417;
+         return ItemProperty.VULCAN_RESISTANCE;
       }
       
       public function initObject(param1:ClientObject, param2:int, param3:int, param4:int, param5:int, param6:int, param7:Number, param8:Number, param9:Number, param10:Number, param11:Number) : void
@@ -150,11 +150,11 @@ package alternativa.tanks.models.weapon.machinegun
          {
             return;
          }
-         this.modelService = name_32(Main.osgi.name_6(name_32));
-         this.var_11 = Main.osgi.name_6(name_83) as name_83;
-         this.var_13 = Main.osgi.name_6(class_7) as TankModel;
-         this.var_728 = Main.osgi.name_6(name_1188) as name_1188;
-         this.var_730 = name_1448(this.modelService.getModelsByInterface(name_1448)[0]);
+         this.modelService = name_32(Main.osgi.getService(name_32));
+         this.var_11 = Main.osgi.getService(IBattleField) as IBattleField;
+         this.var_13 = Main.osgi.getService(ITank) as TankModel;
+         this.var_728 = Main.osgi.getService(name_1188) as name_1188;
+         this.var_730 = IWeaponWeakeningModel(this.modelService.getModelsByInterface(IWeaponWeakeningModel)[0]);
          this.var_11.name_165().name_212(this);
       }
       
@@ -282,7 +282,7 @@ package alternativa.tanks.models.weapon.machinegun
       {
          var _loc2_:Object = new Object();
          _loc2_.energy = Math.floor(this.currentEnergy.value);
-         Network(Main.osgi.name_6(name_2)).send("battle;start_fire;" + JSON.stringify(_loc2_));
+         Network(Main.osgi.getService(name_2)).send("battle;start_fire;" + JSON.stringify(_loc2_));
       }
       
       public function method_1001(param1:int, param2:Boolean) : void
@@ -300,7 +300,7 @@ package alternativa.tanks.models.weapon.machinegun
       
       private function method_1226(param1:ClientObject) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;stop_fire");
+         Network(Main.osgi.getService(name_2)).send("battle;stop_fire");
       }
       
       private function getStatus() : Number
@@ -329,7 +329,7 @@ package alternativa.tanks.models.weapon.machinegun
                this.currentEnergy.value = 0;
                if(this.var_1041)
                {
-                  Network(Main.osgi.name_6(name_2)).send("battle;start_heat_effect");
+                  Network(Main.osgi.getService(name_2)).send("battle;start_heat_effect");
                   this.var_1041 = false;
                }
             }
@@ -388,7 +388,7 @@ package alternativa.tanks.models.weapon.machinegun
          var _loc3_:Object = new Object();
          _loc3_.victimId = param1;
          _loc3_.tickPeriod = this.var_1031.damageTickMsec.value;
-         Network(Main.osgi.name_6(name_2)).send("battle;fire;" + JSON.stringify(_loc3_));
+         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(_loc3_));
       }
       
       private function method_1234(param1:Vector3, param2:Number, param3:TankData, param4:Vector3, param5:Number) : void
@@ -396,12 +396,12 @@ package alternativa.tanks.models.weapon.machinegun
          this.method_1229(param3.tank,param4,param1,-param5 * param2);
       }
       
-      private function method_1233(param1:Vector3, param2:Number, param3:name_660, param4:Vector3, param5:Number) : void
+      private function method_1233(param1:Vector3, param2:Number, param3:Body, param4:Vector3, param5:Number) : void
       {
          this.method_1229(param3,param4,param1,param5 * param2);
       }
       
-      private function method_1229(param1:name_660, param2:Vector3, param3:Vector3, param4:Number) : void
+      private function method_1229(param1:Body, param2:Vector3, param3:Vector3, param4:Number) : void
       {
          var _loc5_:Tank = null;
          var _loc6_:int = 0;
@@ -530,8 +530,8 @@ package alternativa.tanks.models.weapon.machinegun
          var _loc6_:Number = _loc5_.weaponTurnDecelerationCoeff + (1 - param2) * (1 - _loc5_.weaponTurnDecelerationCoeff);
          if(param1.tank != null)
          {
-            param1.tank.name_214(param3 * _loc6_,true);
-            param1.tank.name_246(param4 * _loc6_);
+            param1.tank.setMaxTurretTurnSpeed(param3 * _loc6_,true);
+            param1.tank.setTurretTurnAcceleration(param4 * _loc6_);
             param1.tank.method_486(param2 / 2);
          }
       }

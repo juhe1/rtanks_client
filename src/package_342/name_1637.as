@@ -14,11 +14,11 @@ package package_342
    public class name_1637 extends DelayMountCategoryModelBase implements name_1639, name_141, name_287
    {
       
-      public static var delayMountCategoryService:name_1357 = OSGi.getInstance().name_6(name_1357) as name_1357;
+      public static var delayMountCategoryService:name_1357 = OSGi.getInstance().getService(name_1357) as name_1357;
       
-      public static var lobbyLayoutService:name_94 = OSGi.getInstance().name_6(name_94) as name_94;
+      public static var lobbyLayoutService:name_94 = OSGi.getInstance().getService(name_94) as name_94;
       
-      public static var battleInfoService:name_274 = OSGi.getInstance().name_6(name_274) as name_274;
+      public static var battleInfoService:name_274 = OSGi.getInstance().getService(name_274) as name_274;
       
       public static var logService:name_26;
        

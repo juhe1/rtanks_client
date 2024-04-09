@@ -10,10 +10,10 @@ package package_177
    import package_31.name_115;
    import package_379.class_123;
    
-   public class DialogsService implements name_550
+   public class DialogsService implements IDialogsService
    {
       
-      public static var display:name_24 = Main.osgi.name_6(name_24) as name_24;
+      public static var display:name_24 = Main.osgi.getService(name_24) as name_24;
        
       
       private var var_1130:Vector.<DisplayObject>;
@@ -87,12 +87,12 @@ package package_177
       {
          if(param2)
          {
-            (Main.osgi.name_6(name_115) as PanelModel).blur();
-            (Main.osgi.name_6(name_115) as PanelModel).lock();
-            (Main.osgi.name_6(name_115) as PanelModel).lockControls();
+            (Main.osgi.getService(name_115) as PanelModel).blur();
+            (Main.osgi.getService(name_115) as PanelModel).lock();
+            (Main.osgi.getService(name_115) as PanelModel).lockControls();
          }
          this.center(param1);
-         name_549(Main.osgi.name_6(name_549)).open();
+         name_549(Main.osgi.getService(name_549)).open();
          this.dialogsLayer.addChild(param1);
          if(param1 is class_123)
          {
@@ -108,14 +108,14 @@ package package_177
             {
                class_123(param1).removeEventListeners();
             }
-            name_549(Main.osgi.name_6(name_549)).close();
+            name_549(Main.osgi.getService(name_549)).close();
             this.dialogsLayer.removeChild(param1);
          }
          if(param2)
          {
-            (Main.osgi.name_6(name_115) as PanelModel).unblur();
-            (Main.osgi.name_6(name_115) as PanelModel).unlock();
-            (Main.osgi.name_6(name_115) as PanelModel).method_523();
+            (Main.osgi.getService(name_115) as PanelModel).unblur();
+            (Main.osgi.getService(name_115) as PanelModel).unlock();
+            (Main.osgi.getService(name_115) as PanelModel).method_523();
          }
       }
       

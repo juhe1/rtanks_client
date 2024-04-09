@@ -172,7 +172,7 @@ package forms
       
       private function method_2858(param1:Event) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("auth;refresh_captcha");
+         Network(Main.osgi.getService(name_2)).send("auth;refresh_captcha");
       }
       
       public function name_2448(param1:String, param2:String) : void

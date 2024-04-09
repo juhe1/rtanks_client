@@ -1,6 +1,6 @@
 package alternativa.tanks.gui
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.BitmapData;
    import flash.display.Shape;
    import flash.display.Sprite;
@@ -9,15 +9,15 @@ package alternativa.tanks.gui
    public class ModTable extends Sprite
    {
       
-      private static const const_2781:Class = name_3543;
+      private static const const_2781:Class = BitmapUpgradeSelectionLeft;
       
       private static const const_2778:BitmapData = new const_2781().bitmapData;
       
-      private static const const_2780:Class = name_3542;
+      private static const const_2780:Class = BitmapUpgradeSelectionCenter;
       
       private static const const_2779:BitmapData = new const_2780().bitmapData;
       
-      private static const const_2782:Class = name_3544;
+      private static const const_2782:Class = BitmapUpgradeSelectionRight;
       
       private static const const_2777:BitmapData = new const_2782().bitmapData;
        
@@ -139,7 +139,7 @@ package alternativa.tanks.gui
       public function name_3246() : void
       {
          var _loc1_:int = 0;
-         var _loc2_:name_1134 = null;
+         var _loc2_:LabelBase = null;
          var _loc3_:int = 0;
          var _loc4_:Array = new Array();
          var _loc5_:ModInfoRow = this.name_3240[0] as ModInfoRow;
@@ -151,7 +151,7 @@ package alternativa.tanks.gui
             _loc1_ = 0;
             while(_loc1_ < _loc6_)
             {
-               _loc2_ = _loc5_.labels[_loc1_] as name_1134;
+               _loc2_ = _loc5_.labels[_loc1_] as LabelBase;
                if(_loc2_.text.indexOf(".") != -1)
                {
                   _loc4_.push(_loc1_);
@@ -168,7 +168,7 @@ package alternativa.tanks.gui
             while(_loc1_ < _loc4_.length)
             {
                _loc3_ = int(_loc4_[_loc1_]);
-               _loc2_ = _loc5_.labels[_loc3_] as name_1134;
+               _loc2_ = _loc5_.labels[_loc3_] as LabelBase;
                if(_loc2_.text.indexOf(".") == -1)
                {
                   _loc2_.text += ".0";

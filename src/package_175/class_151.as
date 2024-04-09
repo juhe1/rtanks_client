@@ -1,6 +1,6 @@
 package package_175
 {
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import controls.name_1922;
    import flash.display.DisplayObjectContainer;
    import flash.display.Sprite;
@@ -38,7 +38,7 @@ package package_175
       
       protected var var_1445:name_1922;
       
-      protected var var_1264:name_1891;
+      protected var var_1264:TankWindowInner;
       
       protected var _width:int;
       
@@ -60,7 +60,7 @@ package package_175
       
       public function class_151(param1:String = null, param2:String = "", param3:Boolean = true)
       {
-         display = (Main.osgi.name_6(name_24) as name_24).noticesLayer as DisplayObjectContainer;
+         display = (Main.osgi.getService(name_24) as name_24).noticesLayer as DisplayObjectContainer;
          super();
          this.var_913 = param1;
          this.var_1449 = param2;
@@ -134,13 +134,13 @@ package package_175
       {
          this.var_1445 = new name_1922();
          addChild(this.var_1445);
-         this.var_1264 = new name_1891(247,200,name_1891.name_1428);
+         this.var_1264 = new TankWindowInner(247,200,TankWindowInner.GREEN);
          addChild(this.var_1264);
          this.var_1264.mouseChildren = false;
          this.var_1264.mouseEnabled = false;
          this.var_1264.y = 11;
          this.var_1264.x = 11;
-         this.var_1264.name_1895 = true;
+         this.var_1264.showBlink = true;
       }
       
       public function show(param1:Signal) : void

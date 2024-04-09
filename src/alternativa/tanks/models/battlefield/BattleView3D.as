@@ -38,7 +38,7 @@ package alternativa.tanks.models.battlefield
    public class BattleView3D extends Sprite
    {
       
-      public static var battleService:name_83;
+      public static var battleService:IBattleField;
       
       private static const const_39:int = 10;
       

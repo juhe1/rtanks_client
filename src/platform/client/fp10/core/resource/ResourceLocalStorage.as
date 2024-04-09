@@ -135,7 +135,7 @@ package platform.client.fp10.core.resource
          {
             errorType = new SharedObjectUsNotAccessibleError();
             trace(errorType.getMessage());
-            messageBoxService = IErrorMessageService(OSGi.getInstance().name_6(IErrorMessageService));
+            messageBoxService = IErrorMessageService(OSGi.getInstance().getService(IErrorMessageService));
             messageBoxService.showMessage(errorType);
          }
          switch(flushStatus)
@@ -185,7 +185,7 @@ package platform.client.fp10.core.resource
       
       private function initConsoleCommands(param1:OSGi) : void
       {
-         var _loc2_:name_27 = name_27(param1.name_6(name_27));
+         var _loc2_:name_27 = name_27(param1.getService(name_27));
          _loc2_.method_211("locstor",this.onConsoleCommand);
          this.consoleCommands = {};
          this.addConsoleCommand(new PrintIndexCommand("ls",this));

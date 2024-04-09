@@ -1,7 +1,7 @@
 package package_32
 {
    import alternativa.engine3d.core.View;
-   import alternativa.tanks.service.settings.name_108;
+   import alternativa.tanks.service.settings.IBattleSettings;
    import alternativa.tanks.utils.name_1398;
    import flash.display.Stage;
    import flash.events.Event;
@@ -19,7 +19,7 @@ package package_32
       
       public static var fullScreenService:name_34;
       
-      public static var settingsService:name_108;
+      public static var settingsService:IBattleSettings;
        
       
       private var stage:Stage;

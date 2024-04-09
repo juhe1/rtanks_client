@@ -31,7 +31,7 @@ package package_220
       
       public function ClanAcceptedModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_626(this);
          this.var_25 = Long.getLong(202978443,152865914);
          this.var_1175 = Long.getLong(1980347621,1611632721);

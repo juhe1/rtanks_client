@@ -10,7 +10,7 @@ package package_434
    public class name_3206 extends class_201
    {
       
-      public static var localeService:name_102 = Main.osgi.name_6(name_102) as name_102;
+      public static var localeService:name_102 = Main.osgi.getService(name_102) as name_102;
       
       public static const const_2763:Class = name_3527;
       

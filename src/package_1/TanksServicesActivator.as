@@ -10,9 +10,9 @@ package package_1
    import package_104.name_376;
    import package_104.name_385;
    import package_106.AchievementModel;
-   import package_106.name_345;
+   import package_106.IAchievementModel;
    import package_107.name_335;
-   import package_11.name_23;
+   import package_11.IBundleActivator;
    import package_113.name_362;
    import package_12.name_24;
    import package_121.name_387;
@@ -79,7 +79,7 @@ package package_1
    import projects.tanks.clients.flash.commons.models.layout.name_799;
    import projects.tanks.clients.fp10.libraries.tanksservices.utils.BattleFormatUtil;
    
-   public class TanksServicesActivator implements name_23
+   public class TanksServicesActivator implements IBundleActivator
    {
       
       public static var osgi:OSGi;
@@ -95,27 +95,27 @@ package package_1
       public function start(param1:OSGi) : void
       {
          TanksServicesActivator.osgi = param1;
-         var _loc2_:name_29 = param1.name_6(name_29) as name_29;
+         var _loc2_:name_29 = param1.getService(name_29) as name_29;
          var _loc3_:name_560 = new BackgroundService();
-         param1.name_1(name_560,_loc3_);
-         param1.name_1(name_791,new HelpService());
-         param1.name_1(name_345,new AchievementModel());
-         param1.name_1(name_637,new BlurService());
-         param1.name_1(name_561,new name_794());
-         param1.name_1(name_812,new name_808());
-         param1.name_1(BattleFormatUtil,new BattleFormatUtil());
-         param1.name_1(name_807,new name_795());
-         param1.name_1(name_816,new name_804());
-         param1.name_1(name_42,new AlertService());
-         param1.name_1(name_811,new NewbieUserServiceImpl());
-         param1.name_1(name_554,new ExternalEntranceService());
+         param1.registerService(name_560,_loc3_);
+         param1.registerService(name_791,new HelpService());
+         param1.registerService(IAchievementModel,new AchievementModel());
+         param1.registerService(name_637,new BlurService());
+         param1.registerService(name_561,new name_794());
+         param1.registerService(name_812,new name_808());
+         param1.registerService(BattleFormatUtil,new BattleFormatUtil());
+         param1.registerService(name_807,new name_795());
+         param1.registerService(name_816,new name_804());
+         param1.registerService(name_42,new AlertService());
+         param1.registerService(name_811,new NewbieUserServiceImpl());
+         param1.registerService(name_554,new ExternalEntranceService());
          this.var_168 = new LoaderWindow();
-         param1.name_1(name_13,this.var_168);
-         param1.name_1(name_499,new LoaderTips());
-         param1.name_1(name_274,new name_817());
+         param1.registerService(name_13,this.var_168);
+         param1.registerService(name_499,new LoaderTips());
+         param1.registerService(name_274,new name_817());
          var _loc4_:name_94 = new LobbyLayoutService();
-         param1.name_1(name_94,_loc4_);
-         param1.name_1(name_800,_loc4_);
+         param1.registerService(name_94,_loc4_);
+         param1.registerService(name_800,_loc4_);
          _loc2_.name_275(name_790,name_799);
          _loc2_.name_270(name_790,ILobbyLayoutEvents);
          _loc2_.add(new LobbyLayoutModel(),Vector.<Class>([name_815,name_790,name_170,name_287]));
@@ -152,10 +152,10 @@ package package_1
       
       public function stop(param1:OSGi) : void
       {
-         param1.name_48(name_560);
-         param1.name_48(name_791);
-         param1.name_48(name_13);
-         param1.name_48(name_345);
+         param1.unregisterService(name_560);
+         param1.unregisterService(name_791);
+         param1.unregisterService(name_13);
+         param1.unregisterService(IAchievementModel);
          this.var_168 = null;
          TanksServicesActivator.osgi = null;
       }

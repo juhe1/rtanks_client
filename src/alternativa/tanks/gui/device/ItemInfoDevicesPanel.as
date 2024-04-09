@@ -4,7 +4,7 @@ package alternativa.tanks.gui.device
    import alternativa.tanks.model.GarageModel;
    import alternativa.tanks.model.name_324;
    import alternativa.tanks.model.name_381;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.Sprite;
    import flash.events.Event;
    import flash.events.MouseEvent;
@@ -36,15 +36,15 @@ package alternativa.tanks.gui.device
       
       private static const const_2785:int = 2;
       
-      public static var resourceRegistry:ResourceRegistry = OSGi.getInstance().name_6(ResourceRegistry) as ResourceRegistry;
+      public static var resourceRegistry:ResourceRegistry = OSGi.getInstance().getService(ResourceRegistry) as ResourceRegistry;
       
-      public static var lobbyLayoutService:name_94 = OSGi.getInstance().name_6(name_94) as name_94;
+      public static var lobbyLayoutService:name_94 = OSGi.getInstance().getService(name_94) as name_94;
       
-      public static var battleInfoService:name_274 = OSGi.getInstance().name_6(name_274) as name_274;
+      public static var battleInfoService:name_274 = OSGi.getInstance().getService(name_274) as name_274;
       
-      public static var blurService:name_637 = OSGi.getInstance().name_6(name_637) as name_637;
+      public static var blurService:name_637 = OSGi.getInstance().getService(name_637) as name_637;
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
        
       
       private var var_3612:Vector.<name_3545>;
@@ -67,7 +67,7 @@ package alternativa.tanks.gui.device
          this.var_3613 = new Vector.<name_3346>(3,true);
          this.panel = new ItemsCategoryViewGrid();
          super();
-         var _loc2_:name_1134 = new name_1134();
+         var _loc2_:LabelBase = new LabelBase();
          _loc2_.text = localeService.getText(name_390.const_1407);
          _loc2_.size = 18;
          _loc2_.color = name_1139.name_2195;
@@ -133,7 +133,7 @@ package alternativa.tanks.gui.device
          if(param1 == 0)
          {
             _loc4_ = name_1635(this.var_3614.name_176(name_1635)).getMountedSkin();
-            _loc2_ = GarageModel(OSGi.getInstance().name_6(name_381)).getObjectItemParams(_loc4_);
+            _loc2_ = GarageModel(OSGi.getInstance().getService(name_381)).getObjectItemParams(_loc4_);
             _loc3_ = this.var_3614 == _loc4_ ? null : ImageResource(resourceRegistry.getResource(_loc2_.previewId));
          }
          else if(param1 == 2)

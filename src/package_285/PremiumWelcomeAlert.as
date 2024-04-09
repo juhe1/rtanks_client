@@ -1,12 +1,12 @@
 package package_285
 {
    import controls.DefaultButton;
-   import controls.base.name_1134;
-   import controls.name_1891;
+   import controls.base.LabelBase;
+   import controls.TankWindowInner;
    import flash.display.Bitmap;
    import flash.display.Sprite;
    import forms.name_1139;
-   import forms.name_1838;
+   import forms.TankWindowWithHeader;
    
    public class PremiumWelcomeAlert extends Sprite
    {
@@ -16,9 +16,9 @@ package package_285
       
       private var bitmap:Bitmap;
       
-      private var window:name_1838;
+      private var window:TankWindowWithHeader;
       
-      private var var_1737:name_1891;
+      private var var_1737:TankWindowInner;
       
       public var name_1021:DefaultButton;
       
@@ -31,11 +31,11 @@ package package_285
          this.bitmap = new Bitmap(new const_1649().bitmapData);
          this.name_1021 = new DefaultButton();
          super();
-         this.window = name_1838.name_1844("ПРЕМИУМ АККАУНТ");
+         this.window = TankWindowWithHeader.createWindow("ПРЕМИУМ АККАУНТ");
          this.window.width = this.var_1739;
          this.window.height = this.var_1738;
          addChild(this.window);
-         this.var_1737 = new name_1891(0,0,name_1891.name_1428);
+         this.var_1737 = new TankWindowInner(0,0,TankWindowInner.GREEN);
          this.var_1737.width = this.window.width - 20;
          this.var_1737.height = this.window.height - 55;
          this.var_1737.x = 10;
@@ -44,7 +44,7 @@ package package_285
          this.bitmap.x = this.var_1737.width / 2 - this.bitmap.width / 2;
          this.bitmap.y = 10;
          this.var_1737.addChild(this.bitmap);
-         var _loc1_:name_1134 = this.method_582();
+         var _loc1_:LabelBase = this.method_582();
          _loc1_.x = this.var_1737.width / 2 - _loc1_.width / 2;
          _loc1_.y = this.var_1737.height - _loc1_.height - 10;
          this.var_1737.addChild(_loc1_);
@@ -54,9 +54,9 @@ package package_285
          addChild(this.name_1021);
       }
       
-      private function method_582() : name_1134
+      private function method_582() : LabelBase
       {
-         var _loc1_:name_1134 = new name_1134();
+         var _loc1_:LabelBase = new LabelBase();
          _loc1_.multiline = true;
          _loc1_.text = "Добро пожаловать в ряды Премиум танкистов!";
          _loc1_.size = 18;

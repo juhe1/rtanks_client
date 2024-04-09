@@ -4,7 +4,7 @@ package package_244
    import alternativa.tanks.engine3d.name_1072;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
    import alternativa.tanks.models.tank.TankData;
-   import alternativa.tanks.services.materialregistry.name_100;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
    import alternativa.tanks.sfx.name_2086;
    import alternativa.tanks.sfx.name_2087;
    import alternativa.tanks.utils.GraphicsUtils;
@@ -76,7 +76,7 @@ package package_244
          this.var_1444 = param4;
          this.intensity = param5;
          this.var_1443 = param6;
-         this.animation = GraphicsUtils.name_1073((Main.osgi.name_6(name_100) as name_100).textureMaterialRegistry as TextureMaterialRegistry,param1,32,32);
+         this.animation = GraphicsUtils.name_1073((Main.osgi.getService(IMaterialRegistry) as IMaterialRegistry).textureMaterialRegistry as TextureMaterialRegistry,param1,32,32);
          this.animation.fps = 30;
       }
       

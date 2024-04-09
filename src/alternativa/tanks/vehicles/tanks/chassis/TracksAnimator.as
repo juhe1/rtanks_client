@@ -1,7 +1,7 @@
 package alternativa.tanks.vehicles.tanks.chassis
 {
-   import alternativa.physics.name_660;
-   import alternativa.tanks.utils.name_75;
+   import alternativa.physics.Body;
+   import alternativa.tanks.utils.MathUtils;
    import package_276.Track;
    import package_276.TrackedChassis;
    import package_276.name_2088;
@@ -82,7 +82,7 @@ package alternativa.tanks.vehicles.tanks.chassis
          return _loc4_ * _loc7_.m01 + _loc5_ * _loc7_.m11 + _loc6_ * _loc7_.m21;
       }
       
-      private function method_2668(param1:name_660, param2:Vector3, param3:Vector3) : void
+      private function method_2668(param1:Body, param2:Vector3, param3:Vector3) : void
       {
          var _loc4_:Number = NaN;
          var _loc5_:Number = NaN;
@@ -104,7 +104,7 @@ package alternativa.tanks.vehicles.tanks.chassis
       private function method_2670(param1:Track, param2:Number) : Boolean
       {
          var _loc3_:Number = this.method_2664(param1);
-         return Math.abs(param2) > 0.8 * 100 || _loc3_ == 0 || name_75.method_607(param2,1) * name_75.method_613(_loc3_) == -1;
+         return Math.abs(param2) > 0.8 * 100 || _loc3_ == 0 || MathUtils.method_607(param2,1) * MathUtils.method_613(_loc3_) == -1;
       }
       
       private function method_2664(param1:Track) : Number
@@ -130,7 +130,7 @@ package alternativa.tanks.vehicles.tanks.chassis
       private function method_2666(param1:Track, param2:Number) : void
       {
          var _loc3_:Number = this.method_2664(param1);
-         param1.method_2590(_loc3_ * this.var_1709.name_2184(),this.chassis.method_1890() * param2);
+         param1.method_2590(_loc3_ * this.var_1709.getTargetValue(),this.chassis.method_1890() * param2);
       }
    }
 }

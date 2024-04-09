@@ -17,7 +17,7 @@ package package_138
       public function ServerBonusModel()
       {
          super();
-         this.var_686 = name_32(Main.osgi.name_6(name_32));
+         this.var_686 = name_32(Main.osgi.getService(name_32));
          this.model = BonusModel(this.var_686.getModelsByInterface(name_1587)[0]);
       }
       

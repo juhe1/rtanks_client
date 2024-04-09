@@ -1,7 +1,7 @@
 package package_276
 {
-   import alternativa.physics.name_660;
-   import alternativa.tanks.utils.name_75;
+   import alternativa.physics.Body;
+   import alternativa.tanks.utils.MathUtils;
    import alternativa.tanks.vehicles.tanks.TankBody;
    import alternativa.tanks.vehicles.tanks.chassis.TracksAnimator;
    import alternativa.tanks.vehicles.tanks.chassis.ValueSmoother;
@@ -40,13 +40,13 @@ package package_276
       
       private var var_321:TankBody;
       
-      private var name_787:name_660;
+      private var name_787:Body;
       
       private var var_1713:name_906;
       
-      private var var_1709:ValueSmoother;
+      private var maxSpeedSmoother:ValueSmoother;
       
-      private var var_1712:ValueSmoother;
+      private var maxTurnSpeedSmoother:ValueSmoother;
       
       public var var_1708:Track;
       
@@ -66,12 +66,12 @@ package package_276
       
       private var var_1716:TracksAnimator;
       
-      public function TrackedChassis(param1:TankBody, param2:name_660, param3:Vector3, param4:SpeedCharacteristics, param5:Number)
+      public function TrackedChassis(param1:TankBody, param2:Body, param3:Vector3, param4:SpeedCharacteristics, param5:Number)
       {
          this.var_1713 = new name_906();
-         this.var_1709 = new name_2182(100,1000,0,0);
-         this.var_1712 = new name_2182(0.3,10,0,0);
-         this.var_1716 = new TracksAnimator(this,this.var_1709);
+         this.maxSpeedSmoother = new name_2182(100,1000,0,0);
+         this.maxTurnSpeedSmoother = new name_2182(0.3,10,0,0);
+         this.var_1716 = new TracksAnimator(this,this.maxSpeedSmoother);
          super();
          this.var_321 = param1;
          this.name_787 = param2;
@@ -93,7 +93,7 @@ package package_276
          this.var_1707 = new Track(this.name_787,param1,new Vector3(0.5 * _loc4_,0,-0.5 * param2.z + name_906.name_917),_loc3_,this.var_1713,1);
       }
       
-      public function method_1879(param1:Number) : void
+      public function setAccelaration(param1:Number) : void
       {
          this.name_266.acceleration = param1;
       }
@@ -245,32 +245,32 @@ package package_276
             _loc7_ = 0;
             if(this.var_1710 == 0)
             {
-               _loc7_ = -name_75.method_613(_loc28_) * _loc34_ * param3;
-               if(name_75.method_613(_loc28_) != name_75.method_613(_loc28_ + _loc7_))
+               _loc7_ = -MathUtils.method_613(_loc28_) * _loc34_ * param3;
+               if(MathUtils.method_613(_loc28_) != MathUtils.method_613(_loc28_ + _loc7_))
                {
                   _loc7_ = -_loc28_;
                }
             }
             else
             {
-               if(name_75.method_613(_loc28_) * name_75.method_613(this.var_1710) < 0)
+               if(MathUtils.method_613(_loc28_) * MathUtils.method_613(this.var_1710) < 0)
                {
                   _loc34_ = this.name_266.reverseAcceleration;
                }
                _loc7_ = this.var_1710 * _loc34_ * param3;
             }
-            _loc8_ = name_75.method_218(_loc28_ + _loc7_,-param1,param1);
+            _loc8_ = MathUtils.method_218(_loc28_ + _loc7_,-param1,param1);
             _loc9_ = _loc8_ - _loc28_;
             _loc10_ = 1;
-            _loc11_ = name_75.method_218(1 - Math.abs(_loc28_ / param1),0,1);
-            if(_loc11_ < _loc10_ && this.var_1710 * name_75.method_613(_loc28_) > 0)
+            _loc11_ = MathUtils.method_218(1 - Math.abs(_loc28_ / param1),0,1);
+            if(_loc11_ < _loc10_ && this.var_1710 * MathUtils.method_613(_loc28_) > 0)
             {
                _loc9_ *= _loc11_ / _loc10_;
             }
             _loc12_ = _loc9_ / param3;
-            if(Math.abs(_loc12_) < 400 && Math.abs(_loc8_) > 0.5 * this.var_1709.name_2184())
+            if(Math.abs(_loc12_) < 400 && Math.abs(_loc8_) > 0.5 * this.maxSpeedSmoother.getTargetValue())
             {
-               _loc12_ = name_75.method_607(_loc12_,0.1) * 400;
+               _loc12_ = MathUtils.method_607(_loc12_,0.1) * 400;
             }
             _loc13_ = _loc12_ * this.name_787.mass;
             _loc14_ = _loc32_ + _loc33_;
@@ -293,8 +293,8 @@ package package_276
             _loc21_ = 0;
             if(this.var_1711 == 0)
             {
-               _loc21_ = -name_75.method_613(_loc29_) * this.name_266.turnReverseAcceleration * _loc6_ * param3;
-               if(name_75.method_613(_loc29_) != name_75.method_613(_loc29_ + _loc21_))
+               _loc21_ = -MathUtils.method_613(_loc29_) * this.name_266.turnReverseAcceleration * _loc6_ * param3;
+               if(MathUtils.method_613(_loc29_) != MathUtils.method_613(_loc29_ + _loc21_))
                {
                   _loc21_ = -_loc29_;
                }
@@ -317,7 +317,7 @@ package package_276
                _loc22_ = param2 * this.var_1715 / 7;
             }
             _loc23_ = _loc22_ * _loc20_;
-            _loc24_ = name_75.method_218(_loc29_ + _loc21_,-_loc23_,_loc23_);
+            _loc24_ = MathUtils.method_218(_loc29_ + _loc21_,-_loc23_,_loc23_);
             const_1626.setLengthAlongDirection(const_1627,_loc24_);
             _loc4_.x = const_1629.x + const_1626.x;
             _loc4_.y = const_1629.y + const_1626.y;
@@ -490,38 +490,38 @@ package package_276
       
       public function reset() : void
       {
-         this.var_1709.reset(this.var_1709.name_2184());
-         this.var_1712.reset(this.var_1712.name_2184());
+         this.maxSpeedSmoother.reset(this.maxSpeedSmoother.getTargetValue());
+         this.maxTurnSpeedSmoother.reset(this.maxTurnSpeedSmoother.getTargetValue());
       }
       
-      public function name_265(param1:Number, param2:Boolean) : void
+      public function setMaxSpeed(param1:Number, param2:Boolean) : void
       {
          if(param2)
          {
-            this.var_1709.reset(param1);
+            this.maxSpeedSmoother.reset(param1);
          }
          else
          {
-            this.var_1709.name_2185(param1);
+            this.maxSpeedSmoother.setTargetValue(param1);
          }
       }
       
-      public function name_201(param1:Number, param2:Boolean) : void
+      public function setMaxTurnSpeed(param1:Number, param2:Boolean) : void
       {
          if(param2)
          {
-            this.var_1712.reset(param1);
+            this.maxTurnSpeedSmoother.reset(param1);
          }
          else
          {
-            this.var_1712.name_2185(param1);
+            this.maxTurnSpeedSmoother.setTargetValue(param1);
          }
       }
       
       public function update(param1:Number) : void
       {
-         var _loc2_:Number = Number(this.var_1709.update(param1));
-         var _loc3_:Number = Number(this.var_1712.update(param1));
+         var _loc2_:Number = Number(this.maxSpeedSmoother.update(param1));
+         var _loc3_:Number = Number(this.maxTurnSpeedSmoother.update(param1));
          this.name_787.method_434(_loc2_);
          this.method_1859(_loc2_,_loc3_,param1);
          this.name_787.var_315 = !this.name_1178() && this.var_321.method_1874();

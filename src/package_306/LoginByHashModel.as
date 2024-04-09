@@ -4,12 +4,12 @@ package package_306
    import mx.utils.StringUtil;
    import package_307.class_174;
    import package_307.name_1224;
-   import package_95.name_298;
+   import package_95.IStorageService;
    
    public class LoginByHashModel extends class_174 implements name_1225, name_1224
    {
       
-      public static var storageService:name_298;
+      public static var storageService:IStorageService;
        
       
       public function LoginByHashModel()

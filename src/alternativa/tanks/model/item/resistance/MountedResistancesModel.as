@@ -11,7 +11,7 @@ package alternativa.tanks.model.item.resistance
    public class MountedResistancesModel extends MountedResistancesModelBase implements name_1644, name_141, name_287, name_1525
    {
       
-      public static var var_2347:name_1358 = OSGi.getInstance().name_6(name_1358) as name_1358;
+      public static var var_2347:name_1358 = OSGi.getInstance().getService(name_1358) as name_1358;
        
       
       private var var_2415:Vector.<name_70>;

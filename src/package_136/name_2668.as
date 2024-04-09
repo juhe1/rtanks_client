@@ -33,7 +33,7 @@ package package_136
       
       public function name_2669(param1:name_70) : void
       {
-         Network(OSGi.getInstance().name_6(name_2)).send("garage;try_mount_skin;" + param1.name);
+         Network(OSGi.getInstance().getService(name_2)).send("garage;try_mount_skin;" + param1.name);
       }
    }
 }

@@ -34,7 +34,7 @@ package package_86
       
       public function init() : void
       {
-         this.var_686 = name_32(Main.osgi.name_6(name_32));
+         this.var_686 = name_32(Main.osgi.getService(name_32));
          this.model = BattleMinesModel(this.var_686.getModelsByInterface(name_690)[0]);
       }
       

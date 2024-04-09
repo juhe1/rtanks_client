@@ -14,7 +14,7 @@ package alternativa.tanks.models.tank
       
       public static var var_293:int = 10;
       
-      public static var name_106:TankData;
+      public static var localTankData:TankData;
        
       
       public var battlefield:ClientObject;

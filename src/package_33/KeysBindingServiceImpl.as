@@ -6,7 +6,7 @@ package package_33
    import flash.ui.Keyboard;
    import flash.utils.Dictionary;
    import package_54.name_102;
-   import package_95.name_298;
+   import package_95.IStorageService;
    
    public class KeysBindingServiceImpl extends EventDispatcher implements name_276
    {
@@ -16,7 +16,7 @@ package package_33
       public static const const_1670:uint = 0;
        
       
-      private var storageService:name_298;
+      private var storageService:IStorageService;
       
       private var var_1767:Dictionary;
       
@@ -34,8 +34,8 @@ package package_33
          this.var_1768 = new Dictionary();
          this.var_1766 = new Dictionary();
          super();
-         var _loc1_:name_102 = name_102(OSGi.getInstance().name_6(name_102));
-         this.storageService = name_298(OSGi.getInstance().name_6(name_298));
+         var _loc1_:name_102 = name_102(OSGi.getInstance().getService(name_102));
+         this.storageService = IStorageService(OSGi.getInstance().getService(IStorageService));
          this.var_1770 = uint(Keyboard.Z);
          this.method_1951();
          this.method_1950();

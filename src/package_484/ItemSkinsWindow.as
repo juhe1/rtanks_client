@@ -1,28 +1,28 @@
 package package_484
 {
    import alternativa.osgi.OSGi;
-   import controls.base.name_998;
+   import controls.base.DefaultButtonBase;
    import fl.containers.ScrollPane;
    import fl.controls.ScrollPolicy;
    import flash.display.Sprite;
    import flash.events.Event;
    import flash.events.MouseEvent;
    import forms.name_1139;
-   import package_177.name_550;
+   import package_177.IDialogsService;
    import package_340.name_1634;
    import package_379.class_123;
    import package_491.name_3686;
    import package_54.name_102;
    import platform.client.fp10.core.type.name_70;
    import projects.tanks.clients.fp10.libraries.name_390;
-   import utils.name_1915;
+   import utils.ScrollStyleUtils;
    
    public class ItemSkinsWindow extends class_123
    {
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
-      public static var var_864:name_550 = OSGi.getInstance().name_6(name_550) as name_550;
+      public static var var_864:IDialogsService = OSGi.getInstance().getService(IDialogsService) as IDialogsService;
       
       private static const const_1518:int = 509;
       
@@ -41,7 +41,7 @@ package package_484
       
       private var var_2630:ScrollPane;
       
-      private var name_983:name_998;
+      private var name_983:DefaultButtonBase;
       
       private var var_3716:Vector.<name_3685>;
       
@@ -56,7 +56,7 @@ package package_484
          this.var_3715 = new name_3686(509,450,24);
          this.var_2632 = new Sprite();
          this.var_2630 = new ScrollPane();
-         this.name_983 = new name_998();
+         this.name_983 = new DefaultButtonBase();
          this.var_3716 = new Vector.<name_3685>();
          this.var_2861 = new Sprite();
          super();
@@ -73,7 +73,7 @@ package package_484
       
       private function method_1327() : void
       {
-         this.var_3715.var_1182.name_1895 = false;
+         this.var_3715.var_1182.showBlink = false;
          this.var_3715.window.method_2516(localeService.getText(name_390.const_1094));
          this.var_3715.name_1142(450);
          addChild(this.var_3715);
@@ -82,7 +82,7 @@ package package_484
       private function method_3309() : void
       {
          this.var_2630.y = 10;
-         name_1915.name_1918(this.var_2630);
+         ScrollStyleUtils.setGreenStyle(this.var_2630);
          this.var_2630.horizontalScrollPolicy = ScrollPolicy.OFF;
          this.var_2630.verticalScrollPolicy = ScrollPolicy.AUTO;
          this.var_2630.source = this.var_2632;

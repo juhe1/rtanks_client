@@ -1,7 +1,7 @@
 package alternativa.tanks.model
 {
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.tanks.gui.chat.name_1632;
    import alternativa.tanks.gui.chat.name_2654;
    import alternativa.tanks.utils.Antiflood;
@@ -67,11 +67,11 @@ package alternativa.tanks.model
       public function ChatModel()
       {
          super();
-         var_365.push(name_66);
-         var_365.push(name_400);
-         var_365.push(class_11);
+         _interfaces.push(IModel);
+         _interfaces.push(name_400);
+         _interfaces.push(class_11);
          this.var_83 = Main.contentUILayer;
-         var _loc1_:name_32 = Main.osgi.name_6(name_32) as name_32;
+         var _loc1_:name_32 = Main.osgi.getService(name_32) as name_32;
       }
       
       public function objectLoaded(param1:ClientObject) : void
@@ -82,18 +82,18 @@ package alternativa.tanks.model
          this.var_2402 = new Vector.<Long>();
          this.var_2400 = method_771().admin;
          this.var_2397 = method_771().antifloodEnabled;
-         if(LobbyChat(Main.osgi.name_6(LobbyChat)) != null)
+         if(LobbyChat(Main.osgi.getService(LobbyChat)) != null)
          {
             for each(_loc2_ in method_771().channels)
             {
                this.name_391(null,"",_loc2_);
             }
-            this.name_379 = LobbyChat(Main.osgi.name_6(LobbyChat));
+            this.name_379 = LobbyChat(Main.osgi.getService(LobbyChat));
          }
          else
          {
             this.name_379 = new LobbyChat();
-            Main.osgi.name_1(LobbyChat,this.name_379);
+            Main.osgi.registerService(LobbyChat,this.name_379);
          }
          this.chatModeratorLevel = method_771().chatModeratorLevel;
          this.name_379.method_2273 = method_771().typingSpeedAntifloodEnabled;
@@ -181,7 +181,7 @@ package alternativa.tanks.model
       
       public function sendMessage(param1:String, param2:String) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby_chat;" + param2 + ";" + this.name_379.method_2281() + ";" + (param1 != null ? "true" : "false") + ";" + (param1 != "" ? param1 : "NULL") + "");
+         Network(Main.osgi.getService(name_2)).send("lobby_chat;" + param2 + ";" + this.name_379.method_2281() + ";" + (param1 != null ? "true" : "false") + ";" + (param1 != "" ? param1 : "NULL") + "");
       }
       
       private function method_535() : void
@@ -205,7 +205,7 @@ package alternativa.tanks.model
       
       public function method_2398(param1:ClientObject, param2:String) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby;get_show_battle_info;" + param2);
+         Network(Main.osgi.getService(name_2)).send("lobby;get_show_battle_info;" + param2);
       }
       
       private function method_2397(param1:TextEvent) : void

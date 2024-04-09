@@ -38,7 +38,7 @@ package forms
       
       private function method_1940(param1:Event) : void
       {
-         var _loc2_:name_102 = Main.osgi.name_6(name_102) as name_102;
+         var _loc2_:name_102 = Main.osgi.getService(name_102) as name_102;
          var _loc3_:name_1922 = new name_1922(400,500);
          _loc3_.x = -200;
          addChild(_loc3_);

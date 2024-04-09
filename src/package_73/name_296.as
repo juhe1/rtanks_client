@@ -1,8 +1,8 @@
 package package_73
 {
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.sfx.LightDataManager;
-   import alternativa.tanks.models.tank.class_7;
+   import alternativa.tanks.models.tank.ITank;
    import alternativa.tanks.models.weapon.name_903;
    import alternativa.tanks.models.weapon.name_911;
    import alternativa.tanks.models.weapon.shotgun.name_1247;
@@ -22,7 +22,7 @@ package package_73
    public class name_296 extends ShotgunSFXModelBase implements name_288, name_282, name_273
    {
       
-      public static var battleService:name_83;
+      public static var battleService:IBattleField;
        
       
       private var var_557:name_903;
@@ -58,7 +58,7 @@ package package_73
       private function method_798(param1:name_70, param2:Vector3) : void
       {
          var _loc3_:Tank = null;
-         var _loc4_:class_7 = class_7(param1.name_176(class_7));
+         var _loc4_:ITank = ITank(param1.name_176(ITank));
          if(!_loc4_.isLocal())
          {
             this.method_797(param1);
@@ -69,7 +69,7 @@ package package_73
       
       private function method_797(param1:name_70) : void
       {
-         var _loc2_:class_7 = class_7(param1.name_176(class_7));
+         var _loc2_:ITank = ITank(param1.name_176(ITank));
          var _loc3_:Tank = _loc2_.getTank();
          name_911.getInstance().name_920(_loc3_.name_144(),_loc3_.method_463(),this.var_557);
       }
@@ -77,12 +77,12 @@ package package_73
       public function getEffects() : name_1244
       {
          var _loc1_:name_1244 = name_1244(getData(name_1244));
-         var _loc2_:class_7 = null;
+         var _loc2_:ITank = null;
          var _loc3_:ShotgunSFXData = null;
          var _loc4_:name_1246 = null;
          if(_loc1_ == null)
          {
-            _loc2_ = class_7(object.name_176(class_7));
+            _loc2_ = ITank(object.name_176(ITank));
             _loc4_ = name_1246(_loc2_.getTank().tankData.turret.method_16(name_1246));
             _loc3_ = new ShotgunSFXData(_loc4_,LightDataManager.name_1250("smoky_m0"));
             _loc1_ = new name_1244(_loc3_);

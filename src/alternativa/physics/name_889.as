@@ -1,6 +1,6 @@
 package alternativa.physics
 {
-   import alternativa.physics.collision.name_774;
+   import alternativa.physics.collision.CollisionPrimitive;
    
    public class name_889
    {
@@ -8,19 +8,19 @@ package alternativa.physics
       private static var var_1689:name_889;
        
       
-      public var name_899:name_774;
+      public var name_899:CollisionPrimitive;
       
       public var next:name_889;
       
       public var prev:name_889;
       
-      public function name_889(param1:name_774)
+      public function name_889(param1:CollisionPrimitive)
       {
          super();
          this.name_899 = param1;
       }
       
-      public static function create(param1:name_774) : name_889
+      public static function create(param1:CollisionPrimitive) : name_889
       {
          var _loc2_:name_889 = null;
          if(var_1689 == null)

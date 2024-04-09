@@ -26,7 +26,7 @@ package package_128
       
       public function ClanNotifierModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_636(this);
          this.var_25 = Long.getLong(1850785827,-2022019480);
          this.var_1179 = Long.getLong(2052398186,-511753871);

@@ -42,7 +42,7 @@ package platform.client.fp10.core.registry.impl
          this.class2Adapt = new Dictionary();
          this.class2Events = new Dictionary();
          super();
-         var _loc2_:name_26 = name_26(param1.name_6(name_26));
+         var _loc2_:name_26 = name_26(param1.getService(name_26));
          this.var_17 = _loc2_.getLogger("modelsreg");
          this.var_231 = new Dictionary();
          this.var_230 = new Dictionary();

@@ -1,8 +1,8 @@
 package alternativa.tanks.models.weapon.machinegun
 {
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.model.IModel;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import package_1.Main;
    import package_300.name_1189;
    import package_358.class_168;
@@ -12,14 +12,14 @@ package alternativa.tanks.models.weapon.machinegun
    public class VulcanSFXModel extends class_168 implements class_169, class_11, class_170
    {
       
-      private static var var_138:name_118;
+      private static var var_138:IObjectPoolService;
        
       
       public function VulcanSFXModel()
       {
          super();
-         var_365.push(name_66,class_11,class_170);
-         var_138 = name_118(Main.osgi.name_6(name_118));
+         _interfaces.push(IModel,class_11,class_170);
+         var_138 = IObjectPoolService(Main.osgi.getService(IObjectPoolService));
       }
       
       public function initObject(param1:ClientObject, param2:name_1189) : void

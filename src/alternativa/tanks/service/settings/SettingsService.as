@@ -5,13 +5,13 @@ package alternativa.tanks.service.settings
    import flash.media.SoundTransform;
    import flash.net.SharedObject;
    import package_1.Main;
-   import package_95.name_298;
+   import package_95.IStorageService;
    import package_95.name_526;
    
-   public class SettingsService extends EventDispatcher implements name_108
+   public class SettingsService extends EventDispatcher implements IBattleSettings
    {
       
-      public static var storageService:name_298 = Main.osgi.name_6(name_298) as name_526;
+      public static var storageService:IStorageService = Main.osgi.getService(IStorageService) as name_526;
       
       private static const const_90:Number = 0.7;
       

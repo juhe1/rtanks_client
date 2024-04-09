@@ -2,8 +2,8 @@ package package_96
 {
    import alternativa.osgi.OSGi;
    import base.class_122;
-   import controls.base.name_1134;
-   import controls.name_1891;
+   import controls.base.LabelBase;
+   import controls.TankWindowInner;
    import forms.name_1139;
    import package_432.ItemsCategoryViewGrid;
    import package_54.name_102;
@@ -14,30 +14,30 @@ package package_96
    public class MountedResistancesPanel extends class_122
    {
       
-      public static var var_2347:name_1358 = OSGi.getInstance().name_6(name_1358) as name_1358;
+      public static var var_2347:name_1358 = OSGi.getInstance().getService(name_1358) as name_1358;
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
       private static const const_1939:int = 9;
       
       private static const const_1938:int = 3;
        
       
-      private var background:name_1891;
+      private var background:TankWindowInner;
       
       private var panel:ItemsCategoryViewGrid;
       
       private var var_2346:Vector.<ResistanceButton>;
       
-      private var label:name_1134;
+      private var label:LabelBase;
       
       public function MountedResistancesPanel()
       {
          var _loc1_:ResistanceButton = null;
-         this.background = new name_1891(164,0,name_1891.name_1428);
+         this.background = new TankWindowInner(164,0,TankWindowInner.GREEN);
          this.panel = new ItemsCategoryViewGrid();
          this.var_2346 = new Vector.<ResistanceButton>();
-         this.label = new name_1134();
+         this.label = new LabelBase();
          super();
          var _loc2_:int = 0;
          while(_loc2_ < 3)

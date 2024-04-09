@@ -48,12 +48,12 @@ package alternativa.tanks.vehicles.tanks.chassis
          return this.currentValue;
       }
       
-      public function name_2185(param1:Number) : void
+      public function setTargetValue(param1:Number) : void
       {
          this.targetValue = param1;
       }
       
-      public function name_2184() : Number
+      public function getTargetValue() : Number
       {
          return this.targetValue;
       }

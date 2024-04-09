@@ -33,10 +33,10 @@ package alternativa.tanks.model.friends.invite
       public function BattleInviteModel()
       {
          super();
-         this.var_382 = Main.osgi.name_6(name_539) as name_539;
-         this.localeService = Main.osgi.name_6(name_102) as name_102;
+         this.var_382 = Main.osgi.getService(name_539) as name_539;
+         this.localeService = Main.osgi.getService(name_102) as name_102;
          this.var_1772 = new Dictionary();
-         var _loc1_:SoundResource = SoundResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(Long.getLong(0,106777)));
+         var _loc1_:SoundResource = SoundResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(Long.getLong(0,106777)));
          if(_loc1_ != null && _loc1_.isLoaded)
          {
             this.var_1773 = _loc1_.sound;
@@ -104,8 +104,8 @@ package alternativa.tanks.model.friends.invite
       private function method_1952() : void
       {
          this.var_1772[this.var_1771] = true;
-         var _loc1_:String = Main.osgi.name_6(name_386) != null ? BattleSelectModel(Main.osgi.name_6(name_386)).selectedBattleId : "null";
-         Network(Main.osgi.name_6(name_2)).send("lobby;invite_to_battle;" + this.var_1771 + ";" + _loc1_);
+         var _loc1_:String = Main.osgi.getService(name_386) != null ? BattleSelectModel(Main.osgi.getService(name_386)).selectedBattleId : "null";
+         Network(Main.osgi.getService(name_2)).send("lobby;invite_to_battle;" + this.var_1771 + ";" + _loc1_);
          this.var_1771 = null;
       }
       

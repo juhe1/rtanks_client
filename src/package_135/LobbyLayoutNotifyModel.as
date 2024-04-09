@@ -13,11 +13,11 @@ package package_135
    public class LobbyLayoutNotifyModel extends class_61 implements name_814, name_793, name_287
    {
       
-      public static var lobbyLayoutService:name_94 = OSGi.getInstance().name_6(name_94) as name_94;
+      public static var lobbyLayoutService:name_94 = OSGi.getInstance().getService(name_94) as name_94;
       
-      public static var loaderWindowService:name_13 = OSGi.getInstance().name_6(name_13) as name_13;
+      public static var loaderWindowService:name_13 = OSGi.getInstance().getService(name_13) as name_13;
       
-      public static var logService:name_26 = OSGi.getInstance().name_6(name_26) as name_26;
+      public static var logService:name_26 = OSGi.getInstance().getService(name_26) as name_26;
       
       private static const const_27:String = "LobbyLayoutNotifyModel";
       

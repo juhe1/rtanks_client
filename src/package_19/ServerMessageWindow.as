@@ -1,9 +1,9 @@
 package package_19
 {
    import alternativa.osgi.OSGi;
-   import controls.base.name_1134;
-   import controls.base.name_998;
-   import controls.name_1891;
+   import controls.base.LabelBase;
+   import controls.base.DefaultButtonBase;
+   import controls.TankWindowInner;
    import controls.name_1922;
    import flash.display.Bitmap;
    import flash.display.BitmapData;
@@ -20,13 +20,13 @@ package package_19
       private static const const_1604:BitmapData = new const_1605().bitmapData;
        
       
-      private var var_1615:name_998;
+      private var var_1615:DefaultButtonBase;
       
       private var window:name_1922;
       
-      private var description:name_1134;
+      private var description:LabelBase;
       
-      private var var_1616:name_1891;
+      private var var_1616:TankWindowInner;
       
       private var icon:Bitmap;
       
@@ -49,7 +49,7 @@ package package_19
          this.icon = new Bitmap(const_1604);
          this.icon.x = 23;
          this.icon.y = 23;
-         this.description = new name_1134();
+         this.description = new LabelBase();
          this.description.color = 5898035;
          this.description.multiline = true;
          this.description.autoSize = TextFieldAutoSize.LEFT;
@@ -62,14 +62,14 @@ package package_19
             _loc5_ += this.description.y + this.description.height - this.icon.y - this.icon.height;
          }
          this.window = new name_1922(300,12 + _loc5_ + _loc2_ + _loc3_ + _loc2_ + _loc1_ + _loc3_ + 12);
-         this.var_1616 = new name_1891(300 - 12 * 2,_loc5_,name_1891.name_1428);
+         this.var_1616 = new TankWindowInner(300 - 12 * 2,_loc5_,TankWindowInner.GREEN);
          this.var_1616.x = 12;
          this.var_1616.y = 12;
          addChild(this.window);
          this.window.addChild(this.var_1616);
          this.window.addChild(this.icon);
          this.window.addChild(this.description);
-         this.var_1615 = new name_998();
+         this.var_1615 = new DefaultButtonBase();
          this.var_1615.label = "Close";
          this.var_1615.x = 12 + 1;
          this.var_1615.y = 12 + _loc5_ + _loc2_;
@@ -90,7 +90,7 @@ package package_19
       
       private function method_1792(param1:MouseEvent = null) : void
       {
-         AlertService(OSGi.getInstance().name_6(name_42)).hideServerMessageWindow();
+         AlertService(OSGi.getInstance().getService(name_42)).hideServerMessageWindow();
       }
       
       private function method_1791() : void
@@ -121,7 +121,7 @@ package package_19
       
       private function onOkButtonClick(param1:MouseEvent) : void
       {
-         AlertService(OSGi.getInstance().name_6(name_42)).hideServerMessageWindow();
+         AlertService(OSGi.getInstance().getService(name_42)).hideServerMessageWindow();
       }
    }
 }

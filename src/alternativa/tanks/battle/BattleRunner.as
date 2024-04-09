@@ -1,9 +1,9 @@
 package alternativa.tanks.battle
 {
-   import alternativa.physics.collision.name_774;
-   import alternativa.physics.name_660;
+   import alternativa.physics.collision.CollisionPrimitive;
+   import alternativa.physics.Body;
    import alternativa.tanks.models.battlefield.logic.class_23;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.class_12;
    import alternativa.tanks.utils.name_1388;
    import alternativa.tanks.utils.name_1391;
@@ -25,7 +25,7 @@ package alternativa.tanks.battle
    public class BattleRunner
    {
       
-      public static var battleService:name_83;
+      public static var battleService:IBattleField;
       
       public static var localTankInfoService:class_12;
       
@@ -54,7 +54,7 @@ package alternativa.tanks.battle
       
       private var var_679:Vector.<name_1384>;
       
-      private var var_681:name_660;
+      private var var_681:Body;
       
       private var var_675:Boolean;
       
@@ -88,7 +88,7 @@ package alternativa.tanks.battle
          return this.soundManager;
       }
       
-      public function method_930(param1:Vector.<name_774>) : void
+      public function method_930(param1:Vector.<CollisionPrimitive>) : void
       {
          this.name_678.method_930(param1);
       }
@@ -157,7 +157,7 @@ package alternativa.tanks.battle
          this.const_443.remove(param1);
       }
       
-      public function name_194(param1:name_660) : void
+      public function name_194(param1:Body) : void
       {
          this.var_681 = param1;
       }

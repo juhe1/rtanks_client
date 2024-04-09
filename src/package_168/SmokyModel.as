@@ -3,27 +3,27 @@ package package_168
    import alternativa.engine3d.alternativa3d;
    import alternativa.engine3d.materials.TextureMaterial;
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.tanks.models.battlefield.name_128;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
-   import alternativa.tanks.models.weapon.name_1074;
+   import alternativa.tanks.models.tank.ITank;
+   import alternativa.tanks.models.weapon.IWeaponController;
    import alternativa.tanks.models.weapon.name_911;
    import alternativa.tanks.models.weapon.shared.CommonTargetSystem;
    import alternativa.tanks.models.weapon.shared.name_1709;
    import alternativa.tanks.models.weapon.shared.name_653;
-   import alternativa.tanks.services.materialregistry.name_100;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
    import package_1.Main;
-   import package_161.name_1448;
+   import package_161.IWeaponWeakeningModel;
    import package_167.name_1454;
    import package_278.name_1288;
    import package_362.class_83;
    import package_362.class_84;
    import package_37.Vector3;
    import package_4.ClientObject;
-   import package_41.name_320;
+   import package_41.ItemProperty;
    import package_41.Vector3dData;
    import package_52.WeaponsManager;
    import package_7.name_32;
@@ -35,7 +35,7 @@ package package_168
    
    use namespace alternativa3d;
    
-   public class SmokyModel extends class_84 implements class_83, class_11, name_1074
+   public class SmokyModel extends class_84 implements class_83, class_11, IWeaponController
    {
       
       public static var var_1050:Number = 0.5;
@@ -47,13 +47,13 @@ package package_168
       
       private var modelService:name_32;
       
-      private var var_11:name_83;
+      private var var_11:IBattleField;
       
       private var var_13:TankModel;
       
       private var var_728:name_1188;
       
-      private var var_730:name_1448;
+      private var var_730:IWeaponWeakeningModel;
       
       private var name_106:TankData;
       
@@ -111,12 +111,12 @@ package package_168
          this.var_1049 = new Vector3dData(0,0,0);
          this.currTime = new name_1288("smoky_curr_time");
          super();
-         var_365.push(name_66,class_83,class_11,name_1074);
+         _interfaces.push(IModel,class_83,class_11,IWeaponController);
       }
       
-      public function name_1436() : name_320
+      public function name_1436() : ItemProperty
       {
-         return name_320.name_462;
+         return ItemProperty.MECH_RESISTANCE;
       }
       
       public function objectLoaded(param1:ClientObject) : void
@@ -125,20 +125,20 @@ package package_168
          {
             return;
          }
-         this.modelService = name_32(Main.osgi.name_6(name_32));
-         this.var_11 = Main.osgi.name_6(name_83) as name_83;
-         this.var_13 = Main.osgi.name_6(class_7) as TankModel;
-         this.var_728 = Main.osgi.name_6(name_1188) as name_1188;
-         this.var_730 = name_1448(this.modelService.getModelsByInterface(name_1448)[0]);
+         this.modelService = name_32(Main.osgi.getService(name_32));
+         this.var_11 = Main.osgi.getService(IBattleField) as IBattleField;
+         this.var_13 = Main.osgi.getService(ITank) as TankModel;
+         this.var_728 = Main.osgi.getService(name_1188) as name_1188;
+         this.var_730 = IWeaponWeakeningModel(this.modelService.getModelsByInterface(IWeaponWeakeningModel)[0]);
          if(var_1001 == null)
          {
-            var_1001 = name_100(Main.osgi.name_6(name_100)).textureMaterialRegistry.getMaterial(null,new const_492().bitmapData,1);
+            var_1001 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry)).textureMaterialRegistry.getMaterial(null,new const_492().bitmapData,1);
          }
       }
       
       public function objectUnloaded(param1:ClientObject) : void
       {
-         name_100(Main.osgi.name_6(name_100)).textureMaterialRegistry.disposeMaterial(var_1001);
+         IMaterialRegistry(Main.osgi.getService(IMaterialRegistry)).textureMaterialRegistry.disposeMaterial(var_1001);
          var_1001 = null;
       }
       
@@ -290,7 +290,7 @@ package package_168
          _loc7_.victimInc = param5;
          _loc7_.tankPos = param6;
          _loc7_.reloadTime = this.var_733.reloadMsec.value;
-         Network(Main.osgi.name_6(name_2)).send("battle;fire;" + JSON.stringify(_loc7_));
+         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(_loc7_));
       }
       
       public function method_1002(param1:int) : void

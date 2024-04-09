@@ -6,9 +6,9 @@ package alternativa.tanks.vehicles.tanks.chassis
       
       function reset() : void;
       
-      function name_265(param1:Number, param2:Boolean) : void;
+      function setMaxSpeed(param1:Number, param2:Boolean) : void;
       
-      function name_201(param1:Number, param2:Boolean) : void;
+      function setMaxTurnSpeed(param1:Number, param2:Boolean) : void;
       
       function update(param1:Number) : void;
       
@@ -20,7 +20,7 @@ package alternativa.tanks.vehicles.tanks.chassis
       
       function name_1178() : Boolean;
       
-      function method_1879(param1:Number) : void;
+      function setAccelaration(param1:Number) : void;
       
       function lock(param1:int) : void;
       

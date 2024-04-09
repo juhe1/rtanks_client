@@ -4,8 +4,8 @@ package forms.battlelist.battlecreate
    import base.class_122;
    import controls.NumStepper;
    import controls.base.name_3461;
-   import controls.checkbox.class_195;
-   import controls.checkbox.name_2018;
+   import controls.checkbox.CheckBoxBase;
+   import controls.checkbox.CheckBoxEvent;
    import controls.dropdownlist.ComboBoxRenderer;
    import controls.dropdownlist.DropDownList;
    import flash.display.DisplayObject;
@@ -17,7 +17,7 @@ package forms.battlelist.battlecreate
    import forms.battlelist.BattleMode;
    import forms.battlelist.MapTheme;
    import forms.battlelist.name_2927;
-   import forms.name_1838;
+   import forms.TankWindowWithHeader;
    import package_1.Main;
    import package_12.name_24;
    import package_12.name_529;
@@ -29,7 +29,7 @@ package forms.battlelist.battlecreate
    public class CreateBattleFormView extends class_122
    {
       
-      public static var display:name_529 = Main.osgi.name_6(name_24) as name_529;
+      public static var display:name_529 = Main.osgi.getService(name_24) as name_529;
       
       private static const const_2714:String = "lobby";
       
@@ -52,7 +52,7 @@ package forms.battlelist.battlecreate
       
       private var var_3513:uint;
       
-      private var var_1169:name_1838;
+      private var var_1169:TankWindowWithHeader;
       
       private var var_3491:DropDownList;
       
@@ -72,29 +72,29 @@ package forms.battlelist.battlecreate
       
       private var var_3494:NumStepper;
       
-      private var var_3501:class_195;
+      private var var_3501:CheckBoxBase;
       
-      private var var_3504:class_195;
+      private var var_3504:CheckBoxBase;
       
-      private var var_3499:class_195;
+      private var var_3499:CheckBoxBase;
       
-      private var var_3497:class_195;
+      private var var_3497:CheckBoxBase;
       
-      private var var_3503:class_195;
+      private var var_3503:CheckBoxBase;
       
-      private var var_3502:class_195;
+      private var var_3502:CheckBoxBase;
       
-      private var var_3500:class_195;
+      private var var_3500:CheckBoxBase;
       
-      private var var_3498:class_195;
+      private var var_3498:CheckBoxBase;
       
       private var var_3506:name_3461;
       
-      private var var_3509:class_195;
+      private var var_3509:CheckBoxBase;
       
-      private var var_3507:class_195;
+      private var var_3507:CheckBoxBase;
       
-      private var var_3508:class_195;
+      private var var_3508:CheckBoxBase;
       
       private var var_3512:Dictionary;
       
@@ -107,7 +107,7 @@ package forms.battlelist.battlecreate
          this.var_3512 = new Dictionary();
          super();
          this.var_2241 = param1;
-         this.var_1169 = name_1838.name_1844(null);
+         this.var_1169 = TankWindowWithHeader.createWindow(null);
          this.var_1169.method_2516(name_390.const_685);
          addChild(this.var_1169);
          this.name_2949 = new name_2927();
@@ -130,44 +130,44 @@ package forms.battlelist.battlecreate
          this.var_3494.icon1 = CreateBattleFormController.method_2322(BattleInfoIcons.CTF);
          this.var_3514 = this.var_3494.width;
          addChild(this.var_3494);
-         this.var_3501 = new class_195(name_3458.name_3415);
+         this.var_3501 = new CheckBoxBase(name_3458.name_3415);
          this.var_3501.checked = true;
          this.var_3501.label = name_1663.method_2445;
          addChild(this.var_3501);
-         this.var_3499 = new class_195(name_3458.name_3414);
+         this.var_3499 = new CheckBoxBase(name_3458.name_3414);
          this.var_3499.checked = true;
          this.var_3499.label = name_1663.method_2428;
          addChild(this.var_3499);
-         this.var_3497 = new class_195(name_3458.name_3416);
+         this.var_3497 = new CheckBoxBase(name_3458.name_3416);
          this.var_3497.checked = true;
          this.var_3497.label = name_1663.method_2429;
          addChild(this.var_3497);
-         this.var_3503 = new class_195(name_3458.name_3405);
+         this.var_3503 = new CheckBoxBase(name_3458.name_3405);
          this.var_3503.checked = true;
          this.var_3503.label = name_1663.method_2447;
          addChild(this.var_3503);
-         this.var_3504 = new class_195(name_3458.name_3412);
+         this.var_3504 = new CheckBoxBase(name_3458.name_3412);
          this.var_3504.label = name_1663.method_2443;
          addChild(this.var_3504);
-         this.var_3502 = new class_195(name_3458.name_3411);
+         this.var_3502 = new CheckBoxBase(name_3458.name_3411);
          this.var_3502.checked = true;
          this.var_3502.label = name_1663.method_2433;
          addChild(this.var_3502);
-         this.var_3509 = new class_195(name_3458.name_3463);
+         this.var_3509 = new CheckBoxBase(name_3458.name_3463);
          this.var_3509.checked = true;
          this.var_3509.label = name_1663.method_2424;
-         this.var_3500 = new class_195(name_3458.name_3468);
+         this.var_3500 = new CheckBoxBase(name_3458.name_3468);
          this.var_3500.label = name_1663.method_2449;
          addChild(this.var_3500);
-         this.var_3498 = new class_195(name_3458.name_3407);
+         this.var_3498 = new CheckBoxBase(name_3458.name_3407);
          this.var_3498.checked = true;
          this.var_3498.label = name_1663.method_2441;
          addChild(this.var_3498);
-         this.var_3507 = new class_195(name_3458.name_3467);
+         this.var_3507 = new CheckBoxBase(name_3458.name_3467);
          this.var_3507.checked = false;
          this.var_3507.label = name_1663.method_2432;
          addChild(this.var_3507);
-         this.var_3508 = new class_195(name_3458.name_3465);
+         this.var_3508 = new CheckBoxBase(name_3458.name_3465);
          this.var_3508.checked = true;
          this.var_3508.label = name_1663.method_2444;
          this.method_3129();
@@ -201,18 +201,18 @@ package forms.battlelist.battlecreate
          this.var_3494.addEventListener(MouseEvent.CLICK,this.method_3144);
          this.var_3490.addEventListener(name_3459.name_3462,this.method_3142);
          this.var_3506.addEventListener(MouseEvent.CLICK,this.method_3133);
-         this.var_3499.addEventListener(name_2018.name_2025,this.method_3137);
-         this.var_3500.addEventListener(name_2018.name_2025,this.method_3143);
-         this.var_3497.addEventListener(name_2018.name_2025,this.method_3131);
-         this.var_3503.addEventListener(name_2018.name_2025,this.method_3134);
-         this.var_3501.addEventListener(name_2018.name_2025,this.method_3140);
-         this.var_3498.addEventListener(name_2018.name_2025,this.method_3138);
-         this.var_3502.addEventListener(name_2018.name_2025,this.var_2241.method_2777);
-         this.var_3509.addEventListener(name_2018.name_2025,this.var_2241.method_2777);
+         this.var_3499.addEventListener(CheckBoxEvent.STATE_CHANGED,this.method_3137);
+         this.var_3500.addEventListener(CheckBoxEvent.STATE_CHANGED,this.method_3143);
+         this.var_3497.addEventListener(CheckBoxEvent.STATE_CHANGED,this.method_3131);
+         this.var_3503.addEventListener(CheckBoxEvent.STATE_CHANGED,this.method_3134);
+         this.var_3501.addEventListener(CheckBoxEvent.STATE_CHANGED,this.method_3140);
+         this.var_3498.addEventListener(CheckBoxEvent.STATE_CHANGED,this.method_3138);
+         this.var_3502.addEventListener(CheckBoxEvent.STATE_CHANGED,this.var_2241.method_2777);
+         this.var_3509.addEventListener(CheckBoxEvent.STATE_CHANGED,this.var_2241.method_2777);
          this.var_3496.addEventListener(Event.CHANGE,this.var_2241.method_2774);
-         this.var_3504.addEventListener(name_2018.name_2025,this.method_3141);
-         this.var_3507.addEventListener(name_2018.name_2025,this.method_3147);
-         this.var_3508.addEventListener(name_2018.name_2025,this.var_2241.method_2780);
+         this.var_3504.addEventListener(CheckBoxEvent.STATE_CHANGED,this.method_3141);
+         this.var_3507.addEventListener(CheckBoxEvent.STATE_CHANGED,this.method_3147);
+         this.var_3508.addEventListener(CheckBoxEvent.STATE_CHANGED,this.var_2241.method_2780);
       }
       
       public function method_1476() : void
@@ -230,17 +230,17 @@ package forms.battlelist.battlecreate
          this.var_3494.removeEventListener(MouseEvent.CLICK,this.method_3144);
          this.var_3490.removeEventListener(name_3459.name_3462,this.method_3142);
          this.var_3506.removeEventListener(MouseEvent.CLICK,this.method_3133);
-         this.var_3499.removeEventListener(name_2018.name_2025,this.method_3137);
-         this.var_3500.removeEventListener(name_2018.name_2025,this.method_3143);
-         this.var_3497.removeEventListener(name_2018.name_2025,this.method_3131);
-         this.var_3503.removeEventListener(name_2018.name_2025,this.method_3134);
-         this.var_3501.removeEventListener(name_2018.name_2025,this.method_3140);
-         this.var_3498.removeEventListener(name_2018.name_2025,this.method_3138);
+         this.var_3499.removeEventListener(CheckBoxEvent.STATE_CHANGED,this.method_3137);
+         this.var_3500.removeEventListener(CheckBoxEvent.STATE_CHANGED,this.method_3143);
+         this.var_3497.removeEventListener(CheckBoxEvent.STATE_CHANGED,this.method_3131);
+         this.var_3503.removeEventListener(CheckBoxEvent.STATE_CHANGED,this.method_3134);
+         this.var_3501.removeEventListener(CheckBoxEvent.STATE_CHANGED,this.method_3140);
+         this.var_3498.removeEventListener(CheckBoxEvent.STATE_CHANGED,this.method_3138);
          this.var_3496.removeEventListener(Event.CHANGE,this.var_2241.method_2774);
-         this.var_3504.removeEventListener(name_2018.name_2025,this.method_3141);
-         this.var_3502.removeEventListener(name_2018.name_2025,this.var_2241.method_2777);
-         this.var_3509.removeEventListener(name_2018.name_2025,this.var_2241.method_2777);
-         this.var_3508.removeEventListener(name_2018.name_2025,this.var_2241.method_2780);
+         this.var_3504.removeEventListener(CheckBoxEvent.STATE_CHANGED,this.method_3141);
+         this.var_3502.removeEventListener(CheckBoxEvent.STATE_CHANGED,this.var_2241.method_2777);
+         this.var_3509.removeEventListener(CheckBoxEvent.STATE_CHANGED,this.var_2241.method_2777);
+         this.var_3508.removeEventListener(CheckBoxEvent.STATE_CHANGED,this.var_2241.method_2780);
       }
       
       public function method_2755(param1:BattleMode) : void
@@ -668,7 +668,7 @@ package forms.battlelist.battlecreate
          return int(Math.max(970,display.stage.stageWidth)) / 3;
       }
       
-      private function method_3143(param1:name_2018) : void
+      private function method_3143(param1:CheckBoxEvent) : void
       {
          this.method_3127("privateBattleChange");
       }
@@ -726,36 +726,36 @@ package forms.battlelist.battlecreate
          this.var_2241.method_2773();
       }
       
-      private function method_3137(param1:name_2018) : void
+      private function method_3137(param1:CheckBoxEvent) : void
       {
          this.method_3127("supplyChange");
          this.method_3129();
          this.name_2959();
       }
       
-      private function method_3141(param1:name_2018) : void
+      private function method_3141(param1:CheckBoxEvent) : void
       {
          this.method_3127("friendlyFireChange");
       }
       
-      private function method_3131(param1:name_2018) : void
+      private function method_3131(param1:CheckBoxEvent) : void
       {
          this.method_3127("bonusesChange");
          this.method_3129();
          this.name_2959();
       }
       
-      private function method_3134(param1:name_2018) : void
+      private function method_3134(param1:CheckBoxEvent) : void
       {
          this.method_3127("goldBoxesChange");
       }
       
-      private function method_3140(param1:name_2018) : void
+      private function method_3140(param1:CheckBoxEvent) : void
       {
          this.method_3127("autoBalanceChange");
       }
       
-      private function method_3147(param1:name_2018) : void
+      private function method_3147(param1:CheckBoxEvent) : void
       {
          this.method_3127("clanChange");
       }
@@ -775,7 +775,7 @@ package forms.battlelist.battlecreate
          this.method_3127("timeLimitChange");
       }
       
-      private function method_3138(param1:name_2018) : void
+      private function method_3138(param1:CheckBoxEvent) : void
       {
          this.var_2241.method_2779();
          this.method_3127("ReArmorChange");

@@ -1,6 +1,6 @@
 package package_44
 {
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.vehicles.tanks.Tank;
    import package_1.Main;
@@ -12,7 +12,7 @@ package package_44
    import package_47.BattleTeamType;
    import package_48.UserTitle;
    import package_48.name_92;
-   import package_61.name_124;
+   import package_61.RayHit;
    
    public class DefaultUserTitlesRender implements name_99
    {
@@ -22,7 +22,7 @@ package package_44
       
       private var var_59:Number = 7050;
       
-      private var battlefield:name_83;
+      private var battlefield:IBattleField;
       
       public var localUserData:TankData;
       
@@ -32,14 +32,14 @@ package package_44
       
       private var var_54:Vector3;
       
-      private var var_55:name_124;
+      private var var_55:RayHit;
       
       public function DefaultUserTitlesRender()
       {
          this.point = new Vector3();
          this.var_47 = new Vector3();
          this.var_54 = new Vector3();
-         this.var_55 = new name_124();
+         this.var_55 = new RayHit();
          super();
       }
       
@@ -55,9 +55,9 @@ package package_44
          {
             param1.tank.title.hide();
          }
-         else if(!param1.local && TankData.name_106 != null)
+         else if(!param1.local && TankData.localTankData != null)
          {
-            if(!this.method_64(TankData.name_106.teamType,param1.teamType))
+            if(!this.method_64(TankData.localTankData.teamType,param1.teamType))
             {
                _loc4_ = _loc3_.state.position;
                _loc5_ = _loc4_.x - param2.x;
@@ -114,19 +114,19 @@ package package_44
       
       public function name_255(param1:TankData) : void
       {
-         if(TankData.name_106 == null || TankData.name_106.teamType == null)
+         if(TankData.localTankData == null || TankData.localTankData.teamType == null)
          {
             return;
          }
          var _loc2_:int = name_92.const_68 | name_92.EFFECTS;
-         if(this.method_64(param1.teamType,TankData.name_106.teamType))
+         if(this.method_64(param1.teamType,TankData.localTankData.teamType))
          {
             _loc2_ |= name_92.name_262;
          }
          var _loc3_:UserTitle = param1.tank.title;
-         if(UserInfoService(Main.osgi.name_6(name_408)).hasData(param1.userName))
+         if(UserInfoService(Main.osgi.getService(name_408)).hasData(param1.userName))
          {
-            _loc3_.name_971(UserInfoService(Main.osgi.name_6(name_408)).getData(param1.userName).premium);
+            _loc3_.name_971(UserInfoService(Main.osgi.getService(name_408)).getData(param1.userName).premium);
          }
          _loc3_.name_156(param1.userName);
          _loc3_.name_122(param1.userRank);
@@ -135,7 +135,7 @@ package package_44
          _loc3_.name_207(_loc2_);
       }
       
-      public function name_134(param1:name_83) : void
+      public function name_134(param1:IBattleField) : void
       {
          this.battlefield = param1;
       }

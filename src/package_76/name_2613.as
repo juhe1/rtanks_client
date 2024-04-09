@@ -1,7 +1,7 @@
 package package_76
 {
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import package_1.Main;
    import package_37.Vector3;
    
@@ -19,7 +19,7 @@ package package_76
       {
          this.position = new Vector3();
          this.name_2614 = new Vector3();
-         battleService = BattlefieldModel(Main.osgi.name_6(name_83));
+         battleService = BattlefieldModel(Main.osgi.getService(IBattleField));
          super();
       }
       

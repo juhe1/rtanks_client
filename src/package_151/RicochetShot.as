@@ -3,11 +3,11 @@ package package_151
    import alternativa.engine3d.alternativa3d;
    import alternativa.physics.collision.name_1083;
    import alternativa.physics.collision.name_1160;
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import alternativa.tanks.engine3d.AnimatedSprite3D;
    import alternativa.tanks.engine3d.name_1072;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.sfx.LightDataManager;
    import alternativa.tanks.models.sfx.name_1096;
    import alternativa.tanks.models.sfx.name_2710;
@@ -23,14 +23,14 @@ package package_151
    import flash.media.Sound;
    import package_1.Main;
    import package_152.name_1793;
-   import package_161.name_1448;
+   import package_161.IWeaponWeakeningModel;
    import package_238.ObjectPool;
    import package_238.class_30;
    import package_37.Matrix3;
    import package_37.Vector3;
    import package_4.ClientObject;
    import package_42.name_73;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_68.name_175;
    import package_76.name_735;
    
@@ -61,7 +61,7 @@ package package_151
       
       private static var const_369:Vector3 = new Vector3();
       
-      private static var const_372:name_124 = new name_124();
+      private static var const_372:RayHit = new RayHit();
       
       private static var var_1015:Vector3 = new Vector3();
       
@@ -78,7 +78,7 @@ package package_151
       
       public var sfxData:name_1793;
       
-      private var battlefield:name_83;
+      private var battlefield:IBattleField;
       
       private var var_2494:Vector.<Vector3>;
       
@@ -96,7 +96,7 @@ package package_151
       
       private var var_2497:BattlefieldModel;
       
-      private var var_1014:name_1448;
+      private var var_1014:IWeaponWeakeningModel;
       
       private var var_2185:int;
       
@@ -112,7 +112,7 @@ package package_151
       {
          this.var_2506 = new Vector3();
          this.direction = new Vector3();
-         this.var_2497 = Main.osgi.name_6(name_83) as BattlefieldModel;
+         this.var_2497 = Main.osgi.getService(IBattleField) as BattlefieldModel;
          super(param1);
          this.var_2494 = new Vector.<Vector3>(6,true);
          var _loc2_:int = 0;
@@ -126,7 +126,7 @@ package package_151
          this.var_2507 = new TailTrail(100,300);
       }
       
-      public function init(param1:Vector3, param2:Vector3, param3:TankData, param4:name_1792, param5:name_1793, param6:name_1083, param7:name_1448, param8:class_107, param9:name_83) : void
+      public function init(param1:Vector3, param2:Vector3, param3:TankData, param4:name_1792, param5:name_1793, param6:name_1083, param7:IWeaponWeakeningModel, param8:class_107, param9:IBattleField) : void
       {
          this.var_2506.vCopy(param1);
          this.direction.vCopy(param2);
@@ -167,7 +167,7 @@ package package_151
       public function play(param1:int, param2:name_735) : Boolean
       {
          var _loc5_:Number = NaN;
-         var _loc6_:name_660 = null;
+         var _loc6_:Body = null;
          var _loc15_:Number = NaN;
          var _loc16_:int = 0;
          var _loc17_:Vector3 = null;
@@ -329,9 +329,9 @@ package package_151
          this.name_1769 = this.var_2508.shotDistance + 1;
       }
       
-      public function considerBody(param1:name_660) : Boolean
+      public function considerBody(param1:Body) : Boolean
       {
-         return param1 != this.name_1764.tank as name_660 || this.var_2185 > 0;
+         return param1 != this.name_1764.tank as Body || this.var_2185 > 0;
       }
       
       override protected function getClass() : Class

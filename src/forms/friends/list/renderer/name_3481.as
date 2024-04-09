@@ -1,6 +1,6 @@
 package forms.friends.list.renderer
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.statassets.name_2741;
    import flash.display.Sprite;
    import flash.text.TextFieldAutoSize;
@@ -11,7 +11,7 @@ package forms.friends.list.renderer
       
       private var var_2570:name_2741;
       
-      private var _label:name_1134;
+      private var _label:LabelBase;
       
       protected var _selected:Boolean = false;
       
@@ -22,7 +22,7 @@ package forms.friends.list.renderer
       public function name_3481(param1:String)
       {
          this.var_2570 = new name_2741();
-         this._label = new name_1134();
+         this._label = new LabelBase();
          super();
          this.var_2570.width = this._width;
          this.var_2570.height = this._height;

@@ -2,15 +2,15 @@ package package_398
 {
    import alternativa.osgi.OSGi;
    import alternativa.tanks.gui.name_2107;
-   import controls.base.name_1134;
-   import controls.base.name_998;
-   import controls.name_1891;
+   import controls.base.LabelBase;
+   import controls.base.DefaultButtonBase;
+   import controls.TankWindowInner;
    import flash.display.Bitmap;
    import flash.display.BitmapData;
    import flash.events.MouseEvent;
    import flash.geom.Point;
    import flash.text.TextFormatAlign;
-   import forms.name_1838;
+   import forms.TankWindowWithHeader;
    import package_254.name_2835;
    import package_257.name_811;
    import package_379.class_123;
@@ -24,22 +24,22 @@ package package_398
       
       private static const const_2156:BitmapData = new const_2155().bitmapData;
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
-      public static var var_2770:name_811 = OSGi.getInstance().name_6(name_811) as name_811;
+      public static var var_2770:name_811 = OSGi.getInstance().getService(name_811) as name_811;
        
       
       private var var_1575:Boolean;
       
-      private var window:name_1838;
+      private var window:TankWindowWithHeader;
       
-      private var var_1182:name_1891;
+      private var var_1182:TankWindowInner;
       
-      private var var_2554:name_1134;
+      private var var_2554:LabelBase;
       
       private var var_2560:Bitmap;
       
-      private var name_983:name_998;
+      private var name_983:DefaultButtonBase;
       
       private var var_1739:int = 450;
       
@@ -74,16 +74,16 @@ package package_398
       {
          this.var_1575 = true;
          this.var_1739 = Math.max(this.var_2560.width + 12 * 2 + 9 * 2,300);
-         this.window = name_1838.name_1844(localeService.getText(name_390.const_1415),this.var_1739,this.var_2560.height);
+         this.window = TankWindowWithHeader.createWindow(localeService.getText(name_390.const_1415),this.var_1739,this.var_2560.height);
          addChild(this.window);
-         this.var_1182 = new name_1891(0,0,name_1891.name_1428);
+         this.var_1182 = new TankWindowInner(0,0,TankWindowInner.GREEN);
          addChild(this.var_1182);
          this.var_1182.x = 12;
          this.var_1182.y = 12;
          this.var_2560.x = this.var_1739 - this.var_2560.width >> 1;
          this.var_2560.y = 12 * 2;
          addChild(this.var_2560);
-         this.var_2554 = new name_1134();
+         this.var_2554 = new LabelBase();
          this.var_2554.align = TextFormatAlign.LEFT;
          this.var_2554.wordWrap = true;
          this.var_2554.multiline = true;
@@ -99,7 +99,7 @@ package package_398
             this.var_2554.htmlText = this.var_2769;
             this.var_2554.width = this.var_1739 - 12 * 4;
          }
-         this.name_983 = new name_998();
+         this.name_983 = new DefaultButtonBase();
          addChild(this.name_983);
          this.name_983.label = localeService.getText(name_390.const_675);
          var _loc1_:int = this.var_2560.height + this.name_983.height + 9 * 2 + 12 * 3;

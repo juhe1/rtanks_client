@@ -1,6 +1,6 @@
 package package_185
 {
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.tanks.gui.EntranceAlertWindow;
    import flash.display.DisplayObjectContainer;
    import flash.events.Event;
@@ -26,8 +26,8 @@ package package_185
       {
          super();
          this.dialogsLayer = Main.dialogsLayer;
-         var _loc1_:name_32 = Main.osgi.name_6(name_32) as name_32;
-         this.panelModel = (_loc1_.getModelsByInterface(name_115) as Vector.<name_66>)[0] as name_115;
+         var _loc1_:name_32 = Main.osgi.getService(name_32) as name_32;
+         this.panelModel = (_loc1_.getModelsByInterface(name_115) as Vector.<IModel>)[0] as name_115;
       }
       
       public function showAlert(param1:ClientObject) : void

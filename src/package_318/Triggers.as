@@ -1,6 +1,6 @@
 package package_318
 {
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import alternativa.tanks.battle.name_1384;
    import alternativa.tanks.battle.name_712;
    
@@ -54,7 +54,7 @@ package package_318
          }
       }
       
-      public function name_1394(param1:name_660) : void
+      public function name_1394(param1:Body) : void
       {
          var _loc2_:int = 0;
          var _loc3_:int = 0;

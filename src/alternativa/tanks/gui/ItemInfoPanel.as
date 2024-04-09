@@ -1,6 +1,6 @@
 package alternativa.tanks.gui
 {
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.osgi.OSGi;
    import alternativa.tanks.gui.device.ItemInfoDevicesPanel;
    import alternativa.tanks.gui.tables.kits.description.KitsInfoData;
@@ -16,8 +16,8 @@ package alternativa.tanks.gui
    import base.class_122;
    import controls.Money;
    import controls.NumStepper;
-   import controls.base.name_1134;
-   import controls.name_1891;
+   import controls.base.LabelBase;
+   import controls.TankWindowInner;
    import controls.timer.CountDownTimer;
    import fl.containers.ScrollPane;
    import fl.controls.ScrollPolicy;
@@ -31,7 +31,7 @@ package alternativa.tanks.gui
    import flash.geom.Rectangle;
    import flash.text.TextFieldType;
    import flash.utils.Dictionary;
-   import forms.name_1838;
+   import forms.TankWindowWithHeader;
    import package_1.Main;
    import package_103.name_323;
    import package_103.name_328;
@@ -49,7 +49,7 @@ package alternativa.tanks.gui
    import package_326.class_55;
    import package_340.name_1634;
    import package_343.ResistancesIcons;
-   import package_41.name_320;
+   import package_41.ItemProperty;
    import package_433.ItemViewCategoryEnum;
    import package_53.name_94;
    import package_54.name_102;
@@ -69,11 +69,11 @@ package alternativa.tanks.gui
    public class ItemInfoPanel extends Sprite implements IResourceLoadingListener
    {
       
-      public static var delayMountCategoryService:name_1357 = OSGi.getInstance().name_6(name_1357) as name_1357;
+      public static var delayMountCategoryService:name_1357 = OSGi.getInstance().getService(name_1357) as name_1357;
       
-      public static var lobbyLayoutService:name_94 = OSGi.getInstance().name_6(name_94) as name_94;
+      public static var lobbyLayoutService:name_94 = OSGi.getInstance().getService(name_94) as name_94;
       
-      public static var battleInfoService:name_274 = OSGi.getInstance().name_6(name_274) as name_274;
+      public static var battleInfoService:name_274 = OSGi.getInstance().getService(name_274) as name_274;
       
       private static const const_2489:Class = name_3224;
       
@@ -182,7 +182,7 @@ package alternativa.tanks.gui
       
       private var panelModel:name_115;
       
-      private var window:name_1838;
+      private var window:TankWindowWithHeader;
       
       public var size:Point;
       
@@ -190,15 +190,15 @@ package alternativa.tanks.gui
       
       private const const_1686:int = 64;
       
-      private var var_1182:name_1891;
+      private var var_1182:TankWindowInner;
       
       private var preview:Bitmap;
       
       private var var_3259:Boolean;
       
-      public var var_3214:name_1134;
+      public var var_3214:LabelBase;
       
-      public var var_3207:name_1134;
+      public var var_3207:LabelBase;
       
       public var name_2619:name_1362;
       
@@ -338,7 +338,7 @@ package alternativa.tanks.gui
       
       private var var_3272:int = 275;
       
-      private var var_3211:name_1134;
+      private var var_3211:LabelBase;
       
       public var var_3264:int;
       
@@ -373,19 +373,19 @@ package alternativa.tanks.gui
          super();
          this.var_3218 = new class_122();
          this.var_3227 = new class_122();
-         this.modelRegister = Main.osgi.name_6(name_32) as name_32;
-         this.localeService = Main.osgi.name_6(name_102) as name_102;
-         this.panelModel = Main.osgi.name_6(name_115) as name_115;
+         this.modelRegister = Main.osgi.getService(name_32) as name_32;
+         this.localeService = Main.osgi.getService(name_102) as name_102;
+         this.panelModel = Main.osgi.getService(name_115) as name_115;
          this.var_3213 = new name_3211();
          this.name_2637 = new Array();
          this.name_2627 = new Dictionary();
          this.size = new Point(400,300);
-         this.window = new name_1838(this.localeService.getText(name_390.const_624));
+         this.window = new TankWindowWithHeader(this.localeService.getText(name_390.const_624));
          this.window.width = this.size.x;
          this.window.height = this.size.y;
          addChild(this.window);
-         this.var_1182 = new name_1891(164,106,name_1891.name_1428);
-         this.var_1182.name_1895 = true;
+         this.var_1182 = new TankWindowInner(164,106,TankWindowInner.GREEN);
+         this.var_1182.showBlink = true;
          addChild(this.var_1182);
          this.var_1182.x = 11;
          this.var_1182.y = 11;
@@ -409,9 +409,9 @@ package alternativa.tanks.gui
          this.var_2630.focusEnabled = false;
          this.var_2630.x = 11 + 1;
          this.var_2630.y = 11 + 1 + this.const_1944;
-         var _loc1_:name_351 = Main.osgi.name_6(name_361) as name_351;
+         var _loc1_:name_351 = Main.osgi.getService(name_361) as name_351;
          var _loc2_:String = _loc1_.name;
-         this.var_3214 = new name_1134();
+         this.var_3214 = new LabelBase();
          this.var_3214.type = TextFieldType.DYNAMIC;
          this.var_3214.text = "Hello, " + _loc2_ + "!";
          this.var_3214.size = 18;
@@ -422,7 +422,7 @@ package alternativa.tanks.gui
          this.var_3216 = new ItemInfoDevicesPanel();
          this.var_3216.x = this.var_3217;
          this.var_2632.addChild(this.var_3216);
-         this.var_3207 = new name_1134();
+         this.var_3207 = new LabelBase();
          this.var_3207.multiline = true;
          this.var_3207.wordWrap = true;
          this.var_3207.color = 381208;
@@ -503,7 +503,7 @@ package alternativa.tanks.gui
          this.var_3219 = new name_3210(const_2513,this.localeService.getText(TextConst.const_210));
          this.var_3220 = new name_3210(const_2492,"hp");
          this.var_3223 = new name_3210(const_2503,"shot/min");
-         this.var_3211 = new name_1134();
+         this.var_3211 = new LabelBase();
          this.var_3211.size = 18;
          this.var_3211.color = 381208;
          this.var_3206 = new Array();
@@ -703,7 +703,7 @@ package alternativa.tanks.gui
          this.info = param4;
          this.var_3214.text = param2.name;
          this.var_3207.htmlText = param2.description;
-         var _loc6_:ImageResource = ImageResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(param2.previewId));
+         var _loc6_:ImageResource = ImageResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(param2.previewId));
          if(param2.name_373 == name_321.KIT)
          {
             _loc10_ = KitsInfoData.getImage(param2.baseItemId);
@@ -740,7 +740,7 @@ package alternativa.tanks.gui
                   _loc12_ = _loc9_[_loc11_] as name_323;
                   switch(_loc12_.property)
                   {
-                     case name_320.ARMOR:
+                     case ItemProperty.ARMOR:
                         Main.method_8("GARAGE WINDOW","ItemProperty: ARMOR");
                         if(_loc8_)
                         {
@@ -752,7 +752,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[4] = this.var_3248;
                         break;
-                     case name_320.name_474:
+                     case ItemProperty.DAMAGE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: DAMAGE");
                         if(_loc8_)
                         {
@@ -764,7 +764,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[4] = this.var_3222;
                         break;
-                     case name_320.name_466:
+                     case ItemProperty.DAMAGE_PER_SECOND:
                         Main.method_8("GARAGE WINDOW","ItemProperty: DAMAGE_PER_SECOND");
                         if(_loc8_)
                         {
@@ -776,7 +776,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[4] = this.var_3237;
                         break;
-                     case name_320.name_490:
+                     case ItemProperty.IMPACT_FORCE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: IMPACT_FORCE");
                         if(_loc8_)
                         {
@@ -788,7 +788,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[5] = this.impactForce;
                         break;
-                     case name_320.name_453:
+                     case ItemProperty.AIMING_ERROR:
                         Main.method_8("GARAGE WINDOW","ItemProperty: AIMING_ERROR");
                         if(_loc8_)
                         {
@@ -800,7 +800,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[8] = this.var_3251;
                         break;
-                     case name_320.name_457:
+                     case ItemProperty.CONE_ANGLE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: CONE_ANGLE");
                         if(_loc8_)
                         {
@@ -812,7 +812,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[8] = this.var_3249;
                         break;
-                     case name_320.name_482:
+                     case ItemProperty.SHOT_AREA:
                         Main.method_8("GARAGE WINDOW","ItemProperty: SHOT_AREA");
                         if(_loc8_)
                         {
@@ -824,7 +824,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[10] = this.var_3246;
                         break;
-                     case name_320.name_473:
+                     case ItemProperty.SHOT_FREQUENCY:
                         Main.method_8("GARAGE WINDOW","ItemProperty: SHOT_FREQUENCY");
                         if(_loc8_)
                         {
@@ -836,7 +836,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[6] = this.var_3226;
                         break;
-                     case name_320.name_460:
+                     case ItemProperty.SHAFT_DAMAGE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: SHOT_FREQUENCY");
                         if(_loc8_)
                         {
@@ -848,7 +848,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[7] = this.var_3220;
                         break;
-                     case name_320.name_478:
+                     case ItemProperty.SHAFT_SHOT_FREQUENCY:
                         Main.method_8("GARAGE WINDOW","ItemProperty: SHOT_FREQUENCY");
                         if(_loc8_)
                         {
@@ -860,7 +860,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[8] = this.var_3223;
                         break;
-                     case name_320.name_421:
+                     case ItemProperty.SHOT_SPEED:
                         Main.method_8("GARAGE WINDOW","ItemProperty: SHOT_RANGE");
                         if(_loc8_)
                         {
@@ -872,7 +872,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[9] = this.var_3229;
                         break;
-                     case name_320.name_479:
+                     case ItemProperty.TURRET_TURN_SPEED:
                         Main.method_8("GARAGE WINDOW","ItemProperty: TURRET_TURN_SPEED");
                         if(_loc8_)
                         {
@@ -884,7 +884,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[7] = this.var_3224;
                         break;
-                     case name_320.name_424:
+                     case ItemProperty.SPEED:
                         Main.method_8("GARAGE WINDOW","ItemProperty: SPEED");
                         if(_loc8_)
                         {
@@ -896,7 +896,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[11] = this.var_3235;
                         break;
-                     case name_320.name_439:
+                     case ItemProperty.TURN_SPEED:
                         Main.method_8("GARAGE WINDOW","ItemProperty: TURN_SPEED");
                         if(_loc8_)
                         {
@@ -908,7 +908,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[12] = this.var_3244;
                         break;
-                     case name_320.name_447:
+                     case ItemProperty.WEIGHT:
                         Main.method_8("GARAGE WINDOW","ItemProperty: HULL_WEIGHT");
                         if(_loc8_)
                         {
@@ -920,7 +920,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[13] = this.var_3230;
                         break;
-                     case name_320.name_481:
+                     case ItemProperty.POWER:
                         Main.method_8("GARAGE WINDOW","ItemProperty: HULL_POWER");
                         if(_loc8_)
                         {
@@ -932,7 +932,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[14] = this.var_3238;
                         break;
-                     case name_320.name_442:
+                     case ItemProperty.CRITICAL_CHANCE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: CRITICAL_CHANCE");
                         if(_loc8_)
                         {
@@ -944,7 +944,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[25] = this.var_3241;
                         break;
-                     case name_320.name_464:
+                     case ItemProperty.HEALING_TIME:
                         Main.method_8("GARAGE WINDOW","ItemProperty: HEATING_TIME");
                         if(_loc8_)
                         {
@@ -956,7 +956,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[26] = this.var_3232;
                         break;
-                     case name_320.name_428:
+                     case ItemProperty.CRITICAL_DAMAGE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: CRITICAL_DAMAGE");
                         if(_loc8_)
                         {
@@ -968,7 +968,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[27] = this.var_3231;
                         break;
-                     case name_320.name_462:
+                     case ItemProperty.MECH_RESISTANCE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: MECH_RESISTANCE");
                         if(_loc8_)
                         {
@@ -980,7 +980,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[13] = this.var_3239;
                         break;
-                     case name_320.name_419:
+                     case ItemProperty.FIRE_RESISTANCE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: FIRE_RESISTANCE");
                         if(_loc8_)
                         {
@@ -992,7 +992,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[14] = this.var_3250;
                         break;
-                     case name_320.name_436:
+                     case ItemProperty.PLASMA_RESISTANCE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: PLASMA_RESISTANCE");
                         if(_loc8_)
                         {
@@ -1004,7 +1004,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[15] = this.var_3253;
                         break;
-                     case name_320.name_410:
+                     case ItemProperty.RAIL_RESISTANCE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: RAIL_RESISTANCE");
                         if(_loc8_)
                         {
@@ -1012,7 +1012,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[16] = this.var_3256;
                         break;
-                     case name_320.name_444:
+                     case ItemProperty.MINE_RESISTANCE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: TERMINATOR_RESISTANCE");
                         if(_loc8_)
                         {
@@ -1020,7 +1020,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[24] = this.var_3257;
                         break;
-                     case name_320.name_443:
+                     case ItemProperty.VAMPIRE_RESISTANCE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: VAMPIRE_RESISTANCE");
                         if(_loc8_)
                         {
@@ -1032,7 +1032,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[18] = this.var_3234;
                         break;
-                     case name_320.name_433:
+                     case ItemProperty.THUNDER_RESISTANCE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: THUNDER_RESISTANCE");
                         if(_loc8_)
                         {
@@ -1044,7 +1044,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[19] = this.var_3254;
                         break;
-                     case name_320.name_411:
+                     case ItemProperty.FREEZE_RESISTANCE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: VAMPIRE_RESISTANCE");
                         if(_loc8_)
                         {
@@ -1056,7 +1056,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[20] = this.var_3243;
                         break;
-                     case name_320.name_491:
+                     case ItemProperty.RICOCHET_RESISTANCE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: VAMPIRE_RESISTANCE");
                         if(_loc8_)
                         {
@@ -1068,7 +1068,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[21] = this.var_3233;
                         break;
-                     case name_320.name_488:
+                     case ItemProperty.SHAFT_RESISTANCE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: VAMPIRE_RESISTANCE");
                         if(_loc8_)
                         {
@@ -1080,7 +1080,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[22] = this.var_3242;
                         break;
-                     case name_320.name_487:
+                     case ItemProperty.ALL_RESISTANCE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: VAMPIRE_RESISTANCE");
                         if(_loc8_)
                         {
@@ -1092,7 +1092,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[23] = this.var_3252;
                         break;
-                     case name_320.name_434:
+                     case ItemProperty.SHOTGUN_RESISTANCE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: VAMPIRE_RESISTANCE");
                         if(_loc8_)
                         {
@@ -1104,7 +1104,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[23] = this.var_3245;
                         break;
-                     case name_320.name_417:
+                     case ItemProperty.VULCAN_RESISTANCE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: VAMPIRE_RESISTANCE");
                         if(_loc8_)
                         {
@@ -1116,7 +1116,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[23] = this.var_3240;
                         break;
-                     case name_320.name_455:
+                     case ItemProperty.HEALING_RADIUS:
                         Main.method_8("GARAGE WINDOW","ItemProperty: HEALING_RADUIS");
                         if(_loc8_)
                         {
@@ -1128,7 +1128,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[23] = this.var_3236;
                         break;
-                     case name_320.name_448:
+                     case ItemProperty.HEAL_RATE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: HEAL_RATE");
                         if(_loc8_)
                         {
@@ -1140,7 +1140,7 @@ package alternativa.tanks.gui
                         }
                         this.var_3206[5] = this.var_3255;
                         break;
-                     case name_320.name_450:
+                     case ItemProperty.VAMPIRE_RATE:
                         Main.method_8("GARAGE WINDOW","ItemProperty: VAMPIRE_RATE");
                         if(_loc8_)
                         {
@@ -1166,7 +1166,7 @@ package alternativa.tanks.gui
                _loc14_ = _loc9_[_loc13_] as name_323;
                switch(_loc14_.property)
                {
-                  case name_320.name_479:
+                  case ItemProperty.TURRET_TURN_SPEED:
                      Main.method_8("GARAGE WINDOW","ItemProperty: TURRET_TURN_SPEED");
                      if(_loc8_)
                      {
@@ -1178,7 +1178,7 @@ package alternativa.tanks.gui
                      }
                      this.var_3206[4] = this.var_3224;
                      break;
-                  case name_320.name_460:
+                  case ItemProperty.SHAFT_DAMAGE:
                      Main.method_8("GARAGE WINDOW","ItemProperty: SHOT_FREQUENCY");
                      if(_loc8_)
                      {
@@ -1190,7 +1190,7 @@ package alternativa.tanks.gui
                      }
                      this.var_3206[2] = this.var_3220;
                      break;
-                  case name_320.name_478:
+                  case ItemProperty.SHAFT_SHOT_FREQUENCY:
                      Main.method_8("GARAGE WINDOW","ItemProperty: SHOT_FREQUENCY");
                      if(_loc8_)
                      {
@@ -1202,7 +1202,7 @@ package alternativa.tanks.gui
                      }
                      this.var_3206[3] = this.var_3223;
                      break;
-                  case name_320.name_473:
+                  case ItemProperty.SHOT_FREQUENCY:
                      Main.method_8("GARAGE WINDOW","ItemProperty: SHOT_FREQUENCY");
                      if(_loc8_)
                      {
@@ -1214,7 +1214,7 @@ package alternativa.tanks.gui
                      }
                      this.var_3206[1] = this.var_3226;
                      break;
-                  case name_320.name_474:
+                  case ItemProperty.DAMAGE:
                      Main.method_8("GARAGE WINDOW","ItemProperty: SHOT_FREQUENCY");
                      if(_loc8_)
                      {
@@ -1316,109 +1316,109 @@ package alternativa.tanks.gui
                         _loc12_ = _loc23_[_loc11_] as name_323;
                         switch(_loc12_.property)
                         {
-                           case name_320.ARMOR:
+                           case ItemProperty.ARMOR:
                               _loc18_[4] = _loc12_.value;
                               break;
-                           case name_320.name_474:
+                           case ItemProperty.DAMAGE:
                               _loc18_[4] = _loc12_.value;
                               break;
-                           case name_320.name_466:
+                           case ItemProperty.DAMAGE_PER_SECOND:
                               _loc18_[4] = _loc12_.value;
                               break;
-                           case name_320.name_453:
+                           case ItemProperty.AIMING_ERROR:
                               _loc18_[8] = _loc12_.value;
                               break;
-                           case name_320.name_457:
+                           case ItemProperty.CONE_ANGLE:
                               _loc18_[8] = _loc12_.value;
                               break;
-                           case name_320.name_482:
+                           case ItemProperty.SHOT_AREA:
                               _loc18_[10] = _loc12_.value;
                               break;
-                           case name_320.name_473:
+                           case ItemProperty.SHOT_FREQUENCY:
                               _loc18_[6] = _loc12_.value;
                               break;
-                           case name_320.name_460:
+                           case ItemProperty.SHAFT_DAMAGE:
                               _loc18_[7] = _loc12_.value;
                               break;
-                           case name_320.name_478:
+                           case ItemProperty.SHAFT_SHOT_FREQUENCY:
                               _loc18_[8] = _loc12_.value;
                               break;
-                           case name_320.name_421:
+                           case ItemProperty.SHOT_SPEED:
                               _loc18_[9] = _loc12_.value;
                               break;
-                           case name_320.name_479:
+                           case ItemProperty.TURRET_TURN_SPEED:
                               _loc18_[7] = _loc12_.value;
                               break;
-                           case name_320.name_424:
+                           case ItemProperty.SPEED:
                               _loc18_[11] = _loc12_.value;
                               break;
-                           case name_320.name_439:
+                           case ItemProperty.TURN_SPEED:
                               _loc18_[12] = _loc12_.value;
                               break;
-                           case name_320.name_447:
+                           case ItemProperty.WEIGHT:
                               _loc18_[13] = _loc12_.value;
                               break;
-                           case name_320.name_481:
+                           case ItemProperty.POWER:
                               _loc18_[14] = _loc12_.value;
                               break;
-                           case name_320.name_462:
+                           case ItemProperty.MECH_RESISTANCE:
                               _loc18_[13] = _loc12_.value;
                               break;
-                           case name_320.name_419:
+                           case ItemProperty.FIRE_RESISTANCE:
                               _loc18_[14] = _loc12_.value;
                               break;
-                           case name_320.name_436:
+                           case ItemProperty.PLASMA_RESISTANCE:
                               _loc18_[15] = _loc12_.value;
                               break;
-                           case name_320.name_410:
+                           case ItemProperty.RAIL_RESISTANCE:
                               _loc18_[16] = _loc12_.value;
                               break;
-                           case name_320.name_443:
+                           case ItemProperty.VAMPIRE_RESISTANCE:
                               _loc18_[17] = _loc12_.value;
                               break;
-                           case name_320.name_488:
+                           case ItemProperty.SHAFT_RESISTANCE:
                               _loc18_[18] = _loc12_.value;
                               break;
-                           case name_320.name_411:
+                           case ItemProperty.FREEZE_RESISTANCE:
                               _loc18_[21] = _loc12_.value;
                               break;
-                           case name_320.name_434:
+                           case ItemProperty.SHOTGUN_RESISTANCE:
                               _loc18_[22] = _loc12_.value;
                               break;
-                           case name_320.name_491:
+                           case ItemProperty.RICOCHET_RESISTANCE:
                               _loc18_[23] = _loc12_.value;
                               break;
-                           case name_320.name_417:
+                           case ItemProperty.VULCAN_RESISTANCE:
                               _loc18_[24] = _loc12_.value;
                               break;
-                           case name_320.name_433:
+                           case ItemProperty.THUNDER_RESISTANCE:
                               _loc18_[25] = _loc12_.value;
                               break;
-                           case name_320.name_444:
+                           case ItemProperty.MINE_RESISTANCE:
                               _loc18_[26] = _loc12_.value;
                               break;
-                           case name_320.name_487:
+                           case ItemProperty.ALL_RESISTANCE:
                               _loc18_[27] = _loc12_.value;
                               break;
-                           case name_320.name_455:
+                           case ItemProperty.HEALING_RADIUS:
                               _loc18_[18] = _loc12_.value;
                               break;
-                           case name_320.name_442:
+                           case ItemProperty.CRITICAL_CHANCE:
                               _loc18_[19] = _loc12_.value;
                               break;
-                           case name_320.name_428:
+                           case ItemProperty.CRITICAL_DAMAGE:
                               _loc18_[27] = _loc12_.value;
                               break;
-                           case name_320.name_490:
+                           case ItemProperty.IMPACT_FORCE:
                               _loc18_[5] = _loc12_.value;
                               break;
-                           case name_320.name_464:
+                           case ItemProperty.HEALING_TIME:
                               _loc18_[20] = _loc12_.value;
                               break;
-                           case name_320.name_448:
+                           case ItemProperty.HEAL_RATE:
                               _loc18_[5] = _loc12_.value;
                               break;
-                           case name_320.name_450:
+                           case ItemProperty.VAMPIRE_RATE:
                               _loc18_[6] = _loc12_.value;
                               break;
                         }
@@ -1433,19 +1433,19 @@ package alternativa.tanks.gui
                         _loc12_ = _loc23_[_loc11_] as name_323;
                         switch(_loc12_.property)
                         {
-                           case name_320.name_460:
+                           case ItemProperty.SHAFT_DAMAGE:
                               _loc18_[2] = _loc12_.value;
                               break;
-                           case name_320.name_478:
+                           case ItemProperty.SHAFT_SHOT_FREQUENCY:
                               _loc18_[3] = _loc12_.value;
                               break;
-                           case name_320.name_474:
+                           case ItemProperty.DAMAGE:
                               _loc18_[0] = _loc12_.value;
                               break;
-                           case name_320.name_479:
+                           case ItemProperty.TURRET_TURN_SPEED:
                               _loc18_[4] = _loc12_.value;
                               break;
-                           case name_320.name_473:
+                           case ItemProperty.SHOT_FREQUENCY:
                               _loc18_[1] = _loc12_.value;
                               break;
                         }
@@ -1579,7 +1579,7 @@ package alternativa.tanks.gui
             {
                this.var_2632.addChild(this.var_3211);
             }
-            _loc28_ = (this.modelRegister.getModelsByInterface(name_364) as Vector.<name_66>)[0] as name_364;
+            _loc28_ = (this.modelRegister.getModelsByInterface(name_364) as Vector.<IModel>)[0] as name_364;
             this.name_1559 = new Date(_loc28_.method_1113(param1));
          }
          else if(this.var_2632.contains(this.var_3211))
@@ -1642,27 +1642,27 @@ package alternativa.tanks.gui
          else
          {
             this.name_2621.name_1363();
-            if(OSGi.getInstance().name_6(name_381) == null)
+            if(OSGi.getInstance().getService(name_381) == null)
             {
                this.name_2621.enabled = true;
             }
             else
             {
-               this.name_2621.enabled = GarageModel(OSGi.getInstance().name_6(name_381)).mountedItems.indexOf(this.params.baseItemId) == -1;
+               this.name_2621.enabled = GarageModel(OSGi.getInstance().getService(name_381)).mountedItems.indexOf(this.params.baseItemId) == -1;
             }
          }
       }
       
       private function method_895(param1:name_1356) : void
       {
-         if(this.name_2621 != null && OSGi.getInstance().name_6(name_381) != null)
+         if(this.name_2621 != null && OSGi.getInstance().getService(name_381) != null)
          {
-            this.name_2621.enabled = GarageModel(OSGi.getInstance().name_6(name_381)).mountedItems.indexOf(this.params.baseItemId) == -1;
+            this.name_2621.enabled = GarageModel(OSGi.getInstance().getService(name_381)).mountedItems.indexOf(this.params.baseItemId) == -1;
             this.name_2621.removeEventListener(name_1356.name_1364,this.method_895);
          }
       }
       
-      private function method_2959(param1:name_1891) : Number
+      private function method_2959(param1:TankWindowInner) : Number
       {
          var _loc2_:MountedResistancesPanel = this.method_2957();
          _loc2_.visible = this.var_3263 == ItemViewCategoryEnum.RESISTANCE;
@@ -1925,7 +1925,7 @@ package alternativa.tanks.gui
                _loc2_ = _loc1_.previewId;
                if(_loc2_ != null)
                {
-                  _loc3_ = ImageResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(_loc2_));
+                  _loc3_ = ImageResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(_loc2_));
                   if(_loc1_.name_373 == name_321.KIT)
                   {
                      _loc5_ = KitsInfoData.getImage(_loc1_.baseItemId);

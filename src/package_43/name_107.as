@@ -74,7 +74,7 @@ package package_43
          _loc2_.state.name_181.reset(2,2,2);
          _loc2_.skin.name_242();
          _loc2_.skin.name_261();
-         var _loc3_:TankExplosionModel = Main.osgi.name_6(name_93) as TankExplosionModel;
+         var _loc3_:TankExplosionModel = Main.osgi.getService(name_93) as TankExplosionModel;
          _loc3_.method_502(param1.hull,param1);
       }
    }

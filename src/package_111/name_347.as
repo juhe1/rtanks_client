@@ -14,7 +14,7 @@ package package_111
       
       private var dialogsLayer:DisplayObjectContainer;
       
-      private var window:name_1662;
+      private var window:NewsWindow;
       
       public var news:Array;
       

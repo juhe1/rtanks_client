@@ -2,7 +2,7 @@ package package_73
 {
    import alternativa.engine3d.core.Object3D;
    import alternativa.osgi.OSGi;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.sfx.name_1096;
    import alternativa.tanks.models.sfx.name_1716;
    import alternativa.tanks.models.weapon.name_903;
@@ -23,7 +23,7 @@ package package_73
    public class name_1244 implements AutoClosable, class_177
    {
       
-      public static var battleService:name_83 = name_83(OSGi.getInstance().name_6(name_83));
+      public static var battleService:IBattleField = IBattleField(OSGi.getInstance().getService(IBattleField));
       
       private static const const_1809:Number = 1;
       

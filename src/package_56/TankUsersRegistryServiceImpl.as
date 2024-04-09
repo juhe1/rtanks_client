@@ -1,6 +1,6 @@
 package package_56
 {
-   import alternativa.tanks.models.tank.class_7;
+   import alternativa.tanks.models.tank.ITank;
    import flash.utils.Dictionary;
    import package_13.Long;
    import platform.client.fp10.core.type.name_70;
@@ -30,7 +30,7 @@ package package_56
             this.users[param1.id] = param1;
             ++this.var_595;
          }
-         if(class_7(param1.name_176(class_7)).isLocal())
+         if(ITank(param1.name_176(ITank)).isLocal())
          {
             this.name_700 = param1;
          }
@@ -44,7 +44,7 @@ package package_56
             delete this.users[param1.id];
             --this.var_595;
          }
-         if(class_7(param1.name_176(class_7)).isLocal())
+         if(ITank(param1.name_176(ITank)).isLocal())
          {
             this.name_700 = null;
          }

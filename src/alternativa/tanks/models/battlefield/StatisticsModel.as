@@ -1,18 +1,18 @@
 package alternativa.tanks.models.battlefield
 {
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.tanks.loader.name_13;
    import alternativa.tanks.models.battlefield.gui.chat.BattleChat;
    import alternativa.tanks.models.battlefield.gui.chat.ChatModel;
    import alternativa.tanks.models.battlefield.gui.name_1102;
-   import alternativa.tanks.models.battlefield.gui.name_80;
+   import alternativa.tanks.models.battlefield.gui.IBattlefieldGUI;
    import alternativa.tanks.models.battlefield.logic.class_23;
    import alternativa.tanks.models.dom.DOMModel;
-   import alternativa.tanks.models.dom.name_995;
+   import alternativa.tanks.models.dom.IDOMModel;
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
-   import alternativa.tanks.service.settings.name_108;
+   import alternativa.tanks.models.tank.ITank;
+   import alternativa.tanks.service.settings.IBattleSettings;
    import controls.lifeindicator.name_1121;
    import flash.display.DisplayObject;
    import flash.display.DisplayObjectContainer;
@@ -49,7 +49,7 @@ package alternativa.tanks.models.battlefield
    import scpacker.networking.Network;
    import scpacker.networking.name_2;
    
-   public class StatisticsModel extends class_34 implements class_33, class_11, class_5, name_80, name_193, class_9, class_1, class_23
+   public class StatisticsModel extends class_34 implements class_33, class_11, class_5, IBattlefieldGUI, name_193, class_9, class_1, class_23
    {
       
       public static const const_125:String = "STAT";
@@ -115,12 +115,12 @@ package alternativa.tanks.models.battlefield
       {
          this.var_423 = new Vector.<class_4>();
          super();
-         var_365.push(name_66,class_33,class_11,class_5,name_80,name_193,class_9,class_1);
+         _interfaces.push(IModel,class_33,class_11,class_5,IBattlefieldGUI,name_193,class_9,class_1);
          this.contentLayer = Main.contentUILayer;
          this.var_426 = new name_1104();
          WinkManager.init(500);
-         Main.osgi.name_1(name_80,this);
-         this.var_429 = PanelModel(Main.osgi.name_6(name_115)).userName;
+         Main.osgi.registerService(IBattlefieldGUI,this);
+         this.var_429 = PanelModel(Main.osgi.getService(name_115)).userName;
       }
       
       public function method_504(param1:int, param2:int) : void
@@ -134,14 +134,14 @@ package alternativa.tanks.models.battlefield
       public function objectLoaded(param1:ClientObject) : void
       {
          this.paused = false;
-         this.var_168 = Main.osgi.name_6(name_13) as name_13;
+         this.var_168 = Main.osgi.getService(name_13) as name_13;
          this.var_168.hide();
          Main.stage.addEventListener(Event.RESIZE,this.onResize);
-         var _loc2_:name_98 = name_98(Main.osgi.name_6(name_98));
+         var _loc2_:name_98 = name_98(Main.osgi.getService(name_98));
          _loc2_.name_177(this);
-         var _loc3_:name_102 = name_102(Main.osgi.name_6(name_102));
+         var _loc3_:name_102 = name_102(Main.osgi.getService(name_102));
          this.var_418 = new name_1102(_loc3_.getText(TextConst.name_1123),_loc3_.getText(TextConst.name_1112),_loc3_.getText(TextConst.name_1111));
-         this.var_421 = BattlefieldModel(Main.osgi.name_6(name_83));
+         this.var_421 = BattlefieldModel(Main.osgi.getService(IBattleField));
          this.var_430 = _loc3_.getText(TextConst.name_1126);
          this.var_435 = _loc3_.getText(TextConst.name_1116);
          this.var_434 = _loc3_.getText(TextConst.name_1117);
@@ -156,7 +156,7 @@ package alternativa.tanks.models.battlefield
             this.var_428.close();
             this.var_428 = null;
          }
-         var _loc2_:name_98 = name_98(Main.osgi.name_6(name_98));
+         var _loc2_:name_98 = name_98(Main.osgi.getService(name_98));
          _loc2_.name_1119(this);
          Main.stage.removeEventListener(KeyboardEvent.KEY_DOWN,this.onKeyDown);
          Main.stage.removeEventListener(KeyboardEvent.KEY_UP,this.onKeyUp);
@@ -191,7 +191,7 @@ package alternativa.tanks.models.battlefield
          }
          if(!this.var_421.spectatorMode)
          {
-            TankModel(Main.osgi.name_6(class_7)).pause();
+            TankModel(Main.osgi.getService(ITank)).pause();
          }
       }
       
@@ -203,7 +203,7 @@ package alternativa.tanks.models.battlefield
          }
          if(!this.var_421.spectatorMode)
          {
-            TankModel(Main.osgi.name_6(class_7)).resume();
+            TankModel(Main.osgi.getService(ITank)).resume();
          }
       }
       
@@ -218,10 +218,10 @@ package alternativa.tanks.models.battlefield
       public function initObject(param1:ClientObject, param2:String) : void
       {
          this.battleName = param2;
-         var _loc3_:name_102 = name_102(Main.osgi.name_6(name_102));
+         var _loc3_:name_102 = name_102(Main.osgi.getService(name_102));
          this.var_432 = _loc3_.getText(TextConst.BATTLE_PLAYER_JOINED);
          this.var_433 = _loc3_.getText(TextConst.BATTLE_PLAYER_LEFT);
-         this.var_423.push(TankModel(Main.osgi.name_6(class_7)));
+         this.var_423.push(TankModel(Main.osgi.getService(ITank)));
       }
       
       public function init(param1:ClientObject, param2:name_1124, param3:Array) : void
@@ -238,8 +238,8 @@ package alternativa.tanks.models.battlefield
          this.contentLayer.addChild(this.var_415);
          if(this.var_431)
          {
-            _loc7_ = CTFModel(Main.osgi.name_6(name_994));
-            _loc8_ = DOMModel(Main.osgi.name_6(name_995));
+            _loc7_ = CTFModel(Main.osgi.getService(name_994));
+            _loc8_ = DOMModel(Main.osgi.getService(IDOMModel));
             _loc4_ = _loc7_ != null ? name_370.CTF : (_loc8_ != null ? name_370.DOM : name_370.TDM);
          }
          else
@@ -252,7 +252,7 @@ package alternativa.tanks.models.battlefield
          this.var_419 = new name_1103();
          this.contentLayer.addChild(this.var_419);
          this.method_647();
-         var _loc5_:name_108 = name_108(Main.osgi.name_6(name_108));
+         var _loc5_:IBattleSettings = IBattleSettings(Main.osgi.getService(IBattleSettings));
          if(_loc5_.showFPS)
          {
             this.contentLayer.addChild(this.var_426);
@@ -263,7 +263,7 @@ package alternativa.tanks.models.battlefield
          for each(_loc6_ in this.var_417)
          {
             this.method_641(_loc6_);
-            TankModel(Main.osgi.name_6(class_7)).setUserSuspiciousness(_loc6_.userId,_loc6_.suspicious);
+            TankModel(Main.osgi.getService(ITank)).setUserSuspiciousness(_loc6_.userId,_loc6_.suspicious);
          }
          this.objectLoaded(param1);
          if(this.var_421.spectatorMode)
@@ -275,7 +275,7 @@ package alternativa.tanks.models.battlefield
       
       private function method_649() : void
       {
-         var _loc1_:BattleChat = ChatModel(Main.osgi.name_6(IChatBattle)).getChat();
+         var _loc1_:BattleChat = ChatModel(Main.osgi.getService(IChatBattle)).getChat();
          this.var_428 = new SpectatorScreenLayouts(_loc1_,this.var_419,this.var_421.messages,this.var_416,this.var_426);
       }
       
@@ -568,7 +568,7 @@ package alternativa.tanks.models.battlefield
          {
             return;
          }
-         var _loc1_:name_108 = name_108(Main.osgi.name_6(name_108));
+         var _loc1_:IBattleSettings = IBattleSettings(Main.osgi.getService(IBattleSettings));
          if(_loc1_.showFPS)
          {
             this.contentLayer.addChild(this.var_426);
@@ -593,13 +593,13 @@ package alternativa.tanks.models.battlefield
       
       private function method_643(param1:name_1100) : void
       {
-         var _loc2_:PanelModel = Main.osgi.name_6(name_115) as PanelModel;
+         var _loc2_:PanelModel = Main.osgi.getService(name_115) as PanelModel;
          _loc2_.showExitFromBattleAlert();
       }
       
       private function exit(param1:ClientObject) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;exit_from_statistic");
+         Network(Main.osgi.getService(name_2)).send("battle;exit_from_statistic");
       }
       
       private function onKeyDown(param1:KeyboardEvent) : void
@@ -687,13 +687,13 @@ package alternativa.tanks.models.battlefield
          {
             this.controlsHelper = new ControlsHelper();
          }
-         var _loc1_:name_791 = Main.osgi.name_6(name_791) as name_791;
+         var _loc1_:name_791 = Main.osgi.getService(name_791) as name_791;
          _loc1_.name_981(ControlsHelper.name_1106,ControlsHelper.name_1107,this.controlsHelper,true);
       }
       
       private function method_644() : void
       {
-         var _loc1_:name_791 = Main.osgi.name_6(name_791) as name_791;
+         var _loc1_:name_791 = Main.osgi.getService(name_791) as name_791;
          _loc1_.name_987(ControlsHelper.name_1106,ControlsHelper.name_1107);
       }
       

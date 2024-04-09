@@ -1,7 +1,7 @@
 package package_183
 {
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.tanks.gui.name_1853;
    import flash.display.DisplayObjectContainer;
    import flash.events.Event;
@@ -28,11 +28,11 @@ package package_183
       public function AntiAddictionAlertModel()
       {
          super();
-         var_365.push(name_66);
-         var_365.push(class_128);
-         var_365.push(name_1034);
-         var_365.push(class_11);
-         this.dialogsLayer = (Main.osgi.name_6(name_24) as name_24).dialogsLayer as DisplayObjectContainer;
+         _interfaces.push(IModel);
+         _interfaces.push(class_128);
+         _interfaces.push(name_1034);
+         _interfaces.push(class_11);
+         this.dialogsLayer = (Main.osgi.getService(name_24) as name_24).dialogsLayer as DisplayObjectContainer;
       }
       
       public function method_1360(param1:ClientObject, param2:int) : void
@@ -43,7 +43,7 @@ package package_183
       
       public function method_513(param1:ClientObject, param2:Boolean) : void
       {
-         var _loc3_:name_32 = Main.osgi.name_6(name_32) as name_32;
+         var _loc3_:name_32 = Main.osgi.getService(name_32) as name_32;
          var _loc4_:name_115 = _loc3_.getModelsByInterface(name_115)[0] as name_115;
          if(this.var_1126 != null && this.dialogsLayer.contains(this.var_1126))
          {
@@ -73,7 +73,7 @@ package package_183
       {
          var _loc4_:String = null;
          var _loc5_:Alert = null;
-         var _loc2_:name_32 = Main.osgi.name_6(name_32) as name_32;
+         var _loc2_:name_32 = Main.osgi.getService(name_32) as name_32;
          var _loc3_:name_115 = _loc2_.getModelsByInterface(name_115)[0] as name_115;
          if(param1 >= 210)
          {
@@ -118,7 +118,7 @@ package package_183
       
       private function method_1357(param1:Event) : void
       {
-         var _loc2_:name_32 = Main.osgi.name_6(name_32) as name_32;
+         var _loc2_:name_32 = Main.osgi.getService(name_32) as name_32;
          var _loc3_:name_115 = _loc2_.getModelsByInterface(name_115)[0] as name_115;
          _loc3_.unblur();
          this.dialogsLayer.removeChild(this.var_1126);

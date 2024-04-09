@@ -1,7 +1,7 @@
 package package_87
 {
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
+   import alternativa.tanks.models.tank.ITank;
    import controls.Label;
    import controls.RedButton;
    import controls.resultassets.name_1426;
@@ -50,7 +50,7 @@ package package_87
          this.var_431 = param2;
          visible = false;
          this.var_706 = new name_1425(param1,18);
-         var _loc3_:name_102 = name_102(Main.osgi.name_6(name_102));
+         var _loc3_:name_102 = name_102(Main.osgi.getService(name_102));
          this.var_708 = _loc3_.getText(TextConst.BATTLE_RESTART);
          this.var_707 = _loc3_.getText(TextConst.BATTLE_EXIT);
       }
@@ -213,7 +213,7 @@ package package_87
          var _loc5_:int = param1 == BattleTeamType.NONE ? ViewStatistics.name_1428 : (param1 == BattleTeamType.RED ? ViewStatistics.RED : ViewStatistics.BLUE);
          var _loc6_:ViewStatistics = new ViewStatistics(_loc5_,param2,param4);
          var _loc7_:int = int(param3.length);
-         var _loc8_:TankModel = TankModel(Main.osgi.name_6(class_7));
+         var _loc8_:TankModel = TankModel(Main.osgi.getService(ITank));
          var _loc9_:int = 0;
          while(_loc9_ < _loc7_)
          {

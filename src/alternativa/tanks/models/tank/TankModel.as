@@ -8,30 +8,34 @@ package alternativa.tanks.models.tank
    import alternativa.tanks.models.battlefield.class_4;
    import alternativa.tanks.models.battlefield.class_9;
    import alternativa.tanks.models.battlefield.effects.levelup.LevelUpEffect;
-   import alternativa.tanks.models.battlefield.gui.name_80;
+   import alternativa.tanks.models.battlefield.gui.IBattlefieldGUI;
    import alternativa.tanks.models.battlefield.logic.name_130;
    import alternativa.tanks.models.battlefield.name_128;
    import alternativa.tanks.models.battlefield.name_193;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.spawn.name_136;
    import alternativa.tanks.models.tank.turret.name_111;
    import alternativa.tanks.models.weapon.name_213;
-   import alternativa.tanks.service.settings.name_108;
-   import alternativa.tanks.services.materialregistry.name_100;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.tanks.service.settings.IBattleSettings;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import alternativa.tanks.sfx.Sound3D;
    import alternativa.tanks.sfx.Sound3DEffect;
    import alternativa.tanks.sfx.name_127;
    import alternativa.tanks.sfx.name_132;
    import alternativa.tanks.sfx.name_89;
-   import alternativa.tanks.utils.name_75;
+   import alternativa.tanks.utils.MathUtils;
    import alternativa.tanks.vehicles.tanks.Tank;
    import alternativa.tanks.vehicles.tanks.TankSkin;
+   import flash.events.Event;
    import flash.geom.Vector3D;
    import flash.media.Sound;
    import flash.utils.Dictionary;
    import flash.utils.getTimer;
    import forms.name_82;
+   import juho.hacking.event.HackEventDispatcher;
+   import juho.hacking.event.LocalTankInitedEvent;
+   import juho.hacking.event.TankSpecificationsChangedEvent;
    import package_1.Main;
    import package_13.Long;
    import package_24.LogLevel;
@@ -99,7 +103,7 @@ package alternativa.tanks.models.tank
    import package_6.ClientClass;
    import package_6.ObjectRegister;
    import package_60.TextConst;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_62.name_137;
    import package_63.name_162;
    import package_64.name_154;
@@ -126,18 +130,18 @@ package alternativa.tanks.models.tank
    import scpacker.networking.Network;
    import scpacker.networking.name_2;
    
-   public class TankModel extends class_8 implements class_12, class_2, class_10, class_11, class_6, class_5, class_1, class_7, class_4, class_3, class_9
+   public class TankModel extends class_8 implements class_12, class_2, class_10, class_11, class_6, class_5, class_1, ITank, class_4, class_3, class_9
    {
       
       public static var battleInputService:name_245;
       
       public static var battleReadinessService:name_211;
       
-      public static var var_35:name_95 = OSGi.getInstance().name_6(name_95) as name_95;
+      public static var var_35:name_95 = OSGi.getInstance().getService(name_95) as name_95;
       
-      public static var battleEventDispatcher:name_96 = OSGi.getInstance().name_6(name_96) as name_96;
+      public static var battleEventDispatcher:name_96 = OSGi.getInstance().getService(name_96) as name_96;
       
-      public static var lobbyLayoutService:name_94 = OSGi.getInstance().name_6(name_94) as name_94;
+      public static var lobbyLayoutService:name_94 = OSGi.getInstance().getService(name_94) as name_94;
       
       private static const const_13:int = 5;
       
@@ -146,6 +150,8 @@ package alternativa.tanks.models.tank
       private static const const_17:Number = 80000;
       
       private static const const_16:int = 4000;
+      
+      private static const SEND_RATE:int = 500;
       
       private static const const_7:Number = -10000;
       
@@ -177,7 +183,7 @@ package alternativa.tanks.models.tank
       
       public static const const_15:int = 128;
       
-      private static var var_58:name_100 = name_100(Main.osgi.name_6(name_100));
+      private static var var_58:IMaterialRegistry = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry));
        
       
       private var var_61:Number = 7000;
@@ -200,13 +206,13 @@ package alternativa.tanks.models.tank
       
       private var battlefield:BattlefieldModel;
       
-      private var gui:name_80;
+      private var gui:IBattlefieldGUI;
       
       private var var_57:name_104;
       
       private var var_56:name_97;
       
-      private var var_40:name_103;
+      private var var_40:ITankEventDispatcher;
       
       private var var_63:name_193;
       
@@ -262,7 +268,7 @@ package alternativa.tanks.models.tank
       
       private var var_54:Vector3;
       
-      private var var_55:name_124;
+      private var var_55:RayHit;
       
       private var var_27:name_99;
       
@@ -293,15 +299,15 @@ package alternativa.tanks.models.tank
          this.point = new Vector3();
          this.var_47 = new Vector3();
          this.var_54 = new Vector3();
-         this.var_55 = new name_124();
+         this.var_55 = new RayHit();
          this.var_27 = new DefaultUserTitlesRender();
          this.var_41 = new Dictionary();
          this.var_29 = new Dictionary();
          super();
-         OSGi.getInstance().name_1(class_12,this);
-         Main.osgi.name_1(class_7,this);
-         this.panelModel = PanelModel(Main.osgi.name_6(name_115));
-         this.space = name_33(OSGi.getInstance().name_6(name_33)).getSpace(Long.getLong(419472,230884));
+         OSGi.getInstance().registerService(class_12,this);
+         Main.osgi.registerService(ITank,this);
+         this.panelModel = PanelModel(Main.osgi.getService(name_115));
+         this.space = name_33(OSGi.getInstance().getService(name_33)).getSpace(Long.getLong(419472,230884));
          var _loc1_:Vector.<Long> = new Vector.<Long>();
          _loc1_.push(Long.getLong(1691794381,-1794202080));
          _loc1_.push(Long.getLong(500772743,-1275562344));
@@ -311,7 +317,7 @@ package alternativa.tanks.models.tank
          _loc1_.push(Long.getLong(1366230363,-857495328));
          _loc1_.push(Long.getLong(1659531301,-819911951));
          _loc1_.push(Long.getLong(490108405,-1605879749));
-         this.gameClass = name_45(OSGi.getInstance().name_6(name_45)).createClass(Long.getLong(-763511,91532),_loc1_);
+         this.gameClass = name_45(OSGi.getInstance().getService(name_45)).createClass(Long.getLong(-763511,91532),_loc1_);
       }
       
       public static function method_86(param1:Vector3dData) : Boolean
@@ -432,7 +438,7 @@ package alternativa.tanks.models.tank
          _loc3_ = null;
          if(_loc2_ == this.localUserData)
          {
-            TankData.name_106 = null;
+            TankData.localTankData = null;
             if(this.localUserData.tank != null)
             {
                this.localUserData.tank.destroy();
@@ -448,8 +454,8 @@ package alternativa.tanks.models.tank
          this.space.name_188(_loc2_.object.id);
          this.var_40.dispatchEvent(name_77.UNLOADED,_loc2_);
          delete this.var_36[param1.id];
-         TankExplosionModel(Main.osgi.name_6(name_93)).objectUnloaded(_loc2_.hull);
-         TankCriticalHitModel(Main.osgi.name_6(name_91)).objectUnloaded(_loc2_.hull);
+         TankExplosionModel(Main.osgi.getService(name_93)).objectUnloaded(_loc2_.hull);
+         TankCriticalHitModel(Main.osgi.getService(name_91)).objectUnloaded(_loc2_.hull);
          _loc2_ = null;
       }
       
@@ -490,7 +496,7 @@ package alternativa.tanks.models.tank
          _loc4_ = null;
          if(_loc3_ == this.localUserData)
          {
-            TankData.name_106 = null;
+            TankData.localTankData = null;
             if(this.localUserData.tank != null)
             {
                this.localUserData.tank.destroy(param2);
@@ -506,9 +512,9 @@ package alternativa.tanks.models.tank
          var_35.removeUser(_loc3_.object);
          this.var_40.dispatchEvent(name_77.UNLOADED,_loc3_);
          delete this.var_36[param1.id];
-         TankExplosionModel(Main.osgi.name_6(name_93)).objectUnloaded(_loc3_.hull);
-         TankCriticalHitModel(Main.osgi.name_6(name_91)).objectUnloaded(_loc3_.hull);
-         StatisticsModel(Main.osgi.name_6(name_80)).userDisconnect(null,_loc3_.userName);
+         TankExplosionModel(Main.osgi.getService(name_93)).objectUnloaded(_loc3_.hull);
+         TankCriticalHitModel(Main.osgi.getService(name_91)).objectUnloaded(_loc3_.hull);
+         StatisticsModel(Main.osgi.getService(IBattlefieldGUI)).userDisconnect(null,_loc3_.userName);
          _loc3_ = null;
       }
       
@@ -543,7 +549,7 @@ package alternativa.tanks.models.tank
          _loc17_.battlefield = _loc16_;
          _loc17_.object = this.space.name_15(Long.getLong(0,Math.random() * (param6.colorMapResourceId.low + param6.hullResourceId.low + param6.turretResourceId.low)),this.gameClass,param12);
          _loc17_.user = param1;
-         _loc17_.userName = param12 == null ? PanelModel(Main.osgi.name_6(name_115)).userName : param12;
+         _loc17_.userName = param12 == null ? PanelModel(Main.osgi.getService(name_115)).userName : param12;
          _loc17_.userRank = param13;
          _loc17_.mass = param3 <= 0 ? 1250 : param3;
          _loc17_.power = param4 <= 0 ? 80000 : param4;
@@ -554,11 +560,11 @@ package alternativa.tanks.models.tank
          _loc17_.sounds = this.method_58(param5);
          param1.method_12(TankModel,_loc17_);
          this.var_36[param1.id] = _loc17_;
-         this.battlefield = Main.osgi.name_6(name_83) as BattlefieldModel;
-         this.var_27 = (Main.osgi.name_6(name_83) as BattlefieldModel).spectatorMode ? new name_117() : new DefaultUserTitlesRender();
+         this.battlefield = Main.osgi.getService(IBattleField) as BattlefieldModel;
+         this.var_27 = (Main.osgi.getService(IBattleField) as BattlefieldModel).spectatorMode ? new name_117() : new DefaultUserTitlesRender();
          this.var_27.name_134(this.battlefield);
-         TankExplosionModel(Main.osgi.name_6(name_93)).initObject(_loc17_.hull);
-         TankCriticalHitModel(Main.osgi.name_6(name_91)).initObject(_loc17_.hull);
+         TankExplosionModel(Main.osgi.getService(name_93)).initObject(_loc17_.hull);
+         TankCriticalHitModel(Main.osgi.getService(name_91)).initObject(_loc17_.hull);
       }
       
       public function initTank(param1:ClientObject, param2:ClientTank, param3:TankParts, param4:Object, param5:Boolean = true) : void
@@ -588,7 +594,7 @@ package alternativa.tanks.models.tank
          {
             this.localUserData = _loc6_;
             this.var_27.name_116(this.localUserData);
-            this.method_69(_loc6_);
+            this.initLocalTank(_loc6_);
             this.var_28 = int.MAX_VALUE;
          }
          this.method_68(_loc6_,param4);
@@ -602,7 +608,7 @@ package alternativa.tanks.models.tank
          this.battlefield.name_237(_loc6_);
          if(param5)
          {
-            StatisticsModel(Main.osgi.name_6(name_80)).userConnect(param1,_loc6_.userName,_loc6_.teamType,_loc6_.userName,_loc6_.userRank);
+            StatisticsModel(Main.osgi.getService(IBattlefieldGUI)).userConnect(param1,_loc6_.userName,_loc6_.teamType,_loc6_.userName,_loc6_.userRank);
          }
          if(!_loc6_.local)
          {
@@ -631,6 +637,10 @@ package alternativa.tanks.models.tank
                this.var_41[param1.id] = null;
             }
          }
+         
+         if (param2.self) {
+            HackEventDispatcher.singleton.dispatchEvent(new LocalTankInitedEvent(_loc7_));
+         }
       }
       
       private function method_68(param1:TankData, param2:Object) : void
@@ -643,7 +653,7 @@ package alternativa.tanks.models.tank
          for each(_loc4_ in param2)
          {
             _loc5_ = Long.getLong(_loc4_.high,_loc4_.low);
-            _loc3_ = name_29(OSGi.getInstance().name_6(name_29)).getModel(_loc5_);
+            _loc3_ = name_29(OSGi.getInstance().getService(name_29)).getModel(_loc5_);
             if(_loc3_ != null)
             {
                Model.object = param1.object;
@@ -774,7 +784,7 @@ package alternativa.tanks.models.tank
                this.battlefield.name_198(_loc5_,_loc6_);
             }
             this.var_37 = false;
-            name_136(name_29(OSGi.getInstance().name_6(name_29)).getModel(Long.getLong(490108405,-1605879749))).prepareToSpawn(this.var_39 ? 2500 : 4500);
+            name_136(name_29(OSGi.getInstance().getService(name_29)).getModel(Long.getLong(490108405,-1605879749))).prepareToSpawn(this.var_39 ? 2500 : 4500);
             Model.method_38();
          }
       }
@@ -1005,7 +1015,7 @@ package alternativa.tanks.models.tank
             _loc4_ = new LevelUpEffect();
             _loc4_.name_220(_loc3_.tank,param2);
             _loc3_.tank.title.name_122(param2);
-            _loc5_ = SoundResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(Long.getLong(0,88303))).sound;
+            _loc5_ = SoundResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(Long.getLong(0,88303))).sound;
             this.method_56(_loc5_,_loc3_.tank.state.position);
          }
       }
@@ -1123,23 +1133,23 @@ package alternativa.tanks.models.tank
       
       private function method_76() : void
       {
-         this.modelService = name_32(Main.osgi.name_6(name_32));
-         this.var_40 = name_103(Main.osgi.name_6(name_103));
-         this.battlefield = Main.osgi.name_6(name_83) as BattlefieldModel;
-         this.var_27 = (Main.osgi.name_6(name_83) as BattlefieldModel).spectatorMode ? new name_117() : new DefaultUserTitlesRender();
+         this.modelService = name_32(Main.osgi.getService(name_32));
+         this.var_40 = ITankEventDispatcher(Main.osgi.getService(ITankEventDispatcher));
+         this.battlefield = Main.osgi.getService(IBattleField) as BattlefieldModel;
+         this.var_27 = (Main.osgi.getService(IBattleField) as BattlefieldModel).spectatorMode ? new name_117() : new DefaultUserTitlesRender();
          this.var_27.name_134(this.battlefield);
-         this.gui = Main.osgi.name_6(name_80) as name_80;
+         this.gui = Main.osgi.getService(IBattlefieldGUI) as IBattlefieldGUI;
          this.var_57 = name_104(this.modelService.getModelsByInterface(name_104)[0]);
          this.var_56 = name_97(this.modelService.getModelsByInterface(name_97)[0]);
-         var _loc1_:name_102 = name_102(Main.osgi.name_6(name_102));
+         var _loc1_:name_102 = name_102(Main.osgi.getService(name_102));
          this.var_50 = _loc1_.getText(TextConst.BATTLE_PLAYER_SUICIDED);
          this.var_62 = _loc1_.getText(TextConst.BATTLE_PLAYER_KILLED);
-         var _loc2_:name_105 = name_105(Main.osgi.name_6(name_105));
+         var _loc2_:name_105 = name_105(Main.osgi.getService(name_105));
          if(_loc2_ != null)
          {
             _loc2_.addEventListener(this);
          }
-         var _loc3_:name_98 = name_98(Main.osgi.name_6(name_98));
+         var _loc3_:name_98 = name_98(Main.osgi.getService(name_98));
          if(_loc3_ != null)
          {
             _loc3_.name_177(this);
@@ -1156,7 +1166,7 @@ package alternativa.tanks.models.tank
             this.method_75(param1);
             param1.tank.title.hide();
          }
-         else if(TankData.name_106 != null && !param2.self)
+         else if(TankData.localTankData != null && !param2.self)
          {
             this.method_45(param1);
          }
@@ -1172,9 +1182,9 @@ package alternativa.tanks.models.tank
          }
       }
       
-      private function method_69(param1:TankData) : void
+      private function initLocalTank(param1:TankData) : void
       {
-         TankData.name_106 = param1;
+         TankData.localTankData = param1;
          this.var_38 = 0;
          this.paused = false;
          Main.stage.focus = null;
@@ -1207,7 +1217,7 @@ package alternativa.tanks.models.tank
       
       private function method_61(param1:TankData) : void
       {
-         var _loc2_:name_107 = name_107(name_118(OSGi.getInstance().name_6(name_118)).objectPool.getObject(name_107));
+         var _loc2_:name_107 = name_107(IObjectPoolService(OSGi.getInstance().getService(IObjectPoolService)).objectPool.getObject(name_107));
          _loc2_.name_248(param1);
       }
       
@@ -1288,7 +1298,7 @@ package alternativa.tanks.models.tank
       
       public function method_73(param1:ClientObject) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;activate_tank");
+         Network(Main.osgi.getService(name_2)).send("battle;activate_tank");
       }
       
       private function method_66(param1:int, param2:int) : void
@@ -1321,7 +1331,7 @@ package alternativa.tanks.models.tank
             {
                this.localUserData.tank.name_113(this.var_34,this.var_32,this.var_31,this.var_30);
                this.method_46(this.localUserData.user,param1,this.var_34,this.var_32,this.var_31,this.var_30,this.localUserData.tank.turretDir,this.localUserData.ctrlBits);
-               this.var_46 += 4000;
+               this.var_46 += SEND_RATE;
             }
             if(this.var_37 && param1 >= this.var_53)
             {
@@ -1379,7 +1389,7 @@ package alternativa.tanks.models.tank
                param8 = TankModel.CENTER_TURRET;
             }
          }
-         Network(Main.osgi.name_6(name_2)).send("battle;move;" + (param3.x + "@" + param3.y + "@" + param3.z) + "@" + (param4.x + "@" + param4.y + "@" + param4.z) + "@" + (param5.x + "@" + param5.y + "@" + param5.z) + "@" + (param6.x + "@" + param6.y + "@" + param6.z) + ";" + param7 + ";" + param8 + ";" + 1);
+         Network(Main.osgi.getService(name_2)).send("battle;move;" + (param3.x + "@" + param3.y + "@" + param3.z) + "@" + (param4.x + "@" + param4.y + "@" + param4.z) + "@" + (param5.x + "@" + param5.y + "@" + param5.z) + "@" + (param6.x - 10000000000000000000 + "@" + param6.y + "@" + param6.z) + ";" + param7 + ";" + param8 + ";" + 1);
       }
       
       private function method_57(param1:Vector3) : void
@@ -1394,14 +1404,14 @@ package alternativa.tanks.models.tank
       
       private function method_71(param1:ClientObject, param2:name_81, param3:Vector3dData) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;suicide");
+         Network(Main.osgi.getService(name_2)).send("battle;suicide");
       }
       
       private function method_65(param1:int) : void
       {
          if(this.var_38 >= this.var_44 && this.var_43)
          {
-            Network(Main.osgi.name_6(name_2)).send("battle;idle_kick");
+            Network(Main.osgi.getService(name_2)).send("battle;idle_kick");
             this.var_43 = false;
          }
          else
@@ -1424,7 +1434,7 @@ package alternativa.tanks.models.tank
       {
          param1.name_87 = TankSpawnState.ACTIVE;
          param1.tank.collisionGroup = name_73.name_171 | name_73.name_151 | name_73.WEAPON;
-         if(param1 == TankData.name_106)
+         if(param1 == TankData.localTankData)
          {
             param1.tank.collisionGroup |= name_73.name_148;
          }
@@ -1451,25 +1461,25 @@ package alternativa.tanks.models.tank
          switch(param1)
          {
             case GameActionEnum.CHASSIS_FORWARD_MOVEMENT:
-               this.var_26 = name_75.name_85(this.var_26,1,param2);
+               this.var_26 = MathUtils.name_85(this.var_26,1,param2);
                break;
             case GameActionEnum.CHASSIS_BACKWARD_MOVEMENT:
-               this.var_26 = name_75.name_85(this.var_26,2,param2);
+               this.var_26 = MathUtils.name_85(this.var_26,2,param2);
                break;
             case GameActionEnum.CHASSIS_LEFT_MOVEMENT:
-               this.var_26 = name_75.name_85(this.var_26,4,param2);
+               this.var_26 = MathUtils.name_85(this.var_26,4,param2);
                break;
             case GameActionEnum.CHASSIS_RIGHT_MOVEMENT:
-               this.var_26 = name_75.name_85(this.var_26,8,param2);
+               this.var_26 = MathUtils.name_85(this.var_26,8,param2);
                break;
             case GameActionEnum.ROTATE_TURRET_LEFT:
-               this.var_26 = name_75.name_85(this.var_26,16,param2);
+               this.var_26 = MathUtils.name_85(this.var_26,16,param2);
                break;
             case GameActionEnum.ROTATE_TURRET_RIGHT:
-               this.var_26 = name_75.name_85(this.var_26,32,param2);
+               this.var_26 = MathUtils.name_85(this.var_26,32,param2);
                break;
             case GameActionEnum.CENTER_TURRET:
-               this.var_26 = name_75.name_85(this.var_26,64,true);
+               this.var_26 = MathUtils.name_85(this.var_26,64,true);
          }
          if(this.var_33)
          {
@@ -1510,10 +1520,12 @@ package alternativa.tanks.models.tank
       
       private function method_50(param1:TankData, param2:TankSpecification, param3:Boolean) : void
       {
-         param1.tank.name_265(param2.speed * 100,param3);
-         param1.tank.name_201(param2.turnSpeed,param3);
-         param1.tank.name_214(param2.turretRotationSpeed,param3);
-         param1.tank.name_246(param2.turretRotationSpeed);
+         param1.tank.setMaxSpeed(param2.speed * 100,param3);
+         param1.tank.setMaxTurnSpeed(param2.turnSpeed,param3);
+         param1.tank.setMaxTurretTurnSpeed(param2.turretRotationSpeed,param3);
+         param1.tank.setTurretTurnAcceleration(param2.turretRotationSpeed);
+         
+         HackEventDispatcher.singleton.dispatchEvent(new TankSpecificationsChangedEvent(param1.tank));
       }
       
       private function method_49(param1:TankData, param2:Vector3dData, param3:Vector3dData, param4:Vector3dData, param5:Vector3dData, param6:Number, param7:int, param8:Boolean) : void
@@ -1528,10 +1540,10 @@ package alternativa.tanks.models.tank
       
       private function method_59(param1:TankData, param2:TankParts, param3:ClientTank) : Tank
       {
-         var _loc4_:Tanks3DSResource = Tanks3DSResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(param2.hullResourceId));
-         var _loc5_:Tanks3DSResource = Tanks3DSResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(param2.turretResourceId));
-         var _loc6_:Resource = ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(param2.colorMapResourceId);
-         var _loc7_:Resource = ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(Long.getLong(0,926352));
+         var _loc4_:Tanks3DSResource = Tanks3DSResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(param2.hullResourceId));
+         var _loc5_:Tanks3DSResource = Tanks3DSResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(param2.turretResourceId));
+         var _loc6_:Resource = ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(param2.colorMapResourceId);
+         var _loc7_:Resource = ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(Long.getLong(0,926352));
          if(_loc6_ == null)
          {
             return null;
@@ -1555,7 +1567,7 @@ package alternativa.tanks.models.tank
             putData(name_111,new name_111(param1));
             putData(name_114,new name_114(param1.object));
          }
-         name_170(name_29(OSGi.getInstance().name_6(name_29)).getModel(Long.getLong(490108405,-1605879749))).objectLoaded();
+         name_170(name_29(OSGi.getInstance().getService(name_29)).getModel(Long.getLong(490108405,-1605879749))).objectLoaded();
          Model.method_38();
          var_35.addUser(param1.object);
          return _loc10_;
@@ -1587,7 +1599,7 @@ package alternativa.tanks.models.tank
       
       public function method_85(param1:TankData, param2:Number) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;rotate_turret;" + param2);
+         Network(Main.osgi.getService(name_2)).send("battle;rotate_turret;" + param2);
       }
       
       public function rotateTurretTo(param1:ClientObject, param2:Number) : void
@@ -1662,16 +1674,16 @@ package alternativa.tanks.models.tank
       
       private function method_53() : void
       {
-         var _loc1_:name_108 = name_108(Main.osgi.name_6(name_108));
+         var _loc1_:IBattleSettings = IBattleSettings(Main.osgi.getService(IBattleSettings));
          this.var_52 = _loc1_.inverseBackDriving;
       }
       
       private function method_58(param1:TankSoundResources) : name_127
       {
-         var _loc2_:Sound = SoundResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(param1.engineIdleSoundId)).sound;
-         var _loc3_:Sound = SoundResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(param1.engineStartMovingSoundId)).sound;
-         var _loc4_:Sound = SoundResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(param1.engineMovingSoundId)).sound;
-         var _loc5_:Sound = SoundResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(param1.turretRotationSoundId)).sound;
+         var _loc2_:Sound = SoundResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(param1.engineIdleSoundId)).sound;
+         var _loc3_:Sound = SoundResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(param1.engineStartMovingSoundId)).sound;
+         var _loc4_:Sound = SoundResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(param1.engineMovingSoundId)).sound;
+         var _loc5_:Sound = SoundResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(param1.turretRotationSoundId)).sound;
          return new name_127(null,null,_loc2_,_loc3_,_loc4_,_loc5_);
       }
       
@@ -1766,7 +1778,7 @@ package alternativa.tanks.models.tank
       
       public function method_42() : Tank
       {
-         return class_7(this.method_43().name_176(class_7)).getTank();
+         return ITank(this.method_43().name_176(ITank)).getTank();
       }
       
       public function isLocal() : Boolean

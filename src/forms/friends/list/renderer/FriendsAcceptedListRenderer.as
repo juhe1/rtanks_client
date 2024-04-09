@@ -1,6 +1,6 @@
 package forms.friends.list.renderer
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import fl.controls.listClasses.CellRenderer;
    import fl.controls.listClasses.ListData;
    import flash.display.Bitmap;
@@ -52,7 +52,7 @@ package forms.friends.list.renderer
       
       private var var_3526:name_3475;
       
-      private var var_3523:name_1134;
+      private var var_3523:LabelBase;
       
       private var var_3524:Bitmap;
       
@@ -122,7 +122,7 @@ package forms.friends.list.renderer
                }
                if(this.var_3523 == null)
                {
-                  this.var_3523 = new name_1134();
+                  this.var_3523 = new LabelBase();
                   this.var_3523.text = "Новый";
                   this.var_3523.color = name_1139.name_1894;
                   this.var_3523.mouseEnabled = false;
@@ -262,7 +262,7 @@ package forms.friends.list.renderer
       
       private function method_3165(param1:MouseEvent) : void
       {
-         PanelModel(Main.osgi.name_6(name_115)).showRemoveFriendDialog(this.var_3048.uid);
+         PanelModel(Main.osgi.getService(name_115)).showRemoveFriendDialog(this.var_3048.uid);
       }
       
       override public function set listData(param1:ListData) : void

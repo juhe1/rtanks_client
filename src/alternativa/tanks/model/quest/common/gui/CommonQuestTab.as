@@ -15,7 +15,7 @@ package alternativa.tanks.model.quest.common.gui
    public class CommonQuestTab extends name_1835
    {
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
       public static const const_2043:int = 280;
       

@@ -37,7 +37,7 @@ package package_307
       
       public function loginByHash(param1:String) : void
       {
-         Network(OSGi.getInstance().name_6(name_2)).send("auth;login_by_hash;" + param1);
+         Network(OSGi.getInstance().getService(name_2)).send("auth;login_by_hash;" + param1);
       }
       
       public function method_2138(param1:String) : void

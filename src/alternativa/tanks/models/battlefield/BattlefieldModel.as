@@ -12,24 +12,24 @@ package alternativa.tanks.models.battlefield
    import alternativa.osgi.OSGi;
    import alternativa.osgi.service.dump.name_524;
    import alternativa.physics.collision.name_166;
-   import alternativa.physics.collision.name_774;
-   import alternativa.physics.name_660;
+   import alternativa.physics.collision.CollisionPrimitive;
+   import alternativa.physics.Body;
    import alternativa.proplib.PropLibRegistry;
    import alternativa.tanks.battle.BattleRunner;
    import alternativa.tanks.battle.name_712;
    import alternativa.tanks.config.name_669;
-   import alternativa.tanks.models.battlefield.gui.name_80;
+   import alternativa.tanks.models.battlefield.gui.IBattlefieldGUI;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.TankModel;
    import alternativa.tanks.models.tank.class_15;
-   import alternativa.tanks.models.tank.class_7;
-   import alternativa.tanks.models.tank.name_103;
+   import alternativa.tanks.models.tank.ITank;
+   import alternativa.tanks.models.tank.ITankEventDispatcher;
    import alternativa.tanks.models.tank.name_77;
    import alternativa.tanks.models.weapon.shared.name_651;
    import alternativa.tanks.models.weapon.shared.name_653;
-   import alternativa.tanks.service.settings.name_108;
-   import alternativa.tanks.services.materialregistry.name_100;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.tanks.service.settings.IBattleSettings;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import alternativa.tanks.sfx.Sound3D;
    import alternativa.tanks.sfx.Sound3DEffect;
    import alternativa.tanks.sfx.name_132;
@@ -123,7 +123,7 @@ package alternativa.tanks.models.battlefield
    import package_77.SpectatorCameraController;
    import package_88.BonusRegionService;
    import package_88.name_695;
-   import package_95.name_298;
+   import package_95.IStorageService;
    import package_97.BonusCommonModel;
    import package_99.BattleMinesModel;
    import platform.client.fp10.core.registry.ResourceRegistry;
@@ -136,7 +136,7 @@ package alternativa.tanks.models.battlefield
    import scpacker.networking.Network;
    import scpacker.networking.name_2;
    
-   public class BattlefieldModel extends class_13 implements name_306, name_83, class_11, class_14, class_6, class_1, name_166, class_3, class_15, class_2
+   public class BattlefieldModel extends class_13 implements name_306, IBattleField, class_11, class_14, class_6, class_1, name_166, class_3, class_15, class_2
    {
       
       public static var battleInputService:name_245;
@@ -176,9 +176,9 @@ package alternativa.tanks.models.battlefield
       private static const const_32:Class = name_713;
        
       
-      private var var_138:name_118;
+      private var var_138:IObjectPoolService;
       
-      private var var_58:name_100;
+      private var var_58:IMaterialRegistry;
       
       private var var_150:name_32;
       
@@ -240,7 +240,7 @@ package alternativa.tanks.models.battlefield
       
       private var var_157:int;
       
-      private var gui:name_80;
+      private var gui:IBattlefieldGUI;
       
       private var var_161:Boolean;
       
@@ -324,9 +324,9 @@ package alternativa.tanks.models.battlefield
          this.var_158 = new name_662("shav",0.2,-100,100);
          this.var_130 = new Vector.<Object>();
          this.var_147 = new Vector.<Object>();
-         this.var_138 = name_118(Main.osgi.name_6(name_118));
-         this.var_58 = name_100(Main.osgi.name_6(name_100));
-         this.var_150 = name_32(Main.osgi.name_6(name_32));
+         this.var_138 = IObjectPoolService(Main.osgi.getService(IObjectPoolService));
+         this.var_58 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry));
+         this.var_150 = name_32(Main.osgi.getService(name_32));
          this.var_131 = new BonusRegionService(this);
          name_709.name_725();
          this.var_140 = new Dictionary();
@@ -376,7 +376,7 @@ package alternativa.tanks.models.battlefield
          {
             return;
          }
-         var _loc1_:name_108 = this.method_159();
+         var _loc1_:IBattleSettings = this.method_159();
          if(_loc1_ != null)
          {
             this.var_117.skybox.visible = _loc1_.showSkyBox;
@@ -436,7 +436,7 @@ package alternativa.tanks.models.battlefield
          var reArmorEnabled:Boolean = param11;
          try
          {
-            this.var_144 = Main.osgi.name_6(name_531) != null;
+            this.var_144 = Main.osgi.getService(name_531) != null;
             this.spectatorMode = spectator;
             battleInfoService.spectatorMode = spectator;
             battleInfoService.currentBattleId = Long.getLong(0,0);
@@ -444,18 +444,18 @@ package alternativa.tanks.models.battlefield
             battleInfoService.reArmorEnabled = reArmorEnabled;
             this.var_129 = 2;
             this.var_161 = false;
-            this.var_123 = Main.osgi.name_6(class_7) as TankModel;
-            networkService = Main.osgi.name_6(name_105) as name_105;
+            this.var_123 = Main.osgi.getService(ITank) as TankModel;
+            networkService = Main.osgi.getService(name_105) as name_105;
             if(networkService != null)
             {
                networkService.addEventListener(this);
             }
-            modelService = name_32(Main.osgi.name_6(name_32));
-            this.gui = Main.osgi.name_6(name_80) as name_80;
+            modelService = name_32(Main.osgi.getService(name_32));
+            this.gui = Main.osgi.getService(IBattlefieldGUI) as IBattlefieldGUI;
             this.var_117 = new name_128();
             this.var_117.bfObject = clientObject;
             this.var_117.name_685 = new GameObject(Long.getLong(-2281337,1337228),new GameClass(Long.getLong(726910,-261930),Vector.<Long>([])),"BattleObject",null);
-            this.var_117.name_661 = (Main.osgi.name_6(name_24) as name_24).contentLayer;
+            this.var_117.name_661 = (Main.osgi.getService(name_24) as name_24).contentLayer;
             this.var_117.name_661.visible = false;
             this.var_117.name_707 = respawnInvulnerabilityPeriodMsec;
             this.var_117.var_44 = idleKickPeriodMsec;
@@ -466,7 +466,7 @@ package alternativa.tanks.models.battlefield
             this.method_175(mapDescriptorResourceId,skybox);
             this.var_163 = new name_677(this);
             this.var_131.prepare();
-            dumpService = name_524(Main.osgi.name_6(name_524));
+            dumpService = name_524(Main.osgi.getService(name_524));
             if(dumpService != null)
             {
                dumpService.registerDumper(this);
@@ -557,7 +557,7 @@ package alternativa.tanks.models.battlefield
          var _loc4_:Object = new Object();
          _loc4_.bonus_id = param2;
          _loc4_.real_tank_position = new Vector3dData(_loc3_.tank.state.position.x,_loc3_.tank.state.position.y,_loc3_.tank.state.position.z);
-         Network(Main.osgi.name_6(name_2)).send("battle;attempt_to_take_bonus;" + JSON.stringify(_loc4_));
+         Network(Main.osgi.getService(name_2)).send("battle;attempt_to_take_bonus;" + JSON.stringify(_loc4_));
       }
       
       public function method_195(param1:ClientObject) : void
@@ -651,7 +651,7 @@ package alternativa.tanks.models.battlefield
          Model.object = this.var_117.name_685;
          var _loc2_:String = Game.local ? "" : "resources/";
          this.var_120 = SoundManager.name_736(this.var_117.ambientSound);
-         var _loc3_:name_108 = this.method_159();
+         var _loc3_:IBattleSettings = this.method_159();
          this.muteSound = _loc3_.muteSound;
          if(!this.muteSound && Boolean(_loc3_.bgSound))
          {
@@ -661,7 +661,7 @@ package alternativa.tanks.models.battlefield
          this.method_186();
          this.method_179();
          this.var_117.time = getTimer();
-         var _loc4_:name_103 = name_103(Main.osgi.name_6(name_103));
+         var _loc4_:ITankEventDispatcher = ITankEventDispatcher(Main.osgi.getService(ITankEventDispatcher));
          if(_loc4_ != null)
          {
             _loc4_.name_718(name_77.name_192,this);
@@ -669,7 +669,7 @@ package alternativa.tanks.models.battlefield
          }
          if(!this.spectatorMode)
          {
-            Network(Main.osgi.name_6(name_2)).send("battle;get_init_data_local_tank");
+            Network(Main.osgi.getService(name_2)).send("battle;get_init_data_local_tank");
             battleInputService.name_743();
             battleInfoService.spectatorMode = false;
             putData(ControlsMiniHelpSupport,new ControlsMiniHelpSupport());
@@ -677,7 +677,7 @@ package alternativa.tanks.models.battlefield
          else
          {
             BattleController.name_771 = true;
-            Network(Main.osgi.name_6(name_2)).send("battle;spectator_user_init");
+            Network(Main.osgi.getService(name_2)).send("battle;spectator_user_init");
             battleInputService.name_768();
             battleInfoService.spectatorMode = true;
             this.method_189();
@@ -709,7 +709,7 @@ package alternativa.tanks.models.battlefield
             name_11.log(LogLevel.name_79,"BattlefieldModel::objectUnloaded Called more than once");
             return;
          }
-         var _loc2_:name_105 = name_105(Main.osgi.name_6(name_105));
+         var _loc2_:name_105 = name_105(Main.osgi.getService(name_105));
          if(_loc2_ != null)
          {
             _loc2_.removeEventListener(this);
@@ -749,9 +749,9 @@ package alternativa.tanks.models.battlefield
          this.method_170();
          for each(_loc4_ in BattleController.tankClientObjectByTankId)
          {
-            TankModel(Main.osgi.name_6(class_7)).objectUnloadedFully(_loc4_ as ClientObject,true);
+            TankModel(Main.osgi.getService(ITank)).objectUnloadedFully(_loc4_ as ClientObject,true);
          }
-         _loc5_ = name_33(OSGi.getInstance().name_6(name_33)).getSpace(Long.getLong(419472,230884));
+         _loc5_ = name_33(OSGi.getInstance().getService(name_33)).getSpace(Long.getLong(419472,230884));
          _loc6_ = new Vector.<name_70>();
          for each(object in _loc5_.objects)
          {
@@ -796,18 +796,18 @@ package alternativa.tanks.models.battlefield
          this.var_117 = null;
          this.var_132 = null;
          this.var_135 = null;
-         _loc9_ = name_560(Main.osgi.name_6(name_560));
+         _loc9_ = name_560(Main.osgi.getService(name_560));
          if(_loc9_ != null)
          {
             _loc9_.drawBg();
          }
-         var _loc10_:name_524 = name_524(Main.osgi.name_6(name_524));
+         var _loc10_:name_524 = name_524(Main.osgi.getService(name_524));
          if(_loc10_ != null)
          {
             _loc10_.unregisterDumper(this.dumperName);
          }
          this.var_118.deactivate();
-         var _loc11_:name_103 = name_103(Main.osgi.name_6(name_103));
+         var _loc11_:ITankEventDispatcher = ITankEventDispatcher(Main.osgi.getService(ITankEventDispatcher));
          _loc11_.name_717(name_77.name_192,this);
          _loc11_.name_717(name_77.name_184,this);
          Main.contentUILayer.removeChild(this.messages);
@@ -911,7 +911,7 @@ package alternativa.tanks.models.battlefield
          this.var_117.viewport.resize(_loc6_,_loc7_);
          this.var_117.viewport.x = 0.5 * (_loc4_ - _loc6_);
          this.var_117.viewport.y = 0.5 * (_loc5_ - _loc7_);
-         var _loc8_:name_560 = Main.osgi.name_6(name_560) as name_560;
+         var _loc8_:name_560 = Main.osgi.getService(name_560) as name_560;
          if(_loc8_ != null)
          {
             _loc8_.drawBg(new Rectangle(0.5 * (_loc4_ - _loc6_),0.5 * (_loc5_ - _loc7_),_loc6_,_loc7_));
@@ -1116,7 +1116,7 @@ package alternativa.tanks.models.battlefield
          }
       }
       
-      public function method_157(param1:name_660, param2:name_660) : Boolean
+      public function method_157(param1:Body, param2:Body) : Boolean
       {
          var _loc3_:TankData = null;
          if(param1.name_169 != null && param2.name_169 == null)
@@ -1226,7 +1226,7 @@ package alternativa.tanks.models.battlefield
       
       public function method_23(param1:Boolean) : void
       {
-         var _loc2_:name_108 = null;
+         var _loc2_:IBattleSettings = null;
          var _loc3_:* = undefined;
          if(this.var_117 == null)
          {
@@ -1301,7 +1301,7 @@ package alternativa.tanks.models.battlefield
       
       public function method_153() : void
       {
-         var _loc1_:name_108 = this.method_159();
+         var _loc1_:IBattleSettings = this.method_159();
          this.var_117.name_661.visible = true;
          this.var_117.name_661.addChild(this.var_117.viewport);
          this.var_128.name_674(_loc1_.adaptiveFPS);
@@ -1344,7 +1344,7 @@ package alternativa.tanks.models.battlefield
             this.var_126.init(new const_32().bitmapData,7000,5000,180,0.75,0.15);
          }
          this.var_117.viewport.name_751(this.var_126);
-         this.var_128 = new name_284(name_24(OSGi.getInstance().name_6(name_24)).stage,this.const_30);
+         this.var_128 = new name_284(name_24(OSGi.getInstance().getService(name_24)).stage,this.const_30);
          this.var_128.name_674(this.method_159().adaptiveFPS);
          this.var_132 = new SuicideIndicator(this);
          Main.stage.focus = this.var_117.viewport;
@@ -1355,7 +1355,7 @@ package alternativa.tanks.models.battlefield
          this.var_118 = new FollowCameraController();
          this.var_134 = new name_681(3500);
          this.var_125 = new SpectatorCameraController();
-         var _loc2_:name_298 = Main.osgi.name_6(name_298) as name_298;
+         var _loc2_:IStorageService = Main.osgi.getService(IStorageService) as IStorageService;
          this.screenSize = _loc2_.getStorage().data.screenSize;
          if(this.screenSize == 0)
          {
@@ -1379,7 +1379,7 @@ package alternativa.tanks.models.battlefield
          this.var_117.skybox = this.method_183(param2);
          this.var_117.viewport.name_759(this.var_117.skybox);
          this.var_135 = new name_669();
-         this.var_135.load(MapResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(this.var_152)));
+         this.var_135.load(MapResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(this.var_152)));
       }
       
       public function getConfig() : name_669
@@ -1397,7 +1397,7 @@ package alternativa.tanks.models.battlefield
          this.var_117.viewport.addDecal(param1,param2,param3,param4,param5);
       }
       
-      public function build(param1:KDContainer, param2:Vector.<name_774>, param3:Vector.<Light3D>) : void
+      public function build(param1:KDContainer, param2:Vector.<CollisionPrimitive>, param3:Vector.<Light3D>) : void
       {
          this.var_117.viewport._mapContainer = param1;
          this.var_117.viewport.name_786(param3);
@@ -1435,7 +1435,7 @@ package alternativa.tanks.models.battlefield
       
       private function onMapBuildingComplete(param1:Event) : void
       {
-         this.gui = Main.osgi.name_6(name_80) as name_80;
+         this.gui = Main.osgi.getService(IBattlefieldGUI) as IBattlefieldGUI;
          this.var_141 = true;
          this.method_169();
          this.method_163();
@@ -1552,7 +1552,7 @@ package alternativa.tanks.models.battlefield
             if(!this.var_154)
             {
                this.var_154 = true;
-               name_539(OSGi.getInstance().name_6(name_539)).addNotification(new name_698());
+               name_539(OSGi.getInstance().getService(name_539)).addNotification(new name_698());
                OSGi.clientLog.log("battleError",e.getStackTrace());
             }
             return;
@@ -1561,7 +1561,7 @@ package alternativa.tanks.models.battlefield
       
       private function method_201(param1:Event) : void
       {
-         var _loc2_:name_28 = name_28(Main.osgi.name_6(name_28));
+         var _loc2_:name_28 = name_28(Main.osgi.getService(name_28));
          if(_loc2_ != null)
          {
             _loc2_.reload();
@@ -1669,7 +1669,7 @@ package alternativa.tanks.models.battlefield
       
       public function method_197() : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;speedhack_detected");
+         Network(Main.osgi.getService(name_2)).send("battle;speedhack_detected");
       }
       
       public function method_28(param1:GameActionEnum, param2:Boolean) : void
@@ -1711,7 +1711,7 @@ package alternativa.tanks.models.battlefield
       
       private function method_193() : Boolean
       {
-         var _loc1_:SharedObject = name_298(Main.osgi.name_6(name_298)).getStorage();
+         var _loc1_:SharedObject = IStorageService(Main.osgi.getService(IStorageService)).getStorage();
          var _loc2_:Boolean = Boolean(_loc1_.data.textureDebug1);
          _loc1_.data.textureDebug1 = !_loc2_;
          _loc1_.flush();
@@ -1734,7 +1734,7 @@ package alternativa.tanks.models.battlefield
       private function method_167(param1:int) : void
       {
          this.screenSize = param1 > this.var_127 ? this.var_127 : (param1 < 1 ? 1 : param1);
-         var _loc2_:name_298 = Main.osgi.name_6(name_298) as name_298;
+         var _loc2_:IStorageService = Main.osgi.getService(IStorageService) as IStorageService;
          _loc2_.getStorage().data.screenSize = this.screenSize;
          this.onResize(null);
       }
@@ -1759,9 +1759,9 @@ package alternativa.tanks.models.battlefield
          return _loc15_;
       }
       
-      private function method_159() : name_108
+      private function method_159() : IBattleSettings
       {
-         return name_108(Main.osgi.name_6(name_108));
+         return IBattleSettings(Main.osgi.getService(IBattleSettings));
       }
       
       private function method_158(param1:int) : void
@@ -1793,7 +1793,7 @@ package alternativa.tanks.models.battlefield
          --this.var_129;
          if(this.var_129 == 0 || this.spectatorMode)
          {
-            _loc1_ = name_32(Main.osgi.name_6(name_32));
+            _loc1_ = name_32(Main.osgi.getService(name_32));
             _loc2_ = name_115(_loc1_.getModelsByInterface(name_115)[0]);
             _loc2_.partSelected(4);
          }

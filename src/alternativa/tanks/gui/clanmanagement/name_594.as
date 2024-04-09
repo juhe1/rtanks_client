@@ -17,7 +17,7 @@ package alternativa.tanks.gui.clanmanagement
    import package_54.name_102;
    import platform.client.fp10.core.type.name_70;
    import projects.tanks.clients.fp10.libraries.name_390;
-   import utils.name_1915;
+   import utils.ScrollStyleUtils;
    
    public class name_594 extends name_573
    {
@@ -59,12 +59,12 @@ package alternativa.tanks.gui.clanmanagement
          this.list.focusEnabled = true;
          this.list.selectable = false;
          this.list.dataProvider = this.dataProvider;
-         name_1915.name_1918(this.list);
+         ScrollStyleUtils.setGreenStyle(this.list);
          this.var_1182.addChild(this.list);
          var _loc2_:name_569 = name_569(param1.name_176(name_569));
          this.var_1242 = new name_584(_loc2_,localeService.getText(name_390.const_1135),localeService.getText(name_390.const_1297),"","");
          window.addChild(this.var_1242);
-         name_1915.name_1918(this.list);
+         ScrollStyleUtils.setGreenStyle(this.list);
          this.method_1479();
          this.list.addEventListener(ClanMembersListEvent.REVOKE_USER,this.method_1478);
          this.resize();

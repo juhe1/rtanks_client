@@ -4,7 +4,7 @@ package package_281
    import assets.scroller.color.ScrollTrackBlue;
    import controls.DefaultButton;
    import controls.Label;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import controls.name_1922;
    import fl.controls.UIScrollBar;
    import flash.display.Sprite;
@@ -20,7 +20,7 @@ package package_281
       
       private var window:name_1922;
       
-      private var var_1251:name_1891;
+      private var var_1251:TankWindowInner;
       
       private var var_3073:DefaultButton;
       
@@ -31,7 +31,7 @@ package package_281
       public function name_2403()
       {
          this.window = new name_1922();
-         this.var_1251 = new name_1891(-1,-1,name_1891.name_1428);
+         this.var_1251 = new TankWindowInner(-1,-1,TankWindowInner.GREEN);
          this.var_3073 = new DefaultButton();
          this.var_3072 = new UIScrollBar();
          this.errorText = new Label();

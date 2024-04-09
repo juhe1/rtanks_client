@@ -2,7 +2,7 @@ package alternativa.tanks.gui.settings.tabs
 {
    import alternativa.tanks.gui.settings.controls.name_2108;
    import alternativa.tanks.gui.settings.controls.name_2109;
-   import alternativa.tanks.service.settings.name_108;
+   import alternativa.tanks.service.settings.IBattleSettings;
    import alternativa.tanks.service.settings.name_1086;
    import base.class_122;
    import flash.display.DisplayObject;
@@ -19,9 +19,9 @@ package alternativa.tanks.gui.settings.tabs
       
       public static const const_1586:int = 3;
       
-      public static var localeService:name_102 = Main.osgi.name_6(name_102) as name_102;
+      public static var localeService:name_102 = Main.osgi.getService(name_102) as name_102;
       
-      public static var settingsService:name_108 = Main.osgi.name_6(name_108) as name_108;
+      public static var settingsService:IBattleSettings = Main.osgi.getService(IBattleSettings) as IBattleSettings;
        
       
       protected var var_1498:Vector.<DisplayObject>;

@@ -4,7 +4,7 @@ package alternativa.tanks.gui.clanmanagement
    import alternativa.tanks.gui.clanmanagement.clanmemberlist.class_138;
    import alternativa.tanks.gui.clanmanagement.clanmemberlist.class_140;
    import base.class_122;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import controls.name_1922;
    import flash.events.Event;
    import flash.events.KeyboardEvent;
@@ -47,7 +47,7 @@ package alternativa.tanks.gui.clanmanagement
       
       private var window:name_1922;
       
-      private var var_1251:name_1891;
+      private var var_1251:TankWindowInner;
       
       private var id:Long;
       
@@ -60,7 +60,7 @@ package alternativa.tanks.gui.clanmanagement
          var_1253 = param2;
          this.window = new name_1922();
          addChild(this.window);
-         this.var_1251 = new name_1891(0,0,name_1891.name_1428);
+         this.var_1251 = new TankWindowInner(0,0,TankWindowInner.GREEN);
          this.var_1251.x = 6;
          this.var_1251.y = 6;
          this.window.addChild(this.var_1251);

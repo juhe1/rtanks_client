@@ -6,9 +6,9 @@ package alternativa.physics
       private static var var_1689:BodyContact;
        
       
-      public var body1:name_660;
+      public var body1:Body;
       
-      public var body2:name_660;
+      public var body2:Body;
       
       public var const_368:Vector.<ShapeContact>;
       

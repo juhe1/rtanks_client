@@ -3,7 +3,7 @@ package package_403
    import alternativa.physics.BodyContact;
    import alternativa.physics.PhysicsScene;
    import alternativa.physics.ShapeContact;
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import package_37.Vector3;
    
    public class ContactIsland
@@ -28,9 +28,9 @@ package package_403
       
       private const const_2204:Vector.<ShapeContact> = new Vector.<ShapeContact>();
       
-      private var var_2823:Vector.<name_660>;
+      private var var_2823:Vector.<Body>;
       
-      private var var_2824:Vector.<name_660>;
+      private var var_2824:Vector.<Body>;
       
       private const const_2206:Vector.<BodyContact> = new Vector.<BodyContact>();
       
@@ -38,8 +38,8 @@ package package_403
       
       public function ContactIsland()
       {
-         this.var_2823 = new Vector.<name_660>();
-         this.var_2824 = new Vector.<name_660>();
+         this.var_2823 = new Vector.<Body>();
+         this.var_2824 = new Vector.<Body>();
          super();
       }
       
@@ -124,7 +124,7 @@ package package_403
       
       private function method_1861(param1:int) : void
       {
-         var _loc2_:Vector.<name_660> = null;
+         var _loc2_:Vector.<Body> = null;
          var _loc3_:int = 0;
          var _loc4_:int = 0;
          var _loc5_:ShapeContact = null;
@@ -263,9 +263,9 @@ package package_403
          }
       }
       
-      private function method_2651(param1:Vector.<name_660>, param2:Boolean) : void
+      private function method_2651(param1:Vector.<Body>, param2:Boolean) : void
       {
-         var _loc3_:name_660 = null;
+         var _loc3_:Body = null;
          var _loc4_:int = int(param1.length);
          var _loc5_:int = 0;
          while(_loc5_ < _loc4_)
@@ -281,8 +281,8 @@ package package_403
          var _loc3_:Number = NaN;
          var _loc4_:Number = NaN;
          var _loc5_:Vector3 = param1.normal;
-         var _loc6_:name_660 = param1.shape1.name_787;
-         var _loc7_:name_660 = param1.shape2.name_787;
+         var _loc6_:Body = param1.shape1.name_787;
+         var _loc7_:Body = param1.shape2.name_787;
          var _loc8_:Vector3 = const_1625;
          this.method_2652(param1,_loc8_);
          var _loc9_:Number = _loc8_.x * _loc5_.x + _loc8_.y * _loc5_.y + _loc8_.z * _loc5_.z;

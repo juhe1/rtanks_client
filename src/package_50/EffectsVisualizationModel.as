@@ -1,9 +1,9 @@
 package package_50
 {
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
+   import alternativa.tanks.models.tank.ITank;
    import flash.utils.IDataInput;
    import flash.utils.getTimer;
    import package_1.Main;
@@ -13,7 +13,7 @@ package package_50
    import package_4.ClientObject;
    import package_7.name_32;
    
-   public class EffectsVisualizationModel extends EffectsVisualizationModelBase implements class_137, name_104, class_11, name_66
+   public class EffectsVisualizationModel extends EffectsVisualizationModelBase implements class_137, name_104, class_11, IModel
    {
        
       
@@ -24,8 +24,8 @@ package package_50
       public function EffectsVisualizationModel()
       {
          super();
-         var_365.push(name_66,name_104,class_11);
-         Main.osgi.name_1(name_104,this);
+         var_365.push(IModel,name_104,class_11);
+         Main.osgi.registerService(name_104,this);
       }
       
       public function initObject(param1:ClientObject, param2:Array) : void
@@ -41,8 +41,8 @@ package package_50
          }
          if(this.var_123 == null)
          {
-            _loc3_ = name_32(Main.osgi.name_6(name_32));
-            this.var_123 = TankModel(Main.osgi.name_6(class_7));
+            _loc3_ = name_32(Main.osgi.getService(name_32));
+            this.var_123 = TankModel(Main.osgi.getService(ITank));
          }
       }
       

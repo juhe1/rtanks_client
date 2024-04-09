@@ -1,7 +1,7 @@
 package alternativa.tanks.model
 {
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import package_1.Main;
    import package_105.name_321;
    import package_4.ClientObject;
@@ -23,9 +23,9 @@ package alternativa.tanks.model
       public function Item3DModel()
       {
          super();
-         var_365.push(name_66);
-         var_365.push(class_188);
-         var_365.push(class_11);
+         _interfaces.push(IModel);
+         _interfaces.push(class_188);
+         _interfaces.push(class_11);
       }
       
       public function initObject(param1:ClientObject, param2:name_321) : void
@@ -42,8 +42,8 @@ package alternativa.tanks.model
          var _loc6_:name_2663 = null;
          var _loc7_:Tanks3DSResource = null;
          Main.method_7("Item3DModel objectLoaded");
-         _loc2_ = Main.osgi.name_6(name_32) as name_32;
-         var _loc3_:Vector.<name_66> = _loc2_.getModelsByInterface(name_381) as Vector.<name_66>;
+         _loc2_ = Main.osgi.getService(name_32) as name_32;
+         var _loc3_:Vector.<IModel> = _loc2_.getModelsByInterface(name_381) as Vector.<IModel>;
          var _loc4_:name_381 = _loc3_[0] as name_381;
          if(_loc4_ != null)
          {

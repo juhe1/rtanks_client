@@ -1,8 +1,8 @@
 package controls.labels
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    
-   public class name_2551 extends name_1134
+   public class name_2551 extends LabelBase
    {
        
       

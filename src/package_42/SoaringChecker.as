@@ -3,7 +3,7 @@ package package_42
    import alternativa.physics.ShapeContact;
    import alternativa.physics.name_888;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.vehicles.tanks.Tank;
    import alternativa.tanks.vehicles.tanks.TankBody;
    import package_1.Main;
@@ -15,7 +15,7 @@ package package_42
    public class SoaringChecker
    {
       
-      public static var battleService:BattlefieldModel = Main.osgi.name_6(name_83) as BattlefieldModel;
+      public static var battleService:BattlefieldModel = Main.osgi.getService(IBattleField) as BattlefieldModel;
       
       private static const const_2212:Number = 12.5;
       

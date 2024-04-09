@@ -42,7 +42,7 @@ package package_267
       
       public function class_157()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_803(this);
          this.var_25 = Long.getLong(1726782619,1524609945);
          this.var_1594 = Long.getLong(205404481,2036669945);

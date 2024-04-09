@@ -2,7 +2,7 @@ package alternativa.tanks.gui
 {
    import controls.DefaultButton;
    import controls.Label;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import controls.name_1922;
    import controls.name_2296;
    import flash.display.Bitmap;
@@ -38,7 +38,7 @@ package alternativa.tanks.gui
       
       private var window:name_1922;
       
-      private var var_1182:name_1891;
+      private var var_1182:TankWindowInner;
       
       private var var_2553:Label;
       
@@ -71,36 +71,36 @@ package alternativa.tanks.gui
          var _loc5_:String = null;
          var _loc6_:String = null;
          super();
-         var _loc4_:name_102 = name_102(Main.osgi.name_6(name_102));
+         var _loc4_:name_102 = name_102(Main.osgi.getService(name_102));
          this.var_1819 = new Sprite();
          this.var_2556 = new Bitmap();
          this.var_1819.addChild(this.var_2556);
          if(param1 == 0)
          {
             this.var_2560 = new Bitmap(const_2049);
-            _loc5_ = String(name_102(Main.osgi.name_6(name_102)).getText(TextConst.const_278));
-            _loc6_ = TextConst.method_687(name_102(Main.osgi.name_6(name_102)).getText(TextConst.const_168),param3);
+            _loc5_ = String(name_102(Main.osgi.getService(name_102)).getText(TextConst.const_278));
+            _loc6_ = TextConst.method_687(name_102(Main.osgi.getService(name_102)).getText(TextConst.const_168),param3);
          }
          else if(param1 == 1)
          {
-            this.var_2560 = new Bitmap(name_102(Main.osgi.name_6(name_102)).getImage(name_1822.const_1512));
-            _loc5_ = String(name_102(Main.osgi.name_6(name_102)).getText(TextConst.const_278));
-            _loc6_ = String(name_102(Main.osgi.name_6(name_102)).getText(TextConst.const_273));
+            this.var_2560 = new Bitmap(name_102(Main.osgi.getService(name_102)).getImage(name_1822.const_1512));
+            _loc5_ = String(name_102(Main.osgi.getService(name_102)).getText(TextConst.const_278));
+            _loc6_ = String(name_102(Main.osgi.getService(name_102)).getText(TextConst.const_273));
          }
          else
          {
             this.var_2560 = new Bitmap(const_2052);
             _loc5_ = "";
-            _loc6_ = String(name_102(Main.osgi.name_6(name_102)).getText(TextConst.const_206));
+            _loc6_ = String(name_102(Main.osgi.getService(name_102)).getText(TextConst.const_206));
          }
          if(param1 == 0 || param1 == 1)
          {
             this.var_1739 = this.var_2560.width + 12 * 2 + 9 * 2;
             this.window = new name_1922(this.var_1739,this.var_2560.height);
             addChild(this.window);
-            this.window.name_2241 = name_102(Main.osgi.name_6(name_102)).getText(TextConst.GUI_LANG);
+            this.window.name_2241 = name_102(Main.osgi.getService(name_102)).getText(TextConst.GUI_LANG);
             this.window.header = name_2296.CONGRATULATIONS;
-            this.var_1182 = new name_1891(0,0,name_1891.name_1428);
+            this.var_1182 = new TankWindowInner(0,0,TankWindowInner.GREEN);
             addChild(this.var_1182);
             this.var_1182.x = 12;
             this.var_1182.y = 12;
@@ -131,7 +131,7 @@ package alternativa.tanks.gui
             addChild(this.var_2554);
             this.name_983 = new DefaultButton();
             addChild(this.name_983);
-            this.name_983.label = name_102(Main.osgi.name_6(name_102)).getText(TextConst.FREE_BONUSES_WINDOW_BUTTON_CLOSE_TEXT);
+            this.name_983.label = name_102(Main.osgi.getService(name_102)).getText(TextConst.FREE_BONUSES_WINDOW_BUTTON_CLOSE_TEXT);
             this.window.height = this.var_2554.y + this.var_2554.height + this.name_983.height + 9 * 3;
             this.name_983.y = this.window.height - 9 - 35;
             this.name_983.x = this.window.width - this.name_983.width >> 1;
@@ -143,9 +143,9 @@ package alternativa.tanks.gui
             this.var_1739 = this.var_2560.width * 2 - 12 * 2 + 5;
             this.window = new name_1922(this.var_1739,this.var_2560.height);
             addChild(this.window);
-            this.window.name_2241 = name_102(Main.osgi.name_6(name_102)).getText(TextConst.GUI_LANG);
+            this.window.name_2241 = name_102(Main.osgi.getService(name_102)).getText(TextConst.GUI_LANG);
             this.window.header = name_2296.CONGRATULATIONS;
-            this.var_1182 = new name_1891(0,0,name_1891.name_1428);
+            this.var_1182 = new TankWindowInner(0,0,TankWindowInner.GREEN);
             addChild(this.var_1182);
             this.var_1182.x = 12;
             this.var_1182.y = 12;
@@ -176,7 +176,7 @@ package alternativa.tanks.gui
             addChild(this.var_2560);
             this.name_983 = new DefaultButton();
             addChild(this.name_983);
-            this.name_983.label = name_102(Main.osgi.name_6(name_102)).getText(TextConst.FREE_BONUSES_WINDOW_BUTTON_CLOSE_TEXT);
+            this.name_983.label = name_102(Main.osgi.getService(name_102)).getText(TextConst.FREE_BONUSES_WINDOW_BUTTON_CLOSE_TEXT);
             this.window.height = this.var_2560.y + this.var_2554.height + this.name_983.height + 9 * 3;
             this.name_983.y = this.window.height - 9 - 35;
             this.name_983.x = this.window.width - this.name_983.width >> 1;

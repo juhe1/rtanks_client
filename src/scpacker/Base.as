@@ -1,11 +1,11 @@
 package scpacker
 {
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import flash.utils.Dictionary;
    import flash.utils.IDataInput;
    import package_4.ClientObject;
    
-   public class Base implements name_66
+   public class Base implements IModel
    {
       
       private static var var_24:Object;
@@ -13,14 +13,14 @@ package scpacker
       private static var objects:Vector.<Object> = new Vector.<Object>();
        
       
-      public var var_365:Vector.<Class>;
+      public var _interfaces:Vector.<Class>;
       
       protected var var_19:Dictionary;
       
       public function Base()
       {
          super();
-         this.var_365 = new Vector.<Class>();
+         this._interfaces = new Vector.<Class>();
          this.var_19 = new Dictionary();
       }
       
@@ -65,7 +65,7 @@ package scpacker
       
       public function get interfaces() : Vector.<Class>
       {
-         return this.var_365;
+         return this._interfaces;
       }
    }
 }

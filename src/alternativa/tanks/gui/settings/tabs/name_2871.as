@@ -2,9 +2,9 @@ package alternativa.tanks.gui.settings.tabs
 {
    import alternativa.tanks.gui.settings.SettingsWindow;
    import alternativa.tanks.service.settings.name_1086;
-   import controls.base.name_1134;
-   import controls.checkbox.class_195;
-   import controls.name_1891;
+   import controls.base.LabelBase;
+   import controls.checkbox.CheckBoxBase;
+   import controls.TankWindowInner;
    import controls.name_2873;
    import package_280.name_2872;
    import projects.tanks.clients.fp10.libraries.name_390;
@@ -15,15 +15,15 @@ package alternativa.tanks.gui.settings.tabs
       
       private var var_3392:name_2873;
       
-      public var bgSound:class_195;
+      public var bgSound:CheckBoxBase;
       
       public function name_2871()
       {
-         var _loc1_:name_1891 = null;
-         var _loc2_:name_1134 = null;
+         var _loc1_:TankWindowInner = null;
+         var _loc2_:LabelBase = null;
          super();
-         _loc1_ = new name_1891(SettingsWindow.name_2112 - 20,0,name_1891.name_2114);
-         _loc2_ = new name_1134();
+         _loc1_ = new TankWindowInner(SettingsWindow.name_2112 - 20,0,TankWindowInner.name_2114);
+         _loc2_ = new LabelBase();
          _loc1_.addChild(_loc2_);
          _loc2_.text = localeService.getText(name_390.const_570);
          _loc2_.x = 8;

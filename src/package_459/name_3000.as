@@ -32,7 +32,7 @@ package package_459
       public function name_3000()
       {
          super();
-         this.localeService = name_102(Main.osgi.name_6(name_102));
+         this.localeService = name_102(Main.osgi.getService(name_102));
          this.input = new TankInput();
          this.input.tabIndex = 5;
          this.input.restrict = ".0-9a-zA-z_\\-";

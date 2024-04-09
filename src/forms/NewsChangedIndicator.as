@@ -6,7 +6,7 @@ package forms
    import package_1.Main;
    import package_130.name_348;
    import package_446.name_3092;
-   import package_95.name_298;
+   import package_95.IStorageService;
    
    public class NewsChangedIndicator extends Sprite
    {
@@ -21,7 +21,7 @@ package forms
       public function NewsChangedIndicator()
       {
          super();
-         this.storage = name_298(Main.osgi.name_6(name_298)).getStorage();
+         this.storage = IStorageService(Main.osgi.getService(IStorageService)).getStorage();
          this.init();
       }
       

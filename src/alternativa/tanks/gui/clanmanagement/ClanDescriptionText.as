@@ -1,12 +1,12 @@
 package alternativa.tanks.gui.clanmanagement
 {
    import alternativa.tanks.utils.LinksInterceptor;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.events.TextEvent;
    import flash.net.URLRequest;
    import flash.net.navigateToURL;
    
-   public class ClanDescriptionText extends name_1134
+   public class ClanDescriptionText extends LabelBase
    {
        
       

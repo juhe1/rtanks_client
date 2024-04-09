@@ -121,7 +121,7 @@ package scpacker.networking
       private function method_128(param1:Event) : void
       {
          this.var_108.close();
-         var _loc2_:name_42 = Main.osgi.name_6(name_42) as name_42;
+         var _loc2_:name_42 = Main.osgi.getService(name_42) as name_42;
          _loc2_.showAlert("Connection closed by server!");
          var _loc3_:int = 0;
          while(_loc3_ < Main.mainContainer.numChildren)
@@ -129,14 +129,14 @@ package scpacker.networking
             Main.mainContainer.removeChildAt(1);
             _loc3_++;
          }
-         name_560(Main.osgi.name_6(name_560)).drawBg();
-         name_560(Main.osgi.name_6(name_560)).showBg();
+         name_560(Main.osgi.getService(name_560)).drawBg();
+         name_560(Main.osgi.getService(name_560)).showBg();
       }
       
       private function method_126(param1:Event) : void
       {
          this.var_108.close();
-         var _loc2_:name_42 = Main.osgi.name_6(name_42) as name_42;
+         var _loc2_:name_42 = Main.osgi.getService(name_42) as name_42;
          _loc2_.showAlert("Connection to server " + "failed");
          var _loc3_:int = 0;
          while(_loc3_ < Main.mainContainer.numChildren)
@@ -144,14 +144,14 @@ package scpacker.networking
             Main.mainContainer.removeChildAt(1);
             _loc3_++;
          }
-         name_560(Main.osgi.name_6(name_560)).drawBg();
-         name_560(Main.osgi.name_6(name_560)).showBg();
+         name_560(Main.osgi.getService(name_560)).drawBg();
+         name_560(Main.osgi.getService(name_560)).showBg();
       }
       
       private function method_127(param1:Event) : void
       {
          this.var_108.close();
-         var _loc2_:name_42 = Main.osgi.name_6(name_42) as name_42;
+         var _loc2_:name_42 = Main.osgi.getService(name_42) as name_42;
          _loc2_.showAlert("Connection to server " + "failed");
          var _loc3_:int = 0;
          while(_loc3_ < Main.mainContainer.numChildren)
@@ -159,8 +159,8 @@ package scpacker.networking
             Main.mainContainer.removeChildAt(1);
             _loc3_++;
          }
-         name_560(Main.osgi.name_6(name_560)).drawBg();
-         name_560(Main.osgi.name_6(name_560)).showBg();
+         name_560(Main.osgi.getService(name_560)).drawBg();
+         name_560(Main.osgi.getService(name_560)).showBg();
       }
       
       public function method_138() : Boolean

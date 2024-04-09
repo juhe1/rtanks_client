@@ -2,7 +2,7 @@ package package_343
 {
    import flash.display.Bitmap;
    import flash.display.DisplayObjectContainer;
-   import package_41.name_320;
+   import package_41.ItemProperty;
    
    public class ResistancesIconsUtils
    {
@@ -13,9 +13,9 @@ package package_343
          super();
       }
       
-      public static function method_3212(param1:Bitmap, param2:Vector.<name_320>) : void
+      public static function method_3212(param1:Bitmap, param2:Vector.<ItemProperty>) : void
       {
-         var _loc3_:name_320 = null;
+         var _loc3_:ItemProperty = null;
          var _loc4_:Bitmap = null;
          var _loc5_:DisplayObjectContainer = param1.parent;
          var _loc6_:uint = param2.length;
@@ -31,7 +31,7 @@ package package_343
          }
       }
       
-      public static function name_3194(param1:name_320) : Bitmap
+      public static function name_3194(param1:ItemProperty) : Bitmap
       {
          return new Bitmap(ResistancesIcons.method_2607(param1));
       }

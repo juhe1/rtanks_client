@@ -9,7 +9,7 @@ package package_393
    public class name_2002
    {
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
       public static var logService:name_26;
       

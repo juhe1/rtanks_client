@@ -1,7 +1,7 @@
 package package_77
 {
-   import alternativa.tanks.models.battlefield.name_83;
-   import alternativa.tanks.utils.name_75;
+   import alternativa.tanks.models.battlefield.IBattleField;
+   import alternativa.tanks.utils.MathUtils;
    import flash.display.Stage;
    import flash.events.KeyboardEvent;
    import flash.events.MouseEvent;
@@ -18,7 +18,7 @@ package package_77
       
       public static var display:name_24;
       
-      public static var battleService:name_83;
+      public static var battleService:IBattleField;
       
       public static var battleInputService:name_245;
       
@@ -125,7 +125,7 @@ package package_77
          if(this.var_800)
          {
             this.rotation.x = this.var_804 + (display.stage.mouseY - this.var_802) * const_511.value;
-            this.rotation.x = name_75.method_218(this.rotation.x,-Math.PI,0);
+            this.rotation.x = MathUtils.method_218(this.rotation.x,-Math.PI,0);
             this.var_795.x = this.rotation.x - param1.rotationX;
             this.rotation.z = this.var_801 + (display.stage.mouseX - this.var_803) * const_508.value;
             this.var_795.z = this.rotation.z - param1.rotationZ;
@@ -133,7 +133,7 @@ package package_77
          else if(this.var_797.name_948())
          {
             this.rotation.x += this.var_797.name_1524() * const_509.value * param2;
-            this.rotation.x = name_75.method_218(this.rotation.x,-Math.PI,0);
+            this.rotation.x = MathUtils.method_218(this.rotation.x,-Math.PI,0);
             this.var_795.x = this.rotation.x - param1.rotationX;
             this.var_795.z += this.var_797.name_1520() * const_510.value * param2;
          }

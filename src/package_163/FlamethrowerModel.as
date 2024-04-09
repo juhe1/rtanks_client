@@ -1,11 +1,11 @@
 package package_163
 {
-   import alternativa.model.name_66;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.model.IModel;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
-   import alternativa.tanks.models.weapon.name_1074;
+   import alternativa.tanks.models.tank.ITank;
+   import alternativa.tanks.models.weapon.IWeaponController;
    import alternativa.tanks.models.weapon.name_911;
    import alternativa.tanks.models.weapon.shared.ConicAreaTargetSystem;
    import alternativa.tanks.models.weapon.shared.name_1742;
@@ -15,13 +15,13 @@ package package_163
    import flash.utils.getTimer;
    import package_1.Main;
    import package_155.class_76;
-   import package_161.name_1448;
+   import package_161.IWeaponWeakeningModel;
    import package_278.name_1288;
    import package_363.class_85;
    import package_363.class_86;
    import package_37.Vector3;
    import package_4.ClientObject;
-   import package_41.name_320;
+   import package_41.ItemProperty;
    import package_41.Vector3dData;
    import package_52.WeaponsManager;
    import package_7.name_32;
@@ -30,19 +30,19 @@ package package_163
    import scpacker.networking.Network;
    import scpacker.networking.name_2;
    
-   public class FlamethrowerModel extends class_85 implements class_86, name_1595, name_1074
+   public class FlamethrowerModel extends class_85 implements class_86, name_1595, IWeaponController
    {
        
       
       private var modelService:name_32;
       
-      private var battlefield:name_83;
+      private var battlefield:IBattleField;
       
       private var var_123:TankModel;
       
       private var var_1008:name_1188;
       
-      private var var_1014:name_1448;
+      private var var_1014:IWeaponWeakeningModel;
       
       private var active:Boolean;
       
@@ -101,23 +101,23 @@ package package_163
          this.var_1016 = name_911.getInstance();
          this.var_1056 = new name_1704();
          super();
-         var_365.push(name_66,class_86,name_1595,name_1074);
+         _interfaces.push(IModel,class_86,name_1595,IWeaponController);
       }
       
-      public function name_1436() : name_320
+      public function name_1436() : ItemProperty
       {
-         return name_320.name_419;
+         return ItemProperty.FIRE_RESISTANCE;
       }
       
       public function initObject(param1:ClientObject, param2:Number, param3:int, param4:int, param5:int, param6:Number, param7:int) : void
       {
          if(this.modelService == null)
          {
-            this.modelService = Main.osgi.name_6(name_32) as name_32;
-            this.battlefield = Main.osgi.name_6(name_83) as name_83;
-            this.var_123 = Main.osgi.name_6(class_7) as TankModel;
+            this.modelService = Main.osgi.getService(name_32) as name_32;
+            this.battlefield = Main.osgi.getService(IBattleField) as IBattleField;
+            this.var_123 = Main.osgi.getService(ITank) as TankModel;
             this.var_1008 = this.modelService.getModelsByInterface(name_1188)[0] as name_1188;
-            this.var_1014 = this.modelService.getModelsByInterface(name_1448)[0] as name_1448;
+            this.var_1014 = this.modelService.getModelsByInterface(IWeaponWeakeningModel)[0] as IWeaponWeakeningModel;
          }
          var _loc8_:name_1729 = new name_1729();
          _loc8_.coneAngle.value = param2;
@@ -263,17 +263,17 @@ package package_163
          _loc6_.targetDistances = param5;
          _loc6_.tickPeriod = this.var_1052.targetDetectionInterval.value;
          trace(JSON.stringify(_loc6_));
-         Network(Main.osgi.name_6(name_2)).send("battle;fire;" + JSON.stringify(_loc6_));
+         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(_loc6_));
       }
       
       private function method_1222(param1:ClientObject) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;start_fire");
+         Network(Main.osgi.getService(name_2)).send("battle;start_fire");
       }
       
       private function method_1226(param1:ClientObject) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;stop_fire");
+         Network(Main.osgi.getService(name_2)).send("battle;stop_fire");
       }
       
       public function method_1002(param1:int) : void

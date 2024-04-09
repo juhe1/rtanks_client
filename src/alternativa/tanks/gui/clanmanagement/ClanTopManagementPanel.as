@@ -2,9 +2,9 @@ package alternativa.tanks.gui.clanmanagement
 {
    import alternativa.tanks.models.user.name_65;
    import base.class_122;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.base.name_1890;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import controls.windowinner.WindowInner;
    import flash.display.Bitmap;
    import flash.events.Event;
@@ -59,21 +59,21 @@ package alternativa.tanks.gui.clanmanagement
       
       private var var_1182:WindowInner;
       
-      private var var_1181:name_1134;
+      private var var_1181:LabelBase;
       
-      private var var_1187:name_1134;
+      private var var_1187:LabelBase;
       
-      private var var_1184:name_1134;
+      private var var_1184:LabelBase;
       
       private var var_1191:name_1889;
       
-      private var var_1186:name_1134;
+      private var var_1186:LabelBase;
       
       private var var_1190:name_634;
       
-      private var var_1185:name_1134;
+      private var var_1185:LabelBase;
       
-      private var var_1189:name_1134;
+      private var var_1189:LabelBase;
       
       private var var_1183:name_1890;
       
@@ -84,16 +84,16 @@ package alternativa.tanks.gui.clanmanagement
       public function ClanTopManagementPanel(param1:name_70)
       {
          this.var_1188 = new const_1531().bitmapData;
-         this.var_1181 = new name_1134();
-         this.var_1187 = new name_1134();
-         this.var_1184 = new name_1134();
+         this.var_1181 = new LabelBase();
+         this.var_1187 = new LabelBase();
+         this.var_1184 = new LabelBase();
          this.var_1190 = new name_634();
-         this.var_1185 = new name_1134();
-         this.var_1189 = new name_1134();
+         this.var_1185 = new LabelBase();
+         this.var_1189 = new LabelBase();
          this.var_1183 = new name_1890();
          super();
          var _loc2_:name_571 = name_571(param1.name_176(name_571));
-         this.var_1182 = new WindowInner(this._width,this._height,name_1891.name_1428);
+         this.var_1182 = new WindowInner(this._width,this._height,TankWindowInner.GREEN);
          this.var_1182.name_1895 = true;
          addChild(this.var_1182);
          this.var_1181.bold = true;
@@ -105,7 +105,7 @@ package alternativa.tanks.gui.clanmanagement
          this.var_1187.text = "[" + _loc2_.name_1897() + "]";
          this.method_1433();
          this.var_1189.text = localeService.getText(name_390.const_940) + " " + clanService.creationDate;
-         this.var_1186 = new name_1134();
+         this.var_1186 = new LabelBase();
          this.var_1186.text = localeService.getText(name_390.const_987);
          this.var_1184.text = localeService.getText(name_390.const_1142);
          this.var_1187.color = name_1139.name_1894;

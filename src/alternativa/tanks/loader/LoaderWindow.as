@@ -47,11 +47,11 @@ package alternativa.tanks.loader
       {
          this.var_85 = [];
          super();
-         var _loc1_:name_24 = name_24(TanksServicesActivator.osgi.name_6(name_24));
+         var _loc1_:name_24 = name_24(TanksServicesActivator.osgi.getService(name_24));
          this.var_83 = _loc1_.systemUILayer;
          this._stage = _loc1_.stage;
          this.method_115();
-         var _loc2_:BitmapData = method_114(TanksServicesActivator.osgi.name_6(name_102) as name_102);
+         var _loc2_:BitmapData = method_114(TanksServicesActivator.osgi.getService(name_102) as name_102);
          this.var_86 = name_504.name_505(_loc2_,new const_21().bitmapData);
          addChild(this.var_86);
          this.var_87 = new name_501();
@@ -92,10 +92,10 @@ package alternativa.tanks.loader
          {
             this.var_87.name_506(this.var_85.shift());
          }
-         var _loc2_:name_499 = OSGi.getInstance().name_6(name_499) as name_499;
+         var _loc2_:name_499 = OSGi.getInstance().getService(name_499) as name_499;
          if(_loc2_ != null)
          {
-            _loc2_.name_510(name_102(OSGi.getInstance().name_6(name_102)).language);
+            _loc2_.name_510(name_102(OSGi.getInstance().getService(name_102)).language);
          }
          this.var_82.stop();
          this.var_82.reset();

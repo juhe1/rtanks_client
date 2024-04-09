@@ -2,7 +2,7 @@ package alternativa.tanks.models.weapon.shaft
 {
    import alternativa.tanks.models.battlefield.BattlefieldModel;
    import alternativa.tanks.models.battlefield.logic.class_23;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.vehicles.tanks.TankSkin;
    import package_1.Main;
    import package_76.name_735;
@@ -30,7 +30,7 @@ package alternativa.tanks.models.weapon.shaft
          super();
          this.camera = param1;
          this.var_2095 = 1.5707963267948966;
-         this.battle = Main.osgi.name_6(name_83) as BattlefieldModel;
+         this.battle = Main.osgi.getService(IBattleField) as BattlefieldModel;
       }
       
       public function name_1146(param1:TankSkin) : void

@@ -26,7 +26,7 @@ package package_110
       
       public function LootBoxModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = class_56(this);
          this.var_25 = Long.getLong(1543015131,1817260381);
          this.var_861 = Long.getLong(525232336,-1555877066);

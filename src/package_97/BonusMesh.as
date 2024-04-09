@@ -11,7 +11,7 @@ package package_97
    public class BonusMesh extends Mesh
    {
       
-      public static var lightingService:name_272 = OSGi.getInstance().name_6(name_272) as name_272;
+      public static var lightingService:name_272 = OSGi.getInstance().getService(name_272) as name_272;
        
       
       private var var_2332:String;

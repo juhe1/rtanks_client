@@ -1,11 +1,11 @@
 package alternativa.tanks.battle
 {
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    
    public interface name_712
    {
        
       
-      function method_1636(param1:name_660) : void;
+      function method_1636(param1:Body) : void;
    }
 }

@@ -13,8 +13,8 @@ package controls.scroller.green
       
       override public function method_2888() : void
       {
-         var_3129 = new name_2758.name_3314().bitmapData;
-         var_3130 = new name_2758.name_3315().bitmapData;
+         var_3129 = new ScrollSkinGreen.name_3314().bitmapData;
+         var_3130 = new ScrollSkinGreen.name_3315().bitmapData;
       }
    }
 }

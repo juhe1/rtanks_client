@@ -1,7 +1,7 @@
 package package_59
 {
    import alternativa.osgi.OSGi;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import package_176.DialogWindowsDispatcherServiceEvent;
    import package_176.name_549;
    import package_218.BlurServiceEvent;
@@ -18,17 +18,17 @@ package package_59
    public class name_671 implements AutoClosable
    {
       
-      public static var dialogWindowsDispatcherService:name_549 = OSGi.getInstance().name_6(name_549) as name_549;
+      public static var dialogWindowsDispatcherService:name_549 = OSGi.getInstance().getService(name_549) as name_549;
       
-      public static var lobbyLayoutService:name_94 = OSGi.getInstance().name_6(name_94) as name_94;
+      public static var lobbyLayoutService:name_94 = OSGi.getInstance().getService(name_94) as name_94;
       
-      public static var blurService:name_637 = OSGi.getInstance().name_6(name_637) as name_637;
+      public static var blurService:name_637 = OSGi.getInstance().getService(name_637) as name_637;
       
-      public static var battleInputService:name_245 = OSGi.getInstance().name_6(name_245) as name_245;
+      public static var battleInputService:name_245 = OSGi.getInstance().getService(name_245) as name_245;
       
-      public static var battleService:name_83 = OSGi.getInstance().name_6(name_83) as name_83;
+      public static var battleService:IBattleField = OSGi.getInstance().getService(IBattleField) as IBattleField;
       
-      public static var battleEventDispatcher:name_96 = OSGi.getInstance().name_6(name_96) as name_96;
+      public static var battleEventDispatcher:name_96 = OSGi.getInstance().getService(name_96) as name_96;
       
       private static var var_1437:Boolean;
        

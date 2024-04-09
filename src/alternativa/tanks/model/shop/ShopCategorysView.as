@@ -1,13 +1,13 @@
 package alternativa.tanks.model.shop
 {
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import fl.containers.ScrollPane;
    import fl.controls.ScrollPolicy;
    import flash.display.Sprite;
    import flash.events.MouseEvent;
    import flash.utils.Dictionary;
    import forms.name_1139;
-   import utils.name_1915;
+   import utils.ScrollStyleUtils;
    
    public class ShopCategorysView extends Sprite
    {
@@ -31,7 +31,7 @@ package alternativa.tanks.model.shop
       
       private var var_2861:Sprite;
       
-      private var var_1182:name_1891;
+      private var var_1182:TankWindowInner;
       
       private var var_3440:Vector.<name_2907>;
       
@@ -46,13 +46,13 @@ package alternativa.tanks.model.shop
          super();
          this.categories = new Dictionary();
          this.var_3440 = new Vector.<name_2907>();
-         this.var_1182 = new name_1891(0,0,name_1891.name_1428);
+         this.var_1182 = new TankWindowInner(0,0,TankWindowInner.GREEN);
          addChild(this.var_1182);
          this.var_2632 = new Sprite();
          this.var_2861 = new Sprite();
          this.var_2632.addChild(this.var_2861);
          this.var_2630 = new ScrollPane();
-         name_1915.name_1918(this.var_2630);
+         ScrollStyleUtils.setGreenStyle(this.var_2630);
          this.var_2630.horizontalScrollPolicy = ScrollPolicy.OFF;
          this.var_2630.verticalScrollPolicy = ScrollPolicy.AUTO;
          this.var_2630.source = this.var_2632;

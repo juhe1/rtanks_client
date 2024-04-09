@@ -8,14 +8,14 @@ package package_127
    import package_110.class_56;
    import package_110.name_331;
    import package_139.name_1538;
-   import package_177.name_550;
+   import package_177.IDialogsService;
    import package_326.class_55;
    import platform.client.fp10.core.model.name_170;
    
    public class LootBoxModel extends LootBoxModelBase implements class_56, name_170, class_55
    {
       
-      public static var var_864:name_550 = OSGi.getInstance().name_6(name_550) as name_550;
+      public static var var_864:IDialogsService = OSGi.getInstance().getService(IDialogsService) as IDialogsService;
        
       
       private var var_863:LootBoxOpenDialog;

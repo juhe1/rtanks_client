@@ -71,7 +71,7 @@ package projects.tanks.client.clans.user
       
       public function ClanUserModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_614(this);
          this.var_25 = Long.getLong(259670316,1522052296);
          this.var_1289 = Long.getLong(57363867,1237781863);

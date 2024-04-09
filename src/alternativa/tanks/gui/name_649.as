@@ -3,7 +3,7 @@ package alternativa.tanks.gui
    import base.class_122;
    import flash.display.Stage;
    import flash.events.Event;
-   import forms.name_1838;
+   import forms.TankWindowWithHeader;
    import package_12.name_24;
    
    public class name_649 extends class_122
@@ -12,7 +12,7 @@ package alternativa.tanks.gui
       public static var display:name_24;
        
       
-      protected var var_1169:name_1838;
+      protected var var_1169:TankWindowWithHeader;
       
       private var _width:Number;
       

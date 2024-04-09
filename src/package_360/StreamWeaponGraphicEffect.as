@@ -2,7 +2,7 @@ package package_360
 {
    import alternativa.engine3d.core.Object3D;
    import alternativa.physics.collision.name_1083;
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import alternativa.tanks.models.weapon.shared.StreamWeaponParticle;
    import alternativa.tanks.sfx.name_2500;
    import alternativa.tanks.sfx.name_657;
@@ -18,7 +18,7 @@ package package_360
    import package_37.Vector3;
    import package_4.ClientObject;
    import package_42.name_73;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_68.name_175;
    import package_76.name_735;
    
@@ -53,7 +53,7 @@ package package_360
       
       private static const const_2010:Vector3 = new Vector3();
       
-      private static const var_711:name_124 = new name_124();
+      private static const var_711:RayHit = new RayHit();
        
       
       private var var_2450:Number;
@@ -90,7 +90,7 @@ package package_360
       
       private var var_2449:StreamWeaponMuzzlePlane;
       
-      private var var_2183:name_660;
+      private var var_2183:Body;
       
       private var var_2459:Number;
       
@@ -114,7 +114,7 @@ package package_360
          this.var_2449 = new StreamWeaponMuzzlePlane();
       }
       
-      public function init(param1:name_660, param2:Number, param3:Number, param4:Number, param5:Vector3, param6:Object3D, param7:name_1715, param8:name_1083, param9:Number, param10:Number, param11:Number, param12:Number, param13:Number, param14:Number, param15:Boolean) : void
+      public function init(param1:Body, param2:Number, param3:Number, param4:Number, param5:Vector3, param6:Object3D, param7:name_1715, param8:name_1083, param9:Number, param10:Number, param11:Number, param12:Number, param13:Number, param14:Number, param15:Boolean) : void
       {
          this.var_2183 = param1;
          this.var_2465 = Math.tan(0.5 * param3);

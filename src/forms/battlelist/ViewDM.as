@@ -3,8 +3,8 @@ package forms.battlelist
    import assets.icons.name_2999;
    import assets.scroller.color.ScrollThumbSkinGreen;
    import assets.scroller.color.ScrollTrackGreen;
-   import controls.base.name_1134;
-   import controls.name_1891;
+   import controls.base.LabelBase;
+   import controls.TankWindowInner;
    import controls.rangicons.name_2924;
    import fl.controls.List;
    import fl.data.DataProvider;
@@ -17,7 +17,7 @@ package forms.battlelist
    import flash.text.TextFieldAutoSize;
    import flash.text.TextFormat;
    import flash.utils.Timer;
-   import forms.name_1838;
+   import forms.TankWindowWithHeader;
    import package_1.Main;
    import package_280.name_2263;
    import package_412.name_2264;
@@ -54,9 +54,9 @@ package forms.battlelist
       
       private var _available:Boolean;
       
-      private var var_2197:name_1838;
+      private var var_2197:TankWindowWithHeader;
       
-      private var var_2975:name_1891;
+      private var var_2975:TankWindowInner;
       
       private var format:TextFormat;
       
@@ -88,8 +88,8 @@ package forms.battlelist
       
       public function ViewDM(param1:Boolean)
       {
-         this.var_2197 = new name_1838((Main.osgi.name_6(name_102) as name_102).getText(name_390.const_848));
-         this.var_2975 = new name_1891(100,100,name_1891.name_1428);
+         this.var_2197 = new TankWindowWithHeader((Main.osgi.getService(name_102) as name_102).getText(name_390.const_848));
+         this.var_2975 = new TankWindowInner(100,100,TankWindowInner.GREEN);
          this.format = new TextFormat("MyriadPro",13);
          this.var_2976 = new name_2923();
          this.var_2977 = new name_2999(0,0);
@@ -176,7 +176,7 @@ package forms.battlelist
       
       private function method_2068(param1:Event) : void
       {
-         var _loc2_:name_102 = Main.osgi.name_6(name_102) as name_102;
+         var _loc2_:name_102 = Main.osgi.getService(name_102) as name_102;
          removeEventListener(Event.ADDED_TO_STAGE,this.method_2068);
          this.list = new List();
          this.method_2266();
@@ -186,7 +186,7 @@ package forms.battlelist
          addChild(this.list);
          addChild(this.var_2976);
          addChild(this.var_2920);
-         this.var_2975.name_1895 = true;
+         this.var_2975.showBlink = true;
          addChild(this.info);
          this.list.rowHeight = 20;
          this.list.setStyle("cellRenderer",TeamListRenderer);
@@ -364,18 +364,18 @@ package forms.battlelist
       private function method_2586(param1:Object) : Bitmap
       {
          var _loc2_:Bitmap = null;
-         var _loc5_:name_1134 = null;
-         var _loc6_:name_1134 = null;
+         var _loc5_:LabelBase = null;
+         var _loc6_:LabelBase = null;
          var _loc7_:name_2924 = null;
          var _loc3_:BitmapData = new BitmapData(360,20,true,0);
          var _loc4_:Sprite = new Sprite();
          this.format.color = 16777215;
-         _loc5_ = new name_1134();
+         _loc5_ = new LabelBase();
          _loc5_.text = param1.playerName == "" ? "none" : String(param1.playerName);
          _loc5_.height = 20;
          _loc5_.x = 26;
          _loc5_.y = 0;
-         _loc6_ = new name_1134();
+         _loc6_ = new LabelBase();
          _loc6_.text = param1.kills == 0 ? "-" : String(param1.kills);
          _loc6_.autoSize = TextFieldAutoSize.CENTER;
          _loc6_.height = 20;

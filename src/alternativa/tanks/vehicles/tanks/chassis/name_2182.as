@@ -54,12 +54,12 @@ package alternativa.tanks.vehicles.tanks.chassis
          return _loc2_;
       }
       
-      public function name_2185(param1:Number) : void
+      public function setTargetValue(param1:Number) : void
       {
          this.targetValue.name_894(param1);
       }
       
-      public function name_2184() : Number
+      public function getTargetValue() : Number
       {
          return this.targetValue.name_900();
       }

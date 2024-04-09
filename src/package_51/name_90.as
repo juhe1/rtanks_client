@@ -1,6 +1,6 @@
 package package_51
 {
-   import package_41.name_320;
+   import package_41.ItemProperty;
    
    public class name_90
    {
@@ -8,9 +8,9 @@ package package_51
       
       private var var_394:int;
       
-      private var var_393:name_320;
+      private var var_393:ItemProperty;
       
-      public function name_90(param1:int = 0, param2:name_320 = null)
+      public function name_90(param1:int = 0, param2:ItemProperty = null)
       {
          super();
          this.var_394 = param1;
@@ -27,12 +27,12 @@ package package_51
          this.var_394 = param1;
       }
       
-      public function get resistanceProperty() : name_320
+      public function get resistanceProperty() : ItemProperty
       {
          return this.var_393;
       }
       
-      public function set resistanceProperty(param1:name_320) : void
+      public function set resistanceProperty(param1:ItemProperty) : void
       {
          this.var_393 = param1;
       }

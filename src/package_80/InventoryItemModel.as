@@ -1,9 +1,9 @@
 package package_80
 {
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.osgi.OSGi;
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
+   import alternativa.tanks.models.tank.ITank;
    import flash.geom.Vector3D;
    import flash.utils.Dictionary;
    import package_1.Main;
@@ -21,7 +21,7 @@ package package_80
    public class InventoryItemModel extends class_136 implements class_135, name_1440
    {
       
-      public static var battleEventDispatcher:name_96 = OSGi.getInstance().name_6(name_96) as name_96;
+      public static var battleEventDispatcher:name_96 = OSGi.getInstance().getService(name_96) as name_96;
        
       
       private var var_1138:class_40;
@@ -34,7 +34,7 @@ package package_80
       {
          this.var_1139 = new Dictionary();
          super();
-         var_365.push(name_66,class_135,name_1440);
+         _interfaces.push(IModel,class_135,name_1440);
       }
       
       public function initObject(param1:ClientObject, param2:Long, param3:int, param4:int, param5:int, param6:int) : void
@@ -42,9 +42,9 @@ package package_80
          var _loc9_:name_32 = null;
          if(this.var_1138 == null)
          {
-            _loc9_ = name_32(Main.osgi.name_6(name_32));
+            _loc9_ = name_32(Main.osgi.getService(name_32));
             this.var_1138 = class_40(_loc9_.getModelsByInterface(class_40)[0]);
-            this.var_123 = TankModel(Main.osgi.name_6(class_7));
+            this.var_123 = TankModel(Main.osgi.getService(ITank));
          }
          var _loc7_:name_1437 = new name_1437(param1,param5,param3,param4,param6);
          this.var_1139[param1] = _loc7_;
@@ -97,7 +97,7 @@ package package_80
             battleEventDispatcher.dispatchEvent(new name_1862());
          }
          _loc3_.count = param2;
-         InventoryModel(name_32(Main.osgi.name_6(name_32)).getModelsByInterface(name_97)[0]).itemUpdated(_loc3_);
+         InventoryModel(name_32(Main.osgi.getService(name_32)).getModelsByInterface(name_97)[0]).itemUpdated(_loc3_);
       }
       
       public function name_1445(param1:name_1437) : void
@@ -113,7 +113,7 @@ package package_80
       
       private function activate(param1:ClientObject, param2:Vector3D) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;activate_item;" + param1.id + ";" + param2.x + ";" + param2.y + ";" + param2.z);
+         Network(Main.osgi.getService(name_2)).send("battle;activate_item;" + param1.id + ";" + param2.x + ";" + param2.y + ";" + param2.z);
       }
    }
 }

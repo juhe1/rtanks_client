@@ -5,7 +5,7 @@ package forms.friends.list
    import flash.utils.Dictionary;
    import package_13.Long;
    import package_460.FriendsDataProvider;
-   import utils.name_1915;
+   import utils.ScrollStyleUtils;
    
    public class FriendsList extends Sprite
    {
@@ -38,10 +38,10 @@ package forms.friends.list
          this.var_3000.setStyle("cellRenderer",param1);
          this.var_3000.focusEnabled = true;
          this.var_3000.selectable = false;
-         name_1915.name_1918(this.var_3000);
+         ScrollStyleUtils.setGreenStyle(this.var_3000);
          this.var_3000.dataProvider = this._dataProvider;
          addChild(this.var_3000);
-         name_1915.name_1918(this.var_3000);
+         ScrollStyleUtils.setGreenStyle(this.var_3000);
       }
       
       protected function method_1161(param1:Object) : Boolean

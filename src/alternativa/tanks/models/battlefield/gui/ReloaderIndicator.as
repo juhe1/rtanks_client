@@ -1,9 +1,9 @@
 package alternativa.tanks.models.battlefield.gui
 {
    import alternativa.osgi.OSGi;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.utils.removeDisplayObject;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.statassets.name_1154;
    import flash.display.Bitmap;
    import flash.events.Event;
@@ -15,18 +15,18 @@ package alternativa.tanks.models.battlefield.gui
    public class ReloaderIndicator extends name_1154
    {
       
-      public static var display:name_24 = OSGi.getInstance().name_6(name_24) as name_24;
+      public static var display:name_24 = OSGi.getInstance().getService(name_24) as name_24;
       
-      public static var var_1732:name_83 = OSGi.getInstance().name_6(name_83) as name_83;
+      public static var var_1732:IBattleField = OSGi.getInstance().getService(IBattleField) as IBattleField;
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
       private static const const_1554:Class = name_2191;
       
       private static const const_1555:String = "{time}";
        
       
-      private var var_1393:name_1134;
+      private var var_1393:LabelBase;
       
       private var var_1396:String;
       
@@ -54,14 +54,14 @@ package alternativa.tanks.models.battlefield.gui
          addChild(_loc6_);
          _loc6_.y = 33 - 5;
          _loc1_ = _loc6_.y + _loc6_.height + 2 * _loc4_;
-         var _loc7_:name_1134 = new name_1134();
+         var _loc7_:LabelBase = new LabelBase();
          _loc7_.size = _loc5_;
          _loc7_.text = localeService.getText(name_390.const_1007);
          _loc7_.y = _loc1_;
          addChild(_loc7_);
          width = _loc7_.textWidth;
          _loc1_ += _loc7_.height;
-         this.var_1393 = new name_1134();
+         this.var_1393 = new LabelBase();
          this.var_1393.size = _loc5_;
          this.var_1393.autoSize = TextFieldAutoSize.LEFT;
          this.var_1393.text = this.var_1396.replace("{time}"," 99:99");

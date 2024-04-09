@@ -12,7 +12,7 @@ package alternativa.osgi
    import flash.net.SharedObject;
    import flash.system.ApplicationDomain;
    import flash.utils.Dictionary;
-   import package_11.name_23;
+   import package_11.IBundleActivator;
    import package_11.name_522;
    import package_12.name_24;
    import package_12.name_529;
@@ -32,7 +32,7 @@ package alternativa.osgi
    import package_36.name_105;
    import package_54.LocaleService;
    import package_54.name_102;
-   import package_95.name_298;
+   import package_95.IStorageService;
    import package_95.name_526;
    
    public class OSGi
@@ -72,24 +72,24 @@ package alternativa.osgi
       {
          param3.focusRect = false;
          instance = new OSGi();
-         instance.name_1(name_528,new name_527(param11));
+         instance.registerService(name_528,new name_527(param11));
          if(param1)
          {
-            instance.name_1(name_25,new ConsoleService(param9));
-            instance.name_1(name_531,new name_525());
+            instance.registerService(name_25,new ConsoleService(param9));
+            instance.registerService(name_531,new name_525());
          }
          else
          {
-            instance.name_1(name_25,new name_530());
+            instance.registerService(name_25,new name_530());
          }
-         instance.name_1(name_98,new FocusService(param2));
-         instance.name_1(name_24,new name_529(param2,param3));
-         instance.name_1(name_105,new NetworkService(param4,param5,param8,param6,param7));
-         instance.name_1(name_298,new name_526(instance.method_118("name"),instance.method_118("accounts")));
+         instance.registerService(name_98,new FocusService(param2));
+         instance.registerService(name_24,new name_529(param2,param3));
+         instance.registerService(name_105,new NetworkService(param4,param5,param8,param6,param7));
+         instance.registerService(IStorageService,new name_526(instance.method_118("name"),instance.method_118("accounts")));
          var _loc12_:name_524 = new DumpService(instance);
-         instance.name_1(name_524,_loc12_);
-         instance.name_1(name_30,new name_532());
-         instance.name_1(name_102,new LocaleService(param10));
+         instance.registerService(name_524,_loc12_);
+         instance.registerService(name_30,new name_532());
+         instance.registerService(name_102,new LocaleService(param10));
          _loc12_.registerDumper(new BundleDumper(instance));
          _loc12_.registerDumper(new ServiceDumper(instance));
          return instance;
@@ -109,12 +109,12 @@ package alternativa.osgi
       {
          var _loc1_:LogServiceImpl = new LogServiceImpl();
          this.var_17 = _loc1_.getLogger("OSGI");
-         this.name_1(name_26,_loc1_);
+         this.registerService(name_26,_loc1_);
       }
       
       public function method_123(param1:String) : name_522
       {
-         var _loc2_:name_25 = this.name_6(name_25) as name_25;
+         var _loc2_:name_25 = this.getService(name_25) as name_25;
          var _loc3_:name_522 = this.method_120(param1);
          if(_loc3_ != null)
          {
@@ -147,7 +147,7 @@ package alternativa.osgi
          var _loc8_:Array = null;
          var _loc9_:String = null;
          var _loc10_:Class = null;
-         var _loc11_:name_23 = null;
+         var _loc11_:IBundleActivator = null;
          var _loc2_:Array = param1.split(/\r*\n/);
          var _loc3_:Dictionary = new Dictionary(false);
          var _loc4_:int = 0;
@@ -167,7 +167,7 @@ package alternativa.osgi
          if(ApplicationDomain.currentDomain.hasDefinition(_loc6_))
          {
             _loc10_ = Class(ApplicationDomain.currentDomain.getDefinition(_loc6_));
-            _loc11_ = name_23(new _loc10_());
+            _loc11_ = IBundleActivator(new _loc10_());
          }
          if(_loc5_ != "" && _loc5_ != null)
          {
@@ -178,7 +178,7 @@ package alternativa.osgi
       
       public function method_121(param1:name_522) : void
       {
-         var _loc2_:name_25 = this.name_6(name_25) as name_25;
+         var _loc2_:name_25 = this.getService(name_25) as name_25;
          if(param1 == null)
          {
             throw new Error("OSGi ERROR: uninstall NULL bundle");
@@ -192,9 +192,9 @@ package alternativa.osgi
          this.var_17.debug("Bundle " + param1.name + " uninstalled");
       }
       
-      public function name_1(param1:Class, param2:Object) : void
+      public function registerService(param1:Class, param2:Object) : void
       {
-         var _loc3_:name_25 = this.name_6(name_25) as name_25;
+         var _loc3_:name_25 = this.getService(name_25) as name_25;
          if(this.services[param1] == null)
          {
             this.services[param1] = param2;
@@ -212,13 +212,13 @@ package alternativa.osgi
          var _loc4_:Class = null;
          for each(_loc4_ in param1)
          {
-            this.name_1(_loc4_,param2);
+            this.registerService(_loc4_,param2);
          }
       }
       
-      public function name_48(param1:Class) : void
+      public function unregisterService(param1:Class) : void
       {
-         var _loc2_:name_25 = this.name_6(name_25) as name_25;
+         var _loc2_:name_25 = this.getService(name_25) as name_25;
          this.var_89.splice(this.var_89.indexOf(this.services[param1]),1);
          delete this.services[param1];
          this.var_17.debug("Service " + param1 + " unregistered");
@@ -231,7 +231,7 @@ package alternativa.osgi
          this.var_17.debug("Inject %1 have been processed. Current value is %2",[param1,_loc4_]);
       }
       
-      public function name_6(param1:Class) : Object
+      public function getService(param1:Class) : Object
       {
          return this.services[param1];
       }

@@ -66,7 +66,7 @@ package projects.tanks.client.commons.models.layout
       public function returnToBattle() : void
       {
          trace("returnToBattle");
-         Network(OSGi.getInstance().name_6(name_2)).send("lobby;return_to_battle");
+         Network(OSGi.getInstance().getService(name_2)).send("lobby;return_to_battle");
       }
       
       public function setBattleLobbyLayout(param1:Boolean) : void
@@ -77,7 +77,7 @@ package projects.tanks.client.commons.models.layout
       public function showBattleSelect() : void
       {
          trace("showBattleSelect");
-         Network(OSGi.getInstance().name_6(name_2)).send("lobby;get_data_init_battle_select");
+         Network(OSGi.getInstance().getService(name_2)).send("lobby;get_data_init_battle_select");
       }
       
       public function showClan() : void
@@ -88,7 +88,7 @@ package projects.tanks.client.commons.models.layout
       public function showGarage() : void
       {
          trace("showGarage");
-         Network(OSGi.getInstance().name_6(name_2)).send("lobby;get_garage_data");
+         Network(OSGi.getInstance().getService(name_2)).send("lobby;get_garage_data");
       }
       
       public function showMatchmaking() : void

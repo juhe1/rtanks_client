@@ -31,7 +31,7 @@ package package_232
       
       public function ClanUserIncomingNotificatorModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_645(this);
          this.var_25 = Long.getLong(151267905,-1393229156);
          this.var_1175 = Long.getLong(1638331388,1514392729);

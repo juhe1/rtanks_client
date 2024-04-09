@@ -2,18 +2,18 @@ package package_78
 {
    import alternativa.engine3d.core.Object3D;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
+   import alternativa.tanks.models.tank.ITank;
    import alternativa.tanks.models.tank.turret.name_914;
    import alternativa.tanks.models.weapon.shaft.ShaftModel;
    import alternativa.tanks.models.weapon.shaft.name_1252;
    import alternativa.tanks.models.weapon.shaft.name_1254;
    import alternativa.tanks.models.weapon.shaft.name_1261;
    import alternativa.tanks.models.weapon.shaft.name_1268;
-   import alternativa.tanks.service.settings.name_108;
-   import alternativa.tanks.utils.name_75;
+   import alternativa.tanks.service.settings.IBattleSettings;
+   import alternativa.tanks.utils.MathUtils;
    import alternativa.tanks.vehicles.tanks.TankSkin;
    import package_1.Main;
    import package_12.name_24;
@@ -42,7 +42,7 @@ package package_78
       
       public static var display:name_24;
       
-      public static var settings:name_108;
+      public static var settings:IBattleSettings;
       
       private static var var_577:Vector3 = new Vector3();
       
@@ -155,7 +155,7 @@ package package_78
          this.var_576.setInterval(0,1);
          this.shaftModel = param1;
          this.var_578 = new Vector3(0,30,10);
-         this.var_13 = Main.osgi.name_6(class_7) as TankModel;
+         this.var_13 = Main.osgi.getService(ITank) as TankModel;
       }
       
       public function enter(param1:int) : void
@@ -179,12 +179,12 @@ package package_78
          this.var_559 = 0;
          this.method_291 = false;
          this.var_584 = false;
-         this.var_582 = TankData.name_106.tank.method_495().name_1276();
-         this.var_574 = TankData.name_106.tank.method_495().name_1159();
-         TankData.name_106.tank.method_495().name_201(2,false);
+         this.var_582 = TankData.localTankData.tank.method_495().name_1276();
+         this.var_574 = TankData.localTankData.tank.method_495().name_1159();
+         TankData.localTankData.tank.method_495().name_201(2,false);
          this.method_801(this.var_574);
-         this.up = name_75.method_605(TankData.name_106.tank.method_493,1) != 0;
-         this.down = name_75.method_605(TankData.name_106.tank.method_493,2) != 0;
+         this.up = MathUtils.method_605(TankData.localTankData.tank.method_493,1) != 0;
+         this.down = MathUtils.method_605(TankData.localTankData.tank.method_493,2) != 0;
          this.shaftModel.name_1270(name_1261.DRAIN);
          this.timeLeft = this.var_581;
          this.var_570.setInterval(this.skin.name_123.alpha,0);
@@ -193,7 +193,7 @@ package package_78
          this.var_586 = -1;
          this.var_583 = false;
          this.var_568 = true;
-         this.var_11 = Main.osgi.name_6(name_83) as BattlefieldModel;
+         this.var_11 = Main.osgi.getService(IBattleField) as BattlefieldModel;
          this.var_562 = new name_1254(this.var_11.var_117.viewport.camera);
          this.var_562.name_1146(this.skin);
          this.var_562.stop();
@@ -201,12 +201,12 @@ package package_78
          this.var_560.reload();
          this.var_11.method_146(this.var_560);
          this.var_11.getBattlefieldData().viewport.method_790();
-         this.var_11.hidableObjects.name_1257(TankData.name_106.tank.state.position,0);
+         this.var_11.hidableObjects.name_1257(TankData.localTankData.tank.state.position,0);
          this.var_579 = this.shaftModel.name_1259(param1);
          this.shaftModel.name_1274();
          this.var_13.localUserData.tank.name_238(this.var_565);
          this.var_13.localUserData.tank.name_121().method_594(false);
-         this.var_564 = WeaponsManager.createShaftSFXModel(WeaponsManager.name_185(TankData.name_106.turret.id));
+         this.var_564 = WeaponsManager.createShaftSFXModel(WeaponsManager.name_185(TankData.localTankData.turret.id));
       }
       
       public function exit() : void
@@ -214,8 +214,8 @@ package package_78
          this.method_800();
          this.var_562.name_1278(name_1258.name_1283(Main.stage.stageWidth,Main.stage.stageHeight));
          this.var_562.start();
-         TankData.name_106.tank.method_495().name_246(this.var_582);
-         TankData.name_106.tank.name_214(this.var_574,true);
+         TankData.localTankData.tank.method_495().name_246(this.var_582);
+         TankData.localTankData.tank.setMaxTurretTurnSpeed(this.var_574,true);
          if(this.var_13.localUserData != null)
          {
             this.var_13.localUserData.tank.name_238(this.var_567);
@@ -227,7 +227,7 @@ package package_78
       
       private function method_801(param1:Number) : void
       {
-         TankData.name_106.tank.name_214(param1 * 0.5,false);
+         TankData.localTankData.tank.setMaxTurretTurnSpeed(param1 * 0.5,false);
          this.var_560.name_1284(param1);
       }
       
@@ -267,14 +267,14 @@ package package_78
                if(_loc5_ == 0 && this.var_568)
                {
                   this.var_568 = false;
-                  this.var_564.name_1273(TankData.name_106.turret,TankData.name_106.user);
+                  this.var_564.name_1273(TankData.localTankData.turret,TankData.localTankData.user);
                }
-               this.up = Boolean(TankData.name_106.ctrlBits & TankModel.const_14) || this.var_559 < 0;
-               this.down = Boolean(TankData.name_106.ctrlBits & TankModel.BACK) || this.var_559 > 0;
+               this.up = Boolean(TankData.localTankData.ctrlBits & TankModel.const_14) || this.var_559 < 0;
+               this.down = Boolean(TankData.localTankData.ctrlBits & TankModel.BACK) || this.var_559 > 0;
                _loc7_ = int(this.up) - int(this.down);
-               this.var_564.name_1260(TankData.name_106.turret,TankData.name_106.user,_loc7_ != 0 && !this.var_560.name_1263() || Boolean(this.var_13.localUserData.tank.method_495().name_948()));
+               this.var_564.name_1260(TankData.localTankData.turret,TankData.localTankData.user,_loc7_ != 0 && !this.var_560.name_1263() || Boolean(this.var_13.localUserData.tank.method_495().name_948()));
                this.var_560.name_1269 = _loc7_;
-               this.var_11.hidableObjects.name_1257(TankData.name_106.tank.state.position,this.var_569.interpolate(_loc6_));
+               this.var_11.hidableObjects.name_1257(TankData.localTankData.tank.state.position,this.var_569.interpolate(_loc6_));
                this.var_563 = 0;
                this.var_559 = 0;
                break;

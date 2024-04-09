@@ -3,8 +3,8 @@ package alternativa.tanks.model.quest.common.gui.window
    import alternativa.tanks.model.quest.common.gui.CommonQuestTab;
    import alternativa.tanks.model.quest.common.gui.NoQuestBitmap;
    import alternativa.tanks.model.quest.common.gui.window.buttons.name_3310;
-   import controls.base.name_1134;
-   import controls.name_1891;
+   import controls.base.LabelBase;
+   import controls.TankWindowInner;
    import controls.timer.CountDownTimer;
    import controls.timer.name_3298;
    import flash.display.Bitmap;
@@ -18,9 +18,9 @@ package alternativa.tanks.model.quest.common.gui.window
       
       private const const_2609:uint = 16777215;
       
-      private var var_1737:name_1891;
+      private var var_1737:TankWindowInner;
       
-      private var var_3366:name_1134;
+      private var var_3366:LabelBase;
       
       private var var_3367:name_3309;
       
@@ -45,7 +45,7 @@ package alternativa.tanks.model.quest.common.gui.window
       
       private function method_3027() : void
       {
-         this.var_1737 = new name_1891(0,0,name_1891.name_1428);
+         this.var_1737 = new TankWindowInner(0,0,TankWindowInner.GREEN);
          this.var_1737.width = CommonQuestTab.const_2043;
          this.var_1737.height = CommonQuestTab.const_2042;
          addChild(this.var_1737);
@@ -85,7 +85,7 @@ package alternativa.tanks.model.quest.common.gui.window
       
       private function method_1627(param1:String) : void
       {
-         this.var_3366 = new name_1134();
+         this.var_3366 = new LabelBase();
          this.var_3366.color = 16777215;
          this.var_3366.align = TextFormatAlign.CENTER;
          this.var_3366.wordWrap = true;

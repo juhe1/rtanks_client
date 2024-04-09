@@ -1,9 +1,9 @@
 package package_127
 {
    import alternativa.osgi.OSGi;
-   import controls.base.name_1134;
-   import controls.base.name_998;
-   import controls.name_1891;
+   import controls.base.LabelBase;
+   import controls.base.DefaultButtonBase;
+   import controls.TankWindowInner;
    import controls.name_1922;
    import flash.display.Bitmap;
    import flash.display.BitmapData;
@@ -27,7 +27,7 @@ package package_127
    public class LootBoxOpenDialog extends class_123
    {
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
       private static const const_1953:Class = name_2642;
       
@@ -130,7 +130,7 @@ package package_127
       
       private var var_2369:int = 0;
       
-      private var name_983:name_998;
+      private var name_983:DefaultButtonBase;
       
       private var var_2368:Sprite;
       
@@ -138,7 +138,7 @@ package package_127
       
       private var window:name_1922;
       
-      private var var_1182:name_1891;
+      private var var_1182:TankWindowInner;
       
       private var rewards:Vector.<name_331>;
       
@@ -164,9 +164,9 @@ package package_127
       
       private var present:Sprite;
       
-      private var label:name_1134;
+      private var label:LabelBase;
       
-      private var var_2364:name_1134;
+      private var var_2364:LabelBase;
       
       private var timer:int = 0;
       
@@ -174,7 +174,7 @@ package package_127
       
       public function LootBoxOpenDialog(param1:name_382, param2:int)
       {
-         this.name_983 = new name_998();
+         this.name_983 = new DefaultButtonBase();
          this.var_2368 = new Sprite();
          this.window = new name_1922(625,591);
          this.rewards = new Vector.<name_331>();
@@ -188,8 +188,8 @@ package package_127
          this.dust = new Dust(const_1964,16,625 - 100,591 - 40);
          this.stars = new Stars(const_1954,const_1962,16,625 / 2 - 80);
          this.present = new Sprite();
-         this.label = new name_1134();
-         this.var_2364 = new name_1134();
+         this.label = new LabelBase();
+         this.var_2364 = new LabelBase();
          super();
          this.params = param1;
          this.var_2369 = param2;
@@ -509,7 +509,7 @@ package package_127
          var _loc2_:name_2638 = null;
          var _loc3_:int = 625 - 2 * 11;
          var _loc4_:int = 591 - 2 * 11 - 54 - 5;
-         this.var_1182 = new name_1891(_loc3_,_loc4_,name_1891.name_1428);
+         this.var_1182 = new TankWindowInner(_loc3_,_loc4_,TankWindowInner.GREEN);
          this.var_1182.x = 11;
          this.var_1182.y = 11;
          this.window.addChild(this.var_1182);

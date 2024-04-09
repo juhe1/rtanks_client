@@ -3,7 +3,7 @@ package package_463
    import alternativa.osgi.OSGi;
    import alternativa.tanks.gui.GreenFrame;
    import alternativa.tanks.services.name_363;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.Sprite;
    import flash.events.TimerEvent;
    import flash.globalization.DateTimeFormatter;
@@ -21,11 +21,11 @@ package package_463
    public class NewsItem extends Sprite
    {
       
-      public static var var_3125:name_363 = OSGi.getInstance().name_6(name_363) as name_363;
+      public static var var_3125:name_363 = OSGi.getInstance().getService(name_363) as name_363;
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
-      public static var userPropertiesService:name_561 = OSGi.getInstance().name_6(name_561) as name_561;
+      public static var userPropertiesService:name_561 = OSGi.getInstance().getService(name_561) as name_561;
       
       private static const WIDTH:int = 280;
       
@@ -38,9 +38,9 @@ package package_463
       private static const const_2747:int = 27;
        
       
-      private var var_3568:name_1134;
+      private var var_3568:LabelBase;
       
-      private var var_3566:name_1134;
+      private var var_3566:LabelBase;
       
       private var var_3569:Dictionary;
       
@@ -54,8 +54,8 @@ package package_463
       
       public function NewsItem(param1:name_348, param2:NewsTab, param3:int)
       {
-         this.var_3568 = new name_1134();
-         this.var_3566 = new name_1134();
+         this.var_3568 = new LabelBase();
+         this.var_3566 = new LabelBase();
          this.var_3569 = new Dictionary();
          super();
          this.var_3278 = param1;

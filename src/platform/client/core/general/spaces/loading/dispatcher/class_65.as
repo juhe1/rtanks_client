@@ -34,7 +34,7 @@ package platform.client.core.general.spaces.loading.dispatcher
       
       public function class_65()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = class_64(this);
          this.var_25 = Long.getLong(191355032,163351191);
          this.var_980 = Long.getLong(748816660,1488436371);

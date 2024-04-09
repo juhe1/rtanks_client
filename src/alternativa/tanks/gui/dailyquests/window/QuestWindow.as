@@ -1,13 +1,13 @@
 package alternativa.tanks.gui.dailyquests.window
 {
    import alternativa.osgi.OSGi;
-   import controls.base.name_1134;
-   import controls.base.name_998;
+   import controls.base.LabelBase;
+   import controls.base.DefaultButtonBase;
    import controls.timer.CountDownTimer;
    import controls.timer.name_2545;
    import flash.events.MouseEvent;
    import flash.utils.getTimer;
-   import forms.name_1838;
+   import forms.TankWindowWithHeader;
    import package_123.name_339;
    import package_126.name_338;
    import package_267.name_326;
@@ -21,11 +21,11 @@ package alternativa.tanks.gui.dailyquests.window
    public class QuestWindow extends class_123 implements name_2545
    {
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
-      public static var var_644:class_27 = OSGi.getInstance().name_6(class_27) as class_27;
+      public static var var_644:class_27 = OSGi.getInstance().getService(class_27) as class_27;
       
-      public static var var_2813:name_339 = OSGi.getInstance().name_6(name_339) as name_339;
+      public static var var_2813:name_339 = OSGi.getInstance().getService(name_339) as name_339;
       
       public static const const_2203:int = 280;
       
@@ -38,13 +38,13 @@ package alternativa.tanks.gui.dailyquests.window
       
       private const const_2044:int = 1000;
       
-      private var window:name_1838;
+      private var window:TankWindowWithHeader;
       
-      private var name_983:name_998;
+      private var name_983:DefaultButtonBase;
       
       private var var_2545:Vector.<name_2730>;
       
-      private var var_2812:name_1134;
+      private var var_2812:LabelBase;
       
       private var var_2546:WeeklyQuestInfoPanel;
       
@@ -74,13 +74,13 @@ package alternativa.tanks.gui.dailyquests.window
       
       private function method_1327() : void
       {
-         this.window = name_1838.name_1844(localeService.getText(name_390.const_1140),280 + 11 * 2,0);
+         this.window = TankWindowWithHeader.createWindow(localeService.getText(name_390.const_1140),280 + 11 * 2,0);
          addChild(this.window);
       }
       
       private function method_1331() : void
       {
-         this.name_983 = new name_998();
+         this.name_983 = new DefaultButtonBase();
          this.name_983.label = localeService.getText(name_390.const_1168);
          this.name_983.addEventListener(MouseEvent.CLICK,this.method_1323);
          this.window.addChild(this.name_983);
@@ -88,7 +88,7 @@ package alternativa.tanks.gui.dailyquests.window
       
       private function method_2637() : void
       {
-         this.var_2812 = new name_1134();
+         this.var_2812 = new LabelBase();
          this.var_2812.htmlText = localeService.getText(name_390.const_1138);
          this.window.addChild(this.var_2812);
       }

@@ -28,13 +28,13 @@ package package_104
          super();
          this.model = param1;
          var _loc2_:ByteArray = new ByteArray();
-         this.var_235 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_235 = name_840(OSGi.getInstance().getService(name_840));
          this.var_2047 = new name_69(_loc2_,_loc2_,new OptionalMap());
       }
       
       public function method_1766() : void
       {
-         Network(OSGi.getInstance().name_6(name_2)).send("lobby;requestTiersInfo");
+         Network(OSGi.getInstance().getService(name_2)).send("lobby;requestTiersInfo");
       }
    }
 }

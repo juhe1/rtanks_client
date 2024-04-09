@@ -2,9 +2,9 @@ package package_208
 {
    import alternativa.tanks.models.user.name_580;
    import alternativa.tanks.models.user.name_65;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.base.name_2016;
-   import controls.base.name_998;
+   import controls.base.DefaultButtonBase;
    import flash.events.Event;
    import flash.events.FocusEvent;
    import flash.events.KeyboardEvent;
@@ -29,11 +29,11 @@ package package_208
       private static const const_1550:int = 600;
        
       
-      protected var var_1384:name_998;
+      protected var var_1384:DefaultButtonBase;
       
       protected var var_1272:name_2016;
       
-      protected var var_1385:name_1134;
+      protected var var_1385:LabelBase;
       
       private var var_1386:Number;
       
@@ -41,9 +41,9 @@ package package_208
       
       public function name_586(param1:int)
       {
-         this.var_1384 = new name_998();
+         this.var_1384 = new DefaultButtonBase();
          this.var_1272 = new name_2016();
-         this.var_1385 = new name_1134();
+         this.var_1385 = new LabelBase();
          this.var_1387 = localeService.getText(name_390.const_902);
          this.var_1258 = param1;
          super();

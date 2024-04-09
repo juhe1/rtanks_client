@@ -1,7 +1,7 @@
 package forms.battlelist
 {
    import assets.cellrenderer.battlelist.*;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.name_1932;
    import fl.controls.listClasses.CellRenderer;
    import fl.controls.listClasses.ListData;
@@ -38,7 +38,7 @@ package forms.battlelist
          this.var_3474 = new class_205();
          this.var_3473 = new name_3418();
          this.var_3472 = new name_3417();
-         var _loc1_:name_102 = Main.osgi.name_6(name_102) as name_102;
+         var _loc1_:name_102 = Main.osgi.getService(name_102) as name_102;
          super();
          this.format = name_269.method_775(13);
          this.format.color = 16777215;
@@ -76,11 +76,11 @@ package forms.battlelist
       private function method_2586(param1:Object) : Sprite
       {
          var _loc2_:Sprite = null;
-         var _loc4_:name_1134 = null;
+         var _loc4_:LabelBase = null;
          _loc2_ = new Sprite();
          var _loc3_:name_1889 = null;
          _loc4_ = null;
-         var _loc5_:name_1134 = null;
+         var _loc5_:LabelBase = null;
          if(_width < 0)
          {
             _width = 20;
@@ -99,7 +99,7 @@ package forms.battlelist
             _loc3_.x = -4;
             _loc3_.y = 0;
             _loc2_.addChild(_loc3_);
-            _loc4_ = new name_1134();
+            _loc4_ = new LabelBase();
             _loc4_.mouseEnabled = false;
             _loc4_.color = 16777215;
             _loc4_.autoSize = TextFieldAutoSize.NONE;
@@ -113,7 +113,7 @@ package forms.battlelist
          }
          else
          {
-            (_loc5_ = new name_1134()).text = this.var_2939;
+            (_loc5_ = new LabelBase()).text = this.var_2939;
             _loc5_.alpha = 0.5;
             _loc5_.x = 10;
             _loc2_.addChild(_loc5_);

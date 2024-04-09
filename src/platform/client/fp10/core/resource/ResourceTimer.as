@@ -42,7 +42,7 @@ package platform.client.fp10.core.resource
          }
          this.resources = new Vector.<Resource>();
          this.timer = new Timer(1000);
-         var _loc2_:name_27 = name_27(param1.name_6(name_27));
+         var _loc2_:name_27 = name_27(param1.getService(name_27));
          _loc2_.method_211("res_timer",this.onConsoleCommand);
       }
       

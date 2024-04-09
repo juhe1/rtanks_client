@@ -7,7 +7,7 @@ package package_2
    import flash.system.LoaderContext;
    import flash.utils.ByteArray;
    import package_102.Command;
-   import package_102.name_346;
+   import package_102.Type;
    import package_189.CacheURLLoader;
    import scpacker.networking.Network;
    import scpacker.networking.class_6;
@@ -32,7 +32,7 @@ package package_2
          var byte:String = null;
          var loaderContext:LoaderContext = null;
          var data:Command = param1;
-         if(data.type == name_346.SYSTEM)
+         if(data.type == Type.SYSTEM)
          {
             if(data.name_319[0] == "set_aes_data")
             {

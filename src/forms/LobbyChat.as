@@ -5,12 +5,12 @@ package forms
    import assets.scroller.color.ScrollThumbSkinGreen;
    import assets.scroller.color.ScrollTrackGreen;
    import controls.DefaultButton;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.base.name_2016;
    import controls.chat.ChatOutput;
    import controls.chat.name_2508;
    import controls.chat.name_2520;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import fl.events.ScrollEvent;
    import flash.display.Sprite;
    import flash.events.Event;
@@ -38,15 +38,15 @@ package forms
    import package_60.TextConst;
    import package_90.ContextMenuServiceEvent;
    import package_90.name_308;
-   import package_95.name_298;
+   import package_95.IStorageService;
    import projects.tanks.clients.fp10.libraries.name_390;
    
    public class LobbyChat extends Sprite
    {
       
-      public static var contextMenuService:name_308 = Main.osgi.name_6(name_308) as name_308;
+      public static var contextMenuService:name_308 = Main.osgi.getService(name_308) as name_308;
       
-      public static var storageService:name_298 = Main.osgi.name_6(name_298) as name_298;
+      public static var storageService:IStorageService = Main.osgi.getService(IStorageService) as IStorageService;
       
       private static const const_1857:int = 1000;
       
@@ -59,15 +59,15 @@ package forms
       
       private var bg:Sprite;
       
-      private var var_2197:name_1838;
+      private var var_2197:TankWindowWithHeader;
       
-      private var var_1182:name_1891;
+      private var var_1182:TankWindowInner;
       
       private var var_632:name_2016;
       
       private var input:TextField;
       
-      private var var_2194:name_1134;
+      private var var_2194:LabelBase;
       
       private var format:TextFormat;
       
@@ -136,11 +136,11 @@ package forms
       public function LobbyChat()
       {
          this.bg = new Sprite();
-         this.var_1182 = new name_1891(100,100,name_1891.name_1428);
+         this.var_1182 = new TankWindowInner(100,100,TankWindowInner.GREEN);
          this.var_632 = new name_2016();
-         this.var_2194 = new name_1134();
+         this.var_2194 = new LabelBase();
          this.var_2214 = new Sprite();
-         this.localeService = OSGi.getInstance().name_6(name_102) as name_102;
+         this.localeService = OSGi.getInstance().getService(name_102) as name_102;
          this.var_633 = new ChatOutput();
          this.var_1844 = new DefaultButton();
          super();
@@ -154,7 +154,7 @@ package forms
          var _loc1_:Array = null;
          if(var_2191 == null)
          {
-            var_2191 = name_298(Main.osgi.name_6(name_298)).getStorage();
+            var_2191 = IStorageService(Main.osgi.getService(IStorageService)).getStorage();
          }
          _loc1_ = var_2191.data.blocklist;
          if(_loc1_ == null)
@@ -168,7 +168,7 @@ package forms
       {
          var _loc2_:Array = null;
          var _loc3_:int = -1;
-         var_2191 = name_298(Main.osgi.name_6(name_298)).getStorage();
+         var_2191 = IStorageService(Main.osgi.getService(IStorageService)).getStorage();
          _loc2_ = var_2191.data.blocklist;
          if(_loc2_ == null)
          {
@@ -189,7 +189,7 @@ package forms
       {
          var _loc2_:Array = null;
          var _loc3_:int = -1;
-         var_2191 = name_298(Main.osgi.name_6(name_298)).getStorage();
+         var_2191 = IStorageService(Main.osgi.getService(IStorageService)).getStorage();
          _loc2_ = var_2191.data.blocklist;
          if(_loc2_ == null)
          {
@@ -207,7 +207,7 @@ package forms
       
       public static function unblockall() : Boolean
       {
-         var_2191 = name_298(Main.osgi.name_6(name_298)).getStorage();
+         var_2191 = IStorageService(Main.osgi.getService(IStorageService)).getStorage();
          var_2191.data.blocklist = new Array();
          var_2191.flush();
          return true;
@@ -217,7 +217,7 @@ package forms
       {
          var _loc2_:Array = null;
          var _loc3_:int = 0;
-         var_2191 = name_298(Main.osgi.name_6(name_298)).getStorage();
+         var_2191 = IStorageService(Main.osgi.getService(IStorageService)).getStorage();
          _loc2_ = var_2191.data.blocklist;
          if(_loc2_ == null)
          {
@@ -266,12 +266,12 @@ package forms
          this.input.maxChars = 299;
          removeEventListener(Event.ADDED_TO_STAGE,this.method_2068);
          this.var_2201 = new NewsChangedIndicator();
-         this.var_2197 = new name_1838(this.localeService.getText(name_390.const_651));
+         this.var_2197 = new TankWindowWithHeader(this.localeService.getText(name_390.const_651));
          addChild(this.var_2197);
          addChild(this.var_1182);
          this.var_1182.x = 11;
          this.var_1182.y = 45;
-         this.var_1182.name_1895 = true;
+         this.var_1182.showBlink = true;
          this.lang = this.localeService.getText(TextConst.GUI_LANG);
          this.input.addEventListener(KeyboardEvent.KEY_DOWN,this.method_2256);
          this.input.addEventListener(KeyboardEvent.KEY_UP,this.method_2263);

@@ -23,14 +23,14 @@ package package_142
       
       public function mount(param1:int, param2:name_70) : void
       {
-         var _loc3_:* = GarageModel(OSGi.getInstance().name_6(name_381)).getObjectItemParams(param2);
-         Network(OSGi.getInstance().name_6(name_2)).send("garage;try_mount_resistance;" + _loc3_.baseItemId);
+         var _loc3_:* = GarageModel(OSGi.getInstance().getService(name_381)).getObjectItemParams(param2);
+         Network(OSGi.getInstance().getService(name_2)).send("garage;try_mount_resistance;" + _loc3_.baseItemId);
       }
       
       public function name_1370(param1:name_70) : void
       {
-         var _loc2_:* = GarageModel(OSGi.getInstance().name_6(name_381)).getObjectItemParams(param1);
-         Network(OSGi.getInstance().name_6(name_2)).send("garage;try_unmount_resistance;" + _loc2_.baseItemId);
+         var _loc2_:* = GarageModel(OSGi.getInstance().getService(name_381)).getObjectItemParams(param1);
+         Network(OSGi.getInstance().getService(name_2)).send("garage;try_unmount_resistance;" + _loc2_.baseItemId);
       }
    }
 }

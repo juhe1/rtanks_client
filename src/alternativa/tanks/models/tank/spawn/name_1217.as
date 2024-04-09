@@ -9,7 +9,7 @@ package alternativa.tanks.models.tank.spawn
    public class name_1217 implements class_23
    {
       
-      public static var lobbyLayoutService:name_94 = OSGi.getInstance().name_6(name_94) as name_94;
+      public static var lobbyLayoutService:name_94 = OSGi.getInstance().getService(name_94) as name_94;
        
       
       private var var_450:name_70;

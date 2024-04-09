@@ -6,8 +6,8 @@ package forms.battlelist
    import assets.scroller.color.ScrollThumbSkinRed;
    import assets.scroller.color.ScrollTrackBlue;
    import assets.scroller.color.ScrollTrackRed;
-   import controls.base.name_1134;
-   import controls.name_1891;
+   import controls.base.LabelBase;
+   import controls.TankWindowInner;
    import controls.rangicons.name_2924;
    import fl.controls.List;
    import fl.data.DataProvider;
@@ -24,7 +24,7 @@ package forms.battlelist
    import flash.text.TextFieldAutoSize;
    import flash.text.TextFormat;
    import flash.utils.Timer;
-   import forms.name_1838;
+   import forms.TankWindowWithHeader;
    import package_1.Main;
    import package_280.name_2263;
    import package_412.name_2264;
@@ -71,11 +71,11 @@ package forms.battlelist
       
       private var var_2904:Boolean;
       
-      private var var_2197:name_1838;
+      private var var_2197:TankWindowWithHeader;
       
-      private var var_2911:name_1891;
+      private var var_2911:TankWindowInner;
       
-      private var var_2912:name_1891;
+      private var var_2912:TankWindowInner;
       
       private var format:TextFormat;
       
@@ -101,9 +101,9 @@ package forms.battlelist
       
       private var var_2915:DataProvider;
       
-      private var redScore:name_1134;
+      private var redScore:LabelBase;
       
-      private var blueScore:name_1134;
+      private var blueScore:LabelBase;
       
       private var score:MovieClip;
       
@@ -129,9 +129,9 @@ package forms.battlelist
       
       public function ViewTDM(param1:Boolean)
       {
-         this.var_2197 = new name_1838((Main.osgi.name_6(name_102) as name_102).getText(name_390.const_848));
-         this.var_2911 = new name_1891(100,100,name_1891.RED);
-         this.var_2912 = new name_1891(100,100,name_1891.BLUE);
+         this.var_2197 = new TankWindowWithHeader((Main.osgi.getService(name_102) as name_102).getText(name_390.const_848));
+         this.var_2911 = new TankWindowInner(100,100,TankWindowInner.RED);
+         this.var_2912 = new TankWindowInner(100,100,TankWindowInner.BLUE);
          this.format = new TextFormat("MyriadPro",13);
          this.var_2916 = new name_2923();
          this.var_2913 = new name_2923();
@@ -142,8 +142,8 @@ package forms.battlelist
          this.var_2910 = new List();
          this.var_2914 = new DataProvider();
          this.var_2915 = new DataProvider();
-         this.redScore = new name_1134();
-         this.blueScore = new name_1134();
+         this.redScore = new LabelBase();
+         this.blueScore = new LabelBase();
          this.score = new MovieClip();
          this.var_2920 = new NoSubScribeAlert();
          super();
@@ -151,13 +151,13 @@ package forms.battlelist
          addEventListener(Event.ADDED_TO_STAGE,this.method_1436);
          addEventListener(Event.REMOVED_FROM_STAGE,this.method_2069);
          this.var_2919 = param1;
-         var _loc2_:name_1134 = new name_1134();
+         var _loc2_:LabelBase = new LabelBase();
          this.redScore.size = 22;
-         this.redScore.color = name_1891.RED;
+         this.redScore.color = TankWindowInner.RED;
          this.redScore.x = -6;
          this.redScore.autoSize = TextFieldAutoSize.RIGHT;
          this.blueScore.size = 22;
-         this.blueScore.color = name_1891.BLUE;
+         this.blueScore.color = TankWindowInner.BLUE;
          this.blueScore.x = 5;
          _loc2_.size = 22;
          _loc2_.text = ":";
@@ -192,7 +192,7 @@ package forms.battlelist
       
       private function method_2068(param1:Event) : void
       {
-         var _loc2_:name_102 = Main.osgi.name_6(name_102) as name_102;
+         var _loc2_:name_102 = Main.osgi.getService(name_102) as name_102;
          removeEventListener(Event.ADDED_TO_STAGE,this.method_2068);
          this.method_2266();
          addChild(this.var_2197);
@@ -201,7 +201,7 @@ package forms.battlelist
          addChild(this.var_2913);
          addChild(this.var_2916);
          addChild(this.var_2920);
-         this.var_2912.name_1895 = this.var_2911.name_1895 = true;
+         this.var_2912.showBlink = this.var_2911.showBlink = true;
          this.var_2913.x = 322;
          this.var_2916.x = 25;
          addChild(this.info);

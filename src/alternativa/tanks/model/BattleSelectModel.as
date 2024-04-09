@@ -2,7 +2,7 @@ package alternativa.tanks.model
 {
    import alternativa.model.class_11;
    import alternativa.model.class_52;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.osgi.OSGi;
    import alternativa.osgi.service.dump.name_524;
    import alternativa.tanks.loader.name_13;
@@ -144,18 +144,18 @@ package alternativa.tanks.model
       {
          this.translate = new Dictionary();
          super();
-         var_365.push(name_66);
-         var_365.push(name_386);
-         var_365.push(class_11);
-         var_365.push(class_52);
-         this.modelRegister = Main.osgi.name_6(name_32) as name_32;
-         this.panelModel = Main.osgi.name_6(name_115) as name_115;
-         this.var_815 = Main.osgi.name_6(name_791) as name_791;
-         this.var_1796 = Main.osgi.name_6(name_28) as name_28;
-         this.var_1804 = Main.osgi.name_6(name_528) as name_528;
-         this.localeService = name_102(Main.osgi.name_6(name_102));
+         _interfaces.push(IModel);
+         _interfaces.push(name_386);
+         _interfaces.push(class_11);
+         _interfaces.push(class_52);
+         this.modelRegister = Main.osgi.getService(name_32) as name_32;
+         this.panelModel = Main.osgi.getService(name_115) as name_115;
+         this.var_815 = Main.osgi.getService(name_791) as name_791;
+         this.var_1796 = Main.osgi.getService(name_28) as name_28;
+         this.var_1804 = Main.osgi.getService(name_528) as name_528;
+         this.localeService = name_102(Main.osgi.getService(name_102));
          this.var_83 = Main.contentUILayer;
-         this.dialogsLayer = (Main.osgi.name_6(name_24) as name_24).dialogsLayer as DisplayObjectContainer;
+         this.dialogsLayer = (Main.osgi.getService(name_24) as name_24).dialogsLayer as DisplayObjectContainer;
       }
       
       public function initObject(param1:ClientObject, param2:int, param3:Boolean, param4:Array) : void
@@ -172,36 +172,36 @@ package alternativa.tanks.model
          this.battles = new Dictionary();
          this.var_1797 = new Array();
          this.maps = new Dictionary();
-         if(ViewBattleList(Main.osgi.name_6(ViewBattleList)) != null)
+         if(ViewBattleList(Main.osgi.getService(ViewBattleList)) != null)
          {
-            ViewBattleList(Main.osgi.name_6(ViewBattleList)).destroy();
-            if(this.var_83.contains(ViewBattleList(Main.osgi.name_6(ViewBattleList))))
+            ViewBattleList(Main.osgi.getService(ViewBattleList)).destroy();
+            if(this.var_83.contains(ViewBattleList(Main.osgi.getService(ViewBattleList))))
             {
-               this.var_83.removeChild(ViewBattleList(Main.osgi.name_6(ViewBattleList)));
+               this.var_83.removeChild(ViewBattleList(Main.osgi.getService(ViewBattleList)));
             }
          }
          this.var_1794 = new ViewBattleList();
-         Main.osgi.name_1(ViewBattleList,this.var_1794);
+         Main.osgi.registerService(ViewBattleList,this.var_1794);
          param3 = true;
-         if(ViewDM(Main.osgi.name_6(ViewDM)) != null)
+         if(ViewDM(Main.osgi.getService(ViewDM)) != null)
          {
-            this.var_1793 = ViewDM(Main.osgi.name_6(ViewDM));
+            this.var_1793 = ViewDM(Main.osgi.getService(ViewDM));
             this.var_1793.haveSubscribe = param3;
          }
          else
          {
             this.var_1793 = new ViewDM(param3);
-            Main.osgi.name_1(ViewDM,this.var_1793);
+            Main.osgi.registerService(ViewDM,this.var_1793);
          }
-         if(ViewTDM(Main.osgi.name_6(ViewTDM)) != null)
+         if(ViewTDM(Main.osgi.getService(ViewTDM)) != null)
          {
-            this.var_1792 = ViewTDM(Main.osgi.name_6(ViewTDM));
+            this.var_1792 = ViewTDM(Main.osgi.getService(ViewTDM));
             this.var_1792.haveSubscribe = param3;
          }
          else
          {
             this.var_1792 = new ViewTDM(param3);
-            Main.osgi.name_1(ViewTDM,this.var_1792);
+            Main.osgi.registerService(ViewTDM,this.var_1792);
          }
          this.var_1803 = param4;
          var _loc5_:int = 0;
@@ -216,7 +216,7 @@ package alternativa.tanks.model
          while(_loc5_ < this.var_1803.length)
          {
             _loc13_ = name_355(this.var_1803[_loc5_]);
-            _loc14_ = ImageResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(_loc13_.previewId));
+            _loc14_ = ImageResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(_loc13_.previewId));
             _loc15_ = new name_2270();
             _loc15_.id = _loc13_.id;
             _loc15_.gameName = _loc13_.name;
@@ -261,7 +261,7 @@ package alternativa.tanks.model
          this.var_1801.targetPoint = new Point(Math.round(_loc10_ * (2 / 3)) - 47,_loc11_ - 34);
          Main.stage.addEventListener(Event.RESIZE,this.method_1081);
          this.method_1081();
-         (BattleSelectModelActivator.osgi.name_6(name_524) as name_524).registerDumper(this);
+         (BattleSelectModelActivator.osgi.getService(name_524) as name_524).registerDumper(this);
       }
       
       public function objectLoaded(param1:ClientObject) : void
@@ -270,7 +270,7 @@ package alternativa.tanks.model
       
       public function objectUnloaded(param1:ClientObject) : void
       {
-         (BattleSelectModelActivator.osgi.name_6(name_524) as name_524).unregisterDumper(this.dumperName);
+         (BattleSelectModelActivator.osgi.getService(name_524) as name_524).unregisterDumper(this.dumperName);
          if(this.var_1796 != null)
          {
             this.var_1796.removeEventListener(SWFAddressEvent.CHANGE,this.method_3);
@@ -313,7 +313,7 @@ package alternativa.tanks.model
       {
          var _loc5_:int = 0;
          var _loc6_:String = null;
-         name_13(Main.osgi.name_6(name_13)).hide();
+         name_13(Main.osgi.getService(name_13)).hide();
          this.panelModel.partSelected(0);
          this.method_1984();
          if(param2 != null)
@@ -336,7 +336,7 @@ package alternativa.tanks.model
          }
          if(Lobby.var_77)
          {
-            Network(Main.osgi.name_6(name_2)).send("lobby;user_inited");
+            Network(Main.osgi.getService(name_2)).send("lobby;user_inited");
             Lobby.var_77 = false;
          }
       }
@@ -351,7 +351,7 @@ package alternativa.tanks.model
       
       public function name_401(param1:ClientObject, param2:name_336) : void
       {
-         var _loc3_:name_465 = OSGi.getInstance().name_6(name_465) as name_465;
+         var _loc3_:name_465 = OSGi.getInstance().getService(name_465) as name_465;
          this.battles[param2.battleId] = param2;
          this.var_1797.push(param2);
          this.var_1794.addItem(param2.battleId,param2.name,!param2.team,param2.name_384,param2.name_389,param2.countPeople,param2.countPeople >= param2.maxPeople,param2.name_384 >= param2.maxPeople,param2.name_389 >= param2.maxPeople,param2.minRank <= this.panelModel.rank && param2.maxRank >= this.panelModel.rank,param2.suspicious,param2.timeLimit,_loc3_.method_1168(param2.battleId),param2.scoreLimit,param2.type,param2.privateBattle,param2.proBattle,param2.formatBattle,param2.friendsDm,param2.friendsRed,param2.friendsBlue);
@@ -416,7 +416,7 @@ package alternativa.tanks.model
          Main.method_8("BATTLE SELECT","   battleId: %1",param5);
          Main.method_8("BATTLE SELECT","this.clientObject = %1",this.clientObject == param1);
          this.var_1799 = new Dictionary(false);
-         var _loc27_:ImageResource = ImageResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(param6));
+         var _loc27_:ImageResource = ImageResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(param6));
          if(_loc27_ == null)
          {
             _loc26_ = new StubBitmapData(16777215);
@@ -696,7 +696,7 @@ package alternativa.tanks.model
             }
             else
             {
-               _loc5_ = Main.osgi.name_6(name_50) as name_50;
+               _loc5_ = Main.osgi.getService(name_50) as name_50;
                _loc5_.log(LogLevel.name_79,"[BattleSelectModel]:currentBattleUserKillsUpdate  ERROR: userInfo = null! (userId: " + param2 + ")");
             }
          }
@@ -727,8 +727,8 @@ package alternativa.tanks.model
       
       public function method_1993(param1:ClientObject) : void
       {
-         var _loc2_:name_42 = Main.osgi.name_6(name_42) as name_42;
-         _loc2_.showAlert(name_102(Main.osgi.name_6(name_102)).getText(TextConst.BATTLE_CREATE_PANEL_FLOOD_ALERT_TEXT),Vector.<String>([name_102(Main.osgi.name_6(name_102)).getText(name_390.const_1030)]));
+         var _loc2_:name_42 = Main.osgi.getService(name_42) as name_42;
+         _loc2_.showAlert(name_102(Main.osgi.getService(name_102)).getText(TextConst.BATTLE_CREATE_PANEL_FLOOD_ALERT_TEXT),Vector.<String>([name_102(Main.osgi.getService(name_102)).getText(name_390.const_1030)]));
       }
       
       private function method_1974() : String
@@ -885,7 +885,7 @@ package alternativa.tanks.model
          _loc3_.equipmentConstraintsMode = _loc2_.equipmentConstraintsMode;
          _loc3_.parkourMode = _loc2_.parkourMode;
          _loc3_.clanBattle = _loc2_.clanBattle;
-         Network(Main.osgi.name_6(name_2)).send("lobby;create_battle;" + JSON.stringify(_loc3_));
+         Network(Main.osgi.getService(name_2)).send("lobby;create_battle;" + JSON.stringify(_loc3_));
       }
       
       private function method_1970(param1:name_2263) : void
@@ -900,7 +900,7 @@ package alternativa.tanks.model
       
       private function method_1965(param1:ClientObject, param2:String) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby;get_show_battle_info;" + param2);
+         Network(Main.osgi.getService(name_2)).send("lobby;get_show_battle_info;" + param2);
       }
       
       private function method_1976(param1:name_2263) : void
@@ -1009,8 +1009,8 @@ package alternativa.tanks.model
          var cl:ClientObject = param1;
          var team:Boolean = param2;
          var red:Boolean = param3;
-         alertService = Main.osgi.name_6(name_42) as name_42;
-         localeService = Main.osgi.name_6(name_102) as name_102;
+         alertService = Main.osgi.getService(name_42) as name_42;
+         localeService = Main.osgi.getService(name_102) as name_102;
          var b:name_336 = this.battles[this.selectedBattleId] as name_336;
          if(b == null)
          {
@@ -1036,21 +1036,21 @@ package alternativa.tanks.model
       
       private function method_1966(param1:Boolean, param2:Boolean) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby;" + (!param1 ? "enter_battle;" : "enter_battle_team;") + this.selectedBattleId + ";" + param2);
+         Network(Main.osgi.getService(name_2)).send("lobby;" + (!param1 ? "enter_battle;" : "enter_battle_team;") + this.selectedBattleId + ";" + param2);
       }
       
       public function name_489() : void
       {
          var _loc1_:BattleController = null;
          this.objectUnloaded(null);
-         PanelModel(Main.osgi.name_6(name_115)).startBattle(null);
-         ChatModel(Main.osgi.name_6(name_400)).objectUnloaded(null);
-         if(BattleController(Main.osgi.name_6(IBattleController)) == null)
+         PanelModel(Main.osgi.getService(name_115)).startBattle(null);
+         ChatModel(Main.osgi.getService(name_400)).objectUnloaded(null);
+         if(BattleController(Main.osgi.getService(IBattleController)) == null)
          {
             _loc1_ = new BattleController();
-            Main.osgi.name_1(IBattleController,_loc1_);
+            Main.osgi.registerService(IBattleController,_loc1_);
          }
-         Network(Main.osgi.name_6(name_2)).addEventListener(Main.osgi.name_6(IBattleController) as BattleController);
+         Network(Main.osgi.getService(name_2)).addEventListener(Main.osgi.getService(IBattleController) as BattleController);
       }
       
       private function method_1968(param1:name_2263) : void
@@ -1100,8 +1100,8 @@ package alternativa.tanks.model
       
       public function name_412() : void
       {
-         var _loc1_:name_42 = Main.osgi.name_6(name_42) as name_42;
-         var _loc2_:name_102 = Main.osgi.name_6(name_102) as name_102;
+         var _loc1_:name_42 = Main.osgi.getService(name_42) as name_42;
+         var _loc2_:name_102 = Main.osgi.getService(name_102) as name_102;
          _loc1_.showAlert(_loc2_.getText(name_390.const_1309),Vector.<String>([_loc2_.getText(name_390.const_1168)]));
       }
       
@@ -1109,15 +1109,15 @@ package alternativa.tanks.model
       {
          var _loc1_:BattleController = null;
          this.objectUnloaded(null);
-         PanelModel(Main.osgi.name_6(name_115)).startBattle(null);
-         ChatModel(Main.osgi.name_6(name_400)).objectUnloaded(null);
-         if(BattleController(Main.osgi.name_6(IBattleController)) == null)
+         PanelModel(Main.osgi.getService(name_115)).startBattle(null);
+         ChatModel(Main.osgi.getService(name_400)).objectUnloaded(null);
+         if(BattleController(Main.osgi.getService(IBattleController)) == null)
          {
             _loc1_ = new BattleController();
-            Main.osgi.name_1(IBattleController,_loc1_);
+            Main.osgi.registerService(IBattleController,_loc1_);
          }
-         Network(Main.osgi.name_6(name_2)).send("lobby;enter_battle_spectator;" + this.selectedBattleId);
-         Network(Main.osgi.name_6(name_2)).addEventListener(Main.osgi.name_6(IBattleController) as BattleController);
+         Network(Main.osgi.getService(name_2)).send("lobby;enter_battle_spectator;" + this.selectedBattleId);
+         Network(Main.osgi.getService(name_2)).addEventListener(Main.osgi.getService(IBattleController) as BattleController);
       }
    }
 }

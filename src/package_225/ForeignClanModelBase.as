@@ -44,7 +44,7 @@ package package_225
       
       public function ForeignClanModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_610(this);
          this.var_25 = Long.getLong(1029456312,194126704);
          this.var_1199 = Long.getLong(2072556979,560987130);

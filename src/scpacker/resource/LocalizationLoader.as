@@ -17,8 +17,8 @@ package scpacker.resource
       {
          super();
          var _loc1_:OSGi = OSGi.getInstance();
-         this.localeService = _loc1_.name_6(name_102) as name_102;
-         this.var_1147 = _loc1_.name_6(name_26).getLogger("localization");
+         this.localeService = _loc1_.getService(name_102) as name_102;
+         this.var_1147 = _loc1_.getService(name_26).getLogger("localization");
       }
       
       public function name_556(param1:String) : void

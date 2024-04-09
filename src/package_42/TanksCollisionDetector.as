@@ -7,8 +7,8 @@ package package_42
    import alternativa.physics.collision.name_1160;
    import alternativa.physics.collision.name_1161;
    import alternativa.physics.collision.name_1172;
-   import alternativa.physics.collision.name_774;
-   import alternativa.physics.name_660;
+   import alternativa.physics.collision.CollisionPrimitive;
+   import alternativa.physics.Body;
    import alternativa.physics.name_889;
    import alternativa.tanks.vehicles.tanks.Tank;
    import alternativa.tanks.vehicles.tanks.TankBody;
@@ -18,7 +18,7 @@ package package_42
    import package_298.BoxTriangleCollider;
    import package_37.Matrix3;
    import package_37.Vector3;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_61.name_767;
    
    public class TanksCollisionDetector implements name_1083
@@ -29,7 +29,7 @@ package package_42
       
       private const const_371:Object = {};
       
-      private const const_372:name_124 = new name_124();
+      private const const_372:RayHit = new RayHit();
       
       private const const_367:name_1169 = new name_1169();
       
@@ -37,7 +37,7 @@ package package_42
       
       private const const_366:Vector3 = new Vector3();
       
-      private const const_370:name_124 = new name_124();
+      private const const_370:RayHit = new RayHit();
       
       private const const_365:name_767 = new name_767();
       
@@ -49,17 +49,17 @@ package package_42
       
       private var var_474:Vector.<TankBody>;
       
-      private var var_476:name_660;
+      private var var_476:Body;
       
       public function TanksCollisionDetector()
       {
          this.var_475 = new CollisionKdTree();
          this.var_474 = new Vector.<TankBody>();
          super();
-         this.method_700(name_774.name_1166,name_774.name_1166,new BoxBoxCollider(0.000001));
-         this.method_700(name_774.name_1166,name_774.name_1180,new BoxRectCollider(0.000001));
-         this.method_700(name_774.name_1166,name_774.name_1181,new BoxTriangleCollider(0.000001));
-         this.method_700(name_774.name_1166,name_774.name_1179,new BoxSphereCollider());
+         this.method_700(CollisionPrimitive.name_1166,CollisionPrimitive.name_1166,new BoxBoxCollider(0.000001));
+         this.method_700(CollisionPrimitive.name_1166,CollisionPrimitive.name_1180,new BoxRectCollider(0.000001));
+         this.method_700(CollisionPrimitive.name_1166,CollisionPrimitive.name_1181,new BoxTriangleCollider(0.000001));
+         this.method_700(CollisionPrimitive.name_1166,CollisionPrimitive.name_1179,new BoxSphereCollider());
          this.method_704();
       }
       
@@ -70,13 +70,13 @@ package package_42
       
       private function method_704() : void
       {
-         this.var_476 = new name_660(1,new Matrix3(),10000000000);
+         this.var_476 = new Body(1,new Matrix3(),10000000000);
          this.var_476.var_317 = false;
       }
       
-      public function name_754(param1:Vector.<name_774>, param2:name_767 = null) : void
+      public function name_754(param1:Vector.<CollisionPrimitive>, param2:name_767 = null) : void
       {
-         var _loc3_:name_774 = null;
+         var _loc3_:CollisionPrimitive = null;
          for each(_loc3_ in param1)
          {
             _loc3_.name_787 = this.var_476;
@@ -139,7 +139,7 @@ package package_42
          }
       }
       
-      public function method_712(param1:name_774, param2:Vector.<ShapeContact>) : void
+      public function method_712(param1:CollisionPrimitive, param2:Vector.<ShapeContact>) : void
       {
          return this.method_699(this.var_475.name_1164,param1,param2);
       }
@@ -173,8 +173,8 @@ package package_42
       private function method_705(param1:TankBody, param2:int, param3:Vector.<BodyContact>) : void
       {
          var _loc4_:TankBody = null;
-         var _loc5_:name_660 = null;
-         var _loc6_:name_660 = null;
+         var _loc5_:Body = null;
+         var _loc6_:Body = null;
          var _loc7_:int = 0;
          var _loc8_:Boolean = false;
          var _loc9_:Boolean = false;
@@ -223,7 +223,7 @@ package package_42
          }
       }
       
-      public function method_694(param1:name_774, param2:name_774, param3:Vector.<ShapeContact>) : void
+      public function method_694(param1:CollisionPrimitive, param2:CollisionPrimitive, param3:Vector.<ShapeContact>) : void
       {
          if((param1.collisionGroup & param2.collisionGroup) == 0)
          {
@@ -241,7 +241,7 @@ package package_42
          _loc4_.method_694(param1,param2,param3);
       }
       
-      public function method_698(param1:name_774, param2:name_774) : Boolean
+      public function method_698(param1:CollisionPrimitive, param2:CollisionPrimitive) : Boolean
       {
          if((param1.collisionGroup & param2.collisionGroup) == 0)
          {
@@ -259,7 +259,7 @@ package package_42
          return _loc3_.name_1176(param1,param2);
       }
       
-      public function raycast(param1:Vector3, param2:Vector3, param3:int, param4:Number, param5:name_1160, param6:name_124) : Boolean
+      public function raycast(param1:Vector3, param2:Vector3, param3:int, param4:Number, param5:name_1160, param6:RayHit) : Boolean
       {
          var _loc7_:Boolean = this.name_251(param1,param2,param3,param4,param5,param6);
          var _loc8_:Boolean = this.method_707(param1,param2,param3,param4,param5,this.const_370);
@@ -286,7 +286,7 @@ package package_42
          return true;
       }
       
-      public function name_251(param1:Vector3, param2:Vector3, param3:int, param4:Number, param5:name_1160, param6:name_124) : Boolean
+      public function name_251(param1:Vector3, param2:Vector3, param3:int, param4:Number, param5:name_1160, param6:RayHit) : Boolean
       {
          if(!this.method_703(param1,param2,this.var_475.name_1164.name_1177,this.const_367))
          {
@@ -324,11 +324,11 @@ package package_42
          return _loc6_;
       }
       
-      private function method_699(param1:name_1161, param2:name_774, param3:Vector.<ShapeContact>) : void
+      private function method_699(param1:name_1161, param2:CollisionPrimitive, param3:Vector.<ShapeContact>) : void
       {
          var _loc4_:Number = NaN;
          var _loc5_:Number = NaN;
-         var _loc6_:Vector.<name_774> = null;
+         var _loc6_:Vector.<CollisionPrimitive> = null;
          var _loc7_:Vector.<int> = null;
          var _loc8_:int = 0;
          var _loc9_:int = 0;
@@ -376,11 +376,11 @@ package package_42
          }
       }
       
-      private function method_701(param1:name_774, param2:name_1161) : Boolean
+      private function method_701(param1:CollisionPrimitive, param2:name_1161) : Boolean
       {
          var _loc3_:Number = NaN;
          var _loc4_:Number = NaN;
-         var _loc5_:Vector.<name_774> = null;
+         var _loc5_:Vector.<CollisionPrimitive> = null;
          var _loc6_:Vector.<int> = null;
          var _loc7_:int = 0;
          var _loc8_:int = 0;
@@ -441,13 +441,13 @@ package package_42
          return false;
       }
       
-      private function method_707(param1:Vector3, param2:Vector3, param3:int, param4:Number, param5:name_1160, param6:name_124) : Boolean
+      private function method_707(param1:Vector3, param2:Vector3, param3:int, param4:Number, param5:name_1160, param6:RayHit) : Boolean
       {
          var _loc19_:name_889 = null;
          var _loc7_:TankBody = null;
-         var _loc8_:name_660 = null;
+         var _loc8_:Body = null;
          var _loc9_:name_767 = null;
-         var _loc11_:name_774 = null;
+         var _loc11_:CollisionPrimitive = null;
          var _loc12_:Number = NaN;
          var _loc13_:Number = param1.x + param2.x * param4;
          var _loc14_:Number = param1.y + param2.y * param4;
@@ -609,7 +609,7 @@ package package_42
          return true;
       }
       
-      private function method_702(param1:name_1161, param2:Vector3, param3:Vector3, param4:Vector3, param5:int, param6:Number, param7:Number, param8:name_1160, param9:name_124) : Boolean
+      private function method_702(param1:name_1161, param2:Vector3, param3:Vector3, param4:Vector3, param5:int, param6:Number, param7:Number, param8:name_1160, param9:RayHit) : Boolean
       {
          var _loc10_:Number = NaN;
          var _loc11_:name_1161 = null;
@@ -617,7 +617,7 @@ package package_42
          var _loc13_:name_1161 = null;
          var _loc14_:int = 0;
          var _loc15_:int = 0;
-         var _loc16_:name_774 = null;
+         var _loc16_:CollisionPrimitive = null;
          if(param1.indices != null && this.method_708(param2,param4,param5,this.var_475.name_1167,param1.indices,param8,param9))
          {
             return true;
@@ -718,9 +718,9 @@ package package_42
          return this.method_702(_loc11_ == param1.name_1162 ? param1.name_1163 : param1.name_1162,param2,this.const_366,param4,param5,_loc10_,param7,param8,param9);
       }
       
-      private function method_708(param1:Vector3, param2:Vector3, param3:int, param4:Vector.<name_774>, param5:Vector.<int>, param6:name_1160, param7:name_124) : Boolean
+      private function method_708(param1:Vector3, param2:Vector3, param3:int, param4:Vector.<CollisionPrimitive>, param5:Vector.<int>, param6:name_1160, param7:RayHit) : Boolean
       {
-         var _loc8_:name_774 = null;
+         var _loc8_:CollisionPrimitive = null;
          var _loc9_:Number = NaN;
          var _loc10_:int = int(param5.length);
          var _loc11_:Number = 1e+308;
@@ -756,7 +756,7 @@ package package_42
          return true;
       }
       
-      public function method_710(param1:name_774) : Boolean
+      public function method_710(param1:CollisionPrimitive) : Boolean
       {
          return this.method_701(param1,this.var_475.name_1164);
       }

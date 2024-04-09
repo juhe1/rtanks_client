@@ -1,6 +1,6 @@
 package package_263
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.Sprite;
    import flash.events.MouseEvent;
    import flash.filters.GlowFilter;
@@ -15,7 +15,7 @@ package package_263
       
       private var var_2806:Array;
       
-      protected var _label:name_1134;
+      protected var _label:LabelBase;
       
       private var var_639:Boolean;
       
@@ -31,7 +31,7 @@ package package_263
       {
          this.tabChildren = false;
          this.tabEnabled = false;
-         this._label = new name_1134();
+         this._label = new LabelBase();
          this._label.mouseEnabled = false;
          this._label.autoSize = TextFieldAutoSize.LEFT;
          addChild(this._label);

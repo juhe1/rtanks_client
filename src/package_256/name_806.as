@@ -12,11 +12,11 @@ package package_256
    public class name_806 extends class_154 implements name_385
    {
       
-      public static var var_382:name_539 = OSGi.getInstance().name_6(name_539) as name_539;
+      public static var var_382:name_539 = OSGi.getInstance().getService(name_539) as name_539;
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
-      public static var var_1521:name_547 = OSGi.getInstance().name_6(name_547) as name_547;
+      public static var var_1521:name_547 = OSGi.getInstance().getService(name_547) as name_547;
        
       
       public function name_806()

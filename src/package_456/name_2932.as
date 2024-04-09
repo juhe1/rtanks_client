@@ -1,6 +1,6 @@
 package package_456
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.Bitmap;
    import flash.display.BitmapData;
    import flash.display.Sprite;
@@ -21,13 +21,13 @@ package package_456
       private static var var_3483:BitmapData = Bitmap(new var_3482()).bitmapData;
        
       
-      private var label:name_1134;
+      private var label:LabelBase;
       
       private var var_3479:Bitmap;
       
       public function name_2932(param1:Boolean, param2:Boolean, param3:int, param4:uint)
       {
-         this.label = new name_1134();
+         this.label = new LabelBase();
          super();
          this.init(param1,param2,param3,param4);
       }

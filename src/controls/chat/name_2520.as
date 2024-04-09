@@ -1,7 +1,7 @@
 package controls.chat
 {
-   import controls.base.name_1134;
-   import controls.name_1891;
+   import controls.base.LabelBase;
+   import controls.TankWindowInner;
    import controls.statassets.class_150;
    import controls.statassets.name_2741;
    import controls.statassets.name_3008;
@@ -33,7 +33,7 @@ package controls.chat
       
       private var data:name_3079;
       
-      public var var_3114:name_1134;
+      public var var_3114:LabelBase;
       
       private var var_385:String;
       
@@ -43,7 +43,7 @@ package controls.chat
       
       private var var_3116:name_3078;
       
-      private var var_3118:name_1134;
+      private var var_3118:LabelBase;
       
       private var var_3121:Boolean = false;
       
@@ -93,13 +93,13 @@ package controls.chat
             this.var_3116 = new name_3078(_loc6_.uid,_loc6_.rankIndex,_loc6_.chatModeratorLevel);
             addChild(this.var_3116);
             this.var_3116.name_2046(1244928);
-            this.var_3118 = new name_1134();
+            this.var_3118 = new LabelBase();
             addChild(this.var_3118);
             this.var_3118.text = this.var_3120 == ChatAddressMode.PRIVATE ? "→" : "—";
             this.var_3118.color = this.var_3120 == ChatAddressMode.PRIVATE ? uint(16777215) : uint(1244928);
             this.method_2889();
          }
-         this.var_3114 = new name_1134();
+         this.var_3114 = new LabelBase();
          this.var_3114.color = this.method_2891(this.var_3119);
          this.var_3114.multiline = true;
          this.var_3114.wordWrap = true;
@@ -255,8 +255,8 @@ package controls.chat
          this._self = param1;
          if(this._self)
          {
-            _loc3_ = name_1891.name_1428;
-            _loc2_ = name_1891.name_1428;
+            _loc3_ = TankWindowInner.GREEN;
+            _loc2_ = TankWindowInner.GREEN;
          }
          else
          {

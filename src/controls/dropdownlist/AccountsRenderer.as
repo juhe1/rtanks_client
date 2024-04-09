@@ -1,6 +1,6 @@
 package controls.dropdownlist
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.Bitmap;
    import flash.display.BitmapData;
    import flash.display.Shape;
@@ -22,11 +22,11 @@ package controls.dropdownlist
       
       override protected function method_2586(param1:Object) : Sprite
       {
-         var _loc2_:name_1134 = null;
+         var _loc2_:LabelBase = null;
          var _loc3_:Sprite = null;
          _loc2_ = null;
          _loc3_ = new Sprite();
-         _loc2_ = new name_1134();
+         _loc2_ = new LabelBase();
          _loc2_.autoSize = TextFieldAutoSize.NONE;
          _loc2_.color = 16777215;
          _loc2_.alpha = param1.rang > 0 ? Number(0.5) : Number(1);

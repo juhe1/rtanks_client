@@ -1,9 +1,9 @@
 package package_276
 {
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import package_37.Matrix3;
    import package_37.Vector3;
-   import package_61.name_124;
+   import package_61.RayHit;
    
    public class name_2088
    {
@@ -13,7 +13,7 @@ package package_276
       
       public var name_2181:Boolean = false;
       
-      public var var_397:name_124;
+      public var var_397:RayHit;
       
       public var name_2793:Number = 0;
       
@@ -21,7 +21,7 @@ package package_276
       
       public var speed:Number = 0;
       
-      private var name_787:name_660;
+      private var name_787:Body;
       
       private var const_114:Vector3;
       
@@ -37,9 +37,9 @@ package package_276
       
       private var var_2184:name_2505;
       
-      public function name_2088(param1:name_660, param2:Vector3, param3:Vector3, param4:name_906)
+      public function name_2088(param1:Body, param2:Vector3, param3:Vector3, param4:name_906)
       {
-         this.var_397 = new name_124();
+         this.var_397 = new RayHit();
          this.const_114 = new Vector3();
          this.direction = new Vector3();
          this.var_2722 = new Vector3();
@@ -110,7 +110,7 @@ package package_276
          var _loc5_:Number = NaN;
          _loc6_ = NaN;
          var _loc7_:Number = NaN;
-         var _loc8_:name_660 = this.var_397.var_81.name_787;
+         var _loc8_:Body = this.var_397.var_81.name_787;
          if(_loc8_.tank != null)
          {
             _loc1_ = _loc8_.state.position;

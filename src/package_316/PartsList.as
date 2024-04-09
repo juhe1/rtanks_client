@@ -10,7 +10,7 @@ package package_316
    import assets.scroller.color.ScrollTrackGreen;
    import controls.InventoryIcon;
    import controls.Money;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.saleicons.SaleIcons;
    import fl.controls.ScrollBarDirection;
    import fl.controls.TileList;
@@ -39,7 +39,7 @@ package package_316
    public class PartsList extends Sprite implements IResourceLoadingListener
    {
       
-      public static var userPropertiesService:name_561 = OSGi.getInstance().name_6(name_561) as name_561;
+      public static var userPropertiesService:name_561 = OSGi.getInstance().getService(name_561) as name_561;
       
       public static const const_2475:int = 4;
       
@@ -406,15 +406,15 @@ package package_316
          var _loc5_:BitmapData = null;
          var _loc6_:GarageItemBackground = null;
          var _loc7_:String = null;
-         var _loc8_:name_1134 = null;
+         var _loc8_:LabelBase = null;
          var _loc9_:name_2193 = null;
          var _loc20_:Boolean = false;
          _loc4_ = null;
          var _loc10_:Sprite = new Sprite();
          var _loc11_:Sprite = new Sprite();
-         var _loc12_:name_1134 = new name_1134();
-         var _loc13_:name_1134 = new name_1134();
-         var _loc14_:name_1134 = new name_1134();
+         var _loc12_:LabelBase = new LabelBase();
+         var _loc13_:LabelBase = new LabelBase();
+         var _loc14_:LabelBase = new LabelBase();
          var _loc15_:name_2295 = new name_2295();
          var _loc16_:IconGarageMod = new IconGarageMod(param1.mod);
          var _loc17_:InventoryIcon = new InventoryIcon(param1.sort,true);
@@ -582,7 +582,7 @@ package package_316
             var_3035.y = _loc6_.height - var_3035.height - 8;
             var_3035.x = _loc6_.width - var_3035.width - 2;
             _loc11_.addChild(var_3035);
-            _loc8_ = new name_1134();
+            _loc8_ = new LabelBase();
             _loc8_.color = 16777215;
             _loc8_.align = TextFormatAlign.CENTER;
             _loc8_.text = "-" + param1.discount + "%";

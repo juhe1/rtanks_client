@@ -1,6 +1,6 @@
 package alternativa.tanks.model
 {
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import flash.utils.Dictionary;
    import package_1.Main;
    import package_103.class_190;
@@ -20,9 +20,9 @@ package alternativa.tanks.model
       public function ItemModel()
       {
          super();
-         var_365.push(name_66);
-         var_365.push(name_1535);
-         var_365.push(class_190);
+         _interfaces.push(IModel);
+         _interfaces.push(name_1535);
+         _interfaces.push(class_190);
          this.params = new Dictionary();
       }
       
@@ -37,8 +37,8 @@ package alternativa.tanks.model
          }
          this.params[param1] = new name_324(param2,param3,param5 == name_321.INVENTORY,param4,_loc12_.itemProperties,param5,param6,param8,_loc10_ != null ? int(_loc10_.crystalPrice) : int(0),_loc10_ != null ? _loc10_.itemProperties : null,_loc10_ != null ? int(_loc10_.rankId) : int(0),param9,_loc12_.crystalPrice,_loc12_.rankId,param7,true);
          Main.method_8("ITEM MODEL","initObject  baseItemId: %1",param2);
-         var _loc13_:name_32 = Main.osgi.name_6(name_32) as name_32;
-         var _loc14_:Vector.<name_66> = _loc13_.getModelsByInterface(class_50);
+         var _loc13_:name_32 = Main.osgi.getService(name_32) as name_32;
+         var _loc14_:Vector.<IModel> = _loc13_.getModelsByInterface(class_50);
          if(_loc14_ != null)
          {
             _loc11_ = 0;

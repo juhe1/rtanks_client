@@ -2,7 +2,7 @@ package platform.client.fp10.core.osgi
 {
    import alternativa.osgi.OSGi;
    import alternativa.osgi.service.logging.name_26;
-   import package_11.name_23;
+   import package_11.IBundleActivator;
    import package_147.DispatcherModel;
    import package_36.name_105;
    import platform.client.fp10.core.registry.ResourceRegistry;
@@ -29,7 +29,7 @@ package platform.client.fp10.core.osgi
    import projects.tanks.clients.flash.resources.resource.Tanks3DSResource;
    import projects.tanks.clients.flash.resources.resource.name_496;
    
-   public class ResourceActivator implements name_23
+   public class ResourceActivator implements IBundleActivator
    {
        
       
@@ -48,21 +48,21 @@ package platform.client.fp10.core.osgi
          param1.name_40(IResourceLocalStorage,Tanks3DSResource,"resourceLocalStorage");
          param1.name_40(IResourceLocalStorage,ImageResource,"resourceLocalStorage");
          param1.name_40(IResourceLocalStorage,name_496,"resourceLocalStorage");
-         param1.name_1(IErrorMessageService,new MessageBoxService(param1));
+         param1.registerService(IErrorMessageService,new MessageBoxService(param1));
          param1.name_40(IErrorMessageService,BatchResourceLoader,"messageBoxService");
          param1.name_40(name_105,ResourceLoader,"networkSerice");
-         param1.name_1(IResourceLoader,new ResourceLoader(param1));
+         param1.registerService(IResourceLoader,new ResourceLoader(param1));
          param1.name_40(IResourceLoader,BatchResourceLoader,"resourceLoader");
-         param1.name_1(ResourceRegistry,new ResourceRegistryImpl(param1));
+         param1.registerService(ResourceRegistry,new ResourceRegistryImpl(param1));
          param1.name_40(ResourceRegistry,BatchResourceLoader,"resourceRegistry");
          param1.name_40(ResourceRegistry,Resource,"resourceRegistry");
          param1.name_40(IResourceLoader,ResourceRegistryImpl,"resourceLoader");
          param1.name_40(ResourceRegistry,MapResource,"resourceRegistry");
-         param1.name_1(IResourceTimer,new ResourceTimer(param1));
+         param1.registerService(IResourceTimer,new ResourceTimer(param1));
          param1.name_40(IResourceTimer,Resource,"resourceTimer");
          param1.name_40(name_26,DispatcherModel,"logService");
-         param1.name_1(DispatcherModel,new DispatcherModel());
-         var _loc2_:ResourceRegistry = ResourceRegistry(param1.name_6(ResourceRegistry));
+         param1.registerService(DispatcherModel,new DispatcherModel());
+         var _loc2_:ResourceRegistry = ResourceRegistry(param1.getService(ResourceRegistry));
          _loc2_.registerTypeClasses(ResourceType.SWF_LIBRARY,SWFLibraryResource);
          _loc2_.registerTypeClasses(ResourceType.IMAGE,ImageResource);
          _loc2_.registerTypeClasses(ResourceType.MULTIFRAME_IMAGE,MultiframeImageResource);

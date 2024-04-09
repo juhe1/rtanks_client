@@ -1,7 +1,7 @@
 package controls.dropdownlist
 {
    import assets.combo.name_2780;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import fl.controls.listClasses.CellRenderer;
    import fl.controls.listClasses.ListData;
    import flash.display.Bitmap;
@@ -41,11 +41,11 @@ package controls.dropdownlist
       protected function method_2586(param1:Object) : Sprite
       {
          var _loc2_:Sprite = null;
-         var _loc3_:name_1134 = null;
+         var _loc3_:LabelBase = null;
          _loc2_ = null;
          _loc3_ = null;
          _loc2_ = new Sprite();
-         _loc3_ = new name_1134();
+         _loc3_ = new LabelBase();
          _loc3_.autoSize = TextFieldAutoSize.NONE;
          _loc3_.color = 16777215;
          _loc3_.alpha = 1;

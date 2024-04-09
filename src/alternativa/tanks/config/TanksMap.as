@@ -4,9 +4,9 @@ package alternativa.tanks.config
    import alternativa.engine3d.core.Object3D;
    import alternativa.engine3d.objects.Occluder;
    import alternativa.engine3d.objects.Sprite3D;
-   import alternativa.physics.collision.name_774;
+   import alternativa.physics.collision.CollisionPrimitive;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import flash.events.Event;
    import package_1.Main;
    import package_249.name_1430;
@@ -37,7 +37,7 @@ package alternativa.tanks.config
          this.loader.load(this.map);
       }
       
-      public function get var_302() : Vector.<name_774>
+      public function get var_302() : Vector.<CollisionPrimitive>
       {
          return this.loader.var_302;
       }
@@ -54,7 +54,7 @@ package alternativa.tanks.config
          this.name_1060 = this.method_2026(this.loader.objects,this.loader.occluders);
          this.name_1060.threshold = 0.1;
          this.name_1060.ignoreChildrenInCollider = true;
-         var _loc3_:BattlefieldModel = BattlefieldModel(Main.osgi.name_6(name_83));
+         var _loc3_:BattlefieldModel = BattlefieldModel(Main.osgi.getService(IBattleField));
          this.name_1060.name = "Visual Kd-tree";
          for each(_loc2_ in this.loader.name_2312)
          {

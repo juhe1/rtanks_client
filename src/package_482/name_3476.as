@@ -40,20 +40,20 @@ package package_482
       
       private function method_2024(param1:MouseEvent) : void
       {
-         if(PanelModel(Main.osgi.name_6(name_115)).isInBattle)
+         if(PanelModel(Main.osgi.getService(name_115)).isInBattle)
          {
-            PanelModel(Main.osgi.name_6(name_115)).showExitFromBattleAlert();
-            Lobby(Main.osgi.name_6(ILobby)).battleSelect.battleSelectModel.battleToSelect = this._data.battleId;
+            PanelModel(Main.osgi.getService(name_115)).showExitFromBattleAlert();
+            Lobby(Main.osgi.getService(ILobby)).battleSelect.battleSelectModel.battleToSelect = this._data.battleId;
             return;
          }
-         if(PanelModel(Main.osgi.name_6(name_115)).isBattleSelect)
+         if(PanelModel(Main.osgi.getService(name_115)).isBattleSelect)
          {
-            Network(Main.osgi.name_6(name_2)).send("lobby;get_show_battle_info;" + this._data.battleId);
+            Network(Main.osgi.getService(name_2)).send("lobby;get_show_battle_info;" + this._data.battleId);
          }
          else
          {
-            Lobby(Main.osgi.name_6(ILobby)).battleSelect.battleSelectModel.battleToSelect = this._data.battleId;
-            PanelModel(Main.osgi.name_6(name_115)).showBattleSelect(null);
+            Lobby(Main.osgi.getService(ILobby)).battleSelect.battleSelectModel.battleToSelect = this._data.battleId;
+            PanelModel(Main.osgi.getService(name_115)).showBattleSelect(null);
          }
       }
       

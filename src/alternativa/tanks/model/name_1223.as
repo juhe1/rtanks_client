@@ -1,6 +1,6 @@
 package alternativa.tanks.model
 {
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import flash.events.TimerEvent;
    import flash.utils.Timer;
    import forms.Alert;
@@ -21,8 +21,8 @@ package alternativa.tanks.model
       public function name_1223()
       {
          super();
-         var_365.push(name_66);
-         var_365.push(class_176);
+         _interfaces.push(IModel);
+         _interfaces.push(class_176);
          this.timer = new Timer(15000,1);
          this.timer.addEventListener(TimerEvent.TIMER,this.method_2180);
       }

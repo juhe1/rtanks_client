@@ -2,7 +2,7 @@ package controls.dropdownlist
 {
    import base.class_122;
    import controls.ComboButton;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import fl.controls.List;
    import fl.data.DataProvider;
    import fl.events.ListEvent;
@@ -17,12 +17,12 @@ package controls.dropdownlist
    import package_12.name_529;
    import projects.tanks.clients.fp10.libraries.tanksservices.utils.name_1022;
    import projects.tanks.clients.fp10.libraries.tanksservices.utils.removeDisplayObject;
-   import utils.name_1915;
+   import utils.ScrollStyleUtils;
    
    public class DropDownList extends class_122
    {
       
-      public static var display:name_529 = Main.osgi.name_6(name_24) as name_529;
+      public static var display:name_529 = Main.osgi.getService(name_24) as name_529;
        
       
       protected var button:ComboButton;
@@ -33,7 +33,7 @@ package controls.dropdownlist
       
       protected var var_1347:DataProvider;
       
-      private var _label:name_1134;
+      private var _label:LabelBase;
       
       private var var_1350:TextField;
       
@@ -70,7 +70,7 @@ package controls.dropdownlist
          this.var_1350 = new TextField();
          this.var_1350.visible = false;
          this.var_1350.type = TextFieldType.INPUT;
-         this._label = new name_1134();
+         this._label = new LabelBase();
          this._label.x = -10;
          this._label.y = 7;
          addChild(this.listBg);
@@ -84,7 +84,7 @@ package controls.dropdownlist
          this.list.rowHeight = 20;
          this.list.dataProvider = this.var_1347;
          this.method_1578(ComboR);
-         name_1915.name_2035(this.list);
+         ScrollStyleUtils.setGrayStyle(this.list);
          this.list.focusEnabled = false;
          this.list.visible = false;
          this.listBg.visible = false;

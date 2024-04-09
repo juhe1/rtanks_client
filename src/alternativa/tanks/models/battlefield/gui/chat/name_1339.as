@@ -16,7 +16,7 @@ package alternativa.tanks.models.battlefield.gui.chat
       {
          super();
          this.label = new Label();
-         this.label.color = name_1135.name_1140;
+         this.label.color = MessageColor.name_1140;
          this.label.autoSize = TextFieldAutoSize.LEFT;
          this.label.multiline = true;
          this.label.wordWrap = true;

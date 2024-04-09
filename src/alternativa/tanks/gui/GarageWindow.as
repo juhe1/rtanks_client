@@ -4,7 +4,7 @@ package alternativa.tanks.gui
    import alternativa.tanks.model.GarageModel;
    import alternativa.tanks.model.name_324;
    import controls.buttons.name_2255;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import controls.name_1922;
    import flash.display.BitmapData;
    import flash.display.Sprite;
@@ -25,7 +25,7 @@ package alternativa.tanks.gui
    import package_435.TankPreview;
    import package_54.name_102;
    import package_7.name_32;
-   import package_95.name_298;
+   import package_95.IStorageService;
    import platform.client.fp10.core.registry.ResourceRegistry;
    import platform.client.fp10.core.resource.types.ImageResource;
    import projects.tanks.clients.fp10.libraries.tanksservices.utils.removeDisplayObject;
@@ -37,7 +37,7 @@ package alternativa.tanks.gui
       
       private static const const_1941:String = "LAST_SHOWED_GARAGE_CATEGORY";
       
-      public static var storageService:name_298 = name_298(OSGi.getInstance().name_6(name_298));
+      public static var storageService:IStorageService = IStorageService(OSGi.getInstance().getService(IStorageService));
        
       
       private var modelRegister:name_32;
@@ -56,13 +56,13 @@ package alternativa.tanks.gui
       
       private var var_2349:name_1922;
       
-      private var var_2351:name_1891;
+      private var var_2351:TankWindowInner;
       
       private var var_2348:PartsList;
       
       private var var_2355:name_1922;
       
-      private var var_2354:name_1891;
+      private var var_2354:TankWindowInner;
       
       public var itemInfoPanel:ItemInfoPanel;
       
@@ -97,8 +97,8 @@ package alternativa.tanks.gui
          this.name_483 = new Vector.<name_325>();
          super();
          this.name_322 = param2;
-         this.modelRegister = Main.osgi.name_6(name_32) as name_32;
-         this.localeService = Main.osgi.name_6(name_102) as name_102;
+         this.modelRegister = Main.osgi.getService(name_32) as name_32;
+         this.localeService = Main.osgi.getService(name_102) as name_102;
          this.var_2350 = new Array();
          this.var_2353 = new Array();
          this.name_1029 = new Point(880,737);
@@ -106,8 +106,8 @@ package alternativa.tanks.gui
          addChild(this.itemInfoPanel);
          this.var_2349 = new name_1922();
          addChild(this.var_2349);
-         this.var_2351 = new name_1891(0,0,name_1891.name_1428);
-         this.var_2351.name_1895 = true;
+         this.var_2351 = new TankWindowInner(0,0,TankWindowInner.GREEN);
+         this.var_2351.showBlink = true;
          addChild(this.var_2351);
          this.var_2348 = new PartsList();
          addChild(this.var_2348);
@@ -447,7 +447,7 @@ package alternativa.tanks.gui
             return;
          }
          this.var_2350.push(param1);
-         var _loc5_:ImageResource = ImageResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(param2.previewId));
+         var _loc5_:ImageResource = ImageResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(param2.previewId));
          if(param3 != null)
          {
             if(param2.name_373.value == 5)
@@ -461,7 +461,7 @@ package alternativa.tanks.gui
          }
          else
          {
-            _loc6_ = Main.osgi.name_6(name_115) as name_115;
+            _loc6_ = Main.osgi.getService(name_115) as name_115;
             _loc7_ = int(_loc6_.rank);
             if(param2.name_373.value == 5)
             {

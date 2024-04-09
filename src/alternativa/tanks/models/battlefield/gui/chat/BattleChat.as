@@ -1,11 +1,11 @@
 package alternativa.tanks.models.battlefield.gui.chat
 {
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
    import alternativa.tanks.models.battlefield.class_9;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
+   import alternativa.tanks.models.tank.ITank;
    import controls.chat.BattleChatInput;
    import controls.chat.name_1338;
    import flash.display.Sprite;
@@ -139,7 +139,7 @@ package alternativa.tanks.models.battlefield.gui.chat
          this.input.text = "";
          this.var_632.visible = true;
          this.var_635 = true;
-         if((Main.osgi.name_6(name_83) as BattlefieldModel).spectatorMode == true)
+         if((Main.osgi.getService(IBattleField) as BattlefieldModel).spectatorMode == true)
          {
             this.var_634.name_1342("Spectators: " + name_1339.name_1343);
             this.var_634.visible = this.var_634.getText().length > 0;
@@ -148,14 +148,14 @@ package alternativa.tanks.models.battlefield.gui.chat
          {
             this.var_634.name_1342("");
             this.var_634.visible = false;
-            this.var_638 = TankModel(Main.osgi.name_6(class_7)).localUserData.teamType;
+            this.var_638 = TankModel(Main.osgi.getService(ITank)).localUserData.teamType;
          }
          Main.stage.focus = this.input;
          this.onResize();
          battleInputLockService.lock(name_665.name_557);
          this.method_884();
-         var _loc1_:name_32 = name_32(Main.osgi.name_6(name_32));
-         var _loc2_:Vector.<name_66> = _loc1_.getModelsByInterface(class_9);
+         var _loc1_:name_32 = name_32(Main.osgi.getService(name_32));
+         var _loc2_:Vector.<IModel> = _loc1_.getModelsByInterface(class_9);
          if(_loc2_ != null)
          {
             _loc3_ = _loc2_.length - 1;
@@ -169,7 +169,7 @@ package alternativa.tanks.models.battlefield.gui.chat
       
       private function method_884() : void
       {
-         if((Main.osgi.name_6(name_83) as BattlefieldModel).spectatorMode)
+         if((Main.osgi.getService(IBattleField) as BattlefieldModel).spectatorMode)
          {
             if(this.var_636)
             {
@@ -234,8 +234,8 @@ package alternativa.tanks.models.battlefield.gui.chat
          }
          battleInputLockService.unlock(name_665.name_557);
          dispatchEvent(new name_1337(name_1337.name_1348,null,false));
-         var _loc1_:name_32 = name_32(Main.osgi.name_6(name_32));
-         var _loc2_:Vector.<name_66> = _loc1_.getModelsByInterface(class_9);
+         var _loc1_:name_32 = name_32(Main.osgi.getService(name_32));
+         var _loc2_:Vector.<IModel> = _loc1_.getModelsByInterface(class_9);
          if(_loc2_ != null)
          {
             _loc3_ = _loc2_.length - 1;

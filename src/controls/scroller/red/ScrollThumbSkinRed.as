@@ -13,8 +13,8 @@ package controls.scroller.red
       
       override public function method_2888() : void
       {
-         var_3129 = new name_2759.name_3314().bitmapData;
-         var_3130 = new name_2759.name_3315().bitmapData;
+         var_3129 = new ScrollSkinRed.name_3314().bitmapData;
+         var_3130 = new ScrollSkinRed.name_3315().bitmapData;
       }
    }
 }

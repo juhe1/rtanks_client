@@ -1,10 +1,10 @@
 package alternativa.tanks.models.weapon.shared
 {
    import alternativa.physics.collision.name_1083;
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import package_37.Matrix3;
    import package_37.Vector3;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_92.name_1699;
    
    public class CommonTargetSystem
@@ -18,7 +18,7 @@ package alternativa.tanks.models.weapon.shared
       
       private static var rayDir2:Vector3 = new Vector3();
       
-      private static var var_711:name_124 = new name_124();
+      private static var var_711:RayHit = new RayHit();
        
       
       private var maxDistance:Number;
@@ -37,7 +37,7 @@ package alternativa.tanks.models.weapon.shared
       
       private var var_2433:Number;
       
-      private var var_2432:name_660;
+      private var var_2432:Body;
       
       private var var_2430:Number;
       
@@ -68,9 +68,9 @@ package alternativa.tanks.models.weapon.shared
          this.var_689 = param7;
       }
       
-      public function name_670(param1:Vector3, param2:Vector3, param3:Vector3, param4:name_660, param5:name_1699) : Boolean
+      public function name_670(param1:Vector3, param2:Vector3, param3:Vector3, param4:Body, param5:name_1699) : Boolean
       {
-         var _loc6_:name_660 = null;
+         var _loc6_:Body = null;
          this.var_2433 = 0;
          this.var_2430 = this.maxDistance + 1;
          this.var_2432 = null;
@@ -111,7 +111,7 @@ package alternativa.tanks.models.weapon.shared
       
       private function method_2466(param1:Vector3, param2:Vector3, param3:Vector3, param4:int, param5:Number) : void
       {
-         var _loc8_:name_660 = null;
+         var _loc8_:Body = null;
          var _loc9_:Number = NaN;
          matrix.name_1097(param3,param5);
          if(param5 < 0)
@@ -148,20 +148,20 @@ package alternativa.tanks.models.weapon.shared
 }
 
 import alternativa.physics.collision.name_1160;
-import alternativa.physics.name_660;
+import alternativa.physics.Body;
 
 class GunPredicate implements name_1160
 {
     
    
-   public var shooter:name_660;
+   public var shooter:Body;
    
    public function GunPredicate()
    {
       super();
    }
    
-   public function considerBody(param1:name_660) : Boolean
+   public function considerBody(param1:Body) : Boolean
    {
       return this.shooter != param1;
    }

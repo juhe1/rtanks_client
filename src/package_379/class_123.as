@@ -5,7 +5,7 @@ package package_379
    import flash.display.DisplayObjectContainer;
    import flash.events.KeyboardEvent;
    import package_1.Main;
-   import package_177.name_550;
+   import package_177.IDialogsService;
    import projects.tanks.clients.fp10.libraries.tanksservices.utils.name_1015;
    import projects.tanks.clients.fp10.libraries.tanksservices.utils.name_1022;
    
@@ -14,7 +14,7 @@ package package_379
       
       public static var display:DisplayObjectContainer = Main.dialogsLayer;
       
-      public static var var_864:name_550 = OSGi.getInstance().name_6(name_550) as name_550;
+      public static var var_864:IDialogsService = OSGi.getInstance().getService(IDialogsService) as IDialogsService;
        
       
       public function class_123()

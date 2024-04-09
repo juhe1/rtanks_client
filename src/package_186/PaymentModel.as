@@ -1,14 +1,14 @@
 package package_186
 {
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import flash.net.SharedObject;
    import package_1.Main;
    import package_387.class_132;
    import package_387.class_133;
    import package_4.ClientObject;
    import package_7.name_32;
-   import package_95.name_298;
+   import package_95.IStorageService;
    
    public class PaymentModel extends class_132 implements class_133, class_11, class_134
    {
@@ -27,10 +27,10 @@ package package_186
       public function PaymentModel()
       {
          super();
-         var_365.push(name_66);
-         var_365.push(class_134);
-         var_365.push(class_133);
-         var_365.push(class_11);
+         _interfaces.push(IModel);
+         _interfaces.push(class_134);
+         _interfaces.push(class_133);
+         _interfaces.push(class_11);
       }
       
       public function objectLoaded(param1:ClientObject) : void
@@ -50,8 +50,8 @@ package package_186
          this.var_1134 = param5;
          this.var_1136 = param6;
          this.var_1135 = param7;
-         var _loc8_:name_32 = Main.osgi.name_6(name_32) as name_32;
-         var _loc9_:Vector.<name_66> = _loc8_.getModelsByInterface(name_1020);
+         var _loc8_:name_32 = Main.osgi.getService(name_32) as name_32;
+         var _loc9_:Vector.<IModel> = _loc8_.getModelsByInterface(name_1020);
          if(_loc9_ != null)
          {
             _loc10_ = 0;
@@ -66,8 +66,8 @@ package package_186
       public function method_1385(param1:ClientObject, param2:String, param3:Array) : void
       {
          var _loc6_:int = 0;
-         var _loc4_:name_32 = Main.osgi.name_6(name_32) as name_32;
-         var _loc5_:Vector.<name_66> = _loc4_.getModelsByInterface(name_1020);
+         var _loc4_:name_32 = Main.osgi.getService(name_32) as name_32;
+         var _loc5_:Vector.<IModel> = _loc4_.getModelsByInterface(name_1020);
          if(_loc5_ != null)
          {
             _loc6_ = 0;
@@ -82,8 +82,8 @@ package package_186
       public function method_1384(param1:ClientObject, param2:int, param3:Array) : void
       {
          var _loc6_:int = 0;
-         var _loc4_:name_32 = Main.osgi.name_6(name_32) as name_32;
-         var _loc5_:Vector.<name_66> = _loc4_.getModelsByInterface(name_1020);
+         var _loc4_:name_32 = Main.osgi.getService(name_32) as name_32;
+         var _loc5_:Vector.<IModel> = _loc4_.getModelsByInterface(name_1020);
          if(_loc5_ != null)
          {
             _loc6_ = 0;
@@ -105,7 +105,7 @@ package package_186
       
       public function method_1379(param1:int) : void
       {
-         var _loc2_:SharedObject = name_298(Main.osgi.name_6(name_298)).getStorage();
+         var _loc2_:SharedObject = IStorageService(Main.osgi.getService(IStorageService)).getStorage();
          _loc2_.data.userOperator = param1;
       }
       

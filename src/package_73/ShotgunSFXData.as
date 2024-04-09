@@ -6,7 +6,7 @@ package package_73
    import alternativa.tanks.engine3d.name_1072;
    import alternativa.tanks.engine3d.name_966;
    import alternativa.tanks.models.sfx.LightAnimation;
-   import alternativa.tanks.services.materialregistry.name_100;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
    import alternativa.tanks.utils.GraphicsUtils;
    import flash.media.Sound;
    import package_91.name_1246;
@@ -17,7 +17,7 @@ package package_73
    public class ShotgunSFXData implements AutoClosable
    {
       
-      public static var var_58:name_966 = name_100(OSGi.getInstance().name_6(name_100)).textureMaterialRegistry;
+      public static var var_58:name_966 = IMaterialRegistry(OSGi.getInstance().getService(IMaterialRegistry)).textureMaterialRegistry;
        
       
       public var shotSound:Sound;

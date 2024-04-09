@@ -9,7 +9,7 @@ package alternativa.tanks.model.quest.common.gui.window.buttons
    public class name_3310 extends name_1890
    {
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
        
       
       private var var_2229:name_2551;

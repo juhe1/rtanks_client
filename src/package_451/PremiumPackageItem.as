@@ -1,6 +1,6 @@
 package package_451
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.Bitmap;
    import flash.text.TextFieldAutoSize;
    import package_472.class_216;
@@ -17,9 +17,9 @@ package package_451
       
       private const const_2660:uint = 3432728;
       
-      private var var_3424:name_1134;
+      private var var_3424:LabelBase;
       
-      private var var_2229:name_1134;
+      private var var_2229:LabelBase;
       
       private var icon:Bitmap;
       
@@ -41,7 +41,7 @@ package package_451
       
       private function method_3091() : void
       {
-         this.var_3424 = new name_1134();
+         this.var_3424 = new LabelBase();
          this.var_3424.text = "+" + name_3388.name_3389(this.var_3422.premium_duration);
          this.var_3424.color = 3432728;
          this.var_3424.autoSize = TextFieldAutoSize.LEFT;
@@ -49,7 +49,7 @@ package package_451
          this.var_3424.bold = true;
          this.var_3424.mouseEnabled = false;
          addChild(this.var_3424);
-         this.var_2229 = new name_1134();
+         this.var_2229 = new LabelBase();
          method_3087(this.var_2229);
          this.var_2229.text = this.var_3422.price + " " + this.var_3422.currency;
          this.var_2229.color = 4144959;

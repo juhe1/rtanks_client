@@ -1,7 +1,7 @@
 package scpacker.test
 {
    import alternativa.osgi.OSGi;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.Bitmap;
    import flash.display.Sprite;
    import flash.events.Event;
@@ -34,9 +34,9 @@ package scpacker.test
       
       private var var_1735:int;
       
-      private var label:name_1134;
+      private var label:LabelBase;
       
-      private var var_1734:name_1134;
+      private var var_1734:LabelBase;
       
       private var timer:Timer;
       
@@ -50,11 +50,11 @@ package scpacker.test
          this.const_126 = new BigRankIcon();
          super();
          filters = [new GlowFilter(0,1,6,6)];
-         this.const_126.init(UserInfoService(OSGi.getInstance().name_6(name_408)).localUserInfo.premium,param2);
+         this.const_126.init(UserInfoService(OSGi.getInstance().getService(name_408)).localUserInfo.premium,param2);
          this.const_126.x = -(this.const_126.width >> 1);
          this.const_126.y = -73;
          addChild(this.const_126);
-         this.label = new name_1134();
+         this.label = new LabelBase();
          this.label.color = 16776960;
          this.label.size = 18;
          this.label.bold = true;
@@ -66,7 +66,7 @@ package scpacker.test
          this.var_1735 = 90;
          if(UpdateRankPrize.getCount(param2) > 0)
          {
-            this.var_1734 = new name_1134();
+            this.var_1734 = new LabelBase();
             this.var_1734.color = 16776960;
             this.var_1734.size = 18;
             this.var_1734.bold = true;

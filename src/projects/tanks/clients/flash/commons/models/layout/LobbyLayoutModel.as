@@ -8,7 +8,7 @@ package projects.tanks.clients.flash.commons.models.layout
    import package_31.PanelModel;
    import package_31.name_115;
    import package_53.name_94;
-   import package_95.name_298;
+   import package_95.IStorageService;
    import platform.client.fp10.core.model.name_170;
    import platform.client.fp10.core.model.name_287;
    import projects.tanks.client.battleselect.name_386;
@@ -21,9 +21,9 @@ package projects.tanks.clients.flash.commons.models.layout
       
       public static const const_1597:String = "USE_BATTLE_LIST";
       
-      public static var lobbyLayoutService:name_94 = OSGi.getInstance().name_6(name_94) as name_94;
+      public static var lobbyLayoutService:name_94 = OSGi.getInstance().getService(name_94) as name_94;
       
-      public static var storageService:name_298 = OSGi.getInstance().name_6(name_298) as name_298;
+      public static var storageService:IStorageService = OSGi.getInstance().getService(IStorageService) as IStorageService;
        
       
       public function LobbyLayoutModel()
@@ -36,8 +36,8 @@ package projects.tanks.clients.flash.commons.models.layout
          var _loc1_:LayoutState = lobbyLayoutService.getCurrentState();
          if(_loc1_ == LayoutState.BATTLE_SELECT)
          {
-            BattleSelectModel(OSGi.getInstance().name_6(name_386)).objectUnloaded(null);
-            OSGi.getInstance().name_48(name_386);
+            BattleSelectModel(OSGi.getInstance().getService(name_386)).objectUnloaded(null);
+            OSGi.getInstance().unregisterService(name_386);
          }
          server.showGarage();
       }
@@ -47,8 +47,8 @@ package projects.tanks.clients.flash.commons.models.layout
          var _loc1_:LayoutState = lobbyLayoutService.getCurrentState();
          if(_loc1_ == LayoutState.GARAGE)
          {
-            GarageModel(OSGi.getInstance().name_6(name_381)).objectUnloaded(null);
-            OSGi.getInstance().name_48(name_381);
+            GarageModel(OSGi.getInstance().getService(name_381)).objectUnloaded(null);
+            OSGi.getInstance().unregisterService(name_381);
          }
          storageService.getStorage().data["USE_BATTLE_LIST"] = true;
          server.showBattleSelect();
@@ -72,7 +72,7 @@ package projects.tanks.clients.flash.commons.models.layout
       
       public function exitFromBattle() : void
       {
-         PanelModel(OSGi.getInstance().name_6(name_115)).onExitFromBattle();
+         PanelModel(OSGi.getInstance().getService(name_115)).onExitFromBattle();
          server.showBattleSelect();
          if(storageService.getStorage().data["USE_BATTLE_LIST"])
          {
@@ -89,11 +89,11 @@ package projects.tanks.clients.flash.commons.models.layout
       
       public function returnToBattle() : void
       {
-         if(OSGi.getInstance().name_6(name_381) != null)
+         if(OSGi.getInstance().getService(name_381) != null)
          {
-            GarageModel(OSGi.getInstance().name_6(name_381)).objectUnloaded(null);
-            OSGi.getInstance().name_48(name_381);
-            PanelModel(OSGi.getInstance().name_6(name_115)).partSelected(4);
+            GarageModel(OSGi.getInstance().getService(name_381)).objectUnloaded(null);
+            OSGi.getInstance().unregisterService(name_381);
+            PanelModel(OSGi.getInstance().getService(name_115)).partSelected(4);
          }
          server.returnToBattle();
       }

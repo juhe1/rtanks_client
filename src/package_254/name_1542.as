@@ -11,7 +11,7 @@ package package_254
       public function name_1542()
       {
          super();
-         text = name_102(OSGi.getInstance().name_6(name_102)).getText(name_390.const_802);
+         text = name_102(OSGi.getInstance().getService(name_102)).getText(name_390.const_802);
          arrowLehgth = 48;
          arrowAlign = name_2221.MIDDLE_RIGHT;
          var_601 = 3;

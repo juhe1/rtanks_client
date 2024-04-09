@@ -11,7 +11,7 @@ package package_254
       public function name_1002()
       {
          super();
-         var _loc1_:name_102 = name_102(Main.osgi.name_6(name_102));
+         var _loc1_:name_102 = name_102(Main.osgi.getService(name_102));
          text = _loc1_.getText(TextConst.HELP_PANEL_RANK_HELPER_TEXT);
          arrowLehgth = int(_loc1_.getText(TextConst.HELP_PANEL_RANK_HELPER_ARROW_LENGTH));
          arrowAlign = name_2221.TOP_LEFT;

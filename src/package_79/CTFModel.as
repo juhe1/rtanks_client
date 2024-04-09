@@ -5,21 +5,21 @@ package package_79
    import alternativa.engine3d.objects.BSP;
    import alternativa.engine3d.objects.Mesh;
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.osgi.service.dump.name_524;
-   import alternativa.physics.collision.name_774;
-   import alternativa.physics.name_660;
+   import alternativa.physics.collision.CollisionPrimitive;
+   import alternativa.physics.Body;
    import alternativa.physics.name_889;
    import alternativa.tanks.engine3d.MaterialSequence;
    import alternativa.tanks.engine3d.name_1076;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.gui.name_80;
+   import alternativa.tanks.models.battlefield.gui.IBattlefieldGUI;
    import alternativa.tanks.models.battlefield.name_128;
    import alternativa.tanks.models.battlefield.name_652;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
-   import alternativa.tanks.models.tank.class_7;
-   import alternativa.tanks.services.materialregistry.name_100;
+   import alternativa.tanks.models.tank.ITank;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
    import flash.display.BitmapData;
    import flash.events.Event;
    import flash.media.Sound;
@@ -59,7 +59,7 @@ package package_79
       
       private static const const_407:Number = 2.5;
       
-      private static var var_58:name_100;
+      private static var var_58:IMaterialRegistry;
       
       public static const const_405:uint = 15741974;
       
@@ -80,11 +80,11 @@ package package_79
       
       private var flagLockTime:name_1288;
       
-      private var var_590:name_80;
+      private var var_590:IBattlefieldGUI;
       
       private var var_11:BattlefieldModel;
       
-      private var var_13:class_7;
+      private var var_13:ITank;
       
       private var var_117:name_128;
       
@@ -133,12 +133,12 @@ package package_79
          this.pos3d = new Vector3dData(0,0,0);
          super();
          FLAG_LOCK_DURATION.value = 5000;
-         var_365.push(name_66,name_994,class_11,class_36);
+         _interfaces.push(IModel,name_994,class_11,class_36);
       }
       
       public function initObject(param1:ClientObject, param2:Vector3, param3:Vector3) : void
       {
-         var_58 = name_100(Main.osgi.name_6(name_100));
+         var_58 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry));
          var _loc4_:FlagData = new FlagData(method_771().redFlagSprite,method_771().redPedestalModel);
          var _loc5_:FlagData = new FlagData(method_771().blueFlagSprite,method_771().bluePedestalModel);
          param1.method_12(CTFModel,new InitParams(_loc4_,_loc5_));
@@ -150,7 +150,7 @@ package package_79
          this.posBlueFlag = param2;
          this.posRedFlag = param3;
          this.objectLoaded(null);
-         var _loc6_:name_524 = name_524(Main.osgi.name_6(name_524));
+         var _loc6_:name_524 = name_524(Main.osgi.getService(name_524));
          if(_loc6_ != null)
          {
             _loc6_.registerDumper(this);
@@ -182,12 +182,12 @@ package package_79
       
       public function objectLoaded(param1:ClientObject) : void
       {
-         var _loc2_:name_32 = name_32(Main.osgi.name_6(name_32));
-         this.var_590 = Main.osgi.name_6(name_80) as name_80;
-         this.var_11 = BattlefieldModel(Main.osgi.name_6(name_83));
+         var _loc2_:name_32 = name_32(Main.osgi.getService(name_32));
+         this.var_590 = Main.osgi.getService(IBattlefieldGUI) as IBattlefieldGUI;
+         this.var_11 = BattlefieldModel(Main.osgi.getService(IBattleField));
          this.var_11.method_152(this);
          this.var_117 = this.var_11.getBattlefieldData();
-         this.var_13 = Main.osgi.name_6(class_7) as class_7;
+         this.var_13 = Main.osgi.getService(ITank) as ITank;
          this.var_589 = this.var_11.messages;
          battleInputService.name_219(this);
       }
@@ -195,7 +195,7 @@ package package_79
       public function objectUnloaded(param1:ClientObject) : void
       {
          var _loc3_:name_313 = null;
-         var _loc2_:name_524 = name_524(Main.osgi.name_6(name_524));
+         var _loc2_:name_524 = name_524(Main.osgi.getService(name_524));
          if(_loc2_ != null)
          {
             _loc2_.unregisterDumper(this.dumperName);
@@ -627,12 +627,12 @@ package package_79
       
       private function method_809(param1:name_313) : void
       {
-         var _loc4_:name_774 = null;
+         var _loc4_:CollisionPrimitive = null;
          if(param1.takeCommandSent || this.var_588 == null || this.var_588.name_87 == TankSpawnState.NEWCOME || this.var_588.name_87 == TankSpawnState.SUICIDE)
          {
             return;
          }
-         var _loc2_:name_660 = this.var_588.tank;
+         var _loc2_:Body = this.var_588.tank;
          var _loc3_:name_889 = _loc2_.var_302.head;
          while(_loc3_ != null)
          {
@@ -650,7 +650,7 @@ package package_79
       private function method_812(param1:ClientObject, param2:BattleTeamType) : void
       {
          var _loc3_:Vector3 = this.var_588.tank.state.position;
-         Network(Main.osgi.name_6(name_2)).send("battle;attempt_to_take_flag;" + param2.getValue() + ";" + _loc3_.x + ";" + _loc3_.y + ";" + _loc3_.z);
+         Network(Main.osgi.getService(name_2)).send("battle;attempt_to_take_flag;" + param2.getValue() + ";" + _loc3_.x + ";" + _loc3_.y + ";" + _loc3_.z);
       }
       
       private function method_161(param1:Event) : void
@@ -669,7 +669,7 @@ package package_79
             return;
          }
          this.messages = {};
-         this.locale = name_102(Main.osgi.name_6(name_102));
+         this.locale = name_102(Main.osgi.getService(name_102));
          this.method_808("taken",this.locale,TextConst.CTF_GOT_ENEMY_FLAG,65280,TextConst.CTF_GOT_OUR_FLAG,16776960);
          this.method_808("lost",this.locale,TextConst.CTF_LOST_OUR_FLAG,65280,TextConst.CTF_LOST_ENEMY_FLAG,16776960);
          this.method_808("returned",this.locale,TextConst.CTF_RETURNED_OUR_FLAG,65280,TextConst.CTF_RETURNED_ENEMY_FLAG,16776960);
@@ -739,7 +739,7 @@ package package_79
          _loc3_.x = param2.x;
          _loc3_.y = param2.y;
          _loc3_.z = param2.z;
-         Network(Main.osgi.name_6(name_2)).send("battle;flag_drop;" + JSON.stringify(_loc3_));
+         Network(Main.osgi.getService(name_2)).send("battle;flag_drop;" + JSON.stringify(_loc3_));
       }
    }
 }

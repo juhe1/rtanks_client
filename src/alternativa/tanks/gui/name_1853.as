@@ -47,7 +47,7 @@ package alternativa.tanks.gui
          this.window = new name_1922();
          this.window.width = this.name_1029.x;
          this.window.height = this.name_1029.y;
-         var _loc2_:name_102 = name_102(Main.osgi.name_6(name_102));
+         var _loc2_:name_102 = name_102(Main.osgi.getService(name_102));
          this.window.name_2241 = _loc2_.getText(TextConst.GUI_LANG);
          this.var_2563 = param1 >= 5 * 60 ? new Watches5Hours() : new Watches3Hours();
          this.var_2563.x = 12;

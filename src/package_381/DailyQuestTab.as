@@ -20,7 +20,7 @@ package package_381
    public class DailyQuestTab extends CommonQuestTab implements name_2545, name_548
    {
       
-      public static var var_2550:name_542 = OSGi.getInstance().name_6(name_542) as name_542;
+      public static var var_2550:name_542 = OSGi.getInstance().getService(name_542) as name_542;
        
       
       private const const_2044:int = 1000;
@@ -51,7 +51,7 @@ package package_381
       
       private function method_1743(param1:name_2138) : void
       {
-         if(param1.dailyQuestInfo.canSkipForFree || Boolean(class_27(OSGi.getInstance().name_6(class_27) as class_27).checkEnough(param1.dailyQuestInfo.skipCost)))
+         if(param1.dailyQuestInfo.canSkipForFree || Boolean(class_27(OSGi.getInstance().getService(class_27) as class_27).checkEnough(param1.dailyQuestInfo.skipCost)))
          {
             this.var_2552 = false;
             this.method_2531();

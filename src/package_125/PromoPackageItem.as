@@ -1,6 +1,6 @@
 package package_125
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.Bitmap;
    import flash.display.BitmapData;
    import flash.text.TextFieldAutoSize;
@@ -19,7 +19,7 @@ package package_125
       private static const const_2658:uint = 23704;
        
       
-      private var var_3421:name_1134;
+      private var var_3421:LabelBase;
       
       private var icon:Bitmap;
       
@@ -40,7 +40,7 @@ package package_125
       
       private function method_3088() : void
       {
-         this.var_3421 = new name_1134();
+         this.var_3421 = new LabelBase();
          this.var_3421.text = Game.var_1 == null ? "Promocodes" : (Game.var_1 == "EN" ? "Promocodes" : "Промокоды");
          this.var_3421.color = 23704;
          this.var_3421.autoSize = TextFieldAutoSize.LEFT;

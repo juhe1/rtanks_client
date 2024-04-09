@@ -3,7 +3,7 @@ package package_407
    import alternativa.osgi.OSGi;
    import base.class_122;
    import controls.base.TankInput;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.containers.HorizontalStackPanel;
    import flash.events.KeyboardEvent;
    import flash.text.TextFormatAlign;
@@ -18,7 +18,7 @@ package package_407
       
       public static const const_2826:int = 120;
       
-      public static var keysBindingService:name_276 = name_276(OSGi.getInstance().name_6(name_276));
+      public static var keysBindingService:name_276 = name_276(OSGi.getInstance().getService(name_276));
        
       
       private var var_3670:Vector.<TankInput>;
@@ -27,7 +27,7 @@ package package_407
       
       public function KeyBinding(param1:GameActionEnum, param2:String, param3:int, param4:int)
       {
-         var _loc8_:name_1134 = null;
+         var _loc8_:LabelBase = null;
          this.var_3670 = new Vector.<TankInput>(3,true);
          super();
          this.action = param1;
@@ -41,7 +41,7 @@ package package_407
             _loc6_.addItem(this.method_3273(_loc7_));
             _loc7_++;
          }
-         _loc8_ = new name_1134();
+         _loc8_ = new LabelBase();
          _loc8_.text = param2;
          _loc8_.x = 0;
          _loc8_.y = Math.round((this.var_3670[0].height - _loc8_.textHeight) * 0.5) - 2;

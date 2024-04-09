@@ -25,19 +25,19 @@ package package_96
    public class name_311 implements AutoClosable
    {
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
       public static var battleInfoService:name_274;
       
-      public static var lobbyLayoutService:name_94 = OSGi.getInstance().name_6(name_94) as name_94;
+      public static var lobbyLayoutService:name_94 = OSGi.getInstance().getService(name_94) as name_94;
       
-      public static var delayMountCategoryService:name_1357 = OSGi.getInstance().name_6(name_1357) as name_1357;
+      public static var delayMountCategoryService:name_1357 = OSGi.getInstance().getService(name_1357) as name_1357;
       
-      public static var var_641:name_1358 = OSGi.getInstance().name_6(name_1358) as name_1358;
+      public static var var_641:name_1358 = OSGi.getInstance().getService(name_1358) as name_1358;
       
-      public static var userPropertiesService:name_561 = OSGi.getInstance().name_6(name_561) as name_561;
+      public static var userPropertiesService:name_561 = OSGi.getInstance().getService(name_561) as name_561;
       
-      public static var var_644:class_27 = OSGi.getInstance().name_6(class_27) as class_27;
+      public static var var_644:class_27 = OSGi.getInstance().getService(class_27) as class_27;
        
       
       private const const_423:Number = 120;
@@ -70,13 +70,13 @@ package package_96
       
       private function method_903() : void
       {
-         this.var_643.visible = Boolean(name_381(OSGi.getInstance().name_6(name_381)).canBuy(this.item.name)) || this.method_905(this.item);
-         this.var_642.visible = (!var_641.getView().isFull() || Boolean(var_641.name_1365(this.item))) && !name_381(OSGi.getInstance().name_6(name_381)).canBuy(this.item.name);
+         this.var_643.visible = Boolean(name_381(OSGi.getInstance().getService(name_381)).canBuy(this.item.name)) || this.method_905(this.item);
+         this.var_642.visible = (!var_641.getView().isFull() || Boolean(var_641.name_1365(this.item))) && !name_381(OSGi.getInstance().getService(name_381)).canBuy(this.item.name);
       }
       
       private function method_905(param1:name_70) : Boolean
       {
-         var _loc2_:name_324 = GarageModel(OSGi.getInstance().name_6(name_381)).getObjectItemParams(param1);
+         var _loc2_:name_324 = GarageModel(OSGi.getInstance().getService(name_381)).getObjectItemParams(param1);
          if(_loc2_ != null)
          {
             return _loc2_.name_1360 < 3 && _loc2_.modifications.length > 1;
@@ -86,7 +86,7 @@ package package_96
       
       private function method_906(param1:name_70) : Boolean
       {
-         var _loc2_:name_324 = GarageModel(OSGi.getInstance().name_6(name_381)).getObjectItemParams(param1);
+         var _loc2_:name_324 = GarageModel(OSGi.getInstance().getService(name_381)).getObjectItemParams(param1);
          if(_loc2_ != null)
          {
             return _loc2_.modifications.length > 1;
@@ -96,7 +96,7 @@ package package_96
       
       public function onDoubleClick() : *
       {
-         if(name_381(OSGi.getInstance().name_6(name_381)).getView().isItemInDepot(this.item.name))
+         if(name_381(OSGi.getInstance().getService(name_381)).getView().isItemInDepot(this.item.name))
          {
             if(!var_641.name_1365(this.item))
             {
@@ -114,10 +114,10 @@ package package_96
          var _loc2_:name_324 = null;
          var _loc3_:int = 0;
          var _loc4_:int = 0;
-         var _loc7_:* = name_381(OSGi.getInstance().name_6(name_381)).canBuy(param1.name);
+         var _loc7_:* = name_381(OSGi.getInstance().getService(name_381)).canBuy(param1.name);
          if(this.var_643.visible)
          {
-            _loc2_ = GarageModel(OSGi.getInstance().name_6(name_381)).getObjectItemParams(this.item);
+            _loc2_ = GarageModel(OSGi.getInstance().getService(name_381)).getObjectItemParams(this.item);
             if(_loc2_ != null)
             {
                _loc4_ = !_loc2_.name_1359 ? _loc2_.name_1372 : _loc2_.price;
@@ -135,7 +135,7 @@ package package_96
          var _loc4_:String = String(localeService.getText(name_390.name_1366));
          if(this.method_906(param1))
          {
-            _loc3_ = GarageModel(OSGi.getInstance().name_6(name_381)).getObjectItemParams(this.item);
+            _loc3_ = GarageModel(OSGi.getInstance().getService(name_381)).getObjectItemParams(this.item);
             this.var_643.name_1342(_loc4_ + " " + "M" + (!_loc3_.name_1359 ? _loc3_.name_1360 + 1 : _loc3_.name_1360));
          }
          else
@@ -147,7 +147,7 @@ package package_96
       public function updateActionElements(param1:DisplayObjectContainer, param2:IEventDispatcher, param3:name_70) : void
       {
          this.item = param3;
-         if(Boolean(name_381(OSGi.getInstance().name_6(name_381)).canBuy(param3.name)) || !var_641.name_1369(param3))
+         if(Boolean(name_381(OSGi.getInstance().getService(name_381)).canBuy(param3.name)) || !var_641.name_1369(param3))
          {
             var_641.name_1371();
          }
@@ -163,18 +163,18 @@ package package_96
       
       private function method_898() : void
       {
-         var _loc1_:name_324 = GarageModel(OSGi.getInstance().name_6(name_381)).getObjectItemParams(this.item);
+         var _loc1_:name_324 = GarageModel(OSGi.getInstance().getService(name_381)).getObjectItemParams(this.item);
          if(_loc1_ == null)
          {
             return;
          }
          if(!_loc1_.name_1359)
          {
-            GarageModel(OSGi.getInstance().name_6(name_381)).garageWindow.onModButtonClick(null);
+            GarageModel(OSGi.getInstance().getService(name_381)).garageWindow.onModButtonClick(null);
          }
          else
          {
-            GarageModel(OSGi.getInstance().name_6(name_381)).garageWindow.onButtonBuyClick(null);
+            GarageModel(OSGi.getInstance().getService(name_381)).garageWindow.onButtonBuyClick(null);
          }
       }
       
@@ -231,7 +231,7 @@ package package_96
          {
             if(battleInfoService.reArmorEnabled)
             {
-               _loc1_ = delayMountCategoryService.name_1377(GarageModel(OSGi.getInstance().name_6(name_381)).getObjectItemParams(this.item).baseItemId);
+               _loc1_ = delayMountCategoryService.name_1377(GarageModel(OSGi.getInstance().getService(name_381)).getObjectItemParams(this.item).baseItemId);
                if(_loc1_.name_1368() > 0)
                {
                   this.var_642.startTimer(_loc1_);

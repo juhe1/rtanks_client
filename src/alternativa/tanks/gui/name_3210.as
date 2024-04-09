@@ -1,6 +1,6 @@
 package alternativa.tanks.gui
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.labels.name_2551;
    import flash.display.Bitmap;
    import flash.display.BitmapData;
@@ -15,7 +15,7 @@ package alternativa.tanks.gui
       
       public var var_1747:Bitmap;
       
-      private var label:name_1134;
+      private var label:LabelBase;
       
       private var var_3607:String;
       

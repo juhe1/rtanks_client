@@ -1,7 +1,7 @@
 package package_1
 {
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.osgi.OSGi;
    import alternativa.tanks.battle.BattleRunner;
    import alternativa.tanks.battle.name_295;
@@ -10,12 +10,12 @@ package package_1
    import alternativa.tanks.models.battlefield.BattlefieldModel;
    import alternativa.tanks.models.battlefield.gui.chat.BattleChat;
    import alternativa.tanks.models.battlefield.name_284;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.dom.hud.KeyPointView;
    import alternativa.tanks.models.tank.ITankModelEvents;
    import alternativa.tanks.models.tank.TankModel;
    import alternativa.tanks.models.tank.class_12;
-   import alternativa.tanks.models.tank.class_7;
+   import alternativa.tanks.models.tank.ITank;
    import alternativa.tanks.models.tank.name_315;
    import alternativa.tanks.models.tank.spawn.ITankSpawnerEvents;
    import alternativa.tanks.models.tank.spawn.name_136;
@@ -24,11 +24,11 @@ package package_1
    import alternativa.tanks.models.tank.turret.name_111;
    import alternativa.tanks.models.weapon.shaft.ReticleDisplay;
    import alternativa.tanks.models.weapon.shotgun.ShotgunModel;
-   import alternativa.tanks.service.settings.name_108;
+   import alternativa.tanks.service.settings.IBattleSettings;
    import com.alternativaplatform.projects.tanks.client.models.battlefield.name_306;
    import package_100.name_310;
    import package_101.name_291;
-   import package_11.name_23;
+   import package_11.IBundleActivator;
    import package_12.name_24;
    import package_18.name_34;
    import package_31.class_1;
@@ -99,7 +99,7 @@ package package_1
    import package_92.WeaponCommonModel;
    import package_93.name_303;
    import package_94.name_293;
-   import package_95.name_298;
+   import package_95.IStorageService;
    import package_96.name_311;
    import package_97.ParaBonus;
    import package_98.name_304;
@@ -112,34 +112,34 @@ package package_1
    import projects.tanks.client.battlefield.models.battle.battlefield.billboard.name_307;
    import projects.tanks.client.battlefield.models.tankparts.weapons.shotgun.name_289;
    
-   public class BattlefieldModelActivator implements name_23
+   public class BattlefieldModelActivator implements IBundleActivator
    {
        
       
-      public var models:Vector.<name_66>;
+      public var models:Vector.<IModel>;
       
       public var var_71:BattlefieldModel;
       
       public function BattlefieldModelActivator()
       {
-         this.models = new Vector.<name_66>();
+         this.models = new Vector.<IModel>();
          super();
       }
       
       public function start(param1:OSGi) : void
       {
-         var _loc2_:name_32 = param1.name_6(name_32) as name_32;
-         var _loc3_:name_29 = param1.name_6(name_29) as name_29;
+         var _loc2_:name_32 = param1.getService(name_32) as name_32;
+         var _loc3_:name_29 = param1.getService(name_29) as name_29;
          var _loc4_:name_96 = new BattleEventDispatcherImpl();
-         param1.name_1(name_96,_loc4_);
-         param1.name_1(name_95,new TankUsersRegistryServiceImpl());
-         var _loc5_:name_276 = name_276(param1.name_6(name_276));
-         var _loc6_:name_24 = name_24(param1.name_6(name_24));
+         param1.registerService(name_96,_loc4_);
+         param1.registerService(name_95,new TankUsersRegistryServiceImpl());
+         var _loc5_:name_276 = name_276(param1.getService(name_276));
+         var _loc6_:name_24 = name_24(param1.getService(name_24));
          param1.name_40(name_34,BattleInputServiceImpl,"fullScreenService");
-         param1.name_40(name_108,BattleInputServiceImpl,"settingsService");
+         param1.name_40(IBattleSettings,BattleInputServiceImpl,"settingsService");
          var _loc7_:BattleInputServiceImpl = new BattleInputServiceImpl(_loc6_.stage,_loc5_);
-         param1.name_1(name_245,_loc7_);
-         param1.name_1(name_272,new LightingEffectsService());
+         param1.registerService(name_245,_loc7_);
+         param1.registerService(name_272,new LightingEffectsService());
          param1.name_40(name_272,KeyPointView,"lightingEffectsService");
          param1.name_40(name_272,name_313,"lightingEffectsService");
          param1.name_40(name_272,ParaBonus,"lightingService");
@@ -156,50 +156,50 @@ package package_1
          param1.name_40(name_245,WeaponCommonModel,"battleInputService");
          param1.name_40(name_245,CTFModel,"battleInputService");
          param1.name_40(name_245,FollowCameraController,"battleInputService");
-         param1.name_40(name_108,FollowCameraController,"settings");
+         param1.name_40(IBattleSettings,FollowCameraController,"settings");
          param1.name_40(name_24,FollowCameraController,"display");
-         param1.name_40(name_298,FollowCameraController,"storageService");
+         param1.name_40(IStorageService,FollowCameraController,"storageService");
          param1.name_40(name_245,InventoryModel,"battleInputService");
          param1.name_40(name_274,InventoryModel,"battleInfoService");
          param1.name_40(name_245,name_101,"battleInputService");
          param1.name_40(name_245,name_160,"battleInputService");
          param1.name_40(name_245,name_111,"battleInputService");
-         param1.name_40(name_108,name_111,"settingsService");
+         param1.name_40(IBattleSettings,name_111,"settingsService");
          param1.name_40(name_245,name_281,"battleInputService");
          param1.name_40(name_24,name_281,"display");
-         param1.name_40(name_108,name_281,"settings");
+         param1.name_40(IBattleSettings,name_281,"settings");
          param1.name_40(name_245,BattleChat,"battleInputLockService");
          param1.name_40(name_34,BattleChat,"fullscreenService");
          param1.name_40(name_102,BattleChat,"localeService");
          param1.name_40(name_102,ControlsHelper,"localeService");
          param1.name_40(name_245,TableStatistics,"battleInputService");
-         param1.name_40(name_108,BonusRegionService,"settings");
-         _loc3_.add(this.var_71 = new BattlefieldModel(),Vector.<Class>([name_306,name_83,class_11,class_1]));
-         param1.name_1(name_83,this.var_71);
-         param1.name_1(name_312,new name_292());
+         param1.name_40(IBattleSettings,BonusRegionService,"settings");
+         _loc3_.add(this.var_71 = new BattlefieldModel(),Vector.<Class>([name_306,IBattleField,class_11,class_1]));
+         param1.registerService(IBattleField,this.var_71);
+         param1.registerService(name_312,new name_292());
          this.method_17(_loc2_,new TankExplosionModel());
          this.method_17(_loc2_,new CTFModel());
          this.method_17(_loc2_,new BattleMinesModel());
          param1.name_40(name_13,name_271,"loaderWindowService");
-         param1.name_40(name_83,name_271,"battleSerivce");
+         param1.name_40(IBattleField,name_271,"battleSerivce");
          param1.name_40(name_94,name_271,"lobbyLayoutService");
-         param1.name_1(name_211,new name_271());
+         param1.registerService(name_211,new name_271());
          param1.name_40(name_211,BattlefieldModel,"battleReadinessService");
          param1.name_40(name_211,TankModel,"battleReadinessService");
          param1.name_40(name_24,name_284,"display");
-         param1.name_40(name_83,name_284,"battleService");
-         param1.name_40(name_83,ReticleDisplay,"battleService");
-         param1.name_40(name_83,name_310,"battleService");
-         param1.name_40(name_83,name_300,"battleService");
-         param1.name_40(name_83,name_285,"battleService");
-         param1.name_40(name_83,name_283,"battleService");
-         param1.name_40(name_83,BattleRunner,"battleService");
-         param1.name_40(name_83,BattleView3D,"battleService");
-         param1.name_40(name_83,name_111,"battleService");
-         param1.name_40(name_83,name_295,"battleService");
-         _loc3_.name_275(class_7,name_315);
-         _loc3_.name_270(class_7,ITankModelEvents);
-         _loc3_.add(new TankModel(),Vector.<Class>([class_10,name_170,name_287,class_7,class_12]));
+         param1.name_40(IBattleField,name_284,"battleService");
+         param1.name_40(IBattleField,ReticleDisplay,"battleService");
+         param1.name_40(IBattleField,name_310,"battleService");
+         param1.name_40(IBattleField,name_300,"battleService");
+         param1.name_40(IBattleField,name_285,"battleService");
+         param1.name_40(IBattleField,name_283,"battleService");
+         param1.name_40(IBattleField,BattleRunner,"battleService");
+         param1.name_40(IBattleField,BattleView3D,"battleService");
+         param1.name_40(IBattleField,name_111,"battleService");
+         param1.name_40(IBattleField,name_295,"battleService");
+         _loc3_.name_275(ITank,name_315);
+         _loc3_.name_270(ITank,ITankModelEvents);
+         _loc3_.add(new TankModel(),Vector.<Class>([class_10,name_170,name_287,ITank,class_12]));
          _loc3_.name_275(name_277,name_299);
          _loc3_.name_270(name_277,LaserPointerEvents);
          _loc3_.name_275(name_279,name_294);
@@ -226,15 +226,15 @@ package package_1
          param1.name_40(class_12,name_286,"localTankInfoService");
          param1.name_40(class_12,BattleRunner,"localTankInfoService");
          param1.name_40(name_24,SpectatorCameraController,"display");
-         param1.name_40(name_83,SpectatorCameraController,"battleService");
+         param1.name_40(IBattleField,SpectatorCameraController,"battleService");
          param1.name_40(name_245,SpectatorCameraController,"battleInputService");
          param1.name_40(name_308,PlayerCamera,"contextMenuService");
       }
       
       public function stop(param1:OSGi) : void
       {
-         var _loc3_:name_66 = null;
-         var _loc2_:name_32 = param1.name_6(name_32) as name_32;
+         var _loc3_:IModel = null;
+         var _loc2_:name_32 = param1.getService(name_32) as name_32;
          while(this.models.length > 0)
          {
             _loc3_ = this.models.pop();
@@ -242,7 +242,7 @@ package package_1
          }
       }
       
-      private function method_17(param1:name_32, param2:name_66) : void
+      private function method_17(param1:name_32, param2:IModel) : void
       {
          param1.add(param2);
          this.models.push(param2);

@@ -1,8 +1,8 @@
 package alternativa.tanks.gui.dailyquests.window
 {
    import alternativa.osgi.OSGi;
-   import controls.base.name_1134;
-   import controls.name_1891;
+   import controls.base.LabelBase;
+   import controls.TankWindowInner;
    import flash.display.Bitmap;
    import flash.display.BitmapData;
    import flash.display.BlendMode;
@@ -24,7 +24,7 @@ package alternativa.tanks.gui.dailyquests.window
       
       private static const const_2604:Class = name_3308;
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
       private static const const_2605:int = 570;
       
@@ -43,13 +43,13 @@ package alternativa.tanks.gui.dailyquests.window
       
       private var var_3361:Bitmap;
       
-      private var var_3363:name_1891;
+      private var var_3363:TankWindowInner;
       
       private var var_3360:Bitmap;
       
       private var var_3359:Bitmap;
       
-      private var var_3362:name_1134;
+      private var var_3362:LabelBase;
       
       private var currentQuestStreak:int;
       
@@ -69,7 +69,7 @@ package alternativa.tanks.gui.dailyquests.window
          this.var_3361 = new Bitmap(new const_2604().bitmapData);
          this.var_3360 = new Bitmap();
          this.var_3359 = new Bitmap();
-         this.var_3362 = new name_1134();
+         this.var_3362 = new LabelBase();
          this.questImage = new Bitmap();
          this.rewardImage = new Bitmap();
          this.var_3365 = new name_3306(0.3,0.6);
@@ -133,7 +133,7 @@ package alternativa.tanks.gui.dailyquests.window
       {
          if(this.var_3363 == null)
          {
-            this.var_3363 = new name_1891(this.var_2538,50,name_1891.name_1428);
+            this.var_3363 = new TankWindowInner(this.var_2538,50,TankWindowInner.GREEN);
             this.var_3363.x = 44 + 5;
             this.var_3363.y = 5;
             addChild(this.var_3363);

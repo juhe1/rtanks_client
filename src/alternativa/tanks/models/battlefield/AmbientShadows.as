@@ -2,7 +2,7 @@ package alternativa.tanks.models.battlefield
 {
    import alternativa.engine3d.core.Camera3D;
    import alternativa.engine3d.core.Shadow;
-   import alternativa.tanks.utils.name_75;
+   import alternativa.tanks.utils.MathUtils;
    import flash.utils.Dictionary;
    
    public class AmbientShadows
@@ -104,7 +104,7 @@ package alternativa.tanks.models.battlefield
       
       private function method_2186(param1:Number) : void
       {
-         var _loc2_:Number = name_75.method_218((param1 - 20) / (60 - 20),0,1);
+         var _loc2_:Number = MathUtils.method_218((param1 - 20) / (60 - 20),0,1);
          var _loc3_:Number = 1000 + _loc2_ * (4000 - 1000);
          this.nearDistance += (_loc3_ - this.nearDistance) * 0.01;
          var _loc4_:Number = 2000 + _loc2_ * (7000 - 2000);

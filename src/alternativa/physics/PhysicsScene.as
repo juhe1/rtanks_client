@@ -35,7 +35,7 @@ package alternativa.physics
       
       public var name_247:name_1083;
       
-      public var bodies:Vector.<name_660>;
+      public var bodies:Vector.<Body>;
       
       public var var_1678:int;
       
@@ -49,22 +49,22 @@ package alternativa.physics
       
       public function PhysicsScene()
       {
-         this.bodies = new Vector.<name_660>();
+         this.bodies = new Vector.<Body>();
          super();
          this.var_1677 = new IslandsGenerator(this);
       }
       
-      public function name_1395(param1:name_660) : void
+      public function name_1395(param1:Body) : void
       {
          param1.var_318 = this;
          param1.id = this.bodies.length;
          this.bodies.push(param1);
       }
       
-      public function name_1392(param1:name_660) : void
+      public function name_1392(param1:Body) : void
       {
          var _loc2_:int = 0;
-         var _loc3_:name_660 = null;
+         var _loc3_:Body = null;
          var _loc4_:int = this.bodies.indexOf(param1);
          if(_loc4_ > -1)
          {
@@ -97,7 +97,7 @@ package alternativa.physics
       
       private function method_1859(param1:Number) : void
       {
-         var _loc2_:name_660 = null;
+         var _loc2_:Body = null;
          var _loc3_:int = int(this.bodies.length);
          var _loc4_:int = 0;
          while(_loc4_ < _loc3_)
@@ -122,7 +122,7 @@ package alternativa.physics
       
       private function method_1863() : void
       {
-         var _loc1_:name_660 = null;
+         var _loc1_:Body = null;
          var _loc2_:int = int(this.bodies.length);
          var _loc3_:int = 0;
          while(_loc3_ < _loc2_)
@@ -192,7 +192,7 @@ package alternativa.physics
       
       private function method_1857(param1:Number) : void
       {
-         var _loc2_:name_660 = null;
+         var _loc2_:Body = null;
          var _loc3_:int = int(this.bodies.length);
          var _loc4_:int = 0;
          while(_loc4_ < _loc3_)
@@ -205,7 +205,7 @@ package alternativa.physics
       
       private function method_1864(param1:Number) : void
       {
-         var _loc2_:name_660 = null;
+         var _loc2_:Body = null;
          var _loc3_:int = int(this.bodies.length);
          var _loc4_:int = 0;
          while(_loc4_ < _loc3_)
@@ -222,7 +222,7 @@ package alternativa.physics
       
       private function method_1858(param1:Number) : void
       {
-         var _loc2_:name_660 = null;
+         var _loc2_:Body = null;
          var _loc3_:name_886 = null;
          var _loc4_:int = int(this.bodies.length);
          var _loc5_:int = 0;

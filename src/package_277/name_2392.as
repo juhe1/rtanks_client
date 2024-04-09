@@ -1,12 +1,12 @@
 package package_277
 {
-   import alternativa.physics.collision.name_774;
+   import alternativa.physics.collision.CollisionPrimitive;
    import alternativa.physics.name_888;
    import package_37.Matrix4;
    import package_37.Vector3;
    import package_61.name_767;
    
-   public class name_2392 extends name_774
+   public class name_2392 extends CollisionPrimitive
    {
       
       private static const const_2312:Number = 0.005;
@@ -51,7 +51,7 @@ package package_277
          return _loc5_;
       }
       
-      override public function method_413(param1:name_774) : name_774
+      override public function method_413(param1:CollisionPrimitive) : CollisionPrimitive
       {
          var _loc2_:name_2392 = param1 as name_2392;
          if(_loc2_ == null)
@@ -63,7 +63,7 @@ package package_277
          return this;
       }
       
-      override protected function method_1641() : name_774
+      override protected function method_1641() : CollisionPrimitive
       {
          return new name_2392(this.hs,collisionGroup,material);
       }

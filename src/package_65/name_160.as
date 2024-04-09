@@ -2,10 +2,10 @@ package package_65
 {
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
+   import alternativa.tanks.models.tank.ITank;
    import alternativa.tanks.models.tank.turret.name_914;
    import alternativa.tanks.vehicles.tanks.Tank;
-   import alternativa.tanks.vehicles.tanks.name_910;
+   import alternativa.tanks.vehicles.tanks.Turret;
    import package_1.Main;
    import package_289.TurretControlType;
    import package_32.name_245;
@@ -32,7 +32,7 @@ package package_65
          super();
          this.tankData = param1;
          this.var_403 = TurretControlType.ROTATION_DIRECTION;
-         this.var_13 = Main.osgi.name_6(class_7) as TankModel;
+         this.var_13 = Main.osgi.getService(ITank) as TankModel;
          param1.sounds.name_957(false);
       }
       
@@ -56,7 +56,7 @@ package package_65
                }
             }
             this.var_403 = TurretControlType.ROTATION_DIRECTION;
-            _loc2_.method_495().name_1087(TurretControlType.ROTATION_DIRECTION,_loc3_,name_910.name_965);
+            _loc2_.method_495().name_1087(TurretControlType.ROTATION_DIRECTION,_loc3_,Turret.name_965);
             if(this.tankData.local)
             {
                battleInputService.name_1089();
@@ -65,17 +65,17 @@ package package_65
          else if((this.tankData.ctrlBits & TankModel.CENTER_TURRET) != 0)
          {
             this.var_403 = TurretControlType.TARGET_ANGLE_LOCAL;
-            _loc2_.method_495().name_1087(TurretControlType.TARGET_ANGLE_LOCAL,0,name_910.name_965);
+            _loc2_.method_495().name_1087(TurretControlType.TARGET_ANGLE_LOCAL,0,Turret.name_965);
          }
          else if(FollowCameraController.name_944() != FollowCameraController.name_1088 && this.tankData.local)
          {
             if(this.var_403 != TurretControlType.TARGET_ANGLE_WORLD)
             {
-               _loc2_.method_495().name_1087(TurretControlType.ROTATION_DIRECTION,0,name_910.name_965);
+               _loc2_.method_495().name_1087(TurretControlType.ROTATION_DIRECTION,0,Turret.name_965);
             }
             else
             {
-               _loc2_.method_495().name_1087(TurretControlType.TARGET_ANGLE_WORLD,this.var_404,name_910.name_965);
+               _loc2_.method_495().name_1087(TurretControlType.TARGET_ANGLE_WORLD,this.var_404,Turret.name_965);
             }
          }
          if(this.playSound)

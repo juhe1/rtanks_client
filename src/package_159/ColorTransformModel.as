@@ -1,6 +1,6 @@
 package package_159
 {
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import package_361.class_81;
    import package_361.class_82;
    import package_4.ClientObject;
@@ -12,7 +12,7 @@ package package_159
       public function ColorTransformModel()
       {
          super();
-         var_365.push(name_66,name_1737);
+         _interfaces.push(IModel,name_1737);
       }
       
       public function initObject(param1:ClientObject, param2:Array) : void

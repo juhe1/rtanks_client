@@ -1,7 +1,7 @@
 package package_22
 {
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import flash.utils.IDataInput;
    import package_1.Main;
    import package_13.Long;
@@ -15,7 +15,7 @@ package package_22
    import package_7.name_32;
    import package_7.name_46;
    
-   public class DispatcherModel implements name_66
+   public class DispatcherModel implements IModel
    {
       
       private static const const_27:String = "DISPATCHER";
@@ -28,12 +28,12 @@ package package_22
       public function DispatcherModel()
       {
          super();
-         this.var_213 = name_46(Main.osgi.name_6(name_46));
+         this.var_213 = name_46(Main.osgi.getService(name_46));
       }
       
       public function get interfaces() : Vector.<Class>
       {
-         return Vector.<Class>([name_66]);
+         return Vector.<Class>([IModel]);
       }
       
       public function method_305(param1:ClientObject, param2:Object) : void

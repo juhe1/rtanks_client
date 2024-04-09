@@ -21,7 +21,7 @@ package package_91
       
       public function ShotgunSFXModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_288(this);
          this.var_25 = Long.getLong(179431987,214974876);
          super();

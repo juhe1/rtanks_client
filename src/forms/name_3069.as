@@ -1,8 +1,8 @@
 package forms
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.base.name_2016;
-   import controls.base.name_998;
+   import controls.base.DefaultButtonBase;
    import flash.display.Sprite;
    import flash.events.Event;
    import flash.events.FocusEvent;
@@ -21,17 +21,17 @@ package forms
       private static const const_2746:int = 10;
        
       
-      public var name_1573:name_998;
+      public var name_1573:DefaultButtonBase;
       
-      public var name_2437:name_998;
+      public var name_2437:DefaultButtonBase;
       
       public var email:name_2016;
       
       public var name_2430:name_3000;
       
-      private var label:name_1134;
+      private var label:LabelBase;
       
-      private var bg:name_1838;
+      private var bg:TankWindowWithHeader;
       
       private var var_2981:int = 280;
       
@@ -42,9 +42,9 @@ package forms
          var _loc1_:name_102 = null;
          var _loc2_:int = 0;
          super();
-         _loc1_ = Main.osgi.name_6(name_102) as name_102;
-         this.bg = name_1838.name_1844(_loc1_.getText(name_390.const_1281),this.var_2981,this.var_2992);
-         this.label = new name_1134();
+         _loc1_ = Main.osgi.getService(name_102) as name_102;
+         this.bg = TankWindowWithHeader.createWindow(_loc1_.getText(name_390.const_1281),this.var_2981,this.var_2992);
+         this.label = new LabelBase();
          addChild(this.bg);
          addChild(this.label);
          this.label.multiline = true;
@@ -53,8 +53,8 @@ package forms
          this.label.x = 20 + 5;
          this.label.y = 20;
          _loc2_ = this.label.y + this.label.height - 6;
-         this.name_1573 = new name_998();
-         this.name_2437 = new name_998();
+         this.name_1573 = new DefaultButtonBase();
+         this.name_2437 = new DefaultButtonBase();
          this.email = new name_2016();
          addChild(this.name_1573);
          addChild(this.name_2437);

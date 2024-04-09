@@ -21,7 +21,7 @@ package package_236
       
       public function ClanInfoModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_611(this);
          this.var_25 = Long.getLong(2040178503,1134391066);
          super();

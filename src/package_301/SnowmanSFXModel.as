@@ -5,14 +5,14 @@ package package_301
    import alternativa.model.class_11;
    import alternativa.tanks.engine3d.name_1072;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.sfx.LightDataManager;
    import alternativa.tanks.models.sfx.name_1096;
    import alternativa.tanks.models.sfx.name_1716;
    import alternativa.tanks.models.sfx.name_2412;
    import alternativa.tanks.models.sfx.shoot.name_1187;
-   import alternativa.tanks.services.materialregistry.name_100;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import alternativa.tanks.sfx.Sound3D;
    import alternativa.tanks.sfx.Sound3DEffect;
    import alternativa.tanks.sfx.name_1070;
@@ -30,9 +30,9 @@ package package_301
    public class SnowmanSFXModel implements name_1187, class_171, class_11
    {
       
-      private static var var_58:name_100;
+      private static var var_58:IMaterialRegistry;
       
-      private static var var_138:name_118;
+      private static var var_138:IObjectPoolService;
       
       private static var var_1085:Vector3 = new Vector3();
       
@@ -42,9 +42,9 @@ package package_301
       public function SnowmanSFXModel()
       {
          super();
-         var_58 = name_100(Main.osgi.name_6(name_100));
-         var_138 = name_118(Main.osgi.name_6(name_118));
-         var_421 = Main.osgi.name_6(name_83) as BattlefieldModel;
+         var_58 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry));
+         var_138 = IObjectPoolService(Main.osgi.getService(IObjectPoolService));
+         var_421 = Main.osgi.getService(IBattleField) as BattlefieldModel;
       }
       
       public function initObject(param1:ClientObject, param2:String, param3:String, param4:String, param5:String, param6:String) : void
@@ -113,7 +113,7 @@ package package_301
          var _loc2_:name_2411 = null;
          var _loc3_:Vector.<name_1594> = null;
          var _loc4_:name_1594 = null;
-         var _loc5_:name_32 = name_32(Main.osgi.name_6(name_32));
+         var _loc5_:name_32 = name_32(Main.osgi.getService(name_32));
          var _loc6_:name_1737 = name_1737(_loc5_.method_260(param1,name_1737));
          if(_loc6_ != null)
          {

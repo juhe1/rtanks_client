@@ -2,12 +2,12 @@ package package_151
 {
    import alternativa.physics.collision.name_1083;
    import alternativa.physics.collision.name_1160;
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import alternativa.tanks.models.weapon.shared.name_1709;
    import package_37.Matrix3;
    import package_37.Vector3;
    import package_42.name_73;
-   import package_61.name_124;
+   import package_61.RayHit;
    
    public class name_1794 implements name_1160
    {
@@ -27,7 +27,7 @@ package package_151
       
       public var var_689:name_1709;
       
-      private var var_397:name_124;
+      private var var_397:RayHit;
       
       private var var_2511:Number;
       
@@ -43,11 +43,11 @@ package package_151
       
       private var var_2185:int;
       
-      private var var_2183:name_660;
+      private var var_2183:Body;
       
       public function name_1794(param1:Number, param2:int, param3:Number, param4:int, param5:Number, param6:name_1083, param7:name_1709)
       {
-         this.var_397 = new name_124();
+         this.var_397 = new RayHit();
          this.const_1854 = new Vector3();
          this.var_1724 = new Vector3();
          this.dir = new Vector3();
@@ -67,7 +67,7 @@ package package_151
          this.var_689 = param7;
       }
       
-      public function name_1453(param1:Vector3, param2:Vector3, param3:Vector3, param4:name_660, param5:Vector3) : Boolean
+      public function name_1453(param1:Vector3, param2:Vector3, param3:Vector3, param4:Body, param5:Vector3) : Boolean
       {
          this.var_2183 = param4;
          this.var_2433 = 0;
@@ -79,14 +79,14 @@ package package_151
          return this.var_2511 < this.range + 1;
       }
       
-      public function considerBody(param1:name_660) : Boolean
+      public function considerBody(param1:Body) : Boolean
       {
          return this.var_2183 != param1 || this.var_2185 > 0;
       }
       
       private function method_2502(param1:Vector3, param2:Vector3, param3:Number, param4:Vector3) : void
       {
-         var _loc7_:name_660 = null;
+         var _loc7_:Body = null;
          var _loc8_:Number = NaN;
          var _loc9_:Number = NaN;
          var _loc10_:Vector3 = null;

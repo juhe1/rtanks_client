@@ -24,11 +24,11 @@ package alternativa.tanks.models.battlefield.gui.chat
          this.var_633 = new Label();
          _loc8_ = 0;
          this.var_3048 = new BattleChatUserLabel(param4,param2,true,param3);
-         this.var_3048.name_2046(name_1135.method_2076(param6,false),true);
+         this.var_3048.name_2046(MessageColor.method_2076(param6,false),true);
          this.var_3048.method_2570(":");
          addChild(this.var_3048);
          _loc8_ += this.var_3048.width;
-         this.var_633.color = name_1135.method_2075(param6,param7,false);
+         this.var_633.color = MessageColor.method_2075(param6,param7,false);
          this.var_633.antiAliasType = AntiAliasType.ADVANCED;
          this.var_633.thickness = 150;
          this.var_633.sharpness = 200;

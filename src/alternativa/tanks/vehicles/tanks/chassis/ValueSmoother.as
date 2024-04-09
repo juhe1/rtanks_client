@@ -8,8 +8,8 @@ package alternativa.tanks.vehicles.tanks.chassis
       
       function update(param1:Number) : Number;
       
-      function name_2185(param1:Number) : void;
+      function setTargetValue(param1:Number) : void;
       
-      function name_2184() : Number;
+      function getTargetValue() : Number;
    }
 }

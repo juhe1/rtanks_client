@@ -87,7 +87,7 @@ package alternativa.tanks.loader
       
       public function LoaderTips()
       {
-         loader = OSGi.getInstance().name_6(name_13) as name_13;
+         loader = OSGi.getInstance().getService(name_13) as name_13;
          super();
       }
       

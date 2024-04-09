@@ -3,7 +3,7 @@ package alternativa.tanks.models.weapon.shaft
    import alternativa.engine3d.alternativa3d;
    import alternativa.tanks.battle.BattleUtils;
    import alternativa.tanks.models.battlefield.BattleView3D;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.utils.Colorizer;
    import flash.display.Bitmap;
    import flash.display.BitmapData;
@@ -19,7 +19,7 @@ package alternativa.tanks.models.weapon.shaft
    public class ReticleDisplay extends Sprite
    {
       
-      public static var battleService:name_83;
+      public static var battleService:IBattleField;
       
       private static var var_625:Dictionary = new Dictionary();
        

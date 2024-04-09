@@ -13,7 +13,7 @@ package package_382
    public class ChallengesProgressView extends class_122
    {
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
       private static const const_2807:Class = name_3561;
       

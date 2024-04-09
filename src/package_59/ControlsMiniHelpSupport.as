@@ -1,7 +1,7 @@
 package package_59
 {
    import alternativa.osgi.OSGi;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import flash.events.Event;
    import flash.net.SharedObject;
    import package_12.name_24;
@@ -11,21 +11,21 @@ package package_59
    import package_46.name_96;
    import package_76.FollowCameraController;
    import package_85.name_2067;
-   import package_95.name_298;
+   import package_95.IStorageService;
    import platform.client.fp10.core.type.AutoClosable;
    
    public class ControlsMiniHelpSupport implements AutoClosable, name_290
    {
       
-      public static var storageService:name_298 = OSGi.getInstance().name_6(name_298) as name_298;
+      public static var storageService:IStorageService = OSGi.getInstance().getService(IStorageService) as IStorageService;
       
-      public static var battleEventDispatcher:name_96 = OSGi.getInstance().name_6(name_96) as name_96;
+      public static var battleEventDispatcher:name_96 = OSGi.getInstance().getService(name_96) as name_96;
       
-      public static var userPropertiesService:name_561 = OSGi.getInstance().name_6(name_561) as name_561;
+      public static var userPropertiesService:name_561 = OSGi.getInstance().getService(name_561) as name_561;
       
-      public static var display:name_24 = OSGi.getInstance().name_6(name_24) as name_24;
+      public static var display:name_24 = OSGi.getInstance().getService(name_24) as name_24;
       
-      public static var var_1398:name_83 = OSGi.getInstance().name_6(name_83) as name_83;
+      public static var var_1398:IBattleField = OSGi.getInstance().getService(IBattleField) as IBattleField;
       
       private static const const_1556:String = "disableControlsMiniHelp";
        

@@ -18,13 +18,13 @@ package package_256
    public class name_813 extends ChallengesRewardingModelBase implements name_376, name_170, name_287
    {
       
-      public static var var_1578:name_547 = OSGi.getInstance().name_6(name_547) as name_547;
+      public static var var_1578:name_547 = OSGi.getInstance().getService(name_547) as name_547;
       
-      public static var var_1580:name_360 = OSGi.getInstance().name_6(name_360) as name_360;
+      public static var var_1580:name_360 = OSGi.getInstance().getService(name_360) as name_360;
       
-      public static var var_1579:name_551 = OSGi.getInstance().name_6(name_551) as name_551;
+      public static var var_1579:name_551 = OSGi.getInstance().getService(name_551) as name_551;
       
-      public static var var_1581:name_357 = OSGi.getInstance().name_6(name_357) as name_357;
+      public static var var_1581:name_357 = OSGi.getInstance().getService(name_357) as name_357;
        
       
       public function name_813()

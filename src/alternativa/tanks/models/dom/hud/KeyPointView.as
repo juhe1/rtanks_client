@@ -8,7 +8,7 @@ package alternativa.tanks.models.dom.hud
    import alternativa.osgi.OSGi;
    import alternativa.tanks.engine3d.TextureMaterialRegistry;
    import alternativa.tanks.models.battlefield.BattleView3D;
-   import alternativa.tanks.services.materialregistry.name_100;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
    import flash.display.BitmapData;
    import flash.display.BitmapDataChannel;
    import flash.display.BlendMode;
@@ -29,7 +29,7 @@ package alternativa.tanks.models.dom.hud
       
       public static var lightingEffectsService:name_272;
       
-      public static var var_58:TextureMaterialRegistry = name_100(OSGi.getInstance().name_6(name_100)).textureMaterialRegistry as TextureMaterialRegistry;
+      public static var var_58:TextureMaterialRegistry = IMaterialRegistry(OSGi.getInstance().getService(IMaterialRegistry)).textureMaterialRegistry as TextureMaterialRegistry;
       
       public static const const_413:Number = 1000;
       

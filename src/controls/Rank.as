@@ -21,7 +21,7 @@ package controls
          var _loc3_:String = null;
          if(var_1673 == null)
          {
-            _loc2_ = Main.osgi.name_6(name_102) as name_102;
+            _loc2_ = Main.osgi.getService(name_102) as name_102;
             _loc3_ = String(_loc2_.getText(TextConst.RANK_NAMES));
             var_1673 = _loc3_.split(",");
          }

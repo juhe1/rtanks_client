@@ -10,7 +10,7 @@ package package_1
    import flash.display.DisplayObjectContainer;
    import flash.display.Stage;
    import flash.events.Event;
-   import package_11.name_23;
+   import package_11.IBundleActivator;
    import package_12.name_24;
    import package_13.Long;
    import package_13.LongFactory;
@@ -46,7 +46,7 @@ package package_1
    import platform.client.fp10.core.registry.name_33;
    import platform.client.fp10.core.registry.name_45;
    
-   public class Main implements name_23
+   public class Main implements IBundleActivator
    {
       
       public static var stage:Stage;
@@ -115,12 +115,12 @@ package package_1
       
       public static function hideConsole() : void
       {
-         name_25(Main.osgi.name_6(name_25)).hideConsole();
+         name_25(Main.osgi.getService(name_25)).hideConsole();
       }
       
       public static function showConsole() : void
       {
-         name_25(Main.osgi.name_6(name_25)).showConsole();
+         name_25(Main.osgi.getService(name_25)).showConsole();
       }
       
       private static function method_3(param1:Event) : void
@@ -130,30 +130,30 @@ package package_1
       public function start(param1:OSGi) : void
       {
          osgi = param1;
-         this.logService = osgi.name_6(name_26) as name_26;
+         this.logService = osgi.getService(name_26) as name_26;
          OSGi.clientLog = new name_41(this.logService);
          osgi.name_40(name_26,Space,"logService");
-         osgi.name_1(name_45,new GameTypeRegistryImpl());
-         osgi.name_1(name_33,new SpaceRegistryImpl());
-         osgi.name_1(name_29,new ModelsRegistryImpl(osgi));
+         osgi.registerService(name_45,new GameTypeRegistryImpl());
+         osgi.registerService(name_33,new SpaceRegistryImpl());
+         osgi.registerService(name_29,new ModelsRegistryImpl(osgi));
          osgi.name_40(name_29,GameObject,"modelRegistry");
-         var _loc2_:name_24 = name_24(osgi.name_6(name_24));
+         var _loc2_:name_24 = name_24(osgi.getService(name_24));
          var _loc3_:FullscreenServiceImpl = new FullscreenServiceImpl(_loc2_,null);
-         osgi.name_1(name_34,_loc3_);
-         osgi.name_1(name_38,new name_35(_loc2_,_loc3_.name_49()));
-         osgi.name_1(name_44,new name_39());
-         osgi.name_1(name_46,new ClassRegister());
+         osgi.registerService(name_34,_loc3_);
+         osgi.registerService(name_38,new name_35(_loc2_,_loc3_.name_49()));
+         osgi.registerService(name_44,new name_39());
+         osgi.registerService(name_46,new ClassRegister());
          var _loc4_:name_32 = new ModelsRegister();
-         osgi.name_1(name_32,_loc4_);
+         osgi.registerService(name_32,_loc4_);
          var _loc5_:name_28 = new AddressService();
-         osgi.name_1(name_28,_loc5_);
+         osgi.registerService(name_28,_loc5_);
          if(_loc5_.getBaseURL() != "" && _loc5_.getBaseURL() != "undefined")
          {
             _loc5_.addEventListener(SWFAddressEvent.CHANGE,method_3);
          }
          else
          {
-            osgi.name_48(name_28);
+            osgi.unregisterService(name_28);
          }
          var _loc6_:Long = LongFactory.name_31(0,0);
          var _loc7_:Long = LongFactory.name_31(0,1);
@@ -162,27 +162,27 @@ package package_1
          _loc4_.register("0","1");
          _loc4_.register("0","2");
          _loc4_.add(new DispatcherModel());
-         stage = name_24(osgi.name_6(name_24)).stage;
-         mainContainer = name_24(osgi.name_6(name_24)).mainContainer;
-         backgroundLayer = name_24(osgi.name_6(name_24)).backgroundLayer;
-         contentLayer = name_24(osgi.name_6(name_24)).contentLayer;
-         contentUILayer = name_24(osgi.name_6(name_24)).contentUILayer;
-         systemLayer = name_24(osgi.name_6(name_24)).systemLayer;
-         systemUILayer = name_24(osgi.name_6(name_24)).systemUILayer;
-         dialogsLayer = name_24(osgi.name_6(name_24)).dialogsLayer;
-         noticesLayer = name_24(osgi.name_6(name_24)).noticesLayer;
-         cursorLayer = name_24(osgi.name_6(name_24)).cursorLayer;
-         loadingProgress = name_30(osgi.name_6(name_30)).loadingProgress;
-         osgi.name_1(name_42,new AlertService());
+         stage = name_24(osgi.getService(name_24)).stage;
+         mainContainer = name_24(osgi.getService(name_24)).mainContainer;
+         backgroundLayer = name_24(osgi.getService(name_24)).backgroundLayer;
+         contentLayer = name_24(osgi.getService(name_24)).contentLayer;
+         contentUILayer = name_24(osgi.getService(name_24)).contentUILayer;
+         systemLayer = name_24(osgi.getService(name_24)).systemLayer;
+         systemUILayer = name_24(osgi.getService(name_24)).systemUILayer;
+         dialogsLayer = name_24(osgi.getService(name_24)).dialogsLayer;
+         noticesLayer = name_24(osgi.getService(name_24)).noticesLayer;
+         cursorLayer = name_24(osgi.getService(name_24)).cursorLayer;
+         loadingProgress = name_30(osgi.getService(name_30)).loadingProgress;
+         osgi.registerService(name_42,new AlertService());
          this.commandService = new CommandServiceImpl();
-         param1.name_1(name_43,this.commandService);
-         param1.name_1(name_36,new name_37(this.logService));
+         param1.registerService(name_43,this.commandService);
+         param1.registerService(name_36,new name_37(this.logService));
          if(Boolean(this.console))
          {
             return;
          }
          this.console = this.method_5(stage);
-         param1.name_1(name_27,this.console);
+         param1.registerService(name_27,this.console);
          this.logService.name_47(new ConsoleLogTarget(this.commandService,this.console,null));
          this.method_4(stage,this.console,"show,ha,va,w,h,alpha");
       }

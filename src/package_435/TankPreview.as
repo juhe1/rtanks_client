@@ -18,7 +18,7 @@ package package_435
    import alternativa.osgi.OSGi;
    import alternativa.tanks.Tank3D;
    import controls.TankWindow2;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import flash.display.BitmapData;
    import flash.display.BlendMode;
    import flash.display.Shape;
@@ -69,7 +69,7 @@ package package_435
       
       private const const_1692:int = 11;
       
-      protected var var_1182:name_1891;
+      protected var var_1182:TankWindowInner;
       
       protected var var_546:Object3DContainer;
       
@@ -175,8 +175,8 @@ package package_435
       {
          this.dot1 = this.method_408 * 0.001;
          super();
-         var _loc3_:name_102 = name_102(Main.osgi.name_6(name_102));
-         this.var_3196 = Tanks3DSResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(Long.getLong(0,613847)));
+         var _loc3_:name_102 = name_102(Main.osgi.getService(name_102));
+         this.var_3196 = Tanks3DSResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(Long.getLong(0,613847)));
          this.var_3195 = this.method_183();
          this.var_3200 = param2;
          this.window = new TankWindow2(400,300);
@@ -203,7 +203,7 @@ package package_435
          this.camera.x = -20;
          this.camera.y = 80;
          this.var_3181.rotationZ = -150 * Math.PI / 180;
-         this.var_1182 = new name_1891(0,0,name_1891.name_2114);
+         this.var_1182 = new TankWindowInner(0,0,TankWindowInner.name_2114);
          addChild(this.var_1182);
          this.method_2948(this.var_3196);
          this.method_2946();
@@ -545,7 +545,7 @@ package package_435
       
       private function method_183() : SkyBox
       {
-         var _loc1_:ImageResource = ImageResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(Long.getLong(0,179141)));
+         var _loc1_:ImageResource = ImageResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(Long.getLong(0,179141)));
          var _loc2_:BitmapData = null;
          if(_loc1_ != null && _loc1_.isLoaded)
          {
@@ -560,7 +560,7 @@ package package_435
       
       public function hide() : void
       {
-         var _loc1_:name_560 = Main.osgi.name_6(name_560) as name_560;
+         var _loc1_:name_560 = Main.osgi.getService(name_560) as name_560;
          if(_loc1_ != null)
          {
             _loc1_.drawBg();

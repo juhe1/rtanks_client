@@ -84,7 +84,7 @@ package package_25
          var _loc2_:Long = null;
          var _loc3_:Long = null;
          var _loc4_:name_353 = this.method_373(param1);
-         var _loc5_:name_353 = this.method_373(PanelModel(OSGi.osgi.name_6(name_115)).userName);
+         var _loc5_:name_353 = this.method_373(PanelModel(OSGi.osgi.getService(name_115)).userName);
          if(!_loc5_.name_870)
          {
             return false;

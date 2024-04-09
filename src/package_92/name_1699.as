@@ -1,6 +1,6 @@
 package package_92
 {
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import package_37.Vector3;
    
    public class name_1699
@@ -9,7 +9,7 @@ package package_92
       
       public var distance:Number;
       
-      public var name_787:name_660;
+      public var name_787:Body;
       
       public var position:Vector3;
       

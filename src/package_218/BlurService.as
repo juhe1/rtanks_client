@@ -41,7 +41,7 @@ package package_218
       public function BlurService()
       {
          super();
-         this.var_1584 = name_24(OSGi.getInstance().name_6(name_24));
+         this.var_1584 = name_24(OSGi.getInstance().getService(name_24));
          this.name_688 = new Sprite();
          this.name_688.mouseEnabled = true;
          this.var_1585 = new Dictionary();

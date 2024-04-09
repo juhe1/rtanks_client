@@ -1,7 +1,7 @@
 package alternativa.tanks.gui.clanmanagement
 {
    import alternativa.tanks.gui.notinclan.dialogs.name_573;
-   import controls.base.name_998;
+   import controls.base.DefaultButtonBase;
    import controls.windowinner.WindowInner;
    import fl.controls.List;
    import flash.events.MouseEvent;
@@ -19,7 +19,7 @@ package alternativa.tanks.gui.clanmanagement
    import package_54.name_102;
    import platform.client.fp10.core.type.name_70;
    import projects.tanks.clients.fp10.libraries.name_390;
-   import utils.name_1915;
+   import utils.ScrollStyleUtils;
    
    public class ClanIncomingRequestsDialog extends name_573
    {
@@ -43,7 +43,7 @@ package alternativa.tanks.gui.clanmanagement
       
       private var var_936:HeaderClanCandidateList;
       
-      private var var_1259:name_998;
+      private var var_1259:DefaultButtonBase;
       
       private var var_1260:name_581;
       
@@ -65,11 +65,11 @@ package alternativa.tanks.gui.clanmanagement
          this.list.focusEnabled = true;
          this.list.selectable = false;
          this.list.dataProvider = this.dataProvider;
-         name_1915.name_1918(this.list);
+         ScrollStyleUtils.setGreenStyle(this.list);
          this.var_1182.addChild(this.list);
-         name_1915.name_1918(this.list);
+         ScrollStyleUtils.setGreenStyle(this.list);
          this.method_1479();
-         this.var_1259 = new name_998();
+         this.var_1259 = new DefaultButtonBase();
          this.var_1259.label = localeService.getText(name_390.const_759);
          window.addChild(this.var_1259);
          this.list.addEventListener(ClanMembersListEvent.REJECT_USER,this.method_1500);

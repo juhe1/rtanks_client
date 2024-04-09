@@ -11,20 +11,21 @@ package
    import flash.display.StageAlign;
    import flash.display.StageScaleMode;
    import flash.events.Event;
+   import juho.hacking.HackRegistry;
    import package_1.BattlefieldModelActivator;
    import package_1.Main;
    import package_1.TanksServicesActivator;
    import package_1.name_10;
-   import package_1.name_17;
-   import package_1.name_18;
-   import package_1.name_19;
+   import package_1.BattlefieldSharedActivator;
+   import package_1.TanksWarfareActivator;
+   import package_1.BattlefieldGUIActivator;
    import package_1.name_3;
    import package_1.name_4;
    import package_1.name_5;
    import package_1.name_7;
    import package_1.name_8;
    import package_10.StartupSettings;
-   import package_11.name_23;
+   import package_11.IBundleActivator;
    import package_2.AESEncrypterModel;
    import package_2.name_9;
    import package_3.GPUCapabilities;
@@ -63,7 +64,7 @@ package
       
       public var var_11:BattlefieldModelActivator;
       
-      public var var_15:name_17;
+      public var var_15:BattlefieldSharedActivator;
       
       public var panel:name_4;
       
@@ -71,9 +72,9 @@ package
       
       public var services:TanksServicesActivator;
       
-      public var warfare:name_18;
+      public var warfare:TanksWarfareActivator;
       
-      public var var_12:name_19;
+      public var var_12:BattlefieldGUIActivator;
       
       public var var_9:name_8;
       
@@ -89,7 +90,7 @@ package
       
       public var var_10:Object;
       
-      public var var_7:name_23;
+      public var var_7:IBundleActivator;
       
       public function Game()
       {
@@ -131,6 +132,7 @@ package
       
       public function SUPER(param1:Stage, param2:DisplayObjectContainer, param3:Object = null) : void
       {
+         new HackRegistry();
          if(var_2)
          {
             return;
@@ -161,7 +163,7 @@ package
                }
             }
          }
-         var _loc5_:LoaderWindow = Main.osgi.name_6(name_13) as LoaderWindow;
+         var _loc5_:LoaderWindow = Main.osgi.getService(name_13) as LoaderWindow;
          _loc5_.show();
          this.var_10 = new Object();
          var _loc6_:ObjectRegister = new ObjectRegister(null);
@@ -179,19 +181,19 @@ package
       
       private function method_2(param1:Event) : void
       {
-         var _loc2_:Network = Main.osgi.name_6(name_2) as Network;
+         var _loc2_:Network = Main.osgi.getService(name_2) as Network;
          var _loc3_:Lobby = new Lobby();
-         Main.osgi.name_1(ILobby,_loc3_);
-         Main.osgi.name_1(ClansController,new ClansController());
+         Main.osgi.registerService(ILobby,_loc3_);
+         Main.osgi.registerService(ClansController,new ClansController());
          var _loc4_:Authorization = new Authorization();
-         Main.osgi.name_1(IAuthorization,_loc4_);
+         Main.osgi.registerService(IAuthorization,_loc4_);
          var _loc5_:AESEncrypterModel = new AESEncrypterModel();
-         Main.osgi.name_1(name_9,_loc5_);
+         Main.osgi.registerService(name_9,_loc5_);
          _loc2_.addListener(_loc5_);
          _loc5_.name_16(_loc2_);
          var _loc6_:ResourceLoaderModel = new ResourceLoaderModel();
-         Main.osgi.name_1(ResourceLoaderModel,_loc6_);
-         Network(Main.osgi.name_6(name_2)).addListener(_loc6_);
+         Main.osgi.registerService(ResourceLoaderModel,_loc6_);
+         Network(Main.osgi.getService(name_2)).addListener(_loc6_);
       }
    }
 }

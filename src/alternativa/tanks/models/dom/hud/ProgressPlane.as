@@ -7,7 +7,7 @@ package alternativa.tanks.models.dom.hud
    import alternativa.engine3d.core.Wrapper;
    import alternativa.engine3d.materials.Material;
    import alternativa.engine3d.objects.Mesh;
-   import alternativa.tanks.utils.name_75;
+   import alternativa.tanks.utils.MathUtils;
    import flash.geom.Point;
    import flash.geom.Vector3D;
    
@@ -134,7 +134,7 @@ package alternativa.tanks.models.dom.hud
       
       public function method_284(param1:Number) : void
       {
-         var _loc2_:Number = name_75.method_218(param1,-100,100);
+         var _loc2_:Number = MathUtils.method_218(param1,-100,100);
          if(this.progress != _loc2_)
          {
             this.progress = _loc2_;

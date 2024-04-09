@@ -7,8 +7,8 @@ package package_88
    import alternativa.tanks.engine3d.name_1076;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
    import alternativa.tanks.service.settings.SettingsServiceEvent;
-   import alternativa.tanks.service.settings.name_108;
-   import alternativa.tanks.services.materialregistry.name_100;
+   import alternativa.tanks.service.settings.IBattleSettings;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
    import alternativa.utils.clearDictionary;
    import flash.display.BitmapData;
    import flash.utils.Dictionary;
@@ -17,15 +17,15 @@ package package_88
    import package_37.Vector3;
    import package_42.TanksCollisionDetector;
    import package_42.name_73;
-   import package_61.name_124;
+   import package_61.RayHit;
    import platform.client.fp10.core.resource.types.StubBitmapData;
    
    public class BonusRegionService
    {
       
-      public static var settings:name_108;
+      public static var settings:IBattleSettings;
       
-      private static const const_372:name_124 = new name_124();
+      private static const const_372:RayHit = new RayHit();
       
       private static const m:Matrix3 = new Matrix3();
       
@@ -223,7 +223,7 @@ package package_88
          {
             _loc2_ = method_856();
          }
-         return name_100(Main.osgi.name_6(name_100)).textureMaterialRegistry.getMaterial(name_1076.name_1079,_loc2_,2,false);
+         return IMaterialRegistry(Main.osgi.getService(IMaterialRegistry)).textureMaterialRegistry.getMaterial(name_1076.name_1079,_loc2_,2,false);
       }
       
       public function method_855(param1:name_695) : Boolean

@@ -4,7 +4,7 @@ package package_407
    import alternativa.tanks.gui.settings.SettingsWindow;
    import alternativa.tanks.gui.settings.tabs.SettingsTabView;
    import base.class_122;
-   import controls.base.name_998;
+   import controls.base.DefaultButtonBase;
    import controls.containers.StackPanel;
    import controls.containers.VerticalStackPanel;
    import flash.events.MouseEvent;
@@ -16,22 +16,22 @@ package package_407
    public class KeyBindingsPanel extends class_122
    {
       
-      public static var keysBindingService:name_276 = name_276(OSGi.getInstance().name_6(name_276));
+      public static var keysBindingService:name_276 = name_276(OSGi.getInstance().getService(name_276));
       
-      public static var localeService:name_102 = name_102(OSGi.getInstance().name_6(name_102));
+      public static var localeService:name_102 = name_102(OSGi.getInstance().getService(name_102));
        
       
       private var var_3399:VerticalStackPanel;
       
       private var var_3401:Vector.<KeyBinding>;
       
-      private var var_3400:name_998;
+      private var var_3400:DefaultButtonBase;
       
       public function KeyBindingsPanel()
       {
          this.var_3399 = new VerticalStackPanel();
          this.var_3401 = new Vector.<KeyBinding>();
-         this.var_3400 = new name_998();
+         this.var_3400 = new DefaultButtonBase();
          super();
          this.var_3400.label = localeService.getText(name_390.const_605);
          this.var_3400.width = 250;

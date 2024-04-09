@@ -2,16 +2,16 @@ package alternativa.tanks.models.tank.turret
 {
    import alternativa.osgi.OSGi;
    import alternativa.tanks.models.battlefield.logic.class_23;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.TankModel;
    import alternativa.tanks.models.tank.class_15;
-   import alternativa.tanks.models.tank.class_7;
-   import alternativa.tanks.models.tank.name_103;
+   import alternativa.tanks.models.tank.ITank;
+   import alternativa.tanks.models.tank.ITankEventDispatcher;
    import alternativa.tanks.models.tank.name_77;
-   import alternativa.tanks.service.settings.name_108;
-   import alternativa.tanks.utils.name_75;
-   import alternativa.tanks.vehicles.tanks.name_910;
+   import alternativa.tanks.service.settings.IBattleSettings;
+   import alternativa.tanks.utils.MathUtils;
+   import alternativa.tanks.vehicles.tanks.Turret;
    import package_289.TurretControlType;
    import package_289.name_1156;
    import package_32.class_2;
@@ -29,17 +29,17 @@ package alternativa.tanks.models.tank.turret
       
       public static var battleInputService:name_245;
       
-      public static var settingsService:name_108;
+      public static var settingsService:IBattleSettings;
       
-      public static var battleService:name_83;
+      public static var battleService:IBattleField;
       
-      private static var var_465:name_103 = name_103(OSGi.getInstance().name_6(name_103));
+      private static var var_465:ITankEventDispatcher = ITankEventDispatcher(OSGi.getInstance().getService(ITankEventDispatcher));
       
       private static var v:Vector3 = new Vector3();
       
       private static const const_364:Number = 0.0001;
       
-      private static const const_362:Number = name_75.method_604(1);
+      private static const const_362:Number = MathUtils.method_604(1);
       
       private static const const_363:Number = 0.1308996938995747;
        
@@ -69,7 +69,7 @@ package alternativa.tanks.models.tank.turret
          super();
          this.tankData = param1;
          this.var_403 = TurretControlType.ROTATION_DIRECTION;
-         this.var_13 = OSGi.getInstance().name_6(class_7) as TankModel;
+         this.var_13 = OSGi.getInstance().getService(ITank) as TankModel;
          battleInputService.name_219(this);
          battleInputService.method_598(this);
          battleInputService.method_602(this);
@@ -113,13 +113,13 @@ package alternativa.tanks.models.tank.turret
                {
                   this.var_403 = TurretControlType.TARGET_ANGLE_LOCAL;
                   this.var_404 = this.tankData.tank.turretDir;
-                  this.tankData.tank.method_495().name_1087(TurretControlType.TARGET_ANGLE_LOCAL,this.tankData.tank.method_495().name_937(),name_910.name_965);
+                  this.tankData.tank.method_495().name_1087(TurretControlType.TARGET_ANGLE_LOCAL,this.tankData.tank.method_495().name_937(),Turret.name_965);
                }
                else
                {
                   this.var_403 = TurretControlType.TARGET_ANGLE_WORLD;
                   this.var_404 = this.var_464;
-                  this.tankData.tank.method_495().name_1087(TurretControlType.TARGET_ANGLE_WORLD,this.var_464,name_910.name_965);
+                  this.tankData.tank.method_495().name_1087(TurretControlType.TARGET_ANGLE_WORLD,this.var_464,Turret.name_965);
                }
             }
          }
@@ -138,7 +138,7 @@ package alternativa.tanks.models.tank.turret
             FollowCameraController.name_1158(this.var_464);
             this.var_403 = TurretControlType.TARGET_ANGLE_WORLD;
             this.var_404 = this.var_464;
-            this.tankData.tank.method_495().name_1087(TurretControlType.TARGET_ANGLE_WORLD,this.var_464,name_910.name_965);
+            this.tankData.tank.method_495().name_1087(TurretControlType.TARGET_ANGLE_WORLD,this.var_464,Turret.name_965);
          }
          else if(!param1 && FollowCameraController.name_944() == FollowCameraController.name_1088)
          {
@@ -148,13 +148,13 @@ package alternativa.tanks.models.tank.turret
       
       public function method_689(param1:Number, param2:Number) : void
       {
-         this.var_464 = name_75.method_612(this.var_464 - param1 * settingsService.mouseSensitivity * 0.0001);
+         this.var_464 = MathUtils.method_612(this.var_464 - param1 * settingsService.mouseSensitivity * 0.0001);
          FollowCameraController.name_1158(this.var_464);
          if(!this.var_467)
          {
             this.var_403 = TurretControlType.TARGET_ANGLE_WORLD;
             this.var_404 = this.var_464;
-            this.tankData.tank.method_495().name_1087(TurretControlType.TARGET_ANGLE_WORLD,this.var_464,name_910.name_965);
+            this.tankData.tank.method_495().name_1087(TurretControlType.TARGET_ANGLE_WORLD,this.var_464,Turret.name_965);
          }
       }
       
@@ -179,7 +179,7 @@ package alternativa.tanks.models.tank.turret
                   {
                      this.var_464 = this.tankData.tank.method_483();
                      FollowCameraController.name_1158(this.var_464);
-                     this.tankData.tank.method_495().name_1087(TurretControlType.TARGET_ANGLE_WORLD,this.var_464,name_910.name_965);
+                     this.tankData.tank.method_495().name_1087(TurretControlType.TARGET_ANGLE_WORLD,this.var_464,Turret.name_965);
                   }
                }
                break;
@@ -212,7 +212,7 @@ package alternativa.tanks.models.tank.turret
             battleInputService.method_597(this);
             battleInputService.method_600(this);
             FollowCameraController.name_1157(FollowCameraController.name_964);
-            this.tankData.tank.method_495().name_1087(TurretControlType.ROTATION_DIRECTION,0,name_910.name_965);
+            this.tankData.tank.method_495().name_1087(TurretControlType.ROTATION_DIRECTION,0,Turret.name_965);
          }
       }
       
@@ -233,14 +233,14 @@ package alternativa.tanks.models.tank.turret
                }
                break;
             default:
-               _loc1_ = name_75.method_614(this.var_404,this.const_361.controlInput);
+               _loc1_ = MathUtils.method_614(this.var_404,this.const_361.controlInput);
                if(Math.abs(_loc1_) > const_362)
                {
                   return true;
                }
                break;
          }
-         var _loc3_:Number = name_75.method_614(this.tankData.tank.turretDir,this.const_361.direction);
+         var _loc3_:Number = MathUtils.method_614(this.tankData.tank.turretDir,this.const_361.direction);
          return Math.abs(_loc3_) > 0.1308996938995747;
       }
       

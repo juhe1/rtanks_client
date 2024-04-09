@@ -1,7 +1,7 @@
 package package_298
 {
    import alternativa.physics.ShapeContact;
-   import alternativa.physics.collision.name_774;
+   import alternativa.physics.collision.CollisionPrimitive;
    import flash.geom.Point;
    import package_37.Matrix4;
    import package_37.Vector3;
@@ -31,7 +31,7 @@ package package_298
          super();
       }
       
-      public static function method_2088(param1:name_774, param2:Vector.<Vertex>, param3:int, param4:name_774, param5:Vector.<Vertex>, param6:int, param7:Matrix4, param8:Vector.<ShapeContact>) : void
+      public static function method_2088(param1:CollisionPrimitive, param2:Vector.<Vertex>, param3:int, param4:CollisionPrimitive, param5:Vector.<Vertex>, param6:int, param7:Matrix4, param8:Vector.<ShapeContact>) : void
       {
          var _loc9_:Point = null;
          var _loc10_:Number = NaN;

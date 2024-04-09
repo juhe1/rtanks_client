@@ -8,7 +8,7 @@ package alternativa.tanks.model.item.resistance
    import package_326.class_55;
    import package_341.name_1633;
    import package_343.name_1638;
-   import package_41.name_320;
+   import package_41.ItemProperty;
    import package_96.name_311;
    
    public class ResistanceModuleModel extends class_187 implements name_1645, name_1638, class_55
@@ -31,10 +31,10 @@ package alternativa.tanks.model.item.resistance
          return this.var_2414;
       }
       
-      public function method_501() : Vector.<name_320>
+      public function method_501() : Vector.<ItemProperty>
       {
          var _loc1_:Vector.<name_323> = this.getProperties();
-         var _loc2_:Vector.<name_320> = new Vector.<name_320>(_loc1_.length);
+         var _loc2_:Vector.<ItemProperty> = new Vector.<ItemProperty>(_loc1_.length);
          var _loc3_:int = 0;
          while(_loc3_ < _loc1_.length)
          {

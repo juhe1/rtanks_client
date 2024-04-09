@@ -1,6 +1,6 @@
 package alternativa.physics
 {
-   import alternativa.physics.collision.name_774;
+   import alternativa.physics.collision.CollisionPrimitive;
    
    public class name_887
    {
@@ -17,7 +17,7 @@ package alternativa.physics
          super();
       }
       
-      public function append(param1:name_774) : void
+      public function append(param1:CollisionPrimitive) : void
       {
          var _loc2_:name_889 = name_889.create(param1);
          if(this.head == null)
@@ -33,7 +33,7 @@ package alternativa.physics
          ++this.size;
       }
       
-      public function remove(param1:name_774) : void
+      public function remove(param1:CollisionPrimitive) : void
       {
          var _loc2_:name_889 = this.method_1853(param1);
          if(_loc2_ == null)
@@ -66,7 +66,7 @@ package alternativa.physics
          --this.size;
       }
       
-      public function method_1853(param1:name_774) : name_889
+      public function method_1853(param1:CollisionPrimitive) : name_889
       {
          var _loc2_:name_889 = this.head;
          while(_loc2_ != null && _loc2_.name_899 != param1)

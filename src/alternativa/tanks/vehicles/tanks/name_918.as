@@ -1,6 +1,6 @@
 package alternativa.tanks.vehicles.tanks
 {
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import alternativa.physics.name_886;
    import alternativa.tanks.utils.EncryptedNumberImpl;
    import alternativa.tanks.utils.EncryptedNumber;
@@ -22,7 +22,7 @@ package alternativa.tanks.vehicles.tanks
       
       private const const_1620:EncryptedNumber = new EncryptedNumberImpl(Math.random() + 1);
       
-      private var name_787:name_660;
+      private var name_787:Body;
       
       private const const_1624:Vector3 = new Vector3();
       
@@ -30,7 +30,7 @@ package alternativa.tanks.vehicles.tanks
       
       private var var_1704:name_96;
       
-      public function name_918(param1:name_660, param2:name_96)
+      public function name_918(param1:Body, param2:name_96)
       {
          super();
          this.name_787 = param1;

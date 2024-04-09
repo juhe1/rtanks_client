@@ -13,7 +13,7 @@ package package_254
    import flash.utils.Dictionary;
    import package_1.TanksServicesActivator;
    import package_12.name_24;
-   import package_95.name_298;
+   import package_95.IStorageService;
    
    public class HelpService implements name_791
    {
@@ -43,26 +43,26 @@ package package_254
       {
          super();
          this.osgi = TanksServicesActivator.osgi;
-         var _loc1_:name_24 = this.osgi.name_6(name_24) as name_24;
+         var _loc1_:name_24 = this.osgi.getService(name_24) as name_24;
          this.stage = _loc1_.stage;
          this.var_1479 = _loc1_.noticesLayer;
          this.var_1477 = new Sprite();
          this.var_1481 = new Dictionary();
          this.var_1480 = new Array();
          this.var_1478 = new Array();
-         this.storage = name_298(this.osgi.name_6(name_298)).getStorage();
+         this.storage = IStorageService(this.osgi.getService(IStorageService)).getStorage();
          if(this.storage.data.helperShowNum == null)
          {
             this.storage.data.helperShowNum = new Dictionary();
          }
          this.var_1482 = this.storage.data.userRank != null && this.storage.data.userRank >= 6;
-         (this.osgi.name_6(name_25) as name_25).name_848("HELP","advancedUser: %1",this.var_1482);
+         (this.osgi.getService(name_25) as name_25).name_848("HELP","advancedUser: %1",this.var_1482);
          this.stage.addEventListener(Event.RESIZE,this.method_161);
       }
       
       public function name_981(param1:String, param2:int, param3:class_37, param4:Boolean) : void
       {
-         var _loc5_:name_25 = name_25(this.osgi.name_6(name_25));
+         var _loc5_:name_25 = name_25(this.osgi.getService(name_25));
          _loc5_.name_848("HELP","\nregisterHelper");
          _loc5_.name_848("HELP","   groupKey: %1",param1);
          _loc5_.name_848("HELP","   helperId: %1",param2);
@@ -101,7 +101,7 @@ package package_254
       
       public function name_987(param1:String, param2:int) : void
       {
-         var _loc3_:name_25 = name_25(this.osgi.name_6(name_25));
+         var _loc3_:name_25 = name_25(this.osgi.getService(name_25));
          _loc3_.name_848("HELP","\nunregisterHelper");
          _loc3_.name_848("HELP","   groupKey: %1",param1);
          _loc3_.name_848("HELP","   helperId: %1",param2);
@@ -133,7 +133,7 @@ package package_254
          var _loc7_:int = 0;
          var _loc8_:Object = null;
          var _loc9_:name_1305 = null;
-         (this.osgi.name_6(name_25) as name_25).name_848("HELP","showHelper groupKey: %1, helperId: %2, advancedUser: %3",param1,param2,this.var_1482);
+         (this.osgi.getService(name_25) as name_25).name_848("HELP","showHelper groupKey: %1, helperId: %2, advancedUser: %3",param1,param2,this.var_1482);
          if(!this.var_1482)
          {
             _loc4_ = this.method_1683(param1,param2);
@@ -195,7 +195,7 @@ package package_254
       
       public function name_1653(param1:String, param2:int) : void
       {
-         (this.osgi.name_6(name_25) as name_25).name_848("HELP","hideHelper groupKey: %1, helperId: %2",param1,param2);
+         (this.osgi.getService(name_25) as name_25).name_848("HELP","hideHelper groupKey: %1, helperId: %2",param1,param2);
          if(!this.var_1482)
          {
             this.method_1684(this.method_1683(param1,param2));
@@ -209,7 +209,7 @@ package package_254
          var _loc3_:int = 0;
          if(!this.lock)
          {
-            (this.osgi.name_6(name_25) as name_25).name_848("HELP","showHelp");
+            (this.osgi.getService(name_25) as name_25).name_848("HELP","showHelp");
             if(!this.var_1479.contains(this.var_1477))
             {
                this.var_1479.addChild(this.var_1477);
@@ -229,7 +229,7 @@ package package_254
                   _loc3_ = this.var_1478.indexOf(_loc2_.timer);
                   if(_loc3_ != -1)
                   {
-                     (this.osgi.name_6(name_25) as name_25).name_848("HELP","   helper %1 %2 timer stop",_loc2_.groupKey,_loc2_.id);
+                     (this.osgi.getService(name_25) as name_25).name_848("HELP","   helper %1 %2 timer stop",_loc2_.groupKey,_loc2_.id);
                      (this.var_1478[_loc3_] as name_1305).stop();
                      this.var_1478.splice(_loc3_,1);
                   }
@@ -244,7 +244,7 @@ package package_254
       {
          var _loc2_:class_37 = null;
          var _loc3_:int = 0;
-         (this.osgi.name_6(name_25) as name_25).name_848("HELP","hideHelp");
+         (this.osgi.getService(name_25) as name_25).name_848("HELP","hideHelp");
          var _loc1_:int = 0;
          while(_loc1_ < this.var_1480.length)
          {
@@ -252,7 +252,7 @@ package package_254
             _loc3_ = this.var_1478.indexOf(_loc2_.timer);
             if(_loc3_ != -1)
             {
-               (this.osgi.name_6(name_25) as name_25).name_848("HELP","   helper %1 %2 timer stop",_loc2_.groupKey,_loc2_.id);
+               (this.osgi.getService(name_25) as name_25).name_848("HELP","   helper %1 %2 timer stop",_loc2_.groupKey,_loc2_.id);
                (this.var_1478[_loc3_] as name_1305).stop();
                this.var_1478.splice(_loc3_,1);
             }
@@ -293,23 +293,23 @@ package package_254
       
       private function onHelperTimer(param1:TimerEvent) : void
       {
-         (this.osgi.name_6(name_25) as name_25).name_848("HELP","onHelperTimer");
+         (this.osgi.getService(name_25) as name_25).name_848("HELP","onHelperTimer");
          var _loc2_:name_1305 = param1.target as name_1305;
          var _loc3_:class_37 = _loc2_.helper;
-         (this.osgi.name_6(name_25) as name_25).name_848("HELP","   helper.groupKey: %1",_loc3_.groupKey);
-         (this.osgi.name_6(name_25) as name_25).name_848("HELP","   helper.id: %1",_loc3_.id);
+         (this.osgi.getService(name_25) as name_25).name_848("HELP","   helper.groupKey: %1",_loc3_.groupKey);
+         (this.osgi.getService(name_25) as name_25).name_848("HELP","   helper.id: %1",_loc3_.id);
          this.name_1653(_loc3_.groupKey,_loc3_.id);
       }
       
       private function onHelperClick(param1:MouseEvent) : void
       {
          var _loc2_:class_37 = null;
-         (this.osgi.name_6(name_25) as name_25).name_848("HELP","onHelperClick");
+         (this.osgi.getService(name_25) as name_25).name_848("HELP","onHelperClick");
          if(param1.target is class_37)
          {
             _loc2_ = param1.target as class_37;
-            (this.osgi.name_6(name_25) as name_25).name_848("HELP","   helper.groupKey: %1",_loc2_.groupKey);
-            (this.osgi.name_6(name_25) as name_25).name_848("HELP","   helper.id: %1",_loc2_.id);
+            (this.osgi.getService(name_25) as name_25).name_848("HELP","   helper.groupKey: %1",_loc2_.groupKey);
+            (this.osgi.getService(name_25) as name_25).name_848("HELP","   helper.id: %1",_loc2_.id);
             this.name_1653(_loc2_.groupKey,_loc2_.id);
          }
       }

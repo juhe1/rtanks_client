@@ -3,7 +3,7 @@ package package_209
    import alternativa.tanks.gui.notinclan.dialogs.name_573;
    import alternativa.tanks.models.user.name_65;
    import base.class_122;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.events.Event;
    import flash.events.MouseEvent;
    import flash.text.TextFieldAutoSize;
@@ -26,15 +26,15 @@ package package_209
       public static var clanUserInfoService:name_52;
        
       
-      private var var_1325:name_1134;
+      private var var_1325:LabelBase;
       
-      private var var_1316:name_1134;
+      private var var_1316:LabelBase;
       
       private var var_1191:name_1889;
       
-      private var var_1326:name_1134;
+      private var var_1326:LabelBase;
       
-      private var var_1189:name_1134;
+      private var var_1189:LabelBase;
       
       protected var var_1324:DeleteIndicator;
       
@@ -87,9 +87,9 @@ package package_209
          this.onRollOut();
       }
       
-      private function method_582() : name_1134
+      private function method_582() : LabelBase
       {
-         var _loc1_:name_1134 = new name_1134();
+         var _loc1_:LabelBase = new LabelBase();
          _loc1_.align = TextFormatAlign.LEFT;
          _loc1_.autoSize = TextFieldAutoSize.LEFT;
          _loc1_.color = name_1139.name_1894;

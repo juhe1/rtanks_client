@@ -1,17 +1,17 @@
 package package_149
 {
-   import alternativa.model.name_66;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.model.IModel;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
-   import alternativa.tanks.models.weapon.name_1074;
+   import alternativa.tanks.models.tank.ITank;
+   import alternativa.tanks.models.weapon.IWeaponController;
    import alternativa.tanks.models.weapon.name_911;
    import alternativa.tanks.models.weapon.shared.ConicAreaTargetSystem;
    import alternativa.tanks.vehicles.tanks.Tank;
    import flash.utils.getTimer;
    import package_1.Main;
-   import package_161.name_1448;
+   import package_161.IWeaponWeakeningModel;
    import package_163.name_1704;
    import package_278.name_1288;
    import package_278.name_905;
@@ -19,7 +19,7 @@ package package_149
    import package_357.class_72;
    import package_37.Vector3;
    import package_4.ClientObject;
-   import package_41.name_320;
+   import package_41.ItemProperty;
    import package_41.Vector3dData;
    import package_52.WeaponsManager;
    import package_6.ObjectRegister;
@@ -29,19 +29,19 @@ package package_149
    import scpacker.networking.Network;
    import scpacker.networking.name_2;
    
-   public class FreezeModel extends class_72 implements class_71, name_1074, class_70
+   public class FreezeModel extends class_72 implements class_71, IWeaponController, class_70
    {
        
       
       private var modelService:name_32;
       
-      private var var_11:name_83;
+      private var var_11:IBattleField;
       
       private var var_13:TankModel;
       
       private var var_728:name_1188;
       
-      private var var_730:name_1448;
+      private var var_730:IWeaponWeakeningModel;
       
       private var var_564:name_1707;
       
@@ -97,12 +97,12 @@ package package_149
          this.var_1027 = new Vector3();
          this.var_1030 = new Vector3();
          super();
-         var_365.push(name_66,name_1074,class_70);
+         _interfaces.push(IModel,IWeaponController,class_70);
       }
       
-      public function name_1436() : name_320
+      public function name_1436() : ItemProperty
       {
-         return name_320.name_411;
+         return ItemProperty.FREEZE_RESISTANCE;
       }
       
       public function name_1601(param1:ClientObject, param2:String) : void
@@ -178,7 +178,7 @@ package package_149
       
       private function method_1222(param1:ClientObject) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;start_fire");
+         Network(Main.osgi.getService(name_2)).send("battle;start_fire");
       }
       
       public function method_1001(param1:int, param2:Boolean) : void
@@ -194,7 +194,7 @@ package package_149
       
       private function method_1226(param1:ClientObject) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;stop_fire");
+         Network(Main.osgi.getService(name_2)).send("battle;stop_fire");
       }
       
       public function update(param1:int, param2:int) : Number
@@ -280,7 +280,7 @@ package package_149
          _loc6_.victims = param2;
          _loc6_.targetDistances = param5;
          _loc6_.tickPeriod = this.var_1024.weaponTickMsec.value;
-         Network(Main.osgi.name_6(name_2)).send("battle;fire;" + JSON.stringify(_loc6_));
+         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(_loc6_));
       }
       
       private function method_739(param1:TankData, param2:name_1451) : void
@@ -311,11 +311,11 @@ package package_149
       {
          if(this.modelService == null)
          {
-            this.modelService = name_32(Main.osgi.name_6(name_32));
-            this.var_11 = name_83(Main.osgi.name_6(name_83));
-            this.var_13 = TankModel(Main.osgi.name_6(class_7));
+            this.modelService = name_32(Main.osgi.getService(name_32));
+            this.var_11 = IBattleField(Main.osgi.getService(IBattleField));
+            this.var_13 = TankModel(Main.osgi.getService(ITank));
             this.var_728 = name_1188(this.modelService.getModelsByInterface(name_1188)[0]);
-            this.var_730 = name_1448(this.modelService.getModelsByInterface(name_1448)[0]);
+            this.var_730 = IWeaponWeakeningModel(this.modelService.getModelsByInterface(IWeaponWeakeningModel)[0]);
          }
       }
    }

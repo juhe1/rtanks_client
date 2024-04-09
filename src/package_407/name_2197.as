@@ -5,9 +5,9 @@ package package_407
    import alternativa.tanks.gui.settings.tabs.ScrollableSettingsTabView;
    import alternativa.tanks.service.settings.name_1086;
    import base.class_122;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.containers.VerticalStackPanel;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import controls.name_2873;
    import package_18.name_34;
    import package_280.name_2872;
@@ -20,7 +20,7 @@ package package_407
       
       public static const const_2223:int = 20;
       
-      public static var fullScreenService:name_34 = name_34(OSGi.getInstance().name_6(name_34));
+      public static var fullScreenService:name_34 = name_34(OSGi.getInstance().getService(name_34));
        
       
       private var mouseSensitivity:name_2873;
@@ -28,7 +28,7 @@ package package_407
       public function name_2197()
       {
          super();
-         var _loc1_:name_1891 = new name_1891(SettingsWindow.name_2112,SettingsWindow.const_1650,name_1891.name_2114);
+         var _loc1_:TankWindowInner = new TankWindowInner(SettingsWindow.name_2112,SettingsWindow.const_1650,TankWindowInner.name_2114);
          addChildAt(_loc1_,0);
          var _loc2_:VerticalStackPanel = new VerticalStackPanel();
          _loc2_.name_2121(8);
@@ -57,9 +57,9 @@ package package_407
       private function method_2692() : class_122
       {
          var _loc1_:class_122 = null;
-         var _loc2_:name_1134 = null;
+         var _loc2_:LabelBase = null;
          _loc1_ = new class_122();
-         _loc2_ = new name_1134();
+         _loc2_ = new LabelBase();
          _loc2_.text = localeService.getText(name_390.const_770) + ":";
          _loc1_.addChild(_loc2_);
          this.mouseSensitivity = new name_2873();

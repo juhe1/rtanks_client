@@ -1,13 +1,13 @@
 package package_422
 {
    import alternativa.physics.collision.name_1083;
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import alternativa.tanks.models.tank.TankData;
    import flash.utils.Dictionary;
    import package_37.Matrix3;
    import package_37.Vector3;
    import package_47.BattleTeamType;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_79.class_36;
    
    public class ShaftTargetSystem
@@ -40,7 +40,7 @@ package package_422
       
       private var var_2110:MultybodyCollisionPredicate;
       
-      private var var_711:name_124;
+      private var var_711:RayHit;
       
       private var dir:Vector3;
       
@@ -67,7 +67,7 @@ package package_422
       public function ShaftTargetSystem()
       {
          this.var_2110 = new MultybodyCollisionPredicate();
-         this.var_711 = new name_124();
+         this.var_711 = new RayHit();
          this.dir = new Vector3();
          this.const_430 = new Matrix3();
          this.const_114 = new Vector3();
@@ -177,7 +177,7 @@ package package_422
       
       private function method_2504(param1:Vector3, param2:Vector3, param3:TankData, param4:Dictionary, param5:Array, param6:Array) : Number
       {
-         var _loc7_:name_660 = null;
+         var _loc7_:Body = null;
          var _loc8_:TankData = null;
          var _loc9_:Boolean = false;
          this.var_2110.bodies = new Dictionary();
@@ -236,7 +236,7 @@ package package_422
       
       private function method_2505(param1:TankData, param2:Vector3, param3:Vector3, param4:Dictionary, param5:ShaftShotResult) : void
       {
-         var _loc6_:name_660 = null;
+         var _loc6_:Body = null;
          var _loc7_:TankData = null;
          param5.hitPoints.length = 0;
          param5.targets.length = 0;
@@ -271,7 +271,7 @@ package package_422
 }
 
 import alternativa.physics.collision.name_1160;
-import alternativa.physics.name_660;
+import alternativa.physics.Body;
 import flash.utils.Dictionary;
 
 class MultybodyCollisionPredicate implements name_1160
@@ -286,7 +286,7 @@ class MultybodyCollisionPredicate implements name_1160
       super();
    }
    
-   public function considerBody(param1:name_660) : Boolean
+   public function considerBody(param1:Body) : Boolean
    {
       return this.bodies[param1] == null;
    }

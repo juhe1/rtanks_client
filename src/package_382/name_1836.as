@@ -21,7 +21,7 @@ package package_382
       public function method_1368(param1:Vector.<name_327>) : void
       {
          this.method_2517().name_2723(param1);
-         if(name_551(OSGi.getInstance().name_6(name_551)).isWindowOpen())
+         if(name_551(OSGi.getInstance().getService(name_551)).isWindowOpen())
          {
             this.method_2517().name_2724();
          }

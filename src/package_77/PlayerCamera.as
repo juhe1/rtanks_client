@@ -1,10 +1,10 @@
 package package_77
 {
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
+   import alternativa.tanks.models.tank.ITank;
    import alternativa.tanks.vehicles.tanks.Tank;
    import flash.events.KeyboardEvent;
    import flash.ui.Keyboard;
@@ -33,7 +33,7 @@ package package_77
       {
          super();
          this.var_768 = param1;
-         this.battlefield = BattlefieldModel(Main.osgi.name_6(name_83));
+         this.battlefield = BattlefieldModel(Main.osgi.getService(IBattleField));
          contextMenuService.addEventListener(ContextMenuServiceEvent.FOCUS_ON_USER,this.method_1040);
       }
       
@@ -135,7 +135,7 @@ package package_77
          var _loc3_:TankData = null;
          if(_loc2_ != null)
          {
-            _loc3_ = TankModel(Main.osgi.name_6(class_7)).getTankData(_loc2_);
+            _loc3_ = TankModel(Main.osgi.getService(ITank)).getTankData(_loc2_);
             if(_loc3_ != null && _loc3_.userName == param1)
             {
                this.method_1037(_loc3_);

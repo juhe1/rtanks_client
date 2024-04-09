@@ -36,7 +36,7 @@ package package_113
       
       public function SocialNetworkPanelModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_362(this);
          this.var_25 = Long.getLong(439695750,646961384);
          this.var_1486 = Long.getLong(964446817,-340367443);

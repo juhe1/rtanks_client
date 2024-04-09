@@ -29,7 +29,7 @@ package package_120
          var _loc2_:Boolean = this.users[param1] != null;
          if(!_loc2_ && !this.method_1167(param1))
          {
-            Network(Main.osgi.name_6(name_2)).send("lobby;get_user_info;" + param1);
+            Network(Main.osgi.getService(name_2)).send("lobby;get_user_info;" + param1);
             this.method_1165(param1);
          }
          return _loc2_;
@@ -69,7 +69,7 @@ package package_120
       
       public function get localUserInfo() : name_350
       {
-         return this.users[name_115(OSGi.getInstance().name_6(name_115)).userName];
+         return this.users[name_115(OSGi.getInstance().getService(name_115)).userName];
       }
    }
 }

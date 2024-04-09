@@ -7,8 +7,8 @@ package alternativa.tanks.models.battlefield.effects.levelup
    import alternativa.physics.collision.name_1083;
    import alternativa.tanks.engine3d.name_1076;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
-   import alternativa.tanks.services.materialregistry.name_100;
+   import alternativa.tanks.models.battlefield.IBattleField;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
    import alternativa.tanks.vehicles.tanks.Tank;
    import flash.display.BitmapData;
    import flash.display.BlendMode;
@@ -19,14 +19,14 @@ package alternativa.tanks.models.battlefield.effects.levelup
    import package_288.name_1078;
    import package_37.Vector3;
    import package_42.name_73;
-   import package_61.name_124;
+   import package_61.RayHit;
    
    public class LevelUpEffect
    {
       
-      public static var battleService:name_83 = OSGi.getInstance().name_6(name_83) as name_83;
+      public static var battleService:IBattleField = OSGi.getInstance().getService(IBattleField) as IBattleField;
       
-      public static var userInfoService:name_408 = OSGi.getInstance().name_6(name_408) as name_408;
+      public static var userInfoService:name_408 = OSGi.getInstance().getService(name_408) as name_408;
       
       private static const const_115:Class = name_1082;
       
@@ -44,9 +44,9 @@ package alternativa.tanks.models.battlefield.effects.levelup
       
       private static const const_117:Vector3 = new Vector3(0,0,1);
       
-      private static const var_397:name_124 = new name_124();
+      private static const var_397:RayHit = new RayHit();
       
-      private static var var_58:name_100;
+      private static var var_58:IMaterialRegistry;
        
       
       private var battlefield:BattlefieldModel;
@@ -54,8 +54,8 @@ package alternativa.tanks.models.battlefield.effects.levelup
       public function LevelUpEffect()
       {
          super();
-         this.battlefield = Main.osgi.name_6(name_83) as BattlefieldModel;
-         var_58 = name_100(Main.osgi.name_6(name_100));
+         this.battlefield = Main.osgi.getService(IBattleField) as BattlefieldModel;
+         var_58 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry));
       }
       
       private static function method_578(param1:Number, param2:Number, param3:Number, param4:Number) : Number

@@ -32,7 +32,7 @@ package package_188
       {
          super();
          this.osgi = TanksServicesActivator.osgi;
-         var _loc1_:name_24 = this.osgi.name_6(name_24) as name_24;
+         var _loc1_:name_24 = this.osgi.getService(name_24) as name_24;
          this.stage = _loc1_.stage;
          this.var_1524 = _loc1_.backgroundLayer;
          this.bg = new Shape();

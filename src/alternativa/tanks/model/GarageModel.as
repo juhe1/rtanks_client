@@ -3,7 +3,7 @@ package alternativa.tanks.model
    import alternativa.engine3d.materials.TextureResourcesRegistry;
    import alternativa.model.class_11;
    import alternativa.model.class_52;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.osgi.OSGi;
    import alternativa.tanks.gui.GarageWindow;
    import alternativa.tanks.gui.name_1532;
@@ -38,7 +38,7 @@ package alternativa.tanks.model
    import package_31.name_115;
    import package_34.class_3;
    import package_4.ClientObject;
-   import package_41.name_320;
+   import package_41.ItemProperty;
    import package_53.name_94;
    import package_54.name_102;
    import package_60.TextConst;
@@ -57,9 +57,9 @@ package alternativa.tanks.model
    public class GarageModel extends class_53 implements class_49, class_11, IResourceLoadingListener, name_381, class_50, class_3, name_979, class_51, class_52
    {
       
-      public static var lobbyLayoutService:name_94 = OSGi.getInstance().name_6(name_94) as name_94;
+      public static var lobbyLayoutService:name_94 = OSGi.getInstance().getService(name_94) as name_94;
       
-      public static var battleInfoService:name_274 = OSGi.getInstance().name_6(name_274) as name_274;
+      public static var battleInfoService:name_274 = OSGi.getInstance().getService(name_274) as name_274;
       
       public static var var_812:Dictionary;
       
@@ -170,22 +170,22 @@ package alternativa.tanks.model
       {
          this.items = new Dictionary();
          super();
-         var_365.push(name_66);
-         var_365.push(name_381);
-         var_365.push(class_49);
-         var_365.push(class_11);
-         var_365.push(class_50);
-         var_365.push(class_51);
+         _interfaces.push(IModel);
+         _interfaces.push(name_381);
+         _interfaces.push(class_49);
+         _interfaces.push(class_11);
+         _interfaces.push(class_50);
+         _interfaces.push(class_51);
          this.var_83 = Main.systemLayer;
          var_812 = new Dictionary();
          mounted = new Vector.<String>();
          mounted.push("");
          mounted.push("");
          mounted.push("");
-         this.dialogsLayer = (Main.osgi.name_6(name_24) as name_24).dialogsLayer as DisplayObjectContainer;
+         this.dialogsLayer = (Main.osgi.getService(name_24) as name_24).dialogsLayer as DisplayObjectContainer;
       }
       
-      public static function method_1095(param1:Array, param2:name_320) : String
+      public static function method_1095(param1:Array, param2:ItemProperty) : String
       {
          var _loc3_:name_323 = null;
          var _loc4_:int = 0;
@@ -267,7 +267,7 @@ package alternativa.tanks.model
       public function initObject(param1:ClientObject, param2:String, param3:Number, param4:Long, param5:Network) : void
       {
          this.var_827 = param4;
-         this.localeService = Main.osgi.name_6(name_102) as name_102;
+         this.localeService = Main.osgi.getService(name_102) as name_102;
          GarageModel.var_838 = "RUR";
          GarageModel.var_836 = 5;
          this.var_108 = param5;
@@ -285,11 +285,11 @@ package alternativa.tanks.model
             this.mountedItems = new Array();
             this.var_822 = new Vector.<String>();
             this.var_818 = new Array();
-            this.modelRegister = Main.osgi.name_6(name_32) as name_32;
-            this.var_832 = (this.modelRegister.getModelsByInterface(name_1535) as Vector.<name_66>)[0] as name_1535;
-            this.panelModel = Main.osgi.name_6(name_115) as name_115;
+            this.modelRegister = Main.osgi.getService(name_32) as name_32;
+            this.var_832 = (this.modelRegister.getModelsByInterface(name_1535) as Vector.<IModel>)[0] as name_1535;
+            this.panelModel = Main.osgi.getService(name_115) as name_115;
             this.garageWindow = new GarageWindow(this.var_827,this);
-            this.var_815 = Main.osgi.name_6(name_791) as name_791;
+            this.var_815 = Main.osgi.getService(name_791) as name_791;
             this.var_820 = new name_1546();
             this.var_821 = new name_1542();
             this.var_826 = new name_1544();
@@ -307,10 +307,10 @@ package alternativa.tanks.model
          {
             this.showWindow();
             this.panelModel.partSelected(1);
-            name_13(Main.osgi.name_6(name_13)).hide();
+            name_13(Main.osgi.getService(name_13)).hide();
             if(Lobby.var_77)
             {
-               Network(Main.osgi.name_6(name_2)).send("lobby;user_inited");
+               Network(Main.osgi.getService(name_2)).send("lobby;user_inited");
                Lobby.var_77 = false;
             }
             if(var_817 != null)
@@ -329,7 +329,7 @@ package alternativa.tanks.model
       public function objectUnloaded(param1:ClientObject) : void
       {
          Main.method_8("GARAGE MODEL","objectUnloaded");
-         var _loc2_:class_27 = GarageModelActivator.osgi.name_6(class_27) as class_27;
+         var _loc2_:class_27 = GarageModelActivator.osgi.getService(class_27) as class_27;
          if(_loc2_ != null)
          {
             _loc2_.removeListener(this);
@@ -342,7 +342,7 @@ package alternativa.tanks.model
          this.var_820 = null;
          this.var_821 = null;
          this.var_826 = null;
-         var _loc3_:name_13 = Main.osgi.name_6(name_13) as name_13;
+         var _loc3_:name_13 = Main.osgi.getService(name_13) as name_13;
          this.garageWindow = null;
          this.clientObject = null;
          Main.stage.quality = StageQuality.HIGH;
@@ -409,7 +409,7 @@ package alternativa.tanks.model
          var _loc4_:String = null;
          var _loc5_:name_324 = null;
          Main.method_8("GARAGE MODEL","initMarket itemsOnMarket: " + param2);
-         this.modelRegister = Main.osgi.name_6(name_32) as name_32;
+         this.modelRegister = Main.osgi.getService(name_32) as name_32;
          var _loc6_:int = 0;
          while(_loc6_ < param2.length)
          {
@@ -501,12 +501,12 @@ package alternativa.tanks.model
       
       public function tryMountItem(param1:ClientObject, param2:String) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("garage;try_mount_item;" + param2);
+         Network(Main.osgi.getService(name_2)).send("garage;try_mount_item;" + param2);
       }
       
       private function method_1097(param1:name_1532) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby;try_open_item;" + this.var_823);
+         Network(Main.osgi.getService(name_2)).send("lobby;try_open_item;" + this.var_823);
       }
       
       private function method_1092(param1:name_1532) : void
@@ -519,7 +519,7 @@ package alternativa.tanks.model
             this.var_816 = param1.itemId;
             _loc2_ = var_812[param1.itemId] as name_324;
             _loc3_ = _loc2_.previewId;
-            _loc4_ = ImageResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(_loc3_));
+            _loc4_ = ImageResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(_loc3_));
             this.method_1079(_loc2_.name,_loc2_.name_373 == name_321.INVENTORY ? int(_loc2_.price * this.garageWindow.itemInfoPanel.name_1537.value) : int(_loc2_.price),_loc4_,true,_loc2_.name_373 == name_321.ARMOR || _loc2_.name_373 == name_321.WEAPON ? int(0) : int(-1),_loc2_.name_373 == name_321.INVENTORY ? int(this.garageWindow.itemInfoPanel.name_1537.value) : int(-1));
          }
       }
@@ -534,7 +534,7 @@ package alternativa.tanks.model
             this.var_816 = param1;
             _loc2_ = var_812[param1] as name_324;
             _loc3_ = _loc2_.previewId;
-            _loc4_ = ImageResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(_loc3_));
+            _loc4_ = ImageResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(_loc3_));
             this.method_1079(_loc2_.name,_loc2_.name_373 == name_321.INVENTORY ? int(_loc2_.price * this.garageWindow.itemInfoPanel.name_1537.value) : int(_loc2_.price),_loc4_,true,_loc2_.name_373 == name_321.ARMOR || _loc2_.name_373 == name_321.WEAPON ? int(0) : int(-1),_loc2_.name_373 == name_321.INVENTORY ? int(this.garageWindow.itemInfoPanel.name_1537.value) : int(-1));
          }
       }
@@ -555,7 +555,7 @@ package alternativa.tanks.model
             _loc4_ = _loc2_.name_1360 + 1;
             _loc5_ = name_328(_loc3_[_loc4_]);
             _loc6_ = _loc5_.previewId;
-            _loc7_ = ImageResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(_loc6_));
+            _loc7_ = ImageResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(_loc6_));
             this.method_1079(_loc2_.name,_loc2_.name_1372,_loc7_,false,_loc4_);
          }
       }
@@ -642,7 +642,7 @@ package alternativa.tanks.model
       
       public function tryBuyItem(param1:ClientObject, param2:String, param3:int) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("garage;try_buy_item;" + param2 + ";" + param3);
+         Network(Main.osgi.getService(name_2)).send("garage;try_buy_item;" + param2 + ";" + param3);
       }
       
       private function method_1084(param1:MouseEvent) : void
@@ -656,7 +656,7 @@ package alternativa.tanks.model
       public function tryUpgradeItem(param1:ClientObject, param2:String) : void
       {
          this.name_475 = param2;
-         Network(Main.osgi.name_6(name_2)).send("garage;try_update_item;" + param2);
+         Network(Main.osgi.getService(name_2)).send("garage;try_update_item;" + param2);
       }
       
       public function method_1085(param1:name_1532) : void
@@ -845,7 +845,7 @@ package alternativa.tanks.model
       
       public function method_1074(param1:Long) : void
       {
-         var _loc2_:Tanks3DSResource = Tanks3DSResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(param1));
+         var _loc2_:Tanks3DSResource = Tanks3DSResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(param1));
          if(_loc2_ != null && _loc2_.isLoaded)
          {
             if(this.garageWindow.name_1533 != null)
@@ -857,7 +857,7 @@ package alternativa.tanks.model
       
       public function method_1073(param1:Long) : void
       {
-         var _loc2_:Tanks3DSResource = Tanks3DSResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(param1));
+         var _loc2_:Tanks3DSResource = Tanks3DSResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(param1));
          if(_loc2_ != null && _loc2_.isLoaded)
          {
             if(this.garageWindow.name_1533 != null)
@@ -869,7 +869,7 @@ package alternativa.tanks.model
       
       public function method_1072(param1:Long) : void
       {
-         var _loc2_:Resource = ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(param1);
+         var _loc2_:Resource = ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(param1);
          if(_loc2_ != null && _loc2_.isLoaded)
          {
             if(this.garageWindow.name_1533 != null)

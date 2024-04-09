@@ -2,7 +2,7 @@ package alternativa.tanks.gui.clanmanagement.clanmemberlist
 {
    import alternativa.tanks.gui.clanmanagement.ClanPermissionsManager;
    import base.class_122;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.events.MouseEvent;
    import flash.text.TextFieldAutoSize;
    import flash.ui.Mouse;
@@ -39,7 +39,7 @@ package alternativa.tanks.gui.clanmanagement.clanmemberlist
       
       protected var var_1311:Boolean;
       
-      private var label:name_1134;
+      private var label:LabelBase;
       
       private var _width:Number;
       
@@ -64,9 +64,9 @@ package alternativa.tanks.gui.clanmanagement.clanmemberlist
          return new ContextMenuPermissionLabel(param1);
       }
       
-      private static function method_1528(param1:ClanPermission) : name_1134
+      private static function method_1528(param1:ClanPermission) : LabelBase
       {
-         var _loc2_:name_1134 = new name_1134();
+         var _loc2_:LabelBase = new LabelBase();
          _loc2_.autoSize = TextFieldAutoSize.LEFT;
          _loc2_.color = name_1139.name_1894;
          _loc2_.text = method_1527(param1);

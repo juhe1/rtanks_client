@@ -1,6 +1,6 @@
 package package_382
 {
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import fl.controls.ScrollBarDirection;
    import fl.controls.TileList;
    import fl.data.DataProvider;
@@ -12,9 +12,9 @@ package package_382
    import flash.utils.getTimer;
    import forms.name_1919;
    import package_104.name_327;
-   import utils.name_1915;
+   import utils.ScrollStyleUtils;
    
-   public class TierList extends name_1891
+   public class TierList extends TankWindowInner
    {
       
       public static const const_2800:int = 0;
@@ -62,7 +62,7 @@ package package_382
          this.list.direction = ScrollBarDirection.HORIZONTAL;
          this.list.setStyle(name_1919.name_1920,TierRenderer);
          this.list.dataProvider = new DataProvider();
-         name_1915.name_1918(this.list);
+         ScrollStyleUtils.setGreenStyle(this.list);
          addChild(this.list);
          addEventListener(Event.ADDED_TO_STAGE,this.method_1472);
          addEventListener(Event.REMOVED_FROM_STAGE,this.method_91);

@@ -2,9 +2,9 @@ package package_440
 {
    import alternativa.engine3d.core.Object3D;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.weapon.machinegun.name_2410;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import alternativa.tanks.sfx.Sound3D;
    import alternativa.tanks.sfx.class_177;
    import alternativa.tanks.sfx.name_132;
@@ -42,7 +42,7 @@ package package_440
       
       private static const const_2573:int = 27;
       
-      private static var var_138:name_118;
+      private static var var_138:IObjectPoolService;
        
       
       private var var_3311:int = 0;
@@ -85,8 +85,8 @@ package package_440
          this.var_3317 = this.method_2988(param2.hitSound);
          this.var_3316 = this.method_2988(param2.tankHitSound);
          this.var_3315 = param3;
-         var_138 = name_118(Main.osgi.name_6(name_118));
-         this.var_11 = Main.osgi.name_6(name_83) as BattlefieldModel;
+         var_138 = IObjectPoolService(Main.osgi.getService(IObjectPoolService));
+         this.var_11 = Main.osgi.getService(IBattleField) as BattlefieldModel;
       }
       
       public function name_2694(param1:int) : void

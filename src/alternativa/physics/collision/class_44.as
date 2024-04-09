@@ -4,6 +4,6 @@ package alternativa.physics.collision
    {
        
       
-      function method_1008(param1:name_774) : Boolean;
+      function method_1008(param1:CollisionPrimitive) : Boolean;
    }
 }

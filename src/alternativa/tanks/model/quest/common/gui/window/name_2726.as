@@ -3,7 +3,7 @@ package alternativa.tanks.model.quest.common.gui.window
    import alternativa.tanks.model.quest.common.gui.CommonQuestTab;
    import alternativa.tanks.model.quest.common.gui.window.buttons.name_3305;
    import controls.base.name_1890;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import flash.display.Bitmap;
    import flash.display.Sprite;
    import flash.events.MouseEvent;
@@ -22,7 +22,7 @@ package alternativa.tanks.model.quest.common.gui.window
       
       public const const_2600:int = 4;
       
-      protected var var_1737:name_1891;
+      protected var var_1737:TankWindowInner;
       
       protected var var_3357:QuestItemViewInfoPanel;
       
@@ -44,7 +44,7 @@ package alternativa.tanks.model.quest.common.gui.window
       
       private function method_3027() : void
       {
-         this.var_1737 = new name_1891(0,0,name_1891.name_1428);
+         this.var_1737 = new TankWindowInner(0,0,TankWindowInner.GREEN);
          this.var_1737.width = CommonQuestTab.const_2043;
          this.var_1737.height = CommonQuestTab.const_2042;
          addChild(this.var_1737);

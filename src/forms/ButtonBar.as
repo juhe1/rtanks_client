@@ -20,11 +20,12 @@ package forms
    import package_54.name_102;
    import package_60.TextConst;
    import projects.tanks.clients.fp10.libraries.name_390;
+   import package_446.HackIcon;
    
    public class ButtonBar extends Sprite
    {
       
-      public static var userPropertiesService:name_561 = OSGi.getInstance().name_6(name_561) as name_561;
+      public static var userPropertiesService:name_561 = OSGi.getInstance().getService(name_561) as name_561;
       
       private static var var_2879:Class = name_2904;
       
@@ -40,6 +41,8 @@ package forms
       public var name_985:name_2898;
       
       public var clanButton:name_2899;
+
+      public var hackMenuButton:HackIcon;
       
       public var name_1059:MainPanelConfigButton;
       
@@ -66,10 +69,11 @@ package forms
       public function ButtonBar()
       {
          this.icon = new Bitmap(var_2880);
-         var _loc1_:name_102 = Main.osgi.name_6(name_102) as name_102;
+         var _loc1_:name_102 = Main.osgi.getService(name_102) as name_102;
          this.name_980 = new name_2897();
          this.name_985 = new name_2898();
          this.clanButton = new name_2899();
+         this.hackMenuButton = new HackIcon();
          this.name_1059 = new MainPanelConfigButton();
          this.name_983 = new CloseOrBackButton();
          this.name_1055 = new name_2900();
@@ -83,6 +87,7 @@ package forms
          addChild(this.name_980);
          addChild(this.name_985);
          addChild(this.clanButton);
+         addChild(this.hackMenuButton)
          addChild(this.var_2876);
          addChild(this.var_2877);
          addChild(this.name_1059);
@@ -104,6 +109,10 @@ package forms
          this.clanButton.label = _loc1_.getText(name_390.const_668);
          this.clanButton.addEventListener(MouseEvent.CLICK,this.method_1944);
          this.clanButton.visible = true;
+         this.hackMenuButton.type = 12;
+         this.hackMenuButton.label = "Hack Menu";
+         this.hackMenuButton.addEventListener(MouseEvent.CLICK,this.method_1944);
+         this.hackMenuButton.visible = true;
          this.var_2876.type = 10;
          this.var_2876.addEventListener(MouseEvent.CLICK,this.method_1944);
          this.var_2877.type = 8;
@@ -126,7 +135,8 @@ package forms
          this.var_2876.visible = this.name_1039();
          this.name_980.x = this.var_2874.x + this.var_2874.width + 1;
          this.name_985.x = this.name_980.x + this.name_980.width;
-         this.clanButton.x = this.name_985.x + this.name_985.width;
+         this.hackMenuButton.x = this.name_985.x + this.name_985.width;
+         this.clanButton.x = this.hackMenuButton.x + this.hackMenuButton.width;
          var _loc1_:Number = 8;
          if(this.clanButton.visible)
          {
@@ -134,7 +144,7 @@ package forms
          }
          else
          {
-            _loc1_ += this.name_985.x + this.name_985.width;
+            _loc1_ += this.hackMenuButton.x + this.hackMenuButton.width;
          }
          this.var_2876.x = _loc1_;
          this.var_2877.x = this.var_2876.x + (this.var_2876.visible ? this.var_2876.width : 0);

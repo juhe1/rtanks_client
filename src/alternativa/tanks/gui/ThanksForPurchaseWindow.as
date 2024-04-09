@@ -1,8 +1,8 @@
 package alternativa.tanks.gui
 {
    import alternativa.tanks.gui.payment.controls.name_2833;
-   import controls.base.name_998;
-   import controls.name_1891;
+   import controls.base.DefaultButtonBase;
+   import controls.TankWindowInner;
    import controls.name_1922;
    import flash.display.Bitmap;
    import flash.display.DisplayObject;
@@ -18,12 +18,12 @@ package alternativa.tanks.gui
    public class ThanksForPurchaseWindow extends class_123
    {
       
-      public static var localeService:name_102 = Main.osgi.name_6(name_102) as name_102;
+      public static var localeService:name_102 = Main.osgi.getService(name_102) as name_102;
        
       
       private var bitmap:Class;
       
-      public var name_983:name_998;
+      public var name_983:DefaultButtonBase;
       
       private const const_1692:int = 12;
       
@@ -33,7 +33,7 @@ package alternativa.tanks.gui
       
       public function ThanksForPurchaseWindow(param1:Vector.<name_341>)
       {
-         var _loc4_:name_1891 = null;
+         var _loc4_:TankWindowInner = null;
          var _loc7_:name_341 = null;
          var _loc8_:name_2833 = null;
          this.bitmap = name_2834;
@@ -41,7 +41,7 @@ package alternativa.tanks.gui
          var _loc2_:int = 12 * 2 + 9 * 2 + new this.bitmap().bitmapData.width;
          var _loc3_:name_1922 = new name_1922();
          addChild(_loc3_);
-         _loc4_ = new name_1891(_loc2_ - 12 * 2,0,name_1891.name_1428);
+         _loc4_ = new TankWindowInner(_loc2_ - 12 * 2,0,TankWindowInner.GREEN);
          this.var_1182 = _loc4_;
          _loc3_.addChild(_loc4_);
          _loc4_.x = 12;
@@ -58,7 +58,7 @@ package alternativa.tanks.gui
             this.method_223(_loc8_,0);
          }
          _loc4_.height += 12;
-         this.name_983 = new name_998();
+         this.name_983 = new DefaultButtonBase();
          if(localeService != null)
          {
             this.name_983.label = localeService.getText(TextConst.FREE_BONUSES_WINDOW_BUTTON_CLOSE_TEXT);

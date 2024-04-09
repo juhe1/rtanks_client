@@ -2,7 +2,7 @@ package package_95
 {
    import flash.net.SharedObject;
    
-   public class name_526 implements name_298
+   public class name_526 implements IStorageService
    {
        
       

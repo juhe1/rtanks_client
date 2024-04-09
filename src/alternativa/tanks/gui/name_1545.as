@@ -5,7 +5,7 @@ package alternativa.tanks.gui
    import assets.name_2295;
    import controls.DefaultButton;
    import controls.Label;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import controls.name_1922;
    import flash.display.Bitmap;
    import flash.display.BitmapData;
@@ -29,7 +29,7 @@ package alternativa.tanks.gui
       
       private var preview:Bitmap;
       
-      private var var_2356:name_1891;
+      private var var_2356:TankWindowInner;
       
       private var var_2358:Label;
       
@@ -61,11 +61,11 @@ package alternativa.tanks.gui
       {
          this.var_2357 = new InputCheckIcon();
          super();
-         this.localeService = name_102(Main.osgi.name_6(name_102));
+         this.localeService = name_102(Main.osgi.getService(name_102));
          this.var_1739 = Math.max(this.const_1677.x * 2 + 11 * 2 + 7,this.const_1943.x + 11 * 4);
          this.window = new name_1922(this.var_1739,0);
          addChild(this.window);
-         this.var_2356 = new name_1891(0,0,name_1891.name_1428);
+         this.var_2356 = new TankWindowInner(0,0,TankWindowInner.GREEN);
          this.var_2356.x = 11;
          this.var_2356.y = 11;
          this.var_2356.width = this.var_1739 - 11 * 2;

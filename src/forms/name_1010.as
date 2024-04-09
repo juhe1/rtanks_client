@@ -16,7 +16,7 @@ package forms
       
       override protected function init() : void
       {
-         var _loc1_:name_102 = Main.osgi.name_6(name_102) as name_102;
+         var _loc1_:name_102 = Main.osgi.getService(name_102) as name_102;
          var_1740.align = TextFormatAlign.CENTER;
          str = _loc1_.getText(TextConst.REDIRECT_ALERT_TEXT);
          var_1740.text = getText(str,"88");

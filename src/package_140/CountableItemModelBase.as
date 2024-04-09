@@ -21,7 +21,7 @@ package package_140
       
       public function CountableItemModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = class_54(this);
          this.var_25 = Long.getLong(28163628,1959753058);
          super();

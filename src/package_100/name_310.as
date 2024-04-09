@@ -2,18 +2,18 @@ package package_100
 {
    import alternativa.physics.collision.name_1160;
    import alternativa.tanks.battle.BattleUtils;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.weapon.name_1419;
    import alternativa.tanks.models.weapon.name_903;
    import package_37.Vector3;
    import package_42.TanksCollisionDetector;
    import package_42.name_73;
-   import package_61.name_124;
+   import package_61.RayHit;
    
    public class name_310 implements class_39
    {
       
-      public static var battleService:name_83;
+      public static var battleService:IBattleField;
        
       
       private const const_459:Number = 0.9999;
@@ -39,7 +39,7 @@ package package_100
          this.var_701 = true;
       }
       
-      protected function raycast(param1:Vector3, param2:Vector3, param3:name_124) : Boolean
+      protected function raycast(param1:Vector3, param2:Vector3, param3:RayHit) : Boolean
       {
          if(this.name_247.raycast(param1,param2,name_73.WEAPON,this.maxDistance,this.filter,param3))
          {
@@ -63,7 +63,7 @@ package package_100
          this.maxDistance = param1;
       }
       
-      public function method_974(param1:name_903, param2:Vector3) : Vector.<name_124>
+      public function method_974(param1:name_903, param2:Vector3) : Vector.<RayHit>
       {
          return undefined;
       }

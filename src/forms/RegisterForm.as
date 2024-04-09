@@ -4,9 +4,9 @@ package forms
    import controls.DefaultButton;
    import controls.Label;
    import controls.TankInput;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.base.name_2016;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import controls.name_1922;
    import controls.name_2021;
    import controls.name_2296;
@@ -49,7 +49,7 @@ package forms
       
       public var var_2980:name_2021;
       
-      public var var_2982:name_1134;
+      public var var_2982:LabelBase;
       
       public var name_2429:DefaultButton;
       
@@ -91,7 +91,7 @@ package forms
       
       private var var_2984:int = 80;
       
-      public var var_2983:name_1134;
+      public var var_2983:LabelBase;
       
       private var var_2979:FreeUidsForm;
       
@@ -102,11 +102,11 @@ package forms
          var _loc2_:name_102 = null;
          var _loc3_:int = 0;
          super();
-         _loc2_ = Main.osgi.name_6(name_102) as name_102;
+         _loc2_ = Main.osgi.getService(name_102) as name_102;
          _loc3_ = this.var_2988;
          this.var_2986 = new Sprite();
          addChild(this.var_2986);
-         this.var_2983 = new name_1134();
+         this.var_2983 = new LabelBase();
          this.var_2983.x = this.var_2988;
          this.var_2983.multiline = true;
          this.var_2983.wordWrap = true;
@@ -116,14 +116,14 @@ package forms
          _loc3_ += this.var_2983.height - 3;
          _loc3_ += this.var_2988;
          this.bg = new name_1922(this.var_2981,param1 ? 585 : 300);
-         var _loc4_:name_1891 = new name_1891(350,38);
+         var _loc4_:TankWindowInner = new TankWindowInner(350,38);
          this.callSign = new name_2016();
          this.var_2985 = new InputCheckIcon();
          this.pass1 = new name_2016();
          this.pass2 = new name_2016();
          this.email = new TankInput();
          this.var_2980 = new name_2021();
-         this.var_2982 = new name_1134();
+         this.var_2982 = new LabelBase();
          this.name_2429 = new DefaultButton();
          this.method_2609 = new Label();
          this.var_2979 = new FreeUidsForm();

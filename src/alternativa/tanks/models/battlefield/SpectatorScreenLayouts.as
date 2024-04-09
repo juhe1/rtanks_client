@@ -2,7 +2,7 @@ package alternativa.tanks.models.battlefield
 {
    import alternativa.osgi.OSGi;
    import alternativa.tanks.models.battlefield.gui.chat.BattleChat;
-   import alternativa.tanks.service.settings.name_108;
+   import alternativa.tanks.service.settings.IBattleSettings;
    import alternativa.tanks.utils.name_1398;
    import flash.events.KeyboardEvent;
    import package_1.Main;
@@ -20,17 +20,17 @@ package alternativa.tanks.models.battlefield
    public class SpectatorScreenLayouts implements AutoClosable
    {
       
-      public static var display:name_24 = OSGi.getInstance().name_6(name_24) as name_24;
+      public static var display:name_24 = OSGi.getInstance().getService(name_24) as name_24;
       
-      public static var panelView:name_115 = OSGi.getInstance().name_6(name_115) as name_115;
+      public static var panelView:name_115 = OSGi.getInstance().getService(name_115) as name_115;
       
-      public static var settingsService:name_108 = OSGi.getInstance().name_6(name_108) as name_108;
+      public static var settingsService:IBattleSettings = OSGi.getInstance().getService(IBattleSettings) as IBattleSettings;
       
-      public static var var_360:name_312 = OSGi.getInstance().name_6(name_312) as name_312;
+      public static var var_360:name_312 = OSGi.getInstance().getService(name_312) as name_312;
       
-      public static var var_1894:name_245 = OSGi.getInstance().name_6(name_245) as name_245;
+      public static var var_1894:name_245 = OSGi.getInstance().getService(name_245) as name_245;
       
-      public static var var_1895:name_83 = OSGi.getInstance().name_6(name_83) as name_83;
+      public static var var_1895:IBattleField = OSGi.getInstance().getService(IBattleField) as IBattleField;
       
       private static const const_1713:uint = 220;
       

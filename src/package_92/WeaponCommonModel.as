@@ -3,14 +3,14 @@ package package_92
    import alternativa.engine3d.core.Camera3D;
    import alternativa.engine3d.core.Object3D;
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.osgi.OSGi;
    import alternativa.osgi.service.dump.name_524;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.sfx.shoot.name_1187;
    import alternativa.tanks.models.tank.TankData;
-   import alternativa.tanks.models.tank.class_7;
-   import alternativa.tanks.models.weapon.name_1074;
+   import alternativa.tanks.models.tank.ITank;
+   import alternativa.tanks.models.weapon.IWeaponController;
    import alternativa.tanks.models.weapon.name_1495;
    import alternativa.tanks.models.weapon.name_213;
    import alternativa.tanks.sfx.name_1497;
@@ -40,15 +40,15 @@ package package_92
       
       private var modelService:name_32;
       
-      private var battlefield:name_83;
+      private var battlefield:IBattleField;
       
-      private var var_13:class_7;
+      private var var_13:ITank;
       
       private var localUserData:TankData;
       
       private var var_766:name_1451;
       
-      public var var_760:name_1074;
+      public var var_760:IWeaponController;
       
       private var var_764:Boolean;
       
@@ -68,10 +68,10 @@ package package_92
       {
          this.var_763 = new Vector3();
          super();
-         var_365.push(name_66,class_46,class_11,name_1188,name_213);
+         _interfaces.push(IModel,class_46,class_11,name_1188,name_213);
       }
       
-      public function getWeaponController() : name_1074
+      public function getWeaponController() : IWeaponController
       {
          return this.var_760;
       }
@@ -80,9 +80,9 @@ package package_92
       {
          if(this.modelService == null)
          {
-            this.modelService = Main.osgi.name_6(name_32) as name_32;
-            this.battlefield = Main.osgi.name_6(name_83) as name_83;
-            this.var_13 = Main.osgi.name_6(class_7) as class_7;
+            this.modelService = Main.osgi.getService(name_32) as name_32;
+            this.battlefield = Main.osgi.getService(IBattleField) as IBattleField;
+            this.var_13 = Main.osgi.getService(ITank) as ITank;
          }
          var _loc6_:name_1451 = new name_1451();
          var _loc7_:Number = name_1495.name_1499;
@@ -112,7 +112,7 @@ package package_92
          --this.numObjects;
          if(this.numObjects == 0)
          {
-            _loc2_ = name_524(Main.osgi.name_6(name_524));
+            _loc2_ = name_524(Main.osgi.getService(name_524));
             if(_loc2_ != null)
             {
                _loc2_.unregisterDumper(this.dumperName);
@@ -136,7 +136,7 @@ package package_92
          }
          if(this.battlefield == null)
          {
-            this.battlefield = Main.osgi.name_6(name_83) as name_83;
+            this.battlefield = Main.osgi.getService(IBattleField) as IBattleField;
          }
          var _loc8_:name_1497 = _loc7_.name_1249(param1,_loc6_.muzzles[param3],param2.skin.name_144(),this.battlefield.getBattlefieldData().viewport.camera);
          this.battlefield.name_217(_loc8_.name_1496);
@@ -170,7 +170,7 @@ package package_92
          var _loc9_:name_1497 = _loc8_.method_502(param1,this.var_763,param2,param7);
          if(this.battlefield == null)
          {
-            this.battlefield = Main.osgi.name_6(name_83) as name_83;
+            this.battlefield = Main.osgi.getService(IBattleField) as IBattleField;
          }
          this.battlefield.name_217(_loc9_.name_1496);
          this.battlefield.name_195(_loc9_.name_1494);
@@ -368,7 +368,7 @@ package package_92
          {
             throw new Error("No turret part found");
          }
-         var _loc3_:Tanks3DSResource = Tanks3DSResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(_loc2_.turretResourceId));
+         var _loc3_:Tanks3DSResource = Tanks3DSResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(_loc2_.turretResourceId));
          if(_loc3_ == null)
          {
             throw new Error("No turret model found");

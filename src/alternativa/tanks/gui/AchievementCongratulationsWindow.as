@@ -2,7 +2,7 @@ package alternativa.tanks.gui
 {
    import controls.DefaultButton;
    import controls.Label;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import controls.name_1922;
    import controls.name_2296;
    import flash.display.Bitmap;
@@ -23,7 +23,7 @@ package alternativa.tanks.gui
       
       private var window:name_1922;
       
-      private var var_1182:name_1891;
+      private var var_1182:TankWindowInner;
       
       private var message:Label;
       
@@ -40,10 +40,10 @@ package alternativa.tanks.gui
       {
          this.present = new Bitmap(bitmapData);
          this.window = new name_1922(Math.max(this.present.width + 12 * 2 + 9 * 2,300));
-         this.window.name_2241 = name_102(Main.osgi.name_6(name_102)).getText(TextConst.GUI_LANG);
+         this.window.name_2241 = name_102(Main.osgi.getService(name_102)).getText(TextConst.GUI_LANG);
          this.window.header = name_2296.CONGRATULATIONS;
          addChild(this.window);
-         this.var_1182 = new name_1891(0,0,name_1891.name_1428);
+         this.var_1182 = new TankWindowInner(0,0,TankWindowInner.GREEN);
          addChild(this.var_1182);
          this.var_1182.x = 12;
          this.var_1182.y = 12;
@@ -68,7 +68,7 @@ package alternativa.tanks.gui
          this.present.y = this.message.y + this.message.height + 9;
          addChild(this.present);
          this.name_1021 = new DefaultButton();
-         this.name_1021.label = name_102(Main.osgi.name_6(name_102)).getText(TextConst.FREE_BONUSES_WINDOW_BUTTON_CLOSE_TEXT);
+         this.name_1021.label = name_102(Main.osgi.getService(name_102)).getText(TextConst.FREE_BONUSES_WINDOW_BUTTON_CLOSE_TEXT);
          addChild(this.name_1021);
          var _loc2_:int = this.present.height + this.name_1021.height + 9 * 2 + 12 * 3;
          _loc2_ += this.message.height + 9;

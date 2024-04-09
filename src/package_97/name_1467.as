@@ -2,7 +2,7 @@ package package_97
 {
    import alternativa.tanks.models.battlefield.BattlefieldModel;
    import alternativa.tanks.models.battlefield.name_1229;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import package_1.Main;
    import package_238.ObjectPool;
    import package_238.class_30;
@@ -10,7 +10,7 @@ package package_97
    public class name_1467 extends class_30 implements name_1229
    {
       
-      public static var battleService:BattlefieldModel = BattlefieldModel(Main.osgi.name_6(name_83));
+      public static var battleService:BattlefieldModel = BattlefieldModel(Main.osgi.getService(IBattleField));
       
       private static const const_147:Number = 0.001;
        

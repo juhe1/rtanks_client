@@ -4,7 +4,7 @@ package alternativa.tanks.models.battlefield
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.class_12;
    import alternativa.tanks.models.tank.class_15;
-   import alternativa.tanks.models.tank.name_103;
+   import alternativa.tanks.models.tank.ITankEventDispatcher;
    import alternativa.tanks.models.tank.name_77;
    import alternativa.utils.removeDisplayObject;
    import base.class_122;
@@ -25,15 +25,15 @@ package alternativa.tanks.models.battlefield
    public class AdditionUserTitleSwitcher implements class_15, class_2, AutoClosable
    {
       
-      public static var battleInputService:name_245 = OSGi.getInstance().name_6(name_245) as name_245;
+      public static var battleInputService:name_245 = OSGi.getInstance().getService(name_245) as name_245;
       
-      public static var display:name_24 = OSGi.getInstance().name_6(name_24) as name_24;
+      public static var display:name_24 = OSGi.getInstance().getService(name_24) as name_24;
       
-      public static var battleEventDispatcher:name_103 = OSGi.getInstance().name_6(name_103) as name_103;
+      public static var battleEventDispatcher:ITankEventDispatcher = OSGi.getInstance().getService(ITankEventDispatcher) as ITankEventDispatcher;
       
-      public static var battleService:name_83 = OSGi.getInstance().name_6(name_83) as name_83;
+      public static var battleService:IBattleField = OSGi.getInstance().getService(IBattleField) as IBattleField;
       
-      public static var var_1461:class_12 = OSGi.getInstance().name_6(class_12) as class_12;
+      public static var var_1461:class_12 = OSGi.getInstance().getService(class_12) as class_12;
       
       private static const const_1580:int = 34;
        

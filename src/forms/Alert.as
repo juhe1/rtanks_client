@@ -104,7 +104,7 @@ package forms
          this.name_983 = new MainPanelCloseButton();
          this.var_1760 = new Array();
          super();
-         var _loc3_:name_102 = Main.osgi.name_6(name_102) as name_102;
+         var _loc3_:name_102 = Main.osgi.getService(name_102) as name_102;
          this.var_1763 = param2;
          this.var_1761.name_2241 = _loc3_.getText(TextConst.GUI_LANG);
          if(name_358.name_990 == null)
@@ -142,7 +142,7 @@ package forms
       
       private function method_1942() : void
       {
-         var _loc1_:name_102 = Main.osgi.name_6(name_102) as name_102;
+         var _loc1_:name_102 = Main.osgi.getService(name_102) as name_102;
          name_358.name_990 = _loc1_.getText(TextConst.ALERT_ANSWER_YES);
          name_358.name_1007 = _loc1_.getText(TextConst.ALERT_ANSWER_NO);
          name_358.OK = _loc1_.getText(TextConst.ALERT_ANSWER_OK);

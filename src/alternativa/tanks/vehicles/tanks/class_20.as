@@ -1,7 +1,7 @@
 package alternativa.tanks.vehicles.tanks
 {
    import alternativa.engine3d.core.Object3D;
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import alternativa.tanks.models.weapon.name_903;
    import package_37.Vector3;
    import package_47.BattleTeamType;
@@ -12,7 +12,7 @@ package alternativa.tanks.vehicles.tanks
       
       function method_458(param1:name_903, param2:int = 0) : Boolean;
       
-      function method_456() : name_660;
+      function method_456() : Body;
       
       function method_463(param1:int = 0) : Vector3;
       

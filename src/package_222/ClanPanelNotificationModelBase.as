@@ -30,7 +30,7 @@ package package_222
       
       public function ClanPanelNotificationModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_618(this);
          this.var_25 = Long.getLong(606942677,1590617894);
          this.var_1194 = Long.getLong(1587343137,-1916924187);

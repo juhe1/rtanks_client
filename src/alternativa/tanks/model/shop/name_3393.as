@@ -1,6 +1,6 @@
 package alternativa.tanks.model.shop
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.Sprite;
    
    public class name_3393 extends Sprite
@@ -11,9 +11,9 @@ package alternativa.tanks.model.shop
       
       private var var_3429:String;
       
-      private var var_3680:name_1134;
+      private var var_3680:LabelBase;
       
-      private var var_1278:name_1134;
+      private var var_1278:LabelBase;
       
       public function name_3393(param1:String, param2:String)
       {
@@ -31,7 +31,7 @@ package alternativa.tanks.model.shop
       
       private function method_2312() : void
       {
-         this.var_3680 = new name_1134();
+         this.var_3680 = new LabelBase();
          this.var_3680.size = 18;
          this.var_3680.text = this.var_2564;
          addChild(this.var_3680);
@@ -39,7 +39,7 @@ package alternativa.tanks.model.shop
       
       private function method_3084() : void
       {
-         this.var_1278 = new name_1134();
+         this.var_1278 = new LabelBase();
          this.var_1278.htmlText = this.var_3429;
          this.var_1278.wordWrap = true;
          addChild(this.var_1278);

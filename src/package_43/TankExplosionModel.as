@@ -2,17 +2,17 @@ package package_43
 {
    import alternativa.engine3d.objects.Mesh;
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.osgi.OSGi;
    import alternativa.tanks.engine3d.TextureMaterialRegistry;
    import alternativa.tanks.engine3d.name_1072;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.sfx.LightAnimation;
    import alternativa.tanks.models.sfx.LightDataManager;
    import alternativa.tanks.models.sfx.name_1096;
    import alternativa.tanks.models.tank.TankData;
-   import alternativa.tanks.services.materialregistry.name_100;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import alternativa.tanks.sfx.name_1070;
    import alternativa.tanks.sfx.name_1071;
    import alternativa.tanks.sfx.name_1094;
@@ -28,7 +28,7 @@ package package_43
    import package_37.Matrix3;
    import package_37.Vector3;
    import package_4.ClientObject;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_7.name_32;
    import platform.client.fp10.core.registry.ResourceRegistry;
    import platform.client.fp10.core.resource.types.ImageResource;
@@ -57,9 +57,9 @@ package package_43
       
       private const const_102:Number = 15;
       
-      private var var_138:name_118;
+      private var var_138:IObjectPoolService;
       
-      private var var_58:name_100;
+      private var var_58:IMaterialRegistry;
       
       private var var_396:name_662;
       
@@ -69,9 +69,9 @@ package package_43
       
       private var var_398:name_662;
       
-      private var var_11:name_83;
+      private var var_11:IBattleField;
       
-      private var var_397:name_124;
+      private var var_397:RayHit;
       
       private var position:Vector3;
       
@@ -83,19 +83,19 @@ package package_43
       
       public function TankExplosionModel()
       {
-         this.var_138 = name_118(Main.osgi.name_6(name_118));
-         this.var_58 = name_100(Main.osgi.name_6(name_100));
+         this.var_138 = IObjectPoolService(Main.osgi.getService(IObjectPoolService));
+         this.var_58 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry));
          this.var_396 = new name_662("tankexpl_size",800,1,2000);
          this.var_399 = new name_662("tankexpl_smoke_size",400,1,2000);
          this.var_395 = new name_662("tankexpl_scale",1,0,10);
          this.var_398 = new name_662("tankexpl_scale_speed",1,0,10);
-         this.var_397 = new name_124();
+         this.var_397 = new RayHit();
          this.position = new Vector3();
          this.const_64 = new Vector3();
          this.name_187 = new Vector3();
          this.matrix = new Matrix3();
          super();
-         var_365.push(name_66,class_11,name_93);
+         _interfaces.push(IModel,class_11,name_93);
       }
       
       public function initObject(param1:ClientObject) : void
@@ -103,14 +103,14 @@ package package_43
          var _loc2_:name_32 = null;
          if(this.var_11 == null)
          {
-            _loc2_ = name_32(Main.osgi.name_6(name_32));
-            this.var_11 = Main.osgi.name_6(name_83) as name_83;
+            _loc2_ = name_32(Main.osgi.getService(name_32));
+            this.var_11 = Main.osgi.getService(IBattleField) as IBattleField;
          }
-         var _loc3_:name_1072 = this.name_1073(ImageResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(Long.getLong(0,388817))).data,800,1024 / 6);
+         var _loc3_:name_1072 = this.name_1073(ImageResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(Long.getLong(0,388817))).data,800,1024 / 6);
          _loc3_.fps = 50;
-         var _loc4_:name_1072 = this.name_1073(ImageResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(Long.getLong(0,857360))).data,1000,512 / 4);
+         var _loc4_:name_1072 = this.name_1073(ImageResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(Long.getLong(0,857360))).data,1000,512 / 4);
          _loc4_.fps = 50;
-         var _loc5_:name_1072 = this.name_1073(ImageResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(Long.getLong(0,553309))).data,400,256 / 4);
+         var _loc5_:name_1072 = this.name_1073(ImageResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(Long.getLong(0,553309))).data,400,256 / 4);
          _loc5_.fps = 50;
          var _loc6_:ExplosionData = new ExplosionData(_loc3_,_loc4_,_loc5_);
          param1.method_12(TankExplosionModel,_loc6_);

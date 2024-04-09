@@ -1,9 +1,9 @@
 package alternativa.tanks.gui.settings.controls
 {
    import alternativa.tanks.service.settings.name_1086;
-   import controls.checkbox.class_195;
+   import controls.checkbox.CheckBoxBase;
    
-   public class name_2109 extends class_195 implements name_2108
+   public class name_2109 extends CheckBoxBase implements name_2108
    {
        
       

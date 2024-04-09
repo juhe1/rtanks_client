@@ -2,7 +2,7 @@ package alternativa.tanks.gui.components
 {
    import base.class_122;
    import controls.base.name_2536;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import controls.windowinner.WindowInner;
    import fl.containers.ScrollPane;
    import fl.controls.ScrollPolicy;
@@ -13,7 +13,7 @@ package alternativa.tanks.gui.components
    import flash.text.TextFieldAutoSize;
    import flash.text.TextFieldType;
    import flash.text.TextFormat;
-   import utils.name_1915;
+   import utils.ScrollStyleUtils;
    import utils.name_1986;
    import var_5.name_269;
    
@@ -43,7 +43,7 @@ package alternativa.tanks.gui.components
          this.var_2630 = new ScrollPane();
          this.var_2632 = new Sprite();
          super();
-         this.var_2631 = new WindowInner(0,0,name_1891.name_1428);
+         this.var_2631 = new WindowInner(0,0,TankWindowInner.GREEN);
          addChild(this.var_2631);
          this.format.color = 16777215;
          this.description.defaultTextFormat = this.format;
@@ -62,7 +62,7 @@ package alternativa.tanks.gui.components
          this.description.addEventListener(KeyboardEvent.KEY_DOWN,this.method_2582);
          this.var_2632.addChild(this.description);
          this.var_2631.addChild(this.var_2630);
-         name_1915.name_1918(this.var_2630);
+         ScrollStyleUtils.setGreenStyle(this.var_2630);
          this.var_2630.horizontalScrollPolicy = ScrollPolicy.OFF;
          this.var_2630.verticalScrollPolicy = ScrollPolicy.ON;
          this.var_2630.source = this.var_2632;

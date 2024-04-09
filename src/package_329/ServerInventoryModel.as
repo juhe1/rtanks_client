@@ -32,7 +32,7 @@ package package_329
       
       public function init() : void
       {
-         this.var_686 = name_32(Main.osgi.name_6(name_32));
+         this.var_686 = name_32(Main.osgi.getService(name_32));
          this.var_56 = InventoryModel(this.var_686.getModelsByInterface(name_97)[0]);
          this.var_720 = InventoryItemModel(this.var_686.getModelsByInterface(name_1440)[0]);
          this.var_2380 = EffectsVisualizationModel(this.var_686.getModelsByInterface(name_104)[0]);

@@ -11,7 +11,7 @@ package package_1
    import alternativa.tanks.model.item.resistance.ResistanceModuleModel;
    import alternativa.tanks.model.item.resistance.name_1525;
    import alternativa.tanks.model.item.resistance.name_1640;
-   import package_11.name_23;
+   import package_11.IBundleActivator;
    import package_110.class_56;
    import package_127.LootBoxModel;
    import package_132.name_1651;
@@ -52,7 +52,7 @@ package package_1
    import platform.client.fp10.core.model.name_287;
    import platform.client.fp10.core.registry.name_29;
    
-   public class GarageModelActivator implements name_23
+   public class GarageModelActivator implements IBundleActivator
    {
       
       public static var osgi:OSGi;
@@ -74,7 +74,7 @@ package package_1
       public function start(param1:OSGi) : void
       {
          GarageModelActivator.osgi = param1;
-         var _loc2_:name_32 = param1.name_6(name_32) as name_32;
+         var _loc2_:name_32 = param1.getService(name_32) as name_32;
          this.name_322 = new GarageModel();
          _loc2_.add(this.name_322);
          this.var_832 = new ItemModel();
@@ -83,9 +83,9 @@ package package_1
          _loc2_.add(this.var_911);
          this.var_75 = new ItemEffectModel();
          _loc2_.add(this.var_75);
-         param1.name_1(name_1357,new DelayMountCategoryServiceImpl());
-         param1.name_1(name_1358,new ResistanceServiceImpl());
-         var _loc3_:name_29 = param1.name_6(name_29) as name_29;
+         param1.registerService(name_1357,new DelayMountCategoryServiceImpl());
+         param1.registerService(name_1358,new ResistanceServiceImpl());
+         var _loc3_:name_29 = param1.getService(name_29) as name_29;
          _loc3_.add(new name_1637(),Vector.<Class>([name_1639,name_141,name_287]));
          _loc3_.add(new LootBoxModel(),Vector.<Class>([class_56,class_55,name_170]));
          _loc3_.name_275(class_56,LootBoxModel);
@@ -112,7 +112,7 @@ package package_1
       
       public function stop(param1:OSGi) : void
       {
-         var _loc2_:name_32 = param1.name_6(name_32) as name_32;
+         var _loc2_:name_32 = param1.getService(name_32) as name_32;
          _loc2_.remove(this.name_322.id);
          _loc2_.remove(this.var_832.id);
          _loc2_.remove(this.var_75.id);

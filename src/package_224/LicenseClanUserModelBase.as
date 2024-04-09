@@ -25,7 +25,7 @@ package package_224
       
       public function LicenseClanUserModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_615(this);
          this.var_25 = Long.getLong(1978103354,1644120870);
          this.var_1307 = Long.getLong(742414901,491655143);

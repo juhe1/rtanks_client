@@ -1,6 +1,6 @@
 package package_76
 {
-   import alternativa.tanks.utils.name_75;
+   import alternativa.tanks.utils.MathUtils;
    import package_37.Vector3;
    
    public class name_681 implements name_654
@@ -63,8 +63,8 @@ package package_76
          this.p3.copy(this.p4);
          this.p2.z = this.p3.z = (this.p1.z > this.p4.z ? this.p1.z : this.p4.z) + 3000;
          var _loc2_:Number = 4000000 / (this.duration * this.duration);
-         this.var_1402.init(name_75.method_612(param1.rotationX),this.const_1561.x,_loc2_);
-         this.var_1403.init(name_75.method_612(param1.rotationZ),this.const_1561.z,_loc2_);
+         this.var_1402.init(MathUtils.method_612(param1.rotationX),this.const_1561.x,_loc2_);
+         this.var_1403.init(MathUtils.method_612(param1.rotationZ),this.const_1561.z,_loc2_);
          var _loc3_:Vector3 = new Vector3();
          _loc3_.vDiff(this.p4,this.p1);
          this.name_1769 = _loc3_.length();

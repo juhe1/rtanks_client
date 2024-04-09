@@ -1,7 +1,7 @@
 package package_286
 {
-   import controls.base.name_1134;
-   import controls.base.name_998;
+   import controls.base.LabelBase;
+   import controls.base.DefaultButtonBase;
    import flash.events.MouseEvent;
    import forms.name_1139;
    import package_1.Main;
@@ -16,32 +16,32 @@ package package_286
       public static var localeService:name_102;
        
       
-      private var var_1866:name_1134;
+      private var var_1866:LabelBase;
       
-      private var var_1868:name_998;
+      private var var_1868:DefaultButtonBase;
       
-      private var var_1867:name_998;
+      private var var_1867:DefaultButtonBase;
       
       private var panelModel:PanelModel;
       
       public function name_1026(param1:String)
       {
          super(null,param1,false);
-         this.panelModel = PanelModel(Main.osgi.name_6(name_115));
+         this.panelModel = PanelModel(Main.osgi.getService(name_115));
       }
       
       override protected function init() : void
       {
          super.init();
-         this.var_1866 = new name_1134();
+         this.var_1866 = new LabelBase();
          this.var_1866.color = name_1139.name_1894;
          this.var_1866.mouseEnabled = false;
          this.var_1866.htmlText = message;
          addChild(this.var_1866);
-         this.var_1867 = new name_998();
+         this.var_1867 = new DefaultButtonBase();
          this.var_1867.label = "Продлить";
          addChild(this.var_1867);
-         this.var_1868 = new name_998();
+         this.var_1868 = new DefaultButtonBase();
          this.var_1868.label = "Закрыть";
          addChild(this.var_1868);
       }

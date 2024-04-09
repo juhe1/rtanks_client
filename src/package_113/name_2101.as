@@ -32,7 +32,7 @@ package package_113
       
       public function name_2105(param1:String) : void
       {
-         Network(OSGi.getInstance().name_6(name_2)).send("lobby;removeLink;" + param1);
+         Network(OSGi.getInstance().getService(name_2)).send("lobby;removeLink;" + param1);
       }
    }
 }

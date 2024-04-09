@@ -1,10 +1,10 @@
 package package_80
 {
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.class_15;
-   import alternativa.tanks.models.tank.name_103;
+   import alternativa.tanks.models.tank.ITankEventDispatcher;
    import alternativa.tanks.models.tank.name_77;
    import controls.InventoryIcon;
    import flash.display.DisplayObjectContainer;
@@ -57,7 +57,7 @@ package package_80
       {
          this.var_717 = new Dictionary();
          super();
-         var_365.push(name_66,class_42,class_11,class_40,name_97,class_1);
+         _interfaces.push(IModel,class_42,class_11,class_40,name_97,class_1);
          this.var_718 = Main.contentUILayer;
       }
       
@@ -94,7 +94,7 @@ package package_80
          this.method_993();
          battleInputService.addEventListener(BattleInputLockEvent.INPUT_LOCKED,this.method_990);
          battleInputService.addEventListener(BattleInputLockEvent.INPUT_UNLOCKED,this.method_988);
-         var _loc2_:name_103 = name_103(Main.osgi.name_6(name_103));
+         var _loc2_:ITankEventDispatcher = ITankEventDispatcher(Main.osgi.getService(ITankEventDispatcher));
          _loc2_.name_718(name_77.name_253,this);
          Main.stage.addEventListener(Event.RESIZE,this.onResize);
          this.onResize(null);
@@ -118,7 +118,7 @@ package package_80
          this.var_716 = null;
          this.var_718.removeChild(this.var_170);
          this.var_170 = null;
-         var _loc3_:name_103 = name_103(Main.osgi.name_6(name_103));
+         var _loc3_:ITankEventDispatcher = ITankEventDispatcher(Main.osgi.getService(ITankEventDispatcher));
          _loc3_.name_717(name_77.name_253,this);
          this.var_718.stage.removeEventListener(Event.RESIZE,this.onResize);
       }
@@ -132,7 +132,7 @@ package package_80
          }
          if(this.var_720 == null)
          {
-            _loc4_ = name_32(Main.osgi.name_6(name_32));
+            _loc4_ = name_32(Main.osgi.getService(name_32));
             this.var_720 = name_1440(_loc4_.getModelsByInterface(name_1440)[0]);
          }
          if(this.method_989() == 0)

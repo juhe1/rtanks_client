@@ -2,7 +2,7 @@ package alternativa.tanks.models.weapon.machinegun
 {
    import alternativa.engine3d.core.Object3D;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.sfx.LightDataManager;
    import alternativa.tanks.models.sfx.name_1714;
    import alternativa.tanks.models.sfx.name_1716;
@@ -10,7 +10,7 @@ package alternativa.tanks.models.weapon.machinegun
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.weapon.machinegun.sfx.name_2687;
    import alternativa.tanks.models.weapon.machinegun.sfx.name_2688;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import alternativa.tanks.sfx.name_1071;
    import alternativa.tanks.sfx.name_657;
    import alternativa.tanks.vehicles.tanks.TankSkin;
@@ -51,10 +51,10 @@ package alternativa.tanks.models.weapon.machinegun
       
       private static const const_1999:int = 150;
       
-      private static var var_138:name_118;
+      private static var var_138:IObjectPoolService;
        
       
-      private var battlefield:name_83;
+      private var battlefield:IBattleField;
       
       private var var_895:class_75;
       
@@ -99,10 +99,10 @@ package alternativa.tanks.models.weapon.machinegun
          this.var_664 = new Vector3();
          this.var_564 = param1;
          this.name_694 = new Dictionary();
-         this.var_421 = Main.osgi.name_6(name_83) as BattlefieldModel;
+         this.var_421 = Main.osgi.getService(IBattleField) as BattlefieldModel;
          super();
          this.var_2443 = 0;
-         var_138 = name_118(Main.osgi.name_6(name_118));
+         var_138 = IObjectPoolService(Main.osgi.getService(IObjectPoolService));
          this.method_1223();
       }
       
@@ -321,8 +321,8 @@ package alternativa.tanks.models.weapon.machinegun
          var _loc1_:name_32 = null;
          if(this.battlefield == null)
          {
-            _loc1_ = name_32(Main.osgi.name_6(name_32));
-            this.battlefield = name_83(Main.osgi.name_6(name_83));
+            _loc1_ = name_32(Main.osgi.getService(name_32));
+            this.battlefield = IBattleField(Main.osgi.getService(IBattleField));
             this.var_895 = class_75(_loc1_.getModelsByInterface(class_75)[0]);
          }
       }

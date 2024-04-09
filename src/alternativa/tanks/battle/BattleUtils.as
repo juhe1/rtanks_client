@@ -2,7 +2,7 @@ package alternativa.tanks.battle
 {
    import alternativa.engine3d.core.Object3D;
    import alternativa.physics.collision.name_1083;
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import alternativa.tanks.models.weapon.name_903;
    import alternativa.tanks.utils.name_1388;
    import alternativa.tanks.utils.name_1391;
@@ -11,7 +11,7 @@ package alternativa.tanks.battle
    import package_37.Matrix3;
    import package_37.Vector3;
    import package_42.name_73;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_67.Vector3d;
    import projects.tanks.client.battlefield.models.tankparts.weapons.common.name_1378;
    
@@ -26,7 +26,7 @@ package alternativa.tanks.battle
       
       private static const _direction:Vector3 = new Vector3();
       
-      private static const const_372:name_124 = new name_124();
+      private static const const_372:RayHit = new RayHit();
       
       private static const const_1641:Number = 0.22;
        
@@ -89,13 +89,13 @@ package alternativa.tanks.battle
          param2.z = param1.z;
       }
       
-      public static function globalToLocal(param1:name_660, param2:Vector3) : void
+      public static function globalToLocal(param1:Body, param2:Vector3) : void
       {
          param2.vRemove(param1.state.position);
          param2.method_411(param1.name_225);
       }
       
-      public static function localToGlobal(param1:name_660, param2:Vector3) : void
+      public static function localToGlobal(param1:Body, param2:Vector3) : void
       {
          param2.transform3(param1.name_225);
          param2.add(param1.state.position);
@@ -112,12 +112,12 @@ package alternativa.tanks.battle
          return "";
       }
       
-      public static function name_1420(param1:name_660) : Boolean
+      public static function name_1420(param1:Body) : Boolean
       {
          return param1 != null && param1.tank != null;
       }
       
-      public static function name_1452(param1:name_660, param2:name_903) : Boolean
+      public static function name_1452(param1:Body, param2:name_903) : Boolean
       {
          var _loc3_:name_1083 = null;
          var _loc4_:Vector3 = param1.state.position;
@@ -158,7 +158,7 @@ package alternativa.tanks.battle
          return isNaN(param1.x) || isNaN(param1.y) || isNaN(param1.z);
       }
       
-      public static function name_1712(param1:name_660) : Boolean
+      public static function name_1712(param1:Body) : Boolean
       {
          return param1.name_225.m22 < 0.22;
       }

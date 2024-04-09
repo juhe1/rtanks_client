@@ -26,7 +26,7 @@ package package_217
       
       public function ClanMembersDataModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_623(this);
          this.var_25 = Long.getLong(1647741962,-1293471250);
          this.var_1179 = Long.getLong(264735719,2108782023);

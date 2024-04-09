@@ -1,7 +1,7 @@
 package alternativa.tanks.gui.dailyquests.window
 {
    import alternativa.osgi.OSGi;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.Bitmap;
    import flash.display.Sprite;
    import flash.text.TextFormatAlign;
@@ -13,7 +13,7 @@ package alternativa.tanks.gui.dailyquests.window
    public class DailyQuestItemViewInfoPanel extends Sprite
    {
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
        
       
       private var var_3657:Bitmap;
@@ -40,15 +40,15 @@ package alternativa.tanks.gui.dailyquests.window
       
       private var _height:int;
       
-      private var var_3635:name_1134;
+      private var var_3635:LabelBase;
       
-      private var var_3634:name_1134;
+      private var var_3634:LabelBase;
       
-      private var var_3636:name_1134;
+      private var var_3636:LabelBase;
       
-      private var var_3637:name_1134;
+      private var var_3637:LabelBase;
       
-      private var var_3638:Vector.<name_1134>;
+      private var var_3638:Vector.<LabelBase>;
       
       private const const_2748:int = 5;
       
@@ -76,7 +76,7 @@ package alternativa.tanks.gui.dailyquests.window
          this.dailyQuestInfo = param1;
          this._width = QuestWindow.const_2203 - 10 * 2;
          this._height = this.method_165();
-         this.var_3638 = new Vector.<name_1134>();
+         this.var_3638 = new Vector.<LabelBase>();
          this.method_3265();
          this.method_3263();
          this.method_3266();
@@ -151,7 +151,7 @@ package alternativa.tanks.gui.dailyquests.window
       
       private function method_3255() : void
       {
-         this.var_3636 = new name_1134();
+         this.var_3636 = new LabelBase();
          this.var_3636.color = 5898034;
          this.var_3636.align = TextFormatAlign.LEFT;
          this.var_3636.text = localeService.getText(name_390.const_649);
@@ -162,7 +162,7 @@ package alternativa.tanks.gui.dailyquests.window
       
       private function method_3256() : void
       {
-         this.var_3634 = new name_1134();
+         this.var_3634 = new LabelBase();
          this.var_3634.color = 16777215;
          this.var_3634.align = TextFormatAlign.LEFT;
          this.var_3634.text = this.method_3253();
@@ -173,7 +173,7 @@ package alternativa.tanks.gui.dailyquests.window
       
       private function method_3258() : void
       {
-         this.var_3635 = new name_1134();
+         this.var_3635 = new LabelBase();
          this.var_3635.color = 16777215;
          this.var_3635.align = TextFormatAlign.LEFT;
          this.var_3635.text = this.method_1449();
@@ -196,7 +196,7 @@ package alternativa.tanks.gui.dailyquests.window
       
       private function method_3257() : void
       {
-         this.var_3637 = new name_1134();
+         this.var_3637 = new LabelBase();
          this.var_3637.color = 5898034;
          this.var_3637.align = TextFormatAlign.LEFT;
          this.var_3637.text = localeService.getText(name_390.const_1028);
@@ -229,7 +229,7 @@ package alternativa.tanks.gui.dailyquests.window
       
       private function method_3254() : void
       {
-         var _loc1_:name_1134 = null;
+         var _loc1_:LabelBase = null;
          for each(_loc1_ in this.var_3638)
          {
             removeChild(_loc1_);
@@ -240,12 +240,12 @@ package alternativa.tanks.gui.dailyquests.window
       private function method_3252() : void
       {
          var _loc1_:name_2832 = null;
-         var _loc2_:name_1134 = null;
+         var _loc2_:LabelBase = null;
          var _loc3_:int = 0;
          while(_loc3_ < this.dailyQuestInfo.prizes.length)
          {
             _loc1_ = this.dailyQuestInfo.prizes[_loc3_];
-            _loc2_ = new name_1134();
+            _loc2_ = new LabelBase();
             _loc2_.color = 16777215;
             _loc2_.align = TextFormatAlign.LEFT;
             _loc2_.text = _loc1_.name;

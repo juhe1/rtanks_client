@@ -12,7 +12,7 @@ package package_281
    import flash.filters.BitmapFilter;
    import flash.filters.BitmapFilterQuality;
    import flash.filters.BlurFilter;
-   import forms.name_1838;
+   import forms.TankWindowWithHeader;
    import package_1.Main;
    import package_54.name_102;
    import package_60.TextConst;
@@ -22,7 +22,7 @@ package package_281
    {
        
       
-      private var window:name_1838;
+      private var window:TankWindowWithHeader;
       
       private var var_1779:name_2016;
       
@@ -56,8 +56,8 @@ package package_281
          super();
          this.callback = param1;
          this.email = param2;
-         this.localeService = Main.osgi.name_6(name_102) as name_102;
-         this.window = name_1838.name_1844(this.localeService.getText(name_390.const_950));
+         this.localeService = Main.osgi.getService(name_102) as name_102;
+         this.window = TankWindowWithHeader.createWindow(this.localeService.getText(name_390.const_950));
          addEventListener(Event.ADDED_TO_STAGE,this.onAddedToStage);
       }
       

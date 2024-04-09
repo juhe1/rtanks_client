@@ -8,7 +8,7 @@ package alternativa.tanks.gui
    import flash.events.Event;
    import flash.events.FocusEvent;
    import flash.events.MouseEvent;
-   import forms.name_1838;
+   import forms.TankWindowWithHeader;
    import package_1.Main;
    import package_54.name_102;
    import package_60.TextConst;
@@ -18,7 +18,7 @@ package alternativa.tanks.gui
    {
        
       
-      private var window:name_1838;
+      private var window:TankWindowWithHeader;
       
       private var var_3089:name_2016;
       
@@ -35,7 +35,7 @@ package alternativa.tanks.gui
       public function name_2435()
       {
          super();
-         this.localeService = name_102(Main.osgi.name_6(name_102));
+         this.localeService = name_102(Main.osgi.getService(name_102));
          this.method_2856();
          this.method_1718();
       }
@@ -76,7 +76,7 @@ package alternativa.tanks.gui
       {
          var _loc1_:int = 0;
          _loc1_ = 120;
-         this.window = name_1838.name_1844(this.localeService.getText(name_390.const_950));
+         this.window = TankWindowWithHeader.createWindow(this.localeService.getText(name_390.const_950));
          this.window.width = 435;
          this.window.height = 169 - 11;
          addChild(this.window);

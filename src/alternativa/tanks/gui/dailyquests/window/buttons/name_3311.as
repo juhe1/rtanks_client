@@ -14,9 +14,9 @@ package alternativa.tanks.gui.dailyquests.window.buttons
    public class name_3311 extends name_1890 implements name_979
    {
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
-      public static var var_644:class_27 = OSGi.getInstance().name_6(class_27) as class_27;
+      public static var var_644:class_27 = OSGi.getInstance().getService(class_27) as class_27;
       
       private static const const_2818:int = 16731648;
       

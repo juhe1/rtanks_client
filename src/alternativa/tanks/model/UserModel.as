@@ -1,7 +1,7 @@
 package alternativa.tanks.model
 {
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.osgi.OSGi;
    import alternativa.tanks.gui.name_2422;
    import alternativa.tanks.gui.name_2435;
@@ -23,7 +23,7 @@ package alternativa.tanks.model
    import forms.name_358;
    import package_1.Main;
    import package_102.Command;
-   import package_102.name_346;
+   import package_102.Type;
    import package_124.name_42;
    import package_13.Long;
    import package_171.name_528;
@@ -41,7 +41,7 @@ package alternativa.tanks.model
    import package_54.name_102;
    import package_60.TextConst;
    import package_7.name_28;
-   import package_95.name_298;
+   import package_95.IStorageService;
    import platform.client.fp10.core.registry.name_29;
    import scpacker.networking.Network;
    import scpacker.networking.class_6;
@@ -120,15 +120,15 @@ package alternativa.tanks.model
       public function UserModel()
       {
          super();
-         var_365.push(name_66);
-         var_365.push(class_173);
-         var_365.push(class_11);
-         this.localeService = name_102(Main.osgi.name_6(name_102));
+         _interfaces.push(IModel);
+         _interfaces.push(class_173);
+         _interfaces.push(class_11);
+         this.localeService = name_102(Main.osgi.getService(name_102));
          this.var_83 = Main.contentUILayer;
          this.var_2056 = new name_2436();
-         this.var_1796 = Main.osgi.name_6(name_28) as name_28;
-         this.var_1804 = Main.osgi.name_6(name_528) as name_528;
-         this.modelRegister = Main.osgi.name_6(name_29) as name_29;
+         this.var_1796 = Main.osgi.getService(name_28) as name_28;
+         this.var_1804 = Main.osgi.getService(name_528) as name_528;
+         this.modelRegister = Main.osgi.getService(name_29) as name_29;
       }
       
       public function initObject(param1:ClientObject, param2:Boolean, param3:Boolean) : void
@@ -148,9 +148,9 @@ package alternativa.tanks.model
          var _loc9_:name_13 = null;
          Main.method_8("USER MODEL","objectLoaded");
          this.clientObject = param1;
-         var _loc2_:SharedObject = name_298(Main.osgi.name_6(name_298)).getStorage();
-         var _loc3_:SharedObject = name_298(Main.osgi.name_6(name_298)).getAccountsStorage();
-         this.network = Main.osgi.name_6(name_2) as Network;
+         var _loc2_:SharedObject = IStorageService(Main.osgi.getService(IStorageService)).getStorage();
+         var _loc3_:SharedObject = IStorageService(Main.osgi.getService(IStorageService)).getAccountsStorage();
+         this.network = Main.osgi.getService(name_2) as Network;
          this.network.addListener(this);
          if(this.var_1796 != null)
          {
@@ -189,7 +189,7 @@ package alternativa.tanks.model
          Main.method_9("USER MODEL","   emailConfirmHash: %1",this.emailConfirmHash);
          if(this.emailConfirmHash != null)
          {
-            _loc8_ = Main.osgi.name_6(name_13) as name_13;
+            _loc8_ = Main.osgi.getService(name_13) as name_13;
             _loc8_.hideForcibly();
             this.var_814 = new Alert(Alert.const_1667);
             this.var_83.addChild(this.var_814);
@@ -197,7 +197,7 @@ package alternativa.tanks.model
          }
          else if(this.emailChangeHash != null)
          {
-            _loc9_ = Main.osgi.name_6(name_13) as name_13;
+            _loc9_ = Main.osgi.getService(name_13) as name_13;
             _loc9_.hideForcibly();
          }
          else
@@ -213,7 +213,7 @@ package alternativa.tanks.model
          var _loc4_:String = null;
          var _loc5_:SharedObject = null;
          var _loc6_:Alert = null;
-         if(param1.type == name_346.name_559)
+         if(param1.type == Type.REGISTRATON)
          {
             switch(param1.name_319[0])
             {
@@ -221,10 +221,10 @@ package alternativa.tanks.model
                   this.method_2158(null,param1.name_319[1] == "not_exist" ? true : false);
                   break;
                case "info_done":
-                  name_298(Main.osgi.name_6(name_298)).getStorage().data.alreadyPlayedTanks = true;
+                  IStorageService(Main.osgi.getService(IStorageService)).getStorage().data.alreadyPlayedTanks = true;
                   this.objectUnloaded(this.clientObject);
-                  name_13(Main.osgi.name_6(name_13)).show();
-                  (Main.osgi.name_6(ILobby) as Lobby).beforeAuth();
+                  name_13(Main.osgi.getService(name_13)).show();
+                  (Main.osgi.getService(ILobby) as Lobby).beforeAuth();
                   break;
                case "set_free_uids":
                   _loc2_ = new Vector.<String>();
@@ -236,17 +236,17 @@ package alternativa.tanks.model
                   this.var_2053.name_2423.name_2456(_loc2_);
             }
          }
-         else if(param1.type == name_346.AUTH)
+         else if(param1.type == Type.AUTH)
          {
             switch(param1.name_319[0])
             {
                case "accept":
                   this.objectUnloaded(this.clientObject);
-                  name_13(Main.osgi.name_6(name_13)).show();
-                  (Main.osgi.name_6(ILobby) as Lobby).beforeAuth();
+                  name_13(Main.osgi.getService(name_13)).show();
+                  (Main.osgi.getService(ILobby) as Lobby).beforeAuth();
                   break;
                case "remember_hash":
-                  _loc5_ = name_298(Main.osgi.name_6(name_298)).getStorage();
+                  _loc5_ = IStorageService(Main.osgi.getService(IStorageService)).getStorage();
                   _loc5_.data.userName = param1.name_319[1];
                   LoginByHashModel(this.modelRegister.getModel(Long.getLong(1662174151,-1895153624))).rememberAccount(param1.name_319[2]);
                   break;
@@ -305,7 +305,7 @@ package alternativa.tanks.model
       
       private function method_554(param1:String) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("auth;confirm_email_code;" + param1);
+         Network(Main.osgi.getService(name_2)).send("auth;confirm_email_code;" + param1);
       }
       
       public function method_2166(param1:ClientObject, param2:String) : void
@@ -364,7 +364,7 @@ package alternativa.tanks.model
          this.var_2057 = new Timer(500,1);
          this.var_2057.addEventListener(TimerEvent.TIMER_COMPLETE,this.onCallsignCheckTimerComplete);
          this.showWindow();
-         var _loc1_:SharedObject = name_298(Main.osgi.name_6(name_298)).getStorage();
+         var _loc1_:SharedObject = IStorageService(Main.osgi.getService(IStorageService)).getStorage();
          var _loc2_:Boolean = Boolean(_loc1_.data.alreadyPlayedTanks);
          Main.method_8("USER MODEL","VasyaWasHere: %1",_loc2_);
          if(_loc2_)
@@ -439,8 +439,8 @@ package alternativa.tanks.model
       
       public function objectUnloaded(param1:ClientObject) : void
       {
-         var _loc2_:name_13 = Main.osgi.name_6(name_13) as name_13;
-         var _loc3_:SharedObject = name_298(Main.osgi.name_6(name_298)).getStorage();
+         var _loc2_:name_13 = Main.osgi.getService(name_13) as name_13;
+         var _loc3_:SharedObject = IStorageService(Main.osgi.getService(IStorageService)).getStorage();
          _loc3_.data.alreadyPlayedTanks = true;
          if(this.var_2057 != null)
          {
@@ -460,7 +460,7 @@ package alternativa.tanks.model
       public function method_2176(param1:ClientObject) : void
       {
          Main.method_8("USER MODEL","hashLoginFailed!");
-         var _loc2_:name_13 = Main.osgi.name_6(name_13) as name_13;
+         var _loc2_:name_13 = Main.osgi.getService(name_13) as name_13;
          _loc2_.hideForcibly();
          if(this.var_2059)
          {
@@ -485,7 +485,7 @@ package alternativa.tanks.model
          Main.method_8("USER MODEL","passwdLoginFailed!");
          this.showWindow();
          this.state = 1;
-         var _loc2_:SharedObject = name_298(Main.osgi.name_6(name_298)).getStorage();
+         var _loc2_:SharedObject = IStorageService(Main.osgi.getService(IStorageService)).getStorage();
          var _loc3_:String = String(_loc2_.data.userName);
          this.var_2053.loginState = true;
          if(_loc3_ != null)
@@ -525,7 +525,7 @@ package alternativa.tanks.model
       public function method_2169(param1:ClientObject, param2:String) : void
       {
          Main.method_8("USER MODEL","setHash: " + param2);
-         var _loc3_:SharedObject = name_298(Main.osgi.name_6(name_298)).getStorage();
+         var _loc3_:SharedObject = IStorageService(Main.osgi.getService(IStorageService)).getStorage();
          _loc3_.data.userHash = param2;
          _loc3_.data.alreadyPlayedTanks = true;
          var _loc4_:String = _loc3_.flush();
@@ -577,7 +577,7 @@ package alternativa.tanks.model
       public function method_2171(param1:ClientObject, param2:String) : void
       {
          this.method_2150();
-         var _loc3_:SharedObject = name_298(Main.osgi.name_6(name_298)).getStorage();
+         var _loc3_:SharedObject = IStorageService(Main.osgi.getService(IStorageService)).getStorage();
          this.showWindow();
          this.state = 1;
          this.var_2053.loginState = true;
@@ -676,7 +676,7 @@ package alternativa.tanks.model
       
       public function method_2162(param1:String, param2:Boolean) : void
       {
-         name_42(OSGi.getInstance().name_6(name_42)).showAlert(param1,Vector.<String>(["Ok"]));
+         name_42(OSGi.getInstance().getService(name_42)).showAlert(param1,Vector.<String>(["Ok"]));
       }
       
       private function method_2151() : void
@@ -779,7 +779,7 @@ package alternativa.tanks.model
       private function method_2167(param1:String, param2:String, param3:String, param4:Boolean, param5:Boolean, param6:String) : void
       {
          var _loc7_:String = param1 + ";" + param2 + ";";
-         var _loc8_:SharedObject = Main.osgi.name_6(name_298).getStorage() as SharedObject;
+         var _loc8_:SharedObject = Main.osgi.getService(IStorageService).getStorage() as SharedObject;
          if(_loc8_.data.emailUser == null)
          {
             _loc8_.setProperty("emailUser",param3);
@@ -849,7 +849,7 @@ package alternativa.tanks.model
          {
             return;
          }
-         Network(Main.osgi.name_6(name_2)).send("auth;recovery_account;" + param1 + ";" + this.var_2053.name_2431.name_2430.input.value);
+         Network(Main.osgi.getService(name_2)).send("auth;recovery_account;" + param1 + ";" + this.var_2053.name_2431.name_2430.input.value);
       }
       
       private function method_2147(param1:name_2422) : void
@@ -867,7 +867,7 @@ package alternativa.tanks.model
       
       private function method_2157(param1:String, param2:String) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("auth;change_pass_email;" + param1 + ";" + param2);
+         Network(Main.osgi.getService(name_2)).send("auth;change_pass_email;" + param1 + ";" + param2);
       }
       
       private function method_2153(param1:Event) : void

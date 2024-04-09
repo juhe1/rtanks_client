@@ -9,7 +9,7 @@ package alternativa.tanks.models.battlefield
    public class name_284 implements class_23
    {
       
-      public static var battleService:name_83;
+      public static var battleService:IBattleField;
       
       public static var display:name_24;
       

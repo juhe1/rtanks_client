@@ -3,18 +3,18 @@ package package_149
    import alternativa.engine3d.core.Object3D;
    import alternativa.engine3d.materials.TextureMaterial;
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.tanks.engine3d.TextureMaterialRegistry;
    import alternativa.tanks.engine3d.name_1072;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.sfx.LightDataManager;
    import alternativa.tanks.models.sfx.name_1714;
    import alternativa.tanks.models.sfx.name_1716;
    import alternativa.tanks.models.sfx.name_1717;
    import alternativa.tanks.models.tank.TankData;
-   import alternativa.tanks.services.materialregistry.name_100;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import alternativa.tanks.sfx.Sound3D;
    import alternativa.tanks.sfx.name_132;
    import alternativa.tanks.sfx.name_1718;
@@ -45,12 +45,12 @@ package package_149
       
       private static const const_1480:Number = 1;
       
-      private static var var_58:name_100;
+      private static var var_58:IMaterialRegistry;
       
-      private static var var_138:name_118;
+      private static var var_138:IObjectPoolService;
        
       
-      private var battlefield:name_83;
+      private var battlefield:IBattleField;
       
       private var var_1048:class_70;
       
@@ -68,11 +68,11 @@ package package_149
       {
          this.name_694 = new Dictionary();
          this.var_1047 = new Dictionary();
-         this.var_421 = Main.osgi.name_6(name_83) as BattlefieldModel;
+         this.var_421 = Main.osgi.getService(IBattleField) as BattlefieldModel;
          super();
-         var_365.push(name_66,class_11,name_1707);
-         var_58 = name_100(Main.osgi.name_6(name_100));
-         var_138 = name_118(Main.osgi.name_6(name_118));
+         _interfaces.push(IModel,class_11,name_1707);
+         var_58 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry));
+         var_138 = IObjectPoolService(Main.osgi.getService(IObjectPoolService));
       }
       
       public function initObject(param1:ClientObject, param2:BitmapData, param3:BitmapData, param4:Sound) : void
@@ -188,7 +188,7 @@ package package_149
       {
          var _loc2_:Vector.<name_1594> = null;
          var _loc3_:name_1715 = null;
-         var _loc4_:name_32 = name_32(Main.osgi.name_6(name_32));
+         var _loc4_:name_32 = name_32(Main.osgi.getService(name_32));
          var _loc5_:name_1737 = name_1737(_loc4_.method_260(param1,name_1737));
          if(_loc5_ != null)
          {
@@ -221,8 +221,8 @@ package package_149
          var _loc1_:name_32 = null;
          if(this.battlefield == null)
          {
-            _loc1_ = name_32(Main.osgi.name_6(name_32));
-            this.battlefield = name_83(Main.osgi.name_6(name_83));
+            _loc1_ = name_32(Main.osgi.getService(name_32));
+            this.battlefield = IBattleField(Main.osgi.getService(IBattleField));
             this.var_1048 = class_70(_loc1_.getModelsByInterface(class_70)[0]);
          }
       }

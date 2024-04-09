@@ -64,7 +64,7 @@ package package_6
          var _loc2_:ClientObject = this.objects[param1];
          if(_loc2_ == null)
          {
-            (Main.osgi.name_6(name_50) as name_50).log(LogLevel.name_79,"[ObjectRegister::destroyObject] ERROR: clientObject == null! (id: " + param1 + ")");
+            (Main.osgi.getService(name_50) as name_50).log(LogLevel.name_79,"[ObjectRegister::destroyObject] ERROR: clientObject == null! (id: " + param1 + ")");
          }
          else
          {
@@ -75,7 +75,7 @@ package package_6
                _loc4_ = 0;
                while(_loc4_ < _loc3_.length)
                {
-                  _loc5_ = name_32(Main.osgi.name_6(name_32)).getModel(_loc3_[_loc4_]) as class_11;
+                  _loc5_ = name_32(Main.osgi.getService(name_32)).getModel(_loc3_[_loc4_]) as class_11;
                   if(_loc5_ != null)
                   {
                      _loc5_.objectUnloaded(_loc2_);

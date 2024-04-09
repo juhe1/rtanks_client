@@ -2,11 +2,11 @@ package alternativa.tanks.models.battlefield.gui.chat
 {
    import alternativa.tanks.model.friends.FriendsService;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
-   import controls.base.name_1134;
+   import alternativa.tanks.models.tank.ITank;
+   import controls.base.LabelBase;
    import filters.name_1131;
    import flash.display.Bitmap;
    import flash.events.MouseEvent;
@@ -22,25 +22,25 @@ package alternativa.tanks.models.battlefield.gui.chat
    {
        
       
-      private var var_3558:name_1134;
+      private var var_3558:LabelBase;
       
       public function BattleChatUserLabel(param1:String, param2:int, param3:Boolean = true, param4:int = 0)
       {
          var _loc5_:ClientObject = null;
          var _loc6_:TankData = null;
-         this.var_3558 = new name_1134();
+         this.var_3558 = new LabelBase();
          var_1557 = param1;
          var_1550 = param2;
          var_845 = param4;
          var_2590 = false;
          var_2589 = param3;
          var _loc7_:Boolean = false;
-         if(BattlefieldModel(Main.osgi.name_6(name_83)).spectatorMode)
+         if(BattlefieldModel(Main.osgi.getService(IBattleField)).spectatorMode)
          {
             _loc5_ = BattleController.tankClientObjectByTankId[param1];
             if(_loc5_ != null)
             {
-               _loc6_ = TankModel(Main.osgi.name_6(class_7)).getTankData(_loc5_);
+               _loc6_ = TankModel(Main.osgi.getService(ITank)).getTankData(_loc5_);
                if(_loc6_ != null)
                {
                   _loc7_ = _loc6_.name_87 == TankSpawnState.ACTIVE;
@@ -95,7 +95,7 @@ package alternativa.tanks.models.battlefield.gui.chat
          var _loc2_:name_112 = null;
          if(_loc1_ != null)
          {
-            _loc3_ = TankModel(Main.osgi.name_6(class_7)).getTankData(_loc1_);
+            _loc3_ = TankModel(Main.osgi.getService(ITank)).getTankData(_loc1_);
             if(_loc3_ != null && _loc3_.object != null)
             {
                if(_loc3_.object.gameClass == null)
@@ -114,7 +114,7 @@ package alternativa.tanks.models.battlefield.gui.chat
                   this.var_3558.text = _loc4_ == 100 ? "??" : _loc4_.toString();
                   addChild(this.var_3558);
                   this.var_3558.x = _loc5_.x + 3;
-                  this.var_3558.color = name_1135.name_1140;
+                  this.var_3558.color = MessageColor.name_1140;
                   this.var_3558.filters = this.method_2565();
                }
             }

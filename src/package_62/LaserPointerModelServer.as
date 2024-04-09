@@ -1,7 +1,7 @@
 package package_62
 {
    import alternativa.osgi.OSGi;
-   import alternativa.tanks.models.tank.class_7;
+   import alternativa.tanks.models.tank.ITank;
    import package_13.Long;
    import package_38.name_69;
    import package_38.name_840;
@@ -45,22 +45,22 @@ package package_62
       
       public function method_875(param1:name_70, param2:Vector3d) : void
       {
-         var _loc3_:String = String(class_7(param1.name_176(class_7)).getTank().tankData.userName);
+         var _loc3_:String = String(ITank(param1.name_176(ITank)).getTank().tankData.userName);
          var _loc4_:Object = {};
          _loc4_.x = param2.x;
          _loc4_.y = param2.y;
          _loc4_.z = param2.z;
-         Network(OSGi.getInstance().name_6(name_2)).send("battle;aim_at_tank;" + _loc3_ + ";" + JSON.stringify(_loc4_));
+         Network(OSGi.getInstance().getService(name_2)).send("battle;aim_at_tank;" + _loc3_ + ";" + JSON.stringify(_loc4_));
       }
       
       public function hide() : void
       {
-         Network(OSGi.getInstance().name_6(name_2)).send("battle;hide_laser;");
+         Network(OSGi.getInstance().getService(name_2)).send("battle;hide_laser;");
       }
       
       public function method_877(param1:Number) : void
       {
-         Network(OSGi.getInstance().name_6(name_2)).send("battle;update_direction;" + param1);
+         Network(OSGi.getInstance().getService(name_2)).send("battle;update_direction;" + param1);
       }
    }
 }

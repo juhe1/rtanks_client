@@ -8,7 +8,7 @@ package package_213
    import package_13.Long;
    import package_215.ClanMembersDataProvider;
    import package_29.name_64;
-   import utils.name_1915;
+   import utils.ScrollStyleUtils;
    
    public class ClanMembersList extends class_122
    {
@@ -41,11 +41,11 @@ package package_213
          this.list.setStyle(name_1919.name_1920,name_2032);
          this.list.focusEnabled = true;
          this.list.selectable = false;
-         name_1915.name_1918(this.list);
+         ScrollStyleUtils.setGreenStyle(this.list);
          this.dataProvider.getItemAtHandler = this.method_1461;
          this.list.dataProvider = this.dataProvider;
          addChild(this.list);
-         name_1915.name_1918(this.list);
+         ScrollStyleUtils.setGreenStyle(this.list);
          addEventListener(Event.ADDED_TO_STAGE,this.method_1436);
          addEventListener(Event.REMOVED_FROM_STAGE,this.onRemoveFromStage);
       }

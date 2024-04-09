@@ -15,7 +15,7 @@ package package_397
       
       public static function name_2103(param1:String) : String
       {
-         var _loc2_:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+         var _loc2_:name_102 = OSGi.getInstance().getService(name_102) as name_102;
          switch(param1)
          {
             case "vkontakte":

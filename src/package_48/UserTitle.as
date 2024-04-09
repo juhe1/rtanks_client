@@ -3,10 +3,10 @@ package package_48
    import alternativa.engine3d.core.Clipping;
    import alternativa.engine3d.materials.TextureMaterial;
    import alternativa.engine3d.objects.Sprite3D;
-   import alternativa.tanks.models.battlefield.gui.chat.name_1135;
-   import alternativa.tanks.utils.name_75;
+   import alternativa.tanks.models.battlefield.gui.chat.MessageColor;
+   import alternativa.tanks.utils.MathUtils;
    import controls.Label;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import filters.name_1131;
    import flash.display.BitmapData;
    import flash.geom.Matrix;
@@ -161,7 +161,7 @@ package package_48
          }
          this.teamType = BattleTeamType.NONE;
          this.var_439 = name_1128.name_1143;
-         this.var_443 = new name_1134();
+         this.var_443 = new LabelBase();
          this.size = new name_1133();
          this.isLocal = param1;
          this.material = new TextureMaterial();
@@ -508,7 +508,7 @@ package package_48
          {
             this.method_669();
             this.label.text = this.var_451 || "";
-            this.var_443.color = name_1135.name_1140;
+            this.var_443.color = MessageColor.name_1140;
             this.var_443.filters = name_1131.name_1147;
             this.size.name_1152(18 + 2 + this.label.textWidth + 7 + 11 + 10);
             this.size.name_1142(13);
@@ -547,8 +547,8 @@ package package_48
       {
          var _loc1_:int = Math.ceil(this.size.width);
          var _loc2_:int = Math.ceil(this.size.height);
-         var _loc3_:int = name_75.method_615(this.size.width);
-         var _loc4_:int = name_75.method_615(this.size.height);
+         var _loc3_:int = MathUtils.method_615(this.size.width);
+         var _loc4_:int = MathUtils.method_615(this.size.height);
          var _loc5_:Boolean = false;
          if(this.texture == null || this.texture.width != _loc3_ || this.texture.height != _loc4_)
          {

@@ -1,9 +1,9 @@
 package alternativa.tanks.models.battlefield.logic
 {
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.spawn.name_279;
-   import alternativa.tanks.utils.name_75;
+   import alternativa.tanks.utils.MathUtils;
    import alternativa.tanks.vehicles.tanks.Tank;
    import package_1.Main;
    import platform.client.fp10.core.type.name_70;
@@ -25,7 +25,7 @@ package alternativa.tanks.models.battlefield.logic
          super();
          this.readyTime = param1;
          this.tank = param2;
-         this.battle = Main.osgi.name_6(name_83) as BattlefieldModel;
+         this.battle = Main.osgi.getService(IBattleField) as BattlefieldModel;
       }
       
       public function method_504(param1:int, param2:int) : void
@@ -34,7 +34,7 @@ package alternativa.tanks.models.battlefield.logic
          var _loc4_:name_279 = null;
          if(this.tank != null && this.tank.skin != null)
          {
-            this.tank.skin.name_1068(name_75.method_218((this.readyTime - param1) / 500,0,1));
+            this.tank.skin.name_1068(MathUtils.method_218((this.readyTime - param1) / 500,0,1));
          }
          if(param1 > this.readyTime)
          {

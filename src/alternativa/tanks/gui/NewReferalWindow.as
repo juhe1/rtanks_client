@@ -5,7 +5,7 @@ package alternativa.tanks.gui
    import controls.DefaultButton;
    import controls.Label;
    import controls.TankInput;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import controls.name_1922;
    import controls.name_2292;
    import controls.name_2296;
@@ -75,17 +75,17 @@ package alternativa.tanks.gui
       
       private var window:name_1922;
       
-      private var var_1251:name_1891;
+      private var var_1251:TankWindowInner;
       
-      private var var_1811:name_1891;
+      private var var_1811:TankWindowInner;
       
-      private var var_1831:name_1891;
+      private var var_1831:TankWindowInner;
       
-      private var var_1833:name_1891;
+      private var var_1833:TankWindowInner;
       
-      private var var_1823:name_1891;
+      private var var_1823:TankWindowInner;
       
-      private var var_1813:name_1891;
+      private var var_1813:TankWindowInner;
       
       private var var_1846:Bitmap;
       
@@ -183,9 +183,9 @@ package alternativa.tanks.gui
          var messageTemplate:String = param4;
          super();
          this.messageTemplate = messageTemplate.split("\n\r").join("\n").split("\r\n").join("\n");
-         this.localeService = Main.osgi.name_6(name_102) as name_102;
-         modelRegister = Main.osgi.name_6(name_32) as name_32;
-         this.panelModel = Main.osgi.name_6(name_115) as PanelModel;
+         this.localeService = Main.osgi.getService(name_102) as name_102;
+         modelRegister = Main.osgi.getService(name_32) as name_32;
+         this.panelModel = Main.osgi.getService(name_115) as PanelModel;
          this.window = new name_1922();
          addChild(this.window);
          this.window.name_2241 = this.localeService.getText(TextConst.GUI_LANG);
@@ -212,7 +212,7 @@ package alternativa.tanks.gui
          this.name_983 = new DefaultButton();
          addChild(this.name_983);
          this.name_983.label = this.localeService.getText(TextConst.REFERAL_WINDOW_BUTTON_CLOSE_TEXT);
-         this.var_1813 = new name_1891(0,0,name_1891.name_1428);
+         this.var_1813 = new TankWindowInner(0,0,TankWindowInner.GREEN);
          this.var_1813.x = 12;
          this.var_1813.y = 12;
          addChild(this.var_1813);
@@ -223,13 +223,13 @@ package alternativa.tanks.gui
          this.var_1812.wordWrap = true;
          addChild(this.var_1812);
          this.var_1812.visible = false;
-         this.var_1251 = new name_1891(0,0,name_1891.name_2114);
+         this.var_1251 = new TankWindowInner(0,0,TankWindowInner.name_2114);
          this.var_1251.x = 12;
          addChild(this.var_1251);
          this.var_1251.visible = false;
          this.var_1835 = new Sprite();
          addChild(this.var_1835);
-         this.var_1811 = new name_1891(0,0,name_1891.name_1428);
+         this.var_1811 = new TankWindowInner(0,0,TankWindowInner.GREEN);
          this.var_1811.x = 12;
          this.var_1811.y = 12;
          this.var_1835.addChild(this.var_1811);
@@ -260,11 +260,11 @@ package alternativa.tanks.gui
          this.var_1826.htmlText = this.localeService.getText(TextConst.REFERAL_WINDOW_INFO_TEXT,tableLinkURL);
          this.var_1816 = new Sprite();
          addChild(this.var_1816);
-         this.var_1831 = new name_1891(0,0,name_1891.name_1428);
+         this.var_1831 = new TankWindowInner(0,0,TankWindowInner.GREEN);
          this.var_1816.addChild(this.var_1831);
-         this.var_1833 = new name_1891(0,0,name_1891.name_1428);
+         this.var_1833 = new TankWindowInner(0,0,TankWindowInner.GREEN);
          this.var_1816.addChild(this.var_1833);
-         this.var_1823 = new name_1891(0,0,name_1891.name_1428);
+         this.var_1823 = new TankWindowInner(0,0,TankWindowInner.GREEN);
          this.var_1816.addChild(this.var_1823);
          this.var_1832 = new Label();
          this.var_1832.text = this.localeService.getText(TextConst.REFERAL_WINDOW_COUNT_LABEL);

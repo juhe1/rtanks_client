@@ -26,7 +26,7 @@ package controls.statassets
          var _loc2_:name_3470 = null;
          this.var_1207 = new Array();
          super();
-         var _loc1_:name_102 = name_102(Main.osgi.name_6(name_102));
+         var _loc1_:name_102 = name_102(Main.osgi.getService(name_102));
          this.var_3519 = [_loc1_.getText(TextConst.REFERAL_STATISTICS_HEADER_CALLSIGN),_loc1_.getText(TextConst.REFERAL_STATISTICS_HEADER_INCOME)];
          var _loc3_:int = 0;
          while(_loc3_ < 2)

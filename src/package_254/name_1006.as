@@ -11,7 +11,7 @@ package package_254
       public function name_1006(param1:Number, param2:Number)
       {
          super(1,param1,param2);
-         text = name_102(OSGi.getInstance().name_6(name_102)).getText(name_390.const_1219);
+         text = name_102(OSGi.getInstance().getService(name_102)).getText(name_390.const_1219);
          arrowLehgth = 36;
          arrowAlign = name_2221.TOP_LEFT;
       }

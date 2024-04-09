@@ -1,7 +1,7 @@
 package package_119
 {
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import flash.utils.Dictionary;
    import package_1.Main;
    import package_4.ClientObject;
@@ -24,10 +24,10 @@ package package_119
       public function UserDataModel()
       {
          super();
-         var_365.push(name_66);
-         var_365.push(name_361);
-         var_365.push(class_11);
-         var_365.push(class_121);
+         _interfaces.push(IModel);
+         _interfaces.push(name_361);
+         _interfaces.push(class_11);
+         _interfaces.push(class_121);
          this.data = new Dictionary(false);
       }
       
@@ -51,8 +51,8 @@ package package_119
       {
          var _loc7_:int = 0;
          this.data[param2] = new name_351(param2,param3,param4);
-         var _loc5_:name_32 = Main.osgi.name_6(name_32) as name_32;
-         var _loc6_:Vector.<name_66> = _loc5_.getModelsByInterface(name_1829);
+         var _loc5_:name_32 = Main.osgi.getService(name_32) as name_32;
+         var _loc6_:Vector.<IModel> = _loc5_.getModelsByInterface(name_1829);
          if(_loc6_ != null)
          {
             _loc7_ = 0;

@@ -42,12 +42,12 @@ package package_101
       
       public function method_2130() : void
       {
-         Network(OSGi.getInstance().name_6(name_2)).send("battle;ready_to_spawn");
+         Network(OSGi.getInstance().getService(name_2)).send("battle;ready_to_spawn");
       }
       
       public function setReadyToPlace() : void
       {
-         Network(OSGi.getInstance().name_6(name_2)).send("battle;ready_to_place");
+         Network(OSGi.getInstance().getService(name_2)).send("battle;ready_to_place");
       }
    }
 }

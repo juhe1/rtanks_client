@@ -2,7 +2,7 @@ package package_309
 {
    import alternativa.engine3d.core.Object3D;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import package_1.Main;
    import package_37.Matrix3;
    import package_37.Vector3;
@@ -79,7 +79,7 @@ package package_309
          this.var_2125 = param3;
          this.var_2124 = param4;
          this.reload();
-         this.var_11 = Main.osgi.name_6(name_83) as BattlefieldModel;
+         this.var_11 = Main.osgi.getService(IBattleField) as BattlefieldModel;
          this.direction.reset(1 - 2 * Math.random(),1 - 2 * Math.random(),1 - 2 * Math.random()).vNormalize();
          this.var_142 = new Vector3();
          this.var_2120 = Math.random() * 2 * Math.PI;

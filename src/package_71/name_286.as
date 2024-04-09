@@ -2,7 +2,7 @@ package package_71
 {
    import alternativa.tanks.battle.BattleUtils;
    import alternativa.tanks.models.tank.class_12;
-   import alternativa.tanks.models.tank.class_7;
+   import alternativa.tanks.models.tank.ITank;
    import alternativa.tanks.vehicles.tanks.Tank;
    import package_20.name_1415;
    import package_37.Matrix3;
@@ -38,7 +38,7 @@ package package_71
          {
             return;
          }
-         var _loc3_:class_7 = class_7(param1.name_176(class_7));
+         var _loc3_:ITank = ITank(param1.name_176(ITank));
          this.method_966(_loc3_.getTank(),BattleUtils.getVector3(param2));
       }
       
@@ -78,7 +78,7 @@ package package_71
       
       private function method_969() : Boolean
       {
-         var _loc1_:Tank = class_7(object.name_176(class_7)).getTank();
+         var _loc1_:Tank = ITank(object.name_176(ITank)).getTank();
          var _loc2_:name_70 = localTankInfoService.method_43();
          var _loc3_:name_70 = _loc1_.method_484();
          return _loc2_ == _loc3_;
@@ -106,7 +106,7 @@ package package_71
             return;
          }
          var _loc2_:Tank = this.getTank();
-         var _loc3_:Boolean = Boolean(class_7(_loc2_.method_484().name_176(class_7)).isLocal());
+         var _loc3_:Boolean = Boolean(ITank(_loc2_.method_484().name_176(ITank)).isLocal());
          if(_loc3_ && !method_771().locallyVisible)
          {
             _loc1_.name_1416();
@@ -133,7 +133,7 @@ package package_71
       
       private function getTank() : Tank
       {
-         return class_7(object.name_176(class_7)).getTank();
+         return ITank(object.name_176(ITank)).getTank();
       }
       
       private function method_963() : Boolean

@@ -4,17 +4,17 @@ package package_153
    import alternativa.engine3d.core.Object3D;
    import alternativa.engine3d.materials.TextureMaterial;
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.tanks.engine3d.TextureMaterialRegistry;
    import alternativa.tanks.engine3d.name_1072;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.sfx.LightDataManager;
    import alternativa.tanks.models.sfx.name_1096;
    import alternativa.tanks.models.sfx.name_1716;
    import alternativa.tanks.models.sfx.shoot.name_1187;
-   import alternativa.tanks.services.materialregistry.name_100;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import alternativa.tanks.sfx.Sound3D;
    import alternativa.tanks.sfx.Sound3DEffect;
    import alternativa.tanks.sfx.name_1070;
@@ -23,7 +23,7 @@ package package_153
    import alternativa.tanks.sfx.name_1760;
    import alternativa.tanks.sfx.name_89;
    import alternativa.tanks.utils.GraphicsUtils;
-   import alternativa.tanks.utils.name_75;
+   import alternativa.tanks.utils.MathUtils;
    import flash.display.BitmapData;
    import flash.filters.BitmapFilter;
    import flash.geom.ColorTransform;
@@ -55,9 +55,9 @@ package package_153
       
       public static const const_1506:Number = 500;
       
-      private static var var_58:name_100;
+      private static var var_58:IMaterialRegistry;
       
-      private static var var_138:name_118;
+      private static var var_138:IObjectPoolService;
       
       private static var var_1085:Vector3 = new Vector3();
       
@@ -67,10 +67,10 @@ package package_153
       public function PlasmaSFXModel()
       {
          super();
-         var_365.push(name_66,class_117,name_1187,class_115,class_11);
-         var_58 = name_100(Main.osgi.name_6(name_100));
-         var_138 = name_118(Main.osgi.name_6(name_118));
-         var_421 = Main.osgi.name_6(name_83) as BattlefieldModel;
+         _interfaces.push(IModel,class_117,name_1187,class_115,class_11);
+         var_58 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry));
+         var_138 = IObjectPoolService(Main.osgi.getService(IObjectPoolService));
+         var_421 = Main.osgi.getService(IBattleField) as BattlefieldModel;
       }
       
       private static function method_1276(param1:String, param2:String) : BitmapFilter
@@ -156,7 +156,7 @@ package package_153
          var _loc8_:name_1072 = _loc5_.name_1762;
          var _loc9_:name_1071 = name_1071(var_138.objectPool.getObject(name_1071));
          _loc9_.init(param2,110);
-         _loc7_.init(_loc6_,_loc6_,_loc8_,name_75.PI2 * Math.random(),_loc9_);
+         _loc7_.init(_loc6_,_loc6_,_loc8_,MathUtils.PI2 * Math.random(),_loc9_);
          this.method_1267(param2,param1);
          return new name_1497(_loc7_,null);
       }
@@ -180,7 +180,7 @@ package package_153
          var _loc2_:name_1770 = null;
          var _loc3_:Vector.<name_1594> = null;
          var _loc4_:name_1594 = null;
-         var _loc5_:name_32 = name_32(Main.osgi.name_6(name_32));
+         var _loc5_:name_32 = name_32(Main.osgi.getService(name_32));
          var _loc6_:name_1737 = name_1737(_loc5_.method_260(param1,name_1737));
          if(_loc6_ != null)
          {

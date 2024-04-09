@@ -3,12 +3,12 @@ package alternativa.tanks.services
    import flash.events.EventDispatcher;
    import package_13.Long;
    import package_130.name_348;
-   import package_95.name_298;
+   import package_95.IStorageService;
    
    public class NewsServiceImpl extends EventDispatcher implements name_363
    {
       
-      public static var storageService:name_298;
+      public static var storageService:IStorageService;
       
       private static const const_1992:String = "NEWS_SERVICE_READ_NEWS";
        

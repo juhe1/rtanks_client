@@ -24,7 +24,7 @@ package alternativa.physics.collision
       
       public var name_1164:name_1161;
       
-      public var name_1167:Vector.<name_774>;
+      public var name_1167:Vector.<CollisionPrimitive>;
       
       public var var_1996:int;
       
@@ -42,9 +42,9 @@ package alternativa.physics.collision
          super();
       }
       
-      public function createTree(param1:Vector.<name_774>, param2:name_767 = null) : void
+      public function createTree(param1:Vector.<CollisionPrimitive>, param2:name_767 = null) : void
       {
-         var _loc3_:name_774 = null;
+         var _loc3_:CollisionPrimitive = null;
          var _loc4_:name_767 = null;
          this.name_1167 = param1.concat();
          this.var_1996 = this.name_1167.length;

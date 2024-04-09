@@ -5,12 +5,12 @@ package controls.dropdownlist
    import flash.events.MouseEvent;
    import flash.net.SharedObject;
    import package_1.Main;
-   import package_95.name_298;
+   import package_95.IStorageService;
    
    public class AccountsList extends DropDownList
    {
       
-      public static var storageService:name_298 = Main.osgi.name_6(name_298) as name_298;
+      public static var storageService:IStorageService = Main.osgi.getService(IStorageService) as IStorageService;
       
       public static const name_2570:int = 20;
        

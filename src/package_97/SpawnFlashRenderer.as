@@ -3,7 +3,7 @@ package package_97
    import alternativa.osgi.OSGi;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
    import alternativa.tanks.models.battlefield.name_1229;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import package_238.ObjectPool;
    import package_238.class_30;
    import package_465.AnimationTrack;
@@ -12,7 +12,7 @@ package package_97
    public class SpawnFlashRenderer extends class_30 implements name_1229
    {
       
-      public static var battleService:name_83 = OSGi.getInstance().name_6(name_83) as name_83;
+      public static var battleService:IBattleField = OSGi.getInstance().getService(IBattleField) as IBattleField;
       
       private static const const_2460:Vector.<Number> = Vector.<Number>([0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5]);
       

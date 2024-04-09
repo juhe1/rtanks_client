@@ -92,7 +92,7 @@ package package_87
          this.var_2275 = true;
          this.tabEnabled = false;
          this.tabChildren = false;
-         var _loc4_:name_102 = name_102(Main.osgi.name_6(name_102));
+         var _loc4_:name_102 = name_102(Main.osgi.getService(name_102));
          this.var_2278 = _loc4_.getText(TextConst.BATTLE_STAT_CALLSIGN);
          this.var_2281 = _loc4_.getText(TextConst.BATTLE_STAT_SCORE);
          this.var_2277 = _loc4_.getText(TextConst.BATTLE_STAT_KILLS);

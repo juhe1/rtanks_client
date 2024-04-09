@@ -3,10 +3,10 @@ package alternativa.tanks.models.weapon
    import alternativa.osgi.OSGi;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
+   import alternativa.tanks.models.tank.ITank;
    import flash.events.EventDispatcher;
-   import package_161.name_1448;
-   import package_161.name_515;
+   import package_161.IWeaponWeakeningModel;
+   import package_161.WeaponWeakeningModel;
    import package_4.ClientObject;
    import package_7.name_32;
    import package_92.name_1188;
@@ -33,18 +33,18 @@ package alternativa.tanks.models.weapon
       
       public function method_2193() : name_1188
       {
-         return OSGi.getInstance().name_6(name_1188) as name_1188;
+         return OSGi.getInstance().getService(name_1188) as name_1188;
       }
       
-      public function name_1456() : name_515
+      public function name_1456() : WeaponWeakeningModel
       {
-         var _loc1_:name_32 = OSGi.getInstance().name_6(name_32) as name_32;
-         return name_515(_loc1_.getModelsByInterface(name_1448)[0]);
+         var _loc1_:name_32 = OSGi.getInstance().getService(name_32) as name_32;
+         return WeaponWeakeningModel(_loc1_.getModelsByInterface(IWeaponWeakeningModel)[0]);
       }
       
       public function method_2192() : TankData
       {
-         return TankModel(OSGi.getInstance().name_6(class_7)).getTankData(this.object);
+         return TankModel(OSGi.getInstance().getService(ITank)).getTankData(this.object);
       }
       
       public function name_1248(param1:ClientObject) : void

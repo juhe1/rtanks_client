@@ -13,7 +13,7 @@ package package_127
    public class name_1580 implements AutoClosable
    {
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
        
       
       private var var_643:class_180;
@@ -32,7 +32,7 @@ package package_127
       
       private static function method_1092(param1:MouseEvent) : void
       {
-         PanelModel(OSGi.getInstance().name_6(name_115)).getShop();
+         PanelModel(OSGi.getInstance().getService(name_115)).getShop();
       }
       
       public function name_1581(param1:Boolean) : void

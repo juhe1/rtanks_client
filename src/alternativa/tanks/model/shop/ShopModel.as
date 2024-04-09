@@ -3,7 +3,7 @@ package alternativa.tanks.model.shop
    import flash.events.Event;
    import package_1.Main;
    import package_177.DialogsService;
-   import package_177.name_550;
+   import package_177.IDialogsService;
    import package_411.name_2247;
    import package_54.name_102;
    import scpacker.networking.Network;
@@ -17,7 +17,7 @@ package alternativa.tanks.model.shop
       
       private var var_102:DialogsService;
       
-      private var window:name_2246;
+      private var window:ShopWindow;
       
       private var var_1774:name_2248;
       
@@ -31,14 +31,14 @@ package alternativa.tanks.model.shop
          var _loc2_:Object = null;
          var _loc3_:Array = null;
          var _loc4_:Object = null;
-         this.localeService = Main.osgi.name_6(name_102) as name_102;
-         this.var_102 = Main.osgi.name_6(name_550) as DialogsService;
-         name_2246.name_2252 = param1.have_double_crystals;
-         this.window = new name_2246();
+         this.localeService = Main.osgi.getService(name_102) as name_102;
+         this.var_102 = Main.osgi.getService(IDialogsService) as DialogsService;
+         ShopWindow.name_2252 = param1.have_double_crystals;
+         this.window = new ShopWindow();
          this.var_102.name_1001(this.window);
          this.var_1774 = new name_2248();
          var _loc5_:Object = param1.data;
-         var _loc6_:String = String((Main.osgi.name_6(name_102) as name_102).language);
+         var _loc6_:String = String((Main.osgi.getService(name_102) as name_102).language);
          if(_loc6_ == null)
          {
             _loc6_ = "EN";
@@ -86,7 +86,7 @@ package alternativa.tanks.model.shop
          }
          else
          {
-            Network(Main.osgi.name_6(name_2)).send("lobby;shop_buy_item;" + param1.itemId + ";" + this.window.header.name_2250.selectedItem.code);
+            Network(Main.osgi.getService(name_2)).send("lobby;shop_buy_item;" + param1.itemId + ";" + this.window.header.name_2250.selectedItem.code);
          }
       }
    }

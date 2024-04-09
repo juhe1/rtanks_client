@@ -32,9 +32,9 @@ package package_52
    public class WeaponsManager
    {
       
-      public static var resourceRegistry:ResourceRegistry = OSGi.getInstance().name_6(ResourceRegistry) as ResourceRegistry;
+      public static var resourceRegistry:ResourceRegistry = OSGi.getInstance().getService(ResourceRegistry) as ResourceRegistry;
       
-      public static var modelRegister:name_29 = OSGi.getInstance().name_6(name_29) as name_29;
+      public static var modelRegister:name_29 = OSGi.getInstance().getService(name_29) as name_29;
       
       public static var colorTransform:Dictionary = new Dictionary();
       
@@ -76,11 +76,11 @@ package package_52
       
       public static function name_231(param1:ClientObject, param2:ClientObject, param3:Number, param4:Number, param5:Number, param6:Number) : name_213
       {
-         var _loc7_:WeaponCommonModel = Main.osgi.name_6(name_1188) as WeaponCommonModel;
+         var _loc7_:WeaponCommonModel = Main.osgi.getService(name_1188) as WeaponCommonModel;
          if(_loc7_ == null)
          {
             _loc7_ = new WeaponCommonModel();
-            Main.osgi.name_1(name_1188,_loc7_);
+            Main.osgi.registerService(name_1188,_loc7_);
          }
          _loc7_.initObject(param2,param3,param4,param5,param6);
          _loc7_.objectLoaded(param2);

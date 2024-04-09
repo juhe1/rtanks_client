@@ -5,7 +5,7 @@ package package_99
    import alternativa.engine3d.materials.TextureMaterial;
    import alternativa.engine3d.objects.Mesh;
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.osgi.service.dump.name_524;
    import alternativa.physics.ShapeContact;
    import alternativa.tanks.engine3d.TextureMaterialRegistry;
@@ -13,14 +13,14 @@ package package_99
    import alternativa.tanks.models.battlefield.BattlefieldModel;
    import alternativa.tanks.models.battlefield.name_128;
    import alternativa.tanks.models.battlefield.name_652;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.dom.DOMModel;
-   import alternativa.tanks.models.dom.name_995;
+   import alternativa.tanks.models.dom.IDOMModel;
    import alternativa.tanks.models.tank.TankData;
-   import alternativa.tanks.models.tank.class_7;
+   import alternativa.tanks.models.tank.ITank;
    import alternativa.tanks.models.weapon.name_1495;
-   import alternativa.tanks.services.materialregistry.name_100;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import alternativa.tanks.sfx.Sound3D;
    import alternativa.tanks.sfx.Sound3DEffect;
    import alternativa.tanks.sfx.name_1070;
@@ -49,7 +49,7 @@ package package_99
    import package_49.name_146;
    import package_49.name_163;
    import package_49.name_97;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_7.name_32;
    import package_79.CTFModel;
    import platform.client.fp10.core.resource.types.MultiframeImageResource;
@@ -60,9 +60,9 @@ package package_99
    public class BattleMinesModel extends BattleMinesModelBase implements name_690, class_48, class_11, name_652, class_3
    {
       
-      private static var var_138:name_118 = name_118(Main.osgi.name_6(name_118));
+      private static var var_138:IObjectPoolService = IObjectPoolService(Main.osgi.getService(IObjectPoolService));
       
-      private static var battleEventDispatcher:name_96 = name_96(Main.osgi.name_6(name_96));
+      private static var battleEventDispatcher:name_96 = name_96(Main.osgi.getService(name_96));
       
       private static const const_499:Number = 0.5;
       
@@ -92,12 +92,12 @@ package package_99
       
       private static var var_789:name_662 = new name_662("mine_idle_fps",30,1,50);
       
-      private static var var_58:name_100;
+      private static var var_58:IMaterialRegistry;
       
       private static const const_492:Class = name_1504;
        
       
-      private var var_11:name_83;
+      private var var_11:IBattleField;
       
       private var ctfModel:CTFModel;
       
@@ -105,7 +105,7 @@ package package_99
       
       private var var_56:name_97;
       
-      private var var_13:class_7;
+      private var var_13:ITank;
       
       private var var_117:name_128;
       
@@ -155,7 +155,7 @@ package package_99
       
       private var const_431:Vector3;
       
-      private var var_711:name_124;
+      private var var_711:RayHit;
       
       private var var_793:Vector.<ShapeContact>;
       
@@ -171,12 +171,12 @@ package package_99
          this.var_778 = new FrameSize();
          this.var_781 = new FrameSize();
          this.const_431 = new Vector3(0,0,-1);
-         this.var_711 = new name_124();
+         this.var_711 = new RayHit();
          this.var_793 = new Vector.<ShapeContact>();
          super();
-         var_365.push(name_66,name_690,class_11);
+         _interfaces.push(IModel,name_690,class_11);
          name_1505.name_725();
-         name_524(Main.osgi.name_6(name_524)).registerDumper(this);
+         name_524(Main.osgi.getService(name_524)).registerDumper(this);
          this.var_792 = new Dictionary();
          this.var_787 = new TextureMaterial(new const_492().bitmapData);
       }
@@ -188,7 +188,7 @@ package package_99
       public function initObject(param1:ClientObject) : void
       {
          this.method_1055();
-         var_58 = name_100(Main.osgi.name_6(name_100));
+         var_58 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry));
          var _loc2_:name_1411 = method_771();
          this.var_771.name_1509 = _loc2_.activateTimeMsec;
          this.var_771.name_1510 = 100;
@@ -229,12 +229,12 @@ package package_99
       
       public function objectLoaded(param1:ClientObject) : void
       {
-         var _loc2_:name_32 = name_32(Main.osgi.name_6(name_32));
-         this.var_11 = name_83(Main.osgi.name_6(name_83));
-         this.ctfModel = CTFModel(Main.osgi.name_6(name_994));
-         this.var_776 = DOMModel(Main.osgi.name_6(name_995));
+         var _loc2_:name_32 = name_32(Main.osgi.getService(name_32));
+         this.var_11 = IBattleField(Main.osgi.getService(IBattleField));
+         this.ctfModel = CTFModel(Main.osgi.getService(name_994));
+         this.var_776 = DOMModel(Main.osgi.getService(IDOMModel));
          this.var_56 = name_97(_loc2_.getModelsByInterface(name_97)[0]);
-         this.var_13 = class_7(Main.osgi.name_6(class_7));
+         this.var_13 = ITank(Main.osgi.getService(ITank));
          this.var_117 = this.var_11.getBattlefieldData();
          this.var_11.method_152(this);
          var _loc3_:InitParams = InitParams(param1.method_16(BattleMinesModel));
@@ -244,7 +244,7 @@ package package_99
          this.var_783 = this.method_1045(_loc3_.blueMineTexture);
          this.var_780 = this.method_1045(_loc3_.friendlyMineTexture);
          this.var_774 = this.method_1045(_loc3_.enemyMineTexture);
-         var _loc5_:BattlefieldModel = BattlefieldModel(Main.osgi.name_6(name_83));
+         var _loc5_:BattlefieldModel = BattlefieldModel(Main.osgi.getService(IBattleField));
       }
       
       public function objectUnloaded(param1:ClientObject) : void
@@ -388,7 +388,7 @@ package package_99
       {
          var _loc6_:Vector3 = null;
          var _loc7_:Boolean = false;
-         var _loc5_:TankData = TankData.name_106;
+         var _loc5_:TankData = TankData.localTankData;
          if(this.ctfModel != null && _loc5_ != null && _loc5_.enabled)
          {
             _loc6_ = _loc5_.tank.state.position;
@@ -405,7 +405,7 @@ package package_99
       
       public function method_1044(param1:name_1500) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;mine_hit;" + param1.id);
+         Network(Main.osgi.getService(name_2)).send("battle;mine_hit;" + param1.id);
       }
       
       public function addUser(param1:ClientObject) : void
@@ -505,7 +505,7 @@ package package_99
       {
          var _loc8_:name_1501 = null;
          var _loc9_:name_1500 = null;
-         var _loc10_:name_124 = new name_124();
+         var _loc10_:RayHit = new RayHit();
          if(this.var_117.name_247.name_251(param3,Vector3.DOWN,name_73.name_252,10000000000,null,_loc10_))
          {
             _loc8_ = this.var_772[param4];
@@ -605,7 +605,7 @@ package package_99
          switch(param1.teamType)
          {
             case BattleTeamType.NONE:
-               return param1 == TankData.name_106 ? this.var_780 : this.var_774;
+               return param1 == TankData.localTankData ? this.var_780 : this.var_774;
             case BattleTeamType.BLUE:
                return this.var_783;
             case BattleTeamType.RED:

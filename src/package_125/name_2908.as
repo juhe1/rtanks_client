@@ -1,10 +1,10 @@
 package package_125
 {
-   import alternativa.tanks.model.shop.name_2246;
+   import alternativa.tanks.model.shop.ShopWindow;
    import controls.base.TankInput;
-   import controls.base.name_1134;
-   import controls.base.name_998;
-   import controls.name_1891;
+   import controls.base.LabelBase;
+   import controls.base.DefaultButtonBase;
+   import controls.TankWindowInner;
    import controls.name_2015;
    import flash.display.DisplayObjectContainer;
    import flash.events.Event;
@@ -31,7 +31,7 @@ package package_125
       
       public static const const_422:int = 8;
       
-      public static var localeService:name_102 = Main.osgi.name_6(name_102) as name_102;
+      public static var localeService:name_102 = Main.osgi.getService(name_102) as name_102;
       
       public static var display:DisplayObjectContainer = Main.dialogsLayer;
       
@@ -44,7 +44,7 @@ package package_125
       
       private var var_3416:TankInput;
       
-      private var var_1844:name_998;
+      private var var_1844:DefaultButtonBase;
       
       private var var_3417:name_2015;
       
@@ -52,17 +52,17 @@ package package_125
       
       private var code:String = "";
       
-      private var var_1225:name_1891;
+      private var var_1225:TankWindowInner;
       
-      private var var_1278:name_1134;
+      private var var_1278:LabelBase;
       
-      private var var_3418:name_1134;
+      private var var_3418:LabelBase;
       
       public function name_2908()
       {
          super();
-         this.var_1225 = new name_1891(0,0,name_1891.name_1428);
-         this.var_1225.name_1895 = true;
+         this.var_1225 = new TankWindowInner(0,0,TankWindowInner.GREEN);
+         this.var_1225.showBlink = true;
          addChild(this.var_1225);
          this.var_1278 = this.method_3084();
          this.var_1225.addChild(this.var_1278);
@@ -76,9 +76,9 @@ package package_125
          addChild(this.var_3418);
       }
       
-      private function method_3084() : name_1134
+      private function method_3084() : LabelBase
       {
-         var _loc1_:name_1134 = new name_1134();
+         var _loc1_:LabelBase = new LabelBase();
          _loc1_.autoSize = TextFieldAutoSize.NONE;
          _loc1_.multiline = true;
          _loc1_.wordWrap = true;
@@ -94,9 +94,9 @@ package package_125
          return _loc1_;
       }
       
-      protected function method_3081() : name_998
+      protected function method_3081() : DefaultButtonBase
       {
-         var _loc1_:name_998 = new name_998();
+         var _loc1_:DefaultButtonBase = new DefaultButtonBase();
          _loc1_.tabEnabled = false;
          _loc1_.enable = false;
          _loc1_.label = localeService.getText(TextConst.REFERAL_WINDOW_BUTTON_SEND_TEXT);
@@ -113,9 +113,9 @@ package package_125
          return _loc1_;
       }
       
-      protected function method_3080() : name_1134
+      protected function method_3080() : LabelBase
       {
-         var _loc1_:name_1134 = new name_1134();
+         var _loc1_:LabelBase = new LabelBase();
          _loc1_.visible = false;
          _loc1_.text = localeService.getText(TextConst.SHOP_WINDOW_PROMOCODE_INVALID_TEXT);
          return _loc1_;
@@ -215,9 +215,9 @@ package package_125
          this.var_1844.enable = this.method_1346(this.code);
          this.var_1225.width = param1;
          this.var_1225.height = 82;
-         this.var_1278.width = param1 - 2 * name_2246.const_2244;
-         this.var_1278.height = 82 - 2 * name_2246.const_2244;
-         this.var_1278.x = this.var_1278.y = name_2246.const_2244;
+         this.var_1278.width = param1 - 2 * ShopWindow.const_2244;
+         this.var_1278.height = 82 - 2 * ShopWindow.const_2244;
+         this.var_1278.x = this.var_1278.y = ShopWindow.const_2244;
          var _loc3_:int = param2 - 82;
          this.var_3416.width = Math.max(this.var_3416.textField.textWidth,int(param1 * 0.66));
          this.var_3416.x = param1 - this.var_3416.width - this.var_1844.width - 8 >> 1;

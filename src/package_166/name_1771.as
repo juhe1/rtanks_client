@@ -2,7 +2,7 @@ package package_166
 {
    import alternativa.engine3d.core.Object3D;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.sfx.name_691;
    import package_334.name_1610;
@@ -18,7 +18,7 @@ package package_166
       
       private var name_1494:name_2711;
       
-      private var battlefield:name_83;
+      private var battlefield:IBattleField;
       
       private var var_2500:Boolean;
       
@@ -45,7 +45,7 @@ package package_166
          this.name_1494.mode = param1;
       }
       
-      public function name_1781(param1:name_83) : void
+      public function name_1781(param1:IBattleField) : void
       {
          this.battlefield = param1;
          param1.name_217(this.name_1496);
@@ -89,7 +89,7 @@ package package_166
       
       private function method_2497() : Boolean
       {
-         return this.var_2499 != null && this.var_2499 == TankData.name_106;
+         return this.var_2499 != null && this.var_2499 == TankData.localTankData;
       }
    }
 }

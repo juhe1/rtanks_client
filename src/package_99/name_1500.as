@@ -3,7 +3,7 @@ package package_99
    import alternativa.engine3d.materials.Material;
    import alternativa.engine3d.objects.Mesh;
    import alternativa.osgi.OSGi;
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import alternativa.physics.name_888;
    import alternativa.tanks.battle.name_295;
    import alternativa.tanks.battle.name_712;
@@ -28,7 +28,7 @@ package package_99
    public class name_1500 extends name_295 implements name_712, name_1229
    {
       
-      public static var battleInfoService:name_274 = OSGi.getInstance().name_6(name_274) as name_274;
+      public static var battleInfoService:name_274 = OSGi.getInstance().getService(name_274) as name_274;
       
       private static const var_668:BoxSphereCollider = new BoxSphereCollider();
       
@@ -194,7 +194,7 @@ package package_99
          this.var_2333 = false;
       }
       
-      public function method_1636(param1:name_660) : void
+      public function method_1636(param1:Body) : void
       {
          this.var_794 = param1.tank;
          if(this.method_2355(this.var_794.tankData))

@@ -1,6 +1,6 @@
 package forms.friends
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.base.name_2016;
    import controls.name_2015;
    import flash.display.Sprite;
@@ -29,9 +29,9 @@ package forms.friends
       
       private var var_3004:name_2016;
       
-      private var var_3006:name_1134;
+      private var var_3006:LabelBase;
       
-      private var var_3005:name_2306;
+      private var var_3005:FriendWindowButton;
       
       private var var_3008:uint;
       
@@ -56,14 +56,14 @@ package forms.friends
          this.var_3004.maxChars = 20;
          this.var_3004.restrict = "0-9.a-zA-z_\\-*";
          addChild(this.var_3004);
-         this.var_3006 = new name_1134();
+         this.var_3006 = new LabelBase();
          addChild(this.var_3006);
          this.var_3006.mouseEnabled = false;
          this.var_3006.color = name_1139.name_2023;
          this.var_3006.text = "Отправить заявку другу...";
          var_1335 = new name_2015();
          addChild(var_1335);
-         this.var_3005 = new name_2306();
+         this.var_3005 = new FriendWindowButton();
          addChild(this.var_3005);
          this.var_3005.label = "Отправить";
          this.var_3005.enable = false;

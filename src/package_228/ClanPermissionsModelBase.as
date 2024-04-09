@@ -26,7 +26,7 @@ package package_228
       
       public function ClanPermissionsModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_613(this);
          this.var_25 = Long.getLong(1602467880,168781542);
          this.var_1388 = Long.getLong(871743923,-1602562917);

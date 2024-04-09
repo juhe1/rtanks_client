@@ -3,9 +3,9 @@ package package_76
    import alternativa.engine3d.core.EllipsoidCollider;
    import alternativa.engine3d.core.Object3D;
    import alternativa.tanks.service.settings.SettingsServiceEvent;
-   import alternativa.tanks.service.settings.name_108;
+   import alternativa.tanks.service.settings.IBattleSettings;
    import alternativa.tanks.service.settings.name_1086;
-   import alternativa.tanks.utils.name_75;
+   import alternativa.tanks.utils.MathUtils;
    import alternativa.tanks.vehicles.tanks.Tank;
    import flash.geom.Point;
    import flash.geom.Vector3D;
@@ -18,7 +18,7 @@ package package_76
    import package_33.GameActionEnum;
    import package_37.Matrix3;
    import package_37.Vector3;
-   import package_95.name_298;
+   import package_95.IStorageService;
    
    public class FollowCameraController implements name_733, name_1090, name_1093, class_2
    {
@@ -33,9 +33,9 @@ package package_76
       
       private static const const_434:Number = 0.7;
       
-      public static var settings:name_108;
+      public static var settings:IBattleSettings;
       
-      public static var storageService:name_298;
+      public static var storageService:IStorageService;
       
       public static var display:name_24;
       
@@ -303,28 +303,28 @@ package package_76
          const_426.normalize().scale(_loc6_);
          var _loc7_:Number = this.method_914(this.var_650);
          var _loc8_:Number = Math.atan2(-this.var_656.x,this.var_656.y);
-         var _loc9_:Number = name_75.method_612(this.rotation.x + 0.5 * Math.PI);
-         var _loc10_:Number = name_75.method_612(this.rotation.z);
-         var _loc11_:Number = name_75.method_612(_loc7_ - _loc9_);
+         var _loc9_:Number = MathUtils.method_612(this.rotation.x + 0.5 * Math.PI);
+         var _loc10_:Number = MathUtils.method_612(this.rotation.z);
+         var _loc11_:Number = MathUtils.method_612(_loc7_ - _loc9_);
          this.var_662 = this.method_919(_loc11_,this.var_662);
          var _loc12_:Number = this.var_662 * _loc4_;
          if(_loc11_ > 0 && _loc12_ > _loc11_ || _loc11_ < 0 && _loc12_ < _loc11_)
          {
             _loc12_ = _loc11_;
          }
-         var _loc13_:Number = name_75.method_612(_loc8_ - _loc10_);
+         var _loc13_:Number = MathUtils.method_612(_loc8_ - _loc10_);
          this.var_659 = this.method_919(_loc13_,this.var_659);
          var _loc14_:Number = this.var_659 * _loc4_;
          if(_loc13_ > 0 && _loc14_ > _loc13_ || _loc13_ < 0 && _loc14_ < _loc13_)
          {
             _loc14_ = _loc13_;
          }
-         this.var_666 = name_75.method_608(this.var_666,0,var_653);
-         this.var_662 = name_75.method_608(this.var_662,0,var_653);
-         this.var_659 = name_75.method_608(this.var_659,0,var_653);
+         this.var_666 = MathUtils.method_608(this.var_666,0,var_653);
+         this.var_662 = MathUtils.method_608(this.var_662,0,var_653);
+         this.var_659 = MathUtils.method_608(this.var_659,0,var_653);
          this.position.add(const_426);
          this.rotation.x += _loc12_;
-         this.rotation.y = name_75.method_609(this.rotation.y,0,_loc4_);
+         this.rotation.y = MathUtils.method_609(this.rotation.y,0,_loc4_);
          this.rotation.z += _loc14_;
          const_428.copy(this.position);
          const_429.copy(this.rotation);
@@ -343,8 +343,8 @@ package package_76
       
       private function method_915(param1:Number) : void
       {
-         this.var_661 = name_75.method_218(param1,0,1);
-         var _loc2_:Number = name_75.method_218(this.var_661 + this.var_660 * 0.1,0,1);
+         this.var_661 = MathUtils.method_218(param1,0,1);
+         var _loc2_:Number = MathUtils.method_218(this.var_661 + this.var_660 * 0.1,0,1);
          this.var_142.x = method_911(_loc2_,this.point0.x,this.point1.x,this.point2.x,this.point3.x);
          this.var_142.y = method_911(_loc2_,this.point0.y,this.point1.y,this.point2.y,this.point3.y);
          this.var_663 = Math.atan2(this.var_142.x,this.var_142.y);
@@ -484,7 +484,7 @@ package package_76
          if(!this.locked)
          {
             this.var_660 += param2 * 0.001 * this.method_918();
-            this.var_660 = name_75.method_218(this.var_660,-1,1);
+            this.var_660 = MathUtils.method_218(this.var_660,-1,1);
          }
       }
       

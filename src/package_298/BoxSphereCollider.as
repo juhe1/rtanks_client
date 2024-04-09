@@ -2,7 +2,7 @@ package package_298
 {
    import alternativa.physics.ShapeContact;
    import alternativa.physics.collision.name_1172;
-   import alternativa.physics.collision.name_774;
+   import alternativa.physics.collision.CollisionPrimitive;
    import package_277.name_2400;
    import package_277.name_904;
    import package_37.Matrix4;
@@ -29,7 +29,7 @@ package package_298
          super();
       }
       
-      public function method_694(param1:name_774, param2:name_774, param3:Vector.<ShapeContact>) : void
+      public function method_694(param1:CollisionPrimitive, param2:CollisionPrimitive, param3:Vector.<ShapeContact>) : void
       {
          var _loc4_:name_904 = null;
          var _loc5_:Matrix4 = null;
@@ -106,7 +106,7 @@ package package_298
          param3[param3.length] = _loc13_;
       }
       
-      public function name_1176(param1:name_774, param2:name_774) : Boolean
+      public function name_1176(param1:CollisionPrimitive, param2:CollisionPrimitive) : Boolean
       {
          var _loc3_:name_904 = null;
          var _loc4_:name_2400 = param1 as name_2400;

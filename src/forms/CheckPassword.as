@@ -4,7 +4,7 @@ package forms
    import alternativa.tanks.service.name_554;
    import controls.DefaultButton;
    import controls.Label;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.base.name_2016;
    import controls.base.name_3489;
    import controls.dropdownlist.AccountsList;
@@ -20,20 +20,20 @@ package forms
    import package_459.name_3000;
    import package_54.name_102;
    import package_60.TextConst;
-   import package_95.name_298;
+   import package_95.IStorageService;
    import projects.tanks.clients.fp10.libraries.name_390;
    
    public class CheckPassword extends Sprite
    {
       
-      public static var storageService:name_298 = name_298(OSGi.getInstance().name_6(name_298));
+      public static var storageService:IStorageService = IStorageService(OSGi.getInstance().getService(IStorageService));
       
-      public static var var_3560:name_554 = name_554(OSGi.getInstance().name_6(name_554));
+      public static var var_3560:name_554 = name_554(OSGi.getInstance().getService(name_554));
        
       
       public var callSign:name_2016;
       
-      public var name_2445:name_1134;
+      public var name_2445:LabelBase;
       
       public var name_3068:name_3489;
       
@@ -41,7 +41,7 @@ package forms
       
       public var name_2429:DefaultButton;
       
-      public var name_3071:name_1134;
+      public var name_3071:LabelBase;
       
       public var name_2430:name_3000;
       
@@ -51,7 +51,7 @@ package forms
       
       private var var_3561:ExternalEntranceForm;
       
-      private var bg:name_1838;
+      private var bg:TankWindowWithHeader;
       
       private var label:Label;
       
@@ -68,10 +68,10 @@ package forms
       public function CheckPassword()
       {
          var _loc2_:name_102 = null;
-         _loc2_ = Main.osgi.name_6(name_102) as name_102;
-         this.bg = name_1838.name_1844(_loc2_.getText(name_390.const_882),this.var_2981,this.var_2992);
+         _loc2_ = Main.osgi.getService(name_102) as name_102;
+         this.bg = TankWindowWithHeader.createWindow(_loc2_.getText(name_390.const_882),this.var_2981,this.var_2992);
          super();
-         this.name_2445 = new name_1134();
+         this.name_2445 = new LabelBase();
          this.name_2445.htmlText = _loc2_.getText(TextConst.CHECK_PASSWORD_FORM_RESTORE_LINK_TEXT);
          this.name_2445.x = this.var_2981 - this.name_2445.width - this.var_2991;
          this.name_2445.y = this.var_2991;
@@ -82,7 +82,7 @@ package forms
          this.name_3068 = new name_3489();
          this.name_3068.label = _loc2_.getText(TextConst.CHECK_PASSWORD_FORM_PASSWORD);
          this.var_2984 = this.var_2991 - 3 + (Math.abs(this.callSign._label.x) > Math.abs(this.name_3068._label.x) ? Math.abs(this.callSign._label.x) : Math.abs(this.name_3068._label.x));
-         this.name_3071 = new name_1134();
+         this.name_3071 = new LabelBase();
          this.name_3071.htmlText = "<a href=\'event:\'><font color=\'#59ff32\'><u>" + _loc2_.getText(TextConst.const_180) + "</u></font></a>";
          this.name_3071.width = Math.max(this.name_3071.width,115);
          this.name_3071.x = this.var_2984;

@@ -4,22 +4,22 @@ package package_79
    import alternativa.engine3d.core.Object3D;
    import alternativa.engine3d.lights.OmniLight;
    import alternativa.engine3d.materials.Material;
-   import alternativa.physics.collision.name_774;
+   import alternativa.physics.collision.CollisionPrimitive;
    import alternativa.physics.name_888;
    import alternativa.tanks.engine3d.AnimatedSprite3D;
    import alternativa.tanks.engine3d.TextureMaterialRegistry;
    import alternativa.tanks.engine3d.name_1072;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
-   import alternativa.tanks.services.materialregistry.name_100;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
    import alternativa.tanks.utils.GraphicsUtils;
    import alternativa.tanks.vehicles.tanks.Tank;
    import flash.display.BitmapData;
    import forms.battlelist.BattleMode;
    import package_1.Main;
    import package_249.name_1430;
-   import package_270.name_820;
+   import package_270.MaterialRegistry;
    import package_277.name_904;
    import package_311.name_1307;
    import package_311.name_1312;
@@ -28,7 +28,7 @@ package package_79
    import package_42.TanksCollisionDetector;
    import package_42.name_73;
    import package_47.BattleTeamType;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_68.name_175;
    import package_74.name_272;
    
@@ -47,7 +47,7 @@ package package_79
       
       private static const const_398:int = 256;
       
-      private static var var_711:name_124 = new name_124();
+      private static var var_711:RayHit = new RayHit();
       
       private static var const_431:Vector3 = new Vector3(0,0,-20000);
       
@@ -60,7 +60,7 @@ package package_79
       
       public var takeCommandSent:Boolean;
       
-      public var name_1299:name_774;
+      public var name_1299:CollisionPrimitive;
       
       private var var_712:TankData;
       
@@ -140,7 +140,7 @@ package package_79
          this.var_170 = param1;
          this.var_170.addChild(this.skin);
          this.var_170.addChild(this.var_609);
-         BattlefieldModel(Main.osgi.name_6(name_83)).hidableObjects.add(new name_1430(this.skin));
+         BattlefieldModel(Main.osgi.getService(IBattleField)).hidableObjects.add(new name_1430(this.skin));
       }
       
       public function get state() : name_1287
@@ -156,7 +156,7 @@ package package_79
          this.takeCommandSent = false;
          if(param2 != null)
          {
-            this.skin.alpha = param2 == TankData.name_106 ? 0.5 : 1;
+            this.skin.alpha = param2 == TankData.localTankData ? 0.5 : 1;
          }
          this.var_710 = name_1287.CARRIED;
       }
@@ -219,7 +219,7 @@ package package_79
       {
          var _loc4_:Number = param1 * 400 / param2;
          var _loc5_:AnimatedSprite3D = new AnimatedSprite3D(_loc4_,400);
-         var _loc6_:name_1072 = GraphicsUtils.name_1073(name_820(Main.osgi.name_6(name_100)).textureMaterialRegistry as TextureMaterialRegistry,this.var_714,param1,param2);
+         var _loc6_:name_1072 = GraphicsUtils.name_1073(MaterialRegistry(Main.osgi.getService(IMaterialRegistry)).textureMaterialRegistry as TextureMaterialRegistry,this.var_714,param1,param2);
          _loc6_.fps = 1;
          _loc5_.name_1433(_loc6_);
          _loc5_.name_1431(1);

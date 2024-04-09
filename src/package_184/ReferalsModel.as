@@ -1,7 +1,7 @@
 package package_184
 {
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import package_1.Main;
    import package_282.name_1028;
    import package_282.name_1851;
@@ -23,11 +23,11 @@ package package_184
       public function ReferalsModel()
       {
          super();
-         var_365.push(name_66);
-         var_365.push(name_1028);
-         var_365.push(class_11);
-         var_365.push(name_989);
-         this.modelRegister = Main.osgi.name_6(name_32) as name_32;
+         _interfaces.push(IModel);
+         _interfaces.push(name_1028);
+         _interfaces.push(class_11);
+         _interfaces.push(name_989);
+         this.modelRegister = Main.osgi.getService(name_32) as name_32;
       }
       
       public function initObject(param1:ClientObject, param2:String) : void
@@ -51,21 +51,21 @@ package package_184
       
       public function method_1354(param1:ClientObject, param2:Boolean, param3:String) : void
       {
-         var _loc4_:name_115 = (this.modelRegister.getModelsByInterface(name_115) as Vector.<name_66>)[0] as name_115;
+         var _loc4_:name_115 = (this.modelRegister.getModelsByInterface(name_115) as Vector.<IModel>)[0] as name_115;
          _loc4_.method_511(param2,param3);
       }
       
       public function method_1353(param1:ClientObject, param2:Array) : void
       {
          var _loc3_:name_1851 = null;
-         var _loc4_:Vector.<name_66> = null;
+         var _loc4_:Vector.<IModel> = null;
          var _loc5_:int = 0;
          this.var_1125 = param2;
          for each(_loc3_ in param2)
          {
             Main.method_8("REFERALS MODEL","rank: " + _loc3_.rank + " callsign: " + _loc3_.callsign + " income: " + _loc3_.income);
          }
-         _loc4_ = this.modelRegister.getModelsByInterface(class_25) as Vector.<name_66>;
+         _loc4_ = this.modelRegister.getModelsByInterface(class_25) as Vector.<IModel>;
          if(_loc4_ != null)
          {
             _loc5_ = 0;

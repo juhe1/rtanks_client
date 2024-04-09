@@ -1,6 +1,6 @@
 package alternativa.physics
 {
-   import alternativa.physics.collision.name_774;
+   import alternativa.physics.collision.CollisionPrimitive;
    import package_37.Matrix3;
    import package_37.Vector3;
    
@@ -60,9 +60,9 @@ package alternativa.physics
       
       public var var_1688:Number;
       
-      public var shape1:name_774;
+      public var shape1:CollisionPrimitive;
       
-      public var shape2:name_774;
+      public var shape2:CollisionPrimitive;
       
       public function ShapeContact()
       {
@@ -98,8 +98,8 @@ package alternativa.physics
       public function name_2172() : void
       {
          var _loc1_:Vector3 = null;
-         var _loc2_:name_660 = this.shape1.name_787;
-         var _loc3_:name_660 = this.shape2.name_787;
+         var _loc2_:Body = this.shape1.name_787;
+         var _loc3_:Body = this.shape2.name_787;
          this.var_1687 = this.shape1.material.var_1687;
          var _loc4_:Number = this.shape2.material.var_1687;
          if(_loc4_ < this.var_1687)
@@ -206,8 +206,8 @@ package alternativa.physics
       public function name_2173(param1:Number, param2:Number, param3:Number, param4:Number) : void
       {
          var _loc5_:Number = NaN;
-         var _loc6_:name_660 = this.shape1.name_787;
-         var _loc7_:name_660 = this.shape2.name_787;
+         var _loc6_:Body = this.shape1.name_787;
+         var _loc7_:Body = this.shape2.name_787;
          this.var_1983 = 0;
          this.tangentSpeedDelta1 = 0;
          this.tangentSpeedDelta2 = 0;

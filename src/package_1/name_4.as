@@ -7,7 +7,7 @@ package package_1
    import alternativa.tanks.model.quest.common.name_551;
    import alternativa.tanks.model.quest.daily.name_548;
    import controls.PlayerInfo;
-   import package_11.name_23;
+   import package_11.IBundleActivator;
    import package_111.name_347;
    import package_111.name_406;
    import package_119.UserDataModel;
@@ -26,7 +26,7 @@ package package_1
    import package_176.name_538;
    import package_176.name_549;
    import package_177.DialogsService;
-   import package_177.name_550;
+   import package_177.IDialogsService;
    import package_178.QuestNotifierServiceImpl;
    import package_178.name_542;
    import package_179.name_540;
@@ -47,7 +47,7 @@ package package_1
    import package_90.name_308;
    import package_90.name_536;
    
-   public class name_4 implements name_23
+   public class name_4 implements IBundleActivator
    {
       
       public static var osgi:OSGi;
@@ -95,17 +95,17 @@ package package_1
       public function start(param1:OSGi) : void
       {
          name_4.osgi = param1;
-         param1.name_1(name_542,new QuestNotifierServiceImpl());
+         param1.registerService(name_542,new QuestNotifierServiceImpl());
          this.var_93 = new name_535();
-         param1.name_1(name_534,this.var_93);
-         var _loc2_:name_32 = name_32(param1.name_6(name_32));
+         param1.registerService(name_534,this.var_93);
+         var _loc2_:name_32 = name_32(param1.getService(name_32));
          this.var_103 = new name_543();
-         param1.name_1(name_339,this.var_103);
+         param1.registerService(name_339,this.var_103);
          this.var_104 = new NotificationService();
-         param1.name_1(name_539,this.var_104);
+         param1.registerService(name_539,this.var_104);
          this.panelModel = new PanelModel();
          _loc2_.add(this.panelModel);
-         param1.name_1(name_115,this.panelModel);
+         param1.registerService(name_115,this.panelModel);
          this.var_95 = new UserDataModel();
          _loc2_.add(this.var_95);
          this.var_74 = new BonusModel();
@@ -119,33 +119,33 @@ package package_1
          this.var_97 = new EntranceAlertModel();
          _loc2_.add(this.var_97);
          this.newsModel = new name_347();
-         param1.name_1(name_406,this.newsModel);
+         param1.registerService(name_406,this.newsModel);
          this.userInfo = new UserInfoService();
-         param1.name_1(name_408,this.userInfo);
+         param1.registerService(name_408,this.userInfo);
          this.contextMenu = new name_536();
-         param1.name_1(name_308,this.contextMenu);
+         param1.registerService(name_308,this.contextMenu);
          this.var_93 = new name_535();
-         param1.name_1(name_534,this.var_93);
+         param1.registerService(name_534,this.var_93);
          this.var_102 = new DialogsService();
-         param1.name_1(name_550,this.var_102);
+         param1.registerService(IDialogsService,this.var_102);
          this.var_100 = new name_538();
-         param1.name_1(name_549,this.var_100);
+         param1.registerService(name_549,this.var_100);
          param1.name_40(name_52,PlayerInfo,"clanUserInfoService");
-         param1.name_1(name_544,new SocialNetworkPanelService());
-         param1.name_1(name_541,new name_540());
-         param1.name_1(name_360,new name_546());
+         param1.registerService(name_544,new SocialNetworkPanelService());
+         param1.registerService(name_541,new name_540());
+         param1.registerService(name_360,new name_546());
          var _loc3_:QuestWindow = new QuestWindow();
-         param1.name_1(name_551,_loc3_);
-         param1.name_1(name_548,_loc3_.name_552());
-         param1.name_1(name_547,_loc3_.name_553());
-         param1.name_1(name_357,new name_545());
+         param1.registerService(name_551,_loc3_);
+         param1.registerService(name_548,_loc3_.name_552());
+         param1.registerService(name_547,_loc3_.name_553());
+         param1.registerService(name_357,new name_545());
          this.var_96 = new name_537();
-         name_524(param1.name_6(name_524)).registerDumper(this.var_96);
+         name_524(param1.getService(name_524)).registerDumper(this.var_96);
       }
       
       public function stop(param1:OSGi) : void
       {
-         var _loc2_:name_32 = name_32(param1.name_6(name_32));
+         var _loc2_:name_32 = name_32(param1.getService(name_32));
          _loc2_.remove(this.panelModel.id);
          this.panelModel = null;
          _loc2_.remove(this.var_95.id);
@@ -163,7 +163,7 @@ package package_1
          _loc2_.remove(this.var_97.id);
          this.var_97 = null;
          this.newsModel = null;
-         name_524(param1.name_6(name_524)).unregisterDumper(this.var_96.dumperName);
+         name_524(param1.getService(name_524)).unregisterDumper(this.var_96.dumperName);
          this.var_96 = null;
          name_4.osgi = null;
       }

@@ -1,18 +1,18 @@
 package alternativa.tanks.models.weapon.healing
 {
    import alternativa.engine3d.core.Object3D;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.osgi.service.dump.name_524;
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import alternativa.tanks.battle.BattleUtils;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.TankModel;
    import alternativa.tanks.models.tank.class_15;
-   import alternativa.tanks.models.tank.class_7;
-   import alternativa.tanks.models.tank.name_103;
+   import alternativa.tanks.models.tank.ITank;
+   import alternativa.tanks.models.tank.ITankEventDispatcher;
    import alternativa.tanks.models.tank.name_77;
-   import alternativa.tanks.models.weapon.name_1074;
+   import alternativa.tanks.models.weapon.IWeaponController;
    import alternativa.tanks.models.weapon.name_903;
    import alternativa.tanks.models.weapon.name_911;
    import alternativa.tanks.models.weapon.shared.name_653;
@@ -36,12 +36,12 @@ package alternativa.tanks.models.weapon.healing
    import package_37.Matrix3;
    import package_37.Vector3;
    import package_4.ClientObject;
-   import package_41.name_320;
+   import package_41.ItemProperty;
    import package_41.Vector3dData;
    import package_47.BattleTeamType;
    import package_52.WeaponsManager;
    import package_6.ObjectRegister;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_7.name_32;
    import package_84.IsisDirectionCalculator;
    import package_84.name_300;
@@ -50,7 +50,7 @@ package alternativa.tanks.models.weapon.healing
    import scpacker.networking.Network;
    import scpacker.networking.name_2;
    
-   public class HealingGunModel extends class_89 implements class_90, name_1074, class_15, class_3
+   public class HealingGunModel extends class_89 implements class_90, IWeaponController, class_15, class_3
    {
       
       private static const const_1483:int = 250;
@@ -68,7 +68,7 @@ package alternativa.tanks.models.weapon.healing
       
       private var modelService:name_32;
       
-      private var var_1067:name_83;
+      private var var_1067:IBattleField;
       
       private var var_123:TankModel;
       
@@ -104,9 +104,9 @@ package alternativa.tanks.models.weapon.healing
       
       private var var_1064:name_1750;
       
-      private var currentTarget:name_660;
+      private var currentTarget:Body;
       
-      private var var_1059:name_124;
+      private var var_1059:RayHit;
       
       private var var_1068:int;
       
@@ -119,25 +119,25 @@ package alternativa.tanks.models.weapon.healing
          this.vec = new Vector3();
          this.pos3d = new Vector3dData(0,0,0);
          super();
-         var_365.push(name_66,class_90,name_1074);
+         _interfaces.push(IModel,class_90,IWeaponController);
       }
       
-      public function name_1436() : name_320
+      public function name_1436() : ItemProperty
       {
-         return name_320.name_443;
+         return ItemProperty.VAMPIRE_RESISTANCE;
       }
       
       public function initObject(param1:ClientObject, param2:int, param3:int, param4:int, param5:Number, param6:int, param7:int, param8:int, param9:Number) : void
       {
-         var _loc11_:name_103 = null;
+         var _loc11_:ITankEventDispatcher = null;
          if(this.modelService == null)
          {
-            this.modelService = Main.osgi.name_6(name_32) as name_32;
-            this.var_1067 = Main.osgi.name_6(name_83) as name_83;
-            this.var_123 = Main.osgi.name_6(class_7) as TankModel;
+            this.modelService = Main.osgi.getService(name_32) as name_32;
+            this.var_1067 = Main.osgi.getService(IBattleField) as IBattleField;
+            this.var_123 = Main.osgi.getService(ITank) as TankModel;
             this.var_1069 = this.modelService.getModelsByInterface(name_1188)[0] as name_1188;
             this.var_564 = WeaponsManager.createIsidaSFXModel(param1);
-            _loc11_ = name_103(Main.osgi.name_6(name_103));
+            _loc11_ = ITankEventDispatcher(Main.osgi.getService(ITankEventDispatcher));
             _loc11_.name_718(name_77.name_192,this);
             _loc11_.name_718(name_77.UNLOADED,this);
          }
@@ -245,7 +245,7 @@ package alternativa.tanks.models.weapon.healing
       
       public function name_125(param1:TankData) : void
       {
-         var _loc2_:name_524 = name_524(Main.osgi.name_6(name_524));
+         var _loc2_:name_524 = name_524(Main.osgi.getService(name_524));
          if(_loc2_ != null)
          {
             _loc2_.registerDumper(this);
@@ -267,7 +267,7 @@ package alternativa.tanks.models.weapon.healing
       
       public function method_1000() : void
       {
-         var _loc1_:name_524 = name_524(Main.osgi.name_6(name_524));
+         var _loc1_:name_524 = name_524(Main.osgi.getService(name_524));
          if(_loc1_ != null)
          {
             _loc1_.unregisterDumper(this.dumperName);
@@ -328,12 +328,12 @@ package alternativa.tanks.models.weapon.healing
       
       private function method_1256(param1:ClientObject) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;stop_fire");
+         Network(Main.osgi.getService(name_2)).send("battle;stop_fire");
       }
       
       public function update(param1:int, param2:int) : Number
       {
-         var _loc4_:name_660 = null;
+         var _loc4_:Body = null;
          var _loc5_:Vector3 = null;
          var _loc3_:Number = NaN;
          if(this.active)
@@ -347,7 +347,7 @@ package alternativa.tanks.models.weapon.healing
             {
                _loc4_ = null;
                this.var_1016.name_920(this.name_106.tank.skin.name_144(),this.name_106.tank.skin.name_909.name_929,const_1481);
-               if(BattleUtils.name_1452(this.name_106.tank as name_660,const_1481))
+               if(BattleUtils.name_1452(this.name_106.tank as Body,const_1481))
                {
                   this.var_1059 = this.target();
                   _loc4_ = Boolean(this.var_1059) ? this.var_1059.var_81.name_787 : null;
@@ -439,7 +439,7 @@ package alternativa.tanks.models.weapon.healing
       private function method_1247(param1:int) : void
       {
          this.var_1068 = param1;
-         var _loc2_:name_660 = null;
+         var _loc2_:Body = null;
          var _loc3_:Tank = null;
          if(this.var_1059 != null)
          {
@@ -513,7 +513,7 @@ package alternativa.tanks.models.weapon.healing
       {
          var _loc2_:Object = new Object();
          _loc2_.physTime = param1;
-         Network(Main.osgi.name_6(name_2)).send("battle;reset_target;" + JSON.stringify(_loc2_));
+         Network(Main.osgi.getService(name_2)).send("battle;reset_target;" + JSON.stringify(_loc2_));
       }
       
       private function method_1261(param1:ClientObject, param2:int, param3:String, param4:Vector3dData, param5:int) : void
@@ -523,7 +523,7 @@ package alternativa.tanks.models.weapon.healing
          _loc6_.distance = param5;
          _loc6_.tickPeriod = this.var_1058.tickPeriod.value;
          _loc6_.localHitPoint = localHitPoint.toVector3d();
-         Network(Main.osgi.name_6(name_2)).send("battle;fire;" + JSON.stringify(_loc6_));
+         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(_loc6_));
       }
       
       public function handleTankEvent(param1:int, param2:TankData) : void
@@ -531,7 +531,7 @@ package alternativa.tanks.models.weapon.healing
          if(param1 == name_77.name_192 || param1 == name_77.UNLOADED)
          {
             this.var_564.name_1749(param2);
-            if(this.name_106 != null && param2.tank != null && param2.tank as name_660 == this.currentTarget)
+            if(this.name_106 != null && param2.tank != null && param2.tank as Body == this.currentTarget)
             {
                this.currentTarget = null;
                this.var_564.name_1748(this.name_106,name_1610.name_1183,null);
@@ -559,9 +559,9 @@ package alternativa.tanks.models.weapon.healing
          return name_1413(param1.method_16(HealingGunModel));
       }
       
-      private function target() : name_124
+      private function target() : RayHit
       {
-         var _loc1_:name_124 = null;
+         var _loc1_:RayHit = null;
          var _loc2_:Tank = null;
          this.var_1016.name_920(this.name_106.tank.skin.name_144(),this.name_106.tank.skin.name_909.name_929,const_1481);
          if(this.currentTarget != null)
@@ -616,7 +616,7 @@ package alternativa.tanks.models.weapon.healing
          _loc4_.incId = param2;
          _loc4_.victimId = param3;
          _loc4_.localHitPoint = localHitPoint.toVector3d();
-         Network(Main.osgi.name_6(name_2)).send("battle;start_fire;" + JSON.stringify(_loc4_));
+         Network(Main.osgi.getService(name_2)).send("battle;start_fire;" + JSON.stringify(_loc4_));
       }
       
       private function getTankData(param1:ObjectRegister, param2:String) : TankData

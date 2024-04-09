@@ -1,7 +1,7 @@
 package alternativa.tanks.vehicles.tanks
 {
    import alternativa.physics.name_888;
-   import alternativa.tanks.utils.name_75;
+   import alternativa.tanks.utils.MathUtils;
    import package_277.name_904;
    import package_37.Matrix4;
    import package_37.Vector3;
@@ -41,7 +41,7 @@ package alternativa.tanks.vehicles.tanks
          var _loc11_:Number = _loc9_ * _loc8_ - _loc10_ * _loc7_;
          var _loc12_:Number = (1 - 0.82) * _loc7_ / ((1 + _loc9_) * _loc8_);
          var _loc13_:Number = (1 - _loc9_) * _loc8_ / ((1 - 0.82) * _loc7_);
-         if(name_75.method_603(_loc12_,_loc13_,0.00001) || _loc12_ < _loc13_)
+         if(MathUtils.method_603(_loc12_,_loc13_,0.00001) || _loc12_ < _loc13_)
          {
             _loc4_ = 0.82 * _loc7_;
             _loc5_ = _loc10_ * _loc4_ + _loc11_;

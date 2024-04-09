@@ -5,7 +5,7 @@ package package_382
    import controls.Label;
    import controls.buttons.h30px.H30ButtonSkin;
    import controls.buttons.h30px.name_3299;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import controls.timer.CountDownTimer;
    import controls.timer.name_3298;
    import flash.display.Bitmap;
@@ -29,15 +29,15 @@ package package_382
    public class ChallengesView extends Sprite
    {
       
-      public static var var_3350:name_44 = OSGi.getInstance().name_6(name_44) as name_44;
+      public static var var_3350:name_44 = OSGi.getInstance().getService(name_44) as name_44;
       
-      public static var var_1580:name_360 = OSGi.getInstance().name_6(name_360) as name_360;
+      public static var var_1580:name_360 = OSGi.getInstance().getService(name_360) as name_360;
       
-      public static var var_1581:name_357 = OSGi.getInstance().name_6(name_357) as name_357;
+      public static var var_1581:name_357 = OSGi.getInstance().getService(name_357) as name_357;
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
-      public static var var_1579:name_551 = OSGi.getInstance().name_6(name_551) as name_551;
+      public static var var_1579:name_551 = OSGi.getInstance().getService(name_551) as name_551;
       
       private static const const_2595:Class = name_3302;
       
@@ -225,7 +225,7 @@ package package_382
       private function method_901(param1:Boolean) : void
       {
          var _loc2_:Boolean = Boolean(var_1581.method_1152());
-         var _loc3_:Boolean = Boolean(name_408(OSGi.getInstance().name_6(name_408)).localUserInfo.premium);
+         var _loc3_:Boolean = Boolean(name_408(OSGi.getInstance().getService(name_408)).localUserInfo.premium);
          if(!_loc2_)
          {
             this.var_643.label = localeService.getText(name_390.const_525);
@@ -271,7 +271,7 @@ package package_382
       
       private function method_1553(param1:MouseEvent) : void
       {
-         PanelModel(OSGi.getInstance().name_6(name_115)).getShop();
+         PanelModel(OSGi.getInstance().getService(name_115)).getShop();
       }
       
       private function method_3015() : void
@@ -307,7 +307,7 @@ package package_382
       
       private function method_3020() : void
       {
-         var _loc1_:name_1891 = new name_1891(131,25);
+         var _loc1_:TankWindowInner = new TankWindowInner(131,25);
          _loc1_.x = this.package_452.x + this.package_452.width + 8;
          var _loc2_:name_3298 = new name_3298(false);
          _loc2_.start(this.timer);

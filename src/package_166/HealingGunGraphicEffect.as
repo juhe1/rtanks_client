@@ -5,13 +5,13 @@ package package_166
    import alternativa.engine3d.materials.Material;
    import alternativa.tanks.engine3d.AnimatedSprite3D;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.sfx.LightDataManager;
    import alternativa.tanks.models.sfx.name_1714;
    import alternativa.tanks.models.sfx.name_1716;
    import alternativa.tanks.models.sfx.name_1808;
    import alternativa.tanks.models.tank.TankData;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import alternativa.tanks.sfx.name_2500;
    import alternativa.tanks.sfx.name_657;
    import package_1.Main;
@@ -48,7 +48,7 @@ package package_166
       
       private static const const_2583:Number = 100;
       
-      private static var var_138:name_118 = name_118(Main.osgi.name_6(name_118));
+      private static var var_138:IObjectPoolService = IObjectPoolService(Main.osgi.getService(IObjectPoolService));
        
       
       private var var_421:BattlefieldModel;
@@ -105,7 +105,7 @@ package package_166
       
       public function HealingGunGraphicEffect(param1:ObjectPool)
       {
-         this.var_421 = Main.osgi.name_6(name_83) as BattlefieldModel;
+         this.var_421 = Main.osgi.getService(IBattleField) as BattlefieldModel;
          this.var_3332 = new Vector3();
          this.var_3334 = new Vector3();
          this.hitPoint = new Vector3();

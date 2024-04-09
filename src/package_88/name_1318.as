@@ -3,7 +3,7 @@ package package_88
    import alternativa.engine3d.objects.Mesh;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
    import alternativa.tanks.models.battlefield.name_1229;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import package_1.Main;
    import package_37.Vector3;
    
@@ -29,7 +29,7 @@ package package_88
       {
          super(param1,param2,true);
          this.var_2167 = new name_2498();
-         this.battleService = Main.osgi.name_6(name_83) as BattlefieldModel;
+         this.battleService = Main.osgi.getService(IBattleField) as BattlefieldModel;
       }
       
       override public function name_1322() : void

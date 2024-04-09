@@ -1,6 +1,6 @@
 package alternativa.tanks.gui.payment.controls
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.Sprite;
    import flash.text.TextFieldAutoSize;
    import flash.text.TextFormatAlign;
@@ -11,9 +11,9 @@ package alternativa.tanks.gui.payment.controls
       
       protected var _width:Number;
       
-      protected var var_1278:name_1134;
+      protected var var_1278:LabelBase;
       
-      protected var var_3383:name_1134;
+      protected var var_3383:LabelBase;
       
       public function name_2833(param1:String, param2:int)
       {
@@ -24,11 +24,11 @@ package alternativa.tanks.gui.payment.controls
          addChild(this.var_3383);
       }
       
-      private function method_582(param1:String) : name_1134
+      private function method_582(param1:String) : LabelBase
       {
-         var _loc2_:name_1134 = null;
+         var _loc2_:LabelBase = null;
          _loc2_ = null;
-         _loc2_ = new name_1134();
+         _loc2_ = new LabelBase();
          _loc2_.autoSize = TextFieldAutoSize.LEFT;
          _loc2_.wordWrap = false;
          _loc2_.multiline = true;

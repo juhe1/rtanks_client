@@ -3,11 +3,11 @@ package alternativa.tanks.gui.settings
    import alternativa.osgi.OSGi;
    import alternativa.tanks.gui.settings.tabs.SettingsTabView;
    import alternativa.tanks.gui.settings.tabs.name_2198;
-   import controls.base.name_998;
+   import controls.base.DefaultButtonBase;
    import flash.display.Sprite;
    import flash.events.MouseEvent;
    import flash.utils.Dictionary;
-   import forms.name_1838;
+   import forms.TankWindowWithHeader;
    import package_253.name_789;
    import package_406.name_2196;
    import package_407.name_2197;
@@ -17,7 +17,7 @@ package alternativa.tanks.gui.settings
    public class SettingsWindow extends Sprite
    {
       
-      public static var localeService:name_102 = name_102(OSGi.getInstance().name_6(name_102));
+      public static var localeService:name_102 = name_102(OSGi.getInstance().getService(name_102));
       
       public static const const_1598:int = 12;
       
@@ -36,7 +36,7 @@ package alternativa.tanks.gui.settings
       public static const const_1650:int = 462;
        
       
-      private var name_983:name_998;
+      private var name_983:DefaultButtonBase;
       
       private var var_1117:SettingsTabButtonList;
       
@@ -47,11 +47,11 @@ package alternativa.tanks.gui.settings
       public function SettingsWindow(param1:String, param2:Boolean, param3:Boolean, param4:Boolean, param5:String, param6:String)
       {
          var _loc8_:name_789 = null;
-         var _loc7_:name_1838 = null;
+         var _loc7_:TankWindowWithHeader = null;
          _loc8_ = null;
          this.var_1119 = new Dictionary();
          super();
-         _loc7_ = name_1838.name_1844(localeService.getText(name_390.const_702));
+         _loc7_ = TankWindowWithHeader.createWindow(localeService.getText(name_390.const_702));
          addChild(_loc7_);
          this.var_1117 = new SettingsTabButtonList();
          this.var_1117.name_1839(SettingsCategoryEnum.GAME);
@@ -80,7 +80,7 @@ package alternativa.tanks.gui.settings
          _loc11_.x = 12;
          this.var_1119[SettingsCategoryEnum.CONTROL] = _loc11_;
          this.var_1117.name_1841(SettingsCategoryEnum.GAME);
-         this.name_983 = new name_998();
+         this.name_983 = new DefaultButtonBase();
          addChild(this.name_983);
          this.name_983.label = localeService.getText(name_390.const_1168);
          this.name_983.x = 775 - this.name_983.width - 12;

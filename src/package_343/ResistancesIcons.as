@@ -2,7 +2,7 @@ package package_343
 {
    import flash.display.BitmapData;
    import flash.utils.Dictionary;
-   import package_41.name_320;
+   import package_41.ItemProperty;
    
    public class ResistancesIcons
    {
@@ -120,32 +120,32 @@ package package_343
       private static var var_2759:Dictionary = new Dictionary();
       
       {
-         method_2605(name_320.name_462,ResistancesIcons.const_2150);
-         method_2605(name_320.name_419,ResistancesIcons.const_2138);
-         method_2605(name_320.name_436,ResistancesIcons.const_2145);
-         method_2605(name_320.name_410,ResistancesIcons.const_2144);
-         method_2605(name_320.name_443,ResistancesIcons.const_2132);
-         method_2605(name_320.name_433,ResistancesIcons.const_2133);
-         method_2605(name_320.name_411,ResistancesIcons.const_2151);
-         method_2605(name_320.name_491,ResistancesIcons.const_2147);
-         method_2605(name_320.name_488,ResistancesIcons.const_2146);
-         method_2605(name_320.name_444,ResistancesIcons.const_2152);
-         method_2605(name_320.name_434,ResistancesIcons.const_2136);
-         method_2605(name_320.name_417,ResistancesIcons.const_2131);
-         method_2605(name_320.name_487,ResistancesIcons.const_2148);
-         method_2604(name_320.name_462,ResistancesIcons.const_2130);
-         method_2604(name_320.name_419,ResistancesIcons.const_2139);
-         method_2604(name_320.name_436,ResistancesIcons.const_2149);
-         method_2604(name_320.name_410,ResistancesIcons.const_2153);
-         method_2604(name_320.name_443,ResistancesIcons.const_2140);
-         method_2604(name_320.name_433,ResistancesIcons.const_2141);
-         method_2604(name_320.name_411,ResistancesIcons.const_2142);
-         method_2604(name_320.name_491,ResistancesIcons.const_2129);
-         method_2604(name_320.name_488,ResistancesIcons.const_2154);
-         method_2604(name_320.name_444,ResistancesIcons.const_2134);
-         method_2604(name_320.name_434,ResistancesIcons.const_2135);
-         method_2604(name_320.name_417,ResistancesIcons.const_2137);
-         method_2604(name_320.name_487,ResistancesIcons.const_2143);
+         method_2605(ItemProperty.MECH_RESISTANCE,ResistancesIcons.const_2150);
+         method_2605(ItemProperty.FIRE_RESISTANCE,ResistancesIcons.const_2138);
+         method_2605(ItemProperty.PLASMA_RESISTANCE,ResistancesIcons.const_2145);
+         method_2605(ItemProperty.RAIL_RESISTANCE,ResistancesIcons.const_2144);
+         method_2605(ItemProperty.VAMPIRE_RESISTANCE,ResistancesIcons.const_2132);
+         method_2605(ItemProperty.THUNDER_RESISTANCE,ResistancesIcons.const_2133);
+         method_2605(ItemProperty.FREEZE_RESISTANCE,ResistancesIcons.const_2151);
+         method_2605(ItemProperty.RICOCHET_RESISTANCE,ResistancesIcons.const_2147);
+         method_2605(ItemProperty.SHAFT_RESISTANCE,ResistancesIcons.const_2146);
+         method_2605(ItemProperty.MINE_RESISTANCE,ResistancesIcons.const_2152);
+         method_2605(ItemProperty.SHOTGUN_RESISTANCE,ResistancesIcons.const_2136);
+         method_2605(ItemProperty.VULCAN_RESISTANCE,ResistancesIcons.const_2131);
+         method_2605(ItemProperty.ALL_RESISTANCE,ResistancesIcons.const_2148);
+         method_2604(ItemProperty.MECH_RESISTANCE,ResistancesIcons.const_2130);
+         method_2604(ItemProperty.FIRE_RESISTANCE,ResistancesIcons.const_2139);
+         method_2604(ItemProperty.PLASMA_RESISTANCE,ResistancesIcons.const_2149);
+         method_2604(ItemProperty.RAIL_RESISTANCE,ResistancesIcons.const_2153);
+         method_2604(ItemProperty.VAMPIRE_RESISTANCE,ResistancesIcons.const_2140);
+         method_2604(ItemProperty.THUNDER_RESISTANCE,ResistancesIcons.const_2141);
+         method_2604(ItemProperty.FREEZE_RESISTANCE,ResistancesIcons.const_2142);
+         method_2604(ItemProperty.RICOCHET_RESISTANCE,ResistancesIcons.const_2129);
+         method_2604(ItemProperty.SHAFT_RESISTANCE,ResistancesIcons.const_2154);
+         method_2604(ItemProperty.MINE_RESISTANCE,ResistancesIcons.const_2134);
+         method_2604(ItemProperty.SHOTGUN_RESISTANCE,ResistancesIcons.const_2135);
+         method_2604(ItemProperty.VULCAN_RESISTANCE,ResistancesIcons.const_2137);
+         method_2604(ItemProperty.ALL_RESISTANCE,ResistancesIcons.const_2143);
       }
       
       public function ResistancesIcons()
@@ -153,22 +153,22 @@ package package_343
          super();
       }
       
-      private static function method_2605(param1:name_320, param2:BitmapData) : void
+      private static function method_2605(param1:ItemProperty, param2:BitmapData) : void
       {
          var_2758[param1] = param2;
       }
       
-      private static function method_2604(param1:name_320, param2:BitmapData) : void
+      private static function method_2604(param1:ItemProperty, param2:BitmapData) : void
       {
          var_2759[param1] = param2;
       }
       
-      public static function name_2096(param1:name_320) : BitmapData
+      public static function name_2096(param1:ItemProperty) : BitmapData
       {
          return var_2758[param1];
       }
       
-      public static function method_2607(param1:name_320) : BitmapData
+      public static function method_2607(param1:ItemProperty) : BitmapData
       {
          return var_2759[param1];
       }

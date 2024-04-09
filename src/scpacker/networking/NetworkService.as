@@ -1,7 +1,7 @@
 package scpacker.networking
 {
    import package_102.Command;
-   import package_102.name_346;
+   import package_102.Type;
    
    public class NetworkService
    {
@@ -21,43 +21,43 @@ package scpacker.networking
          listeners = new Vector.<class_6>();
       }
       
-      public static function getType(param1:String) : name_346
+      public static function getType(param1:String) : Type
       {
-         var _loc2_:name_346 = null;
+         var _loc2_:Type = null;
          switch(param1)
          {
             case "auth":
-               _loc2_ = name_346.AUTH;
+               _loc2_ = Type.AUTH;
                break;
             case "registration":
-               _loc2_ = name_346.name_559;
+               _loc2_ = Type.REGISTRATON;
                break;
             case "chat":
-               _loc2_ = name_346.name_557;
+               _loc2_ = Type.CHAT;
                break;
             case "lobby":
-               _loc2_ = name_346.name_451;
+               _loc2_ = Type.LOBBY;
                break;
             case "garage":
-               _loc2_ = name_346.GARAGE;
+               _loc2_ = Type.GARAGE;
                break;
             case "battle":
-               _loc2_ = name_346.BATTLE;
+               _loc2_ = Type.BATTLE;
                break;
             case "ping":
-               _loc2_ = name_346.name_558;
+               _loc2_ = Type.PING;
                break;
             case "lobby_chat":
-               _loc2_ = name_346.name_414;
+               _loc2_ = Type.LOBBY_CHAT;
                break;
             case "clan":
-               _loc2_ = name_346.CLAN;
+               _loc2_ = Type.CLAN;
                break;
             case "system":
-               _loc2_ = name_346.SYSTEM;
+               _loc2_ = Type.SYSTEM;
                break;
             default:
-               _loc2_ = name_346.UNKNOWN;
+               _loc2_ = Type.UNKNOWN;
          }
          return _loc2_;
       }
@@ -65,7 +65,7 @@ package scpacker.networking
       public function method_135(param1:String, param2:Network) : void
       {
          var _loc5_:Array = null;
-         var _loc6_:name_346 = null;
+         var _loc6_:Type = null;
          var _loc7_:String = null;
          var _loc8_:int = 0;
          var _loc9_:Command = null;
@@ -76,7 +76,7 @@ package scpacker.networking
          {
             _loc5_ = _loc3_[_loc4_].split(";");
             _loc6_ = getType(_loc5_[0]);
-            if(_loc6_ == null || _loc6_ == name_346.UNKNOWN)
+            if(_loc6_ == null || _loc6_ == Type.UNKNOWN)
             {
                throw new Error("Что то пошло не так  " + _loc5_[0]);
             }

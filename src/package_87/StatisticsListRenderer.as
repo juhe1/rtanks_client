@@ -1,7 +1,7 @@
 package package_87
 {
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import controls.Label;
    import controls.Money;
    import controls.resultassets.name_3122;
@@ -207,7 +207,7 @@ package package_87
          }
          else
          {
-            _loc6_.name_2046(16777215,BattlefieldModel(Main.osgi.name_6(name_83)).spectatorMode);
+            _loc6_.name_2046(16777215,BattlefieldModel(Main.osgi.getService(IBattleField)).spectatorMode);
          }
          var _loc7_:int = name_2564.name_2578;
          _loc6_.x = _loc7_ - 14;

@@ -1,8 +1,8 @@
 package package_448
 {
-   import controls.base.name_1134;
-   import controls.base.name_998;
-   import controls.name_1891;
+   import controls.base.LabelBase;
+   import controls.base.DefaultButtonBase;
+   import controls.TankWindowInner;
    import flash.display.Bitmap;
    import flash.display.BitmapData;
    import flash.display.Sprite;
@@ -16,7 +16,7 @@ package package_448
    public class PaymentBugReportBlock extends Sprite
    {
       
-      public static var localeService:name_102 = Main.osgi.name_6(name_102) as name_102;
+      public static var localeService:name_102 = Main.osgi.getService(name_102) as name_102;
       
       public static const const_1598:int = 11;
       
@@ -27,13 +27,13 @@ package package_448
       private static const const_2664:BitmapData = new const_2665().bitmapData;
        
       
-      private var var_3428:name_1891;
+      private var var_3428:TankWindowInner;
       
-      public var var_3426:name_998;
+      public var var_3426:DefaultButtonBase;
       
       private var var_3427:Bitmap;
       
-      private var var_3425:name_1134;
+      private var var_3425:LabelBase;
       
       private var _height:Number;
       
@@ -42,16 +42,16 @@ package package_448
       public function PaymentBugReportBlock()
       {
          super();
-         this.var_3428 = new name_1891(0,0,name_1891.name_2114);
+         this.var_3428 = new TankWindowInner(0,0,TankWindowInner.name_2114);
          addChild(this.var_3428);
          this.var_3427 = new Bitmap(const_2664);
          addChild(this.var_3427);
-         this.var_3425 = new name_1134();
+         this.var_3425 = new LabelBase();
          addChild(this.var_3425);
          this.var_3425.multiline = true;
          this.var_3425.wordWrap = true;
          this.var_3425.text = localeService.getText(name_390.const_572);
-         this.var_3426 = new name_998();
+         this.var_3426 = new DefaultButtonBase();
          this.var_3426.label = localeService.getText(name_390.const_1151);
          this.var_3426.addEventListener(MouseEvent.CLICK,this.method_3102);
          addChild(this.var_3426);

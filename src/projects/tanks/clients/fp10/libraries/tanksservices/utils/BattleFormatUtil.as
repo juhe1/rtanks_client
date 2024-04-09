@@ -10,7 +10,7 @@ package projects.tanks.clients.fp10.libraries.tanksservices.utils
    public class BattleFormatUtil
    {
       
-      public static var localeService:name_102 = Main.osgi.name_6(name_102) as name_102;
+      public static var localeService:name_102 = Main.osgi.getService(name_102) as name_102;
        
       
       private var var_1529:Dictionary;

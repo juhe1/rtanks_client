@@ -1,9 +1,9 @@
 package alternativa.tanks.gui.clanmanagement.clanmemberlist
 {
    import base.class_122;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.base.name_2016;
-   import controls.base.name_998;
+   import controls.base.DefaultButtonBase;
    import controls.name_2015;
    import flash.events.FocusEvent;
    import flash.events.KeyboardEvent;
@@ -33,9 +33,9 @@ package alternativa.tanks.gui.clanmanagement.clanmemberlist
       
       private var var_1333:name_2016;
       
-      private var var_1336:name_1134;
+      private var var_1336:LabelBase;
       
-      private var var_1334:name_998;
+      private var var_1334:DefaultButtonBase;
       
       private var var_1335:name_2015;
       
@@ -77,14 +77,14 @@ package alternativa.tanks.gui.clanmanagement.clanmemberlist
          this.var_1333.maxChars = 20;
          this.var_1333.restrict = "0-9.a-zA-z_ \\-*";
          addChild(this.var_1333);
-         this.var_1336 = new name_1134();
+         this.var_1336 = new LabelBase();
          addChild(this.var_1336);
          this.var_1336.mouseEnabled = false;
          this.var_1336.color = name_1139.name_2023;
          this.var_1336.text = this.var_1341;
          this.var_1335 = new name_2015();
          addChild(this.var_1335);
-         this.var_1334 = new name_998();
+         this.var_1334 = new DefaultButtonBase();
          this.var_1334.width = 120;
          addChild(this.var_1334);
          this.var_1334.label = this.var_1342;
@@ -317,7 +317,7 @@ package alternativa.tanks.gui.clanmanagement.clanmemberlist
          }
       }
       
-      public function get method_1570() : name_998
+      public function get method_1570() : DefaultButtonBase
       {
          return this.var_1334;
       }

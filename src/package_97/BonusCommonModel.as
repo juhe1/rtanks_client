@@ -3,11 +3,11 @@ package package_97
    import alternativa.engine3d.materials.TextureMaterial;
    import alternativa.engine3d.objects.Mesh;
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.osgi.OSGi;
    import alternativa.tanks.models.effects.common.class_103;
    import alternativa.tanks.models.sfx.LightDataManager;
-   import alternativa.tanks.services.materialregistry.name_100;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
    import flash.display.BitmapData;
    import package_1.Main;
    import package_13.Long;
@@ -25,14 +25,14 @@ package package_97
       
       private static const const_1479:Number = 4;
       
-      private static var var_58:name_100;
+      private static var var_58:IMaterialRegistry;
        
       
       public function BonusCommonModel()
       {
          super();
-         var_365.push(name_66,class_104,class_103,class_11);
-         var_58 = name_100(Main.osgi.name_6(name_100));
+         _interfaces.push(IModel,class_104,class_103,class_11);
+         var_58 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry));
       }
       
       public function initObject(param1:ClientObject, param2:String, param3:Long, param4:Long, param5:int, param6:Long, param7:Long) : void
@@ -45,7 +45,7 @@ package package_97
          _loc8_.name_1483 = this.method_1281(param3);
          _loc8_.name_1489 = this.method_1281(param7);
          _loc8_.name_1480 = this.method_1281(param6);
-         _loc8_.name_1486 = var_58.textureMaterialRegistry.getMaterial(null,ImageResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(param4)).data,1);
+         _loc8_.name_1486 = var_58.textureMaterialRegistry.getMaterial(null,ImageResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(param4)).data,1);
          _loc8_.name_1486.resolution = 5;
          _loc8_.duration = param5 * 1000;
          var _loc9_:name_1790 = LightDataManager.name_1791(param2.split("_")[0]);
@@ -79,7 +79,7 @@ package package_97
       
       private function method_1281(param1:Long) : Mesh
       {
-         var _loc2_:Tanks3DSResource = Tanks3DSResource(ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(param1));
+         var _loc2_:Tanks3DSResource = Tanks3DSResource(ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(param1));
          var _loc3_:Mesh = Mesh(_loc2_.objects[0]);
          var _loc4_:BitmapData = _loc2_.method_765(0);
          if(_loc4_ == null)

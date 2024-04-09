@@ -1,6 +1,6 @@
 package forms.friends.list.renderer
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import fl.controls.listClasses.CellRenderer;
    import fl.controls.listClasses.ListData;
    import flash.display.DisplayObject;
@@ -30,7 +30,7 @@ package forms.friends.list.renderer
       
       private var var_3545:name_3475;
       
-      private var var_3544:name_1134;
+      private var var_3544:LabelBase;
       
       public function FriendsIncomingListRenderer()
       {
@@ -67,7 +67,7 @@ package forms.friends.list.renderer
          this.var_3545.visible = false;
          if(this.var_3544 == null)
          {
-            this.var_3544 = new name_1134();
+            this.var_3544 = new LabelBase();
             this.var_3544.text = "Новый";
             this.var_3544.height = 18;
             this.var_3544.y = -1;
@@ -135,13 +135,13 @@ package forms.friends.list.renderer
       
       private function method_3169(param1:MouseEvent) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby;accept_friend;" + this.var_1367.uid);
+         Network(Main.osgi.getService(name_2)).send("lobby;accept_friend;" + this.var_1367.uid);
          trace("Принимаем");
       }
       
       private function method_3168(param1:MouseEvent) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby;deny_friend;" + this.var_1367.uid);
+         Network(Main.osgi.getService(name_2)).send("lobby;deny_friend;" + this.var_1367.uid);
          trace("Оклоняем");
       }
       

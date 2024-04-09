@@ -3,17 +3,17 @@ package package_157
    import alternativa.engine3d.core.Object3D;
    import alternativa.engine3d.materials.TextureMaterial;
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.tanks.engine3d.TextureMaterialRegistry;
    import alternativa.tanks.engine3d.name_1072;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.sfx.LightDataManager;
    import alternativa.tanks.models.sfx.name_1096;
    import alternativa.tanks.models.sfx.name_1716;
    import alternativa.tanks.models.sfx.name_1808;
-   import alternativa.tanks.services.materialregistry.name_100;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import alternativa.tanks.sfx.Sound3D;
    import alternativa.tanks.sfx.Sound3DEffect;
    import alternativa.tanks.sfx.name_1071;
@@ -69,9 +69,9 @@ package package_157
       
       private static const const_1480:Number = 1;
       
-      private static var var_138:name_118;
+      private static var var_138:IObjectPoolService;
       
-      private static var var_58:name_100;
+      private static var var_58:IMaterialRegistry;
        
       
       private var matrix:Matrix;
@@ -84,7 +84,7 @@ package package_157
       {
          this.matrix = new Matrix();
          super();
-         var_365.push(name_66,class_110,name_1798,class_11);
+         _interfaces.push(IModel,class_110,name_1798,class_11);
       }
       
       private static function method_1276(param1:String, param2:String) : BitmapFilter
@@ -108,9 +108,9 @@ package package_157
       
       public function initObject(param1:ClientObject, param2:ImageResource, param3:ImageResource, param4:ImageResource, param5:BitmapData, param6:BitmapData, param7:Sound) : void
       {
-         var_58 = name_100(Main.osgi.name_6(name_100));
-         var_138 = name_118(Main.osgi.name_6(name_118));
-         this.battlefield = Main.osgi.name_6(name_83) as BattlefieldModel;
+         var_58 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry));
+         var_138 = IObjectPoolService(Main.osgi.getService(IObjectPoolService));
+         this.battlefield = Main.osgi.getService(IBattleField) as BattlefieldModel;
          var _loc8_:name_1805 = new name_1805();
          _loc8_.trailMaterial = method_1290(param5,method_1276(param1.id,"trail"));
          _loc8_.name_1810 = method_1290(param6,method_1276(param1.id,"trail"));
@@ -203,7 +203,7 @@ package package_157
          var _loc2_:Vector.<name_1594> = null;
          var _loc3_:name_1594 = null;
          var _loc4_:name_1805 = this.method_1239(param1);
-         var _loc5_:name_32 = name_32(Main.osgi.name_6(name_32));
+         var _loc5_:name_32 = name_32(Main.osgi.getService(name_32));
          var _loc6_:name_1737 = name_1737(_loc5_.method_260(param1,name_1737));
          if(_loc6_ != null)
          {

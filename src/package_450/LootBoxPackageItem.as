@@ -1,7 +1,7 @@
 package package_450
 {
    import alternativa.osgi.OSGi;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.Bitmap;
    import flash.text.TextFieldAutoSize;
    import forms.name_1139;
@@ -13,7 +13,7 @@ package package_450
    public class LootBoxPackageItem extends class_216
    {
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
       private static const const_2659:int = 18;
       
@@ -22,9 +22,9 @@ package package_450
       
       private const const_2660:uint = 3432728;
       
-      private var label:name_1134;
+      private var label:LabelBase;
       
-      private var var_2229:name_1134;
+      private var var_2229:LabelBase;
       
       private var icon:Bitmap;
       
@@ -79,7 +79,7 @@ package package_450
       
       private function method_3091() : void
       {
-         this.label = new name_1134();
+         this.label = new LabelBase();
          this.label.text = this.method_3092(this.var_3422.count);
          this.label.color = name_1139.const_1756;
          this.label.autoSize = TextFieldAutoSize.LEFT;
@@ -87,7 +87,7 @@ package package_450
          this.label.bold = true;
          this.label.mouseEnabled = false;
          addChild(this.label);
-         this.var_2229 = new name_1134();
+         this.var_2229 = new LabelBase();
          method_3087(this.var_2229);
          this.var_2229.text = this.var_3422.price + " " + this.var_3422.currency;
          this.var_2229.color = 4144959;

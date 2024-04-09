@@ -2,7 +2,7 @@ package package_44
 {
    import alternativa.osgi.OSGi;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
    import flash.events.KeyboardEvent;
    import package_1.Main;
@@ -16,13 +16,13 @@ package package_44
    public class name_117 implements name_99
    {
       
-      public static var var_360:name_312 = OSGi.getInstance().name_6(name_312) as name_312;
+      public static var var_360:name_312 = OSGi.getInstance().getService(name_312) as name_312;
        
       
       public function name_117()
       {
          super();
-         (Main.osgi.name_6(name_83) as BattlefieldModel).var_130.push(this);
+         (Main.osgi.getService(IBattleField) as BattlefieldModel).var_130.push(this);
       }
       
       public function destroy(param1:Boolean) : void
@@ -37,7 +37,7 @@ package package_44
       {
       }
       
-      public function name_134(param1:name_83) : void
+      public function name_134(param1:IBattleField) : void
       {
       }
       
@@ -62,9 +62,9 @@ package package_44
          var _loc2_:int = name_92.const_68 | name_92.EFFECTS;
          _loc2_ |= name_92.name_262;
          var _loc3_:UserTitle = param1.tank.title;
-         if(UserInfoService(Main.osgi.name_6(name_408)).hasData(param1.userName))
+         if(UserInfoService(Main.osgi.getService(name_408)).hasData(param1.userName))
          {
-            _loc3_.name_971(UserInfoService(Main.osgi.name_6(name_408)).getData(param1.userName).premium);
+            _loc3_.name_971(UserInfoService(Main.osgi.getService(name_408)).getData(param1.userName).premium);
          }
          _loc3_.name_156(param1.userName);
          _loc3_.name_122(param1.userRank);

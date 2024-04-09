@@ -1,6 +1,6 @@
 package package_72
 {
-   import alternativa.tanks.models.tank.class_7;
+   import alternativa.tanks.models.tank.ITank;
    import alternativa.tanks.models.weapon.WeaponObject;
    import alternativa.tanks.models.weapon.shotgun.PelletDirectionCalculator;
    import alternativa.tanks.models.weapon.shotgun.ShotgunRicochetTargetingSystem;
@@ -18,7 +18,7 @@ package package_72
       
       public function createTargetingSystem() : ShotgunRicochetTargetingSystem
       {
-         var _loc1_:WeaponObject = new WeaponObject(class_7(object.name_176(class_7)).getTank().tankData.turret);
+         var _loc1_:WeaponObject = new WeaponObject(ITank(object.name_176(ITank)).getTank().tankData.turret);
          return new ShotgunRicochetTargetingSystem(_loc1_,this.method_881(),method_771());
       }
       

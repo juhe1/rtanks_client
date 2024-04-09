@@ -1,11 +1,11 @@
 package alternativa.tanks.battle
 {
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    
    public class name_295
    {
       
-      public static var battleService:name_83;
+      public static var battleService:IBattleField;
        
       
       public function name_295()

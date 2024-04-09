@@ -1,7 +1,7 @@
 package alternativa.tanks.gui.clanmanagement
 {
    import base.class_122;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import controls.name_1922;
    import controls.windowinner.WindowInner;
    import flash.display.Bitmap;
@@ -89,7 +89,7 @@ package alternativa.tanks.gui.clanmanagement
          this.var_1225 = new name_1922();
          addChild(this.var_1224);
          addChild(this.var_1225);
-         this.var_1222 = new WindowInner(this._width,120,name_1891.name_1428);
+         this.var_1222 = new WindowInner(this._width,120,TankWindowInner.GREEN);
          this.var_1224.addChild(this.var_1222);
          var _loc3_:name_579 = name_579(param1.name_176(name_579));
          var _loc4_:int = 0;

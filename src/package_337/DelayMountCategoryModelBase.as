@@ -21,7 +21,7 @@ package package_337
       
       public function DelayMountCategoryModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_1639(this);
          this.var_25 = Long.getLong(1655340370,1523265001);
          super();

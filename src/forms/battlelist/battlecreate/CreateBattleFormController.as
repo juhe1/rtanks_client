@@ -1,7 +1,7 @@
 package forms.battlelist.battlecreate
 {
    import assets.icons.BattleInfoIcons;
-   import controls.checkbox.name_2018;
+   import controls.checkbox.CheckBoxEvent;
    import flash.display.BitmapData;
    import flash.display.DisplayObject;
    import flash.events.Event;
@@ -20,7 +20,7 @@ package forms.battlelist.battlecreate
    import package_413.name_2283;
    import package_414.name_2273;
    import package_54.name_102;
-   import package_95.name_298;
+   import package_95.IStorageService;
    import platform.client.fp10.core.resource.IResourceLoadingListener;
    import platform.client.fp10.core.resource.Resource;
    import platform.client.fp10.core.resource.types.ImageResource;
@@ -30,13 +30,13 @@ package forms.battlelist.battlecreate
    public class CreateBattleFormController extends EventDispatcher implements IResourceLoadingListener
    {
       
-      public static var storageService:name_298 = Main.osgi.name_6(name_298) as name_298;
+      public static var storageService:IStorageService = Main.osgi.getService(IStorageService) as IStorageService;
       
-      public static var userPropertiesService:PanelModel = Main.osgi.name_6(name_115) as PanelModel;
+      public static var userPropertiesService:PanelModel = Main.osgi.getService(name_115) as PanelModel;
       
-      public static var var_2421:BattleFormatUtil = Main.osgi.name_6(BattleFormatUtil) as BattleFormatUtil;
+      public static var var_2421:BattleFormatUtil = Main.osgi.getService(BattleFormatUtil) as BattleFormatUtil;
       
-      public static var localeService:name_102 = Main.osgi.name_6(name_102) as name_102;
+      public static var localeService:name_102 = Main.osgi.getService(name_102) as name_102;
       
       private static const const_2272:int = 60;
       
@@ -670,7 +670,7 @@ package forms.battlelist.battlecreate
          }
       }
       
-      public function method_2778(param1:name_2018) : void
+      public function method_2778(param1:CheckBoxEvent) : void
       {
          if(this.var_2948.name_2981 && this.method_2750())
          {
@@ -683,7 +683,7 @@ package forms.battlelist.battlecreate
          this.var_2948.name_2960(0);
       }
       
-      public function method_2780(param1:name_2018) : void
+      public function method_2780(param1:CheckBoxEvent) : void
       {
          if(this.var_2948.name_2978() && this.method_2751() != null)
          {

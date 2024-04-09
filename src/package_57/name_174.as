@@ -1,6 +1,6 @@
 package package_57
 {
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import alternativa.physics.name_886;
    import alternativa.tanks.vehicles.tanks.Tank;
    import package_37.Matrix3;
@@ -46,7 +46,7 @@ package package_57
       
       public function update(param1:Number) : void
       {
-         var _loc2_:name_660 = this.tank;
+         var _loc2_:Body = this.tank;
          var _loc3_:name_886 = _loc2_.var_299;
          var _loc4_:Vector3 = _loc3_.name_187;
          _loc4_.x = 0;

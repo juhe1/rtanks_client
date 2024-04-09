@@ -2,18 +2,18 @@ package package_333
 {
    import alternativa.physics.collision.name_1083;
    import alternativa.physics.collision.name_1160;
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import alternativa.tanks.engine3d.AnimatedSprite3D;
    import alternativa.tanks.engine3d.name_1072;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.sfx.name_657;
-   import package_161.name_1448;
+   import package_161.IWeaponWeakeningModel;
    import package_301.name_2411;
    import package_37.Matrix3;
    import package_37.Vector3;
    import package_4.ClientObject;
    import package_42.name_73;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_68.name_175;
    import package_76.name_735;
    
@@ -40,7 +40,7 @@ package package_333
       
       private static var var_2495:Vector3 = new Vector3();
       
-      private static var const_372:name_124 = new name_124();
+      private static var const_372:RayHit = new RayHit();
        
       
       public var shotId:int;
@@ -69,7 +69,7 @@ package package_333
       
       private var var_1869:Number;
       
-      private var var_1014:name_1448;
+      private var var_1014:IWeaponWeakeningModel;
       
       private var sfxData:name_2411;
       
@@ -100,7 +100,7 @@ package package_333
          return _loc1_;
       }
       
-      public function init(param1:int, param2:Boolean, param3:name_2653, param4:Vector3, param5:Vector3, param6:TankData, param7:class_186, param8:name_2411, param9:name_1083, param10:name_1448) : void
+      public function init(param1:int, param2:Boolean, param3:name_2653, param4:Vector3, param5:Vector3, param6:TankData, param7:class_186, param8:name_2411, param9:name_1083, param10:IWeaponWeakeningModel) : void
       {
          this.shotId = param1;
          this.active = param2;
@@ -223,7 +223,7 @@ package package_333
          this.name_1769 = this.var_3276.name_1767 + 1;
       }
       
-      public function considerBody(param1:name_660) : Boolean
+      public function considerBody(param1:Body) : Boolean
       {
          return this.name_1764.tank != param1;
       }

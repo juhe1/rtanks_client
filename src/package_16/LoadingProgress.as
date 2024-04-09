@@ -51,7 +51,7 @@ package package_16
       
       public function setStatus(param1:Object, param2:String) : void
       {
-         (OSGi.osgi.name_6(name_25) as name_25).name_848("LOADING PROGRESS","setStatus: %1 (processId: %2)",param2,param1);
+         (OSGi.osgi.getService(name_25) as name_25).name_848("LOADING PROGRESS","setStatus: %1 (processId: %2)",param2,param1);
          if(this.var_202[param1] == null)
          {
             this.var_202[param1] = new name_847(param2,0);
@@ -70,7 +70,7 @@ package package_16
       
       public function method_284(param1:Object, param2:Number) : void
       {
-         (OSGi.osgi.name_6(name_25) as name_25).name_848("LOADING PROGRESS","setProgress: %1 (processId: %2)",param2,param1);
+         (OSGi.osgi.getService(name_25) as name_25).name_848("LOADING PROGRESS","setProgress: %1 (processId: %2)",param2,param1);
          if(param2 < 0)
          {
             param2 = 0;

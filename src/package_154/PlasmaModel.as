@@ -2,35 +2,35 @@ package package_154
 {
    import alternativa.engine3d.materials.TextureMaterial;
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
-   import alternativa.physics.name_660;
+   import alternativa.model.IModel;
+   import alternativa.physics.Body;
    import alternativa.tanks.models.battlefield.name_128;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
-   import alternativa.tanks.models.weapon.name_1074;
+   import alternativa.tanks.models.tank.ITank;
+   import alternativa.tanks.models.weapon.IWeaponController;
    import alternativa.tanks.models.weapon.name_911;
    import alternativa.tanks.models.weapon.shared.CommonTargetSystem;
    import alternativa.tanks.models.weapon.shared.name_653;
-   import alternativa.tanks.services.materialregistry.name_100;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
    import flash.utils.Dictionary;
    import package_1.Main;
    import package_153.PlasmaSFXModel;
    import package_153.name_1770;
-   import package_161.name_1448;
+   import package_161.IWeaponWeakeningModel;
    import package_167.name_1454;
    import package_278.name_1288;
    import package_369.class_97;
    import package_369.class_98;
    import package_37.Vector3;
    import package_4.ClientObject;
-   import package_41.name_320;
+   import package_41.ItemProperty;
    import package_41.Vector3dData;
    import package_42.TanksCollisionDetector;
    import package_42.name_73;
    import package_52.WeaponsManager;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_7.name_32;
    import package_92.WeaponCommonModel;
    import package_92.name_1188;
@@ -39,7 +39,7 @@ package package_154
    import scpacker.networking.Network;
    import scpacker.networking.name_2;
    
-   public class PlasmaModel extends class_97 implements class_98, class_11, class_99, name_1074
+   public class PlasmaModel extends class_97 implements class_98, class_11, class_99, IWeaponController
    {
       
       private static const const_492:Class = name_1765;
@@ -61,13 +61,13 @@ package package_154
       
       private var modelService:name_32;
       
-      private var var_11:name_83;
+      private var var_11:IBattleField;
       
       private var var_13:TankModel;
       
       private var var_728:WeaponCommonModel;
       
-      private var var_730:name_1448;
+      private var var_730:IWeaponWeakeningModel;
       
       private var targetSystem:CommonTargetSystem;
       
@@ -101,7 +101,7 @@ package package_154
       
       private var _dirToTarget3d:Vector3dData;
       
-      private var var_711:name_124;
+      private var var_711:RayHit;
       
       private var var_689:name_653;
       
@@ -125,14 +125,14 @@ package package_154
          this._hitPos3d = new Vector3dData(0,0,0);
          this.var_1049 = new Vector3dData(0,0,0);
          this._dirToTarget3d = new Vector3dData(0,0,0);
-         this.var_711 = new name_124();
+         this.var_711 = new RayHit();
          super();
-         var_365.push(name_66,class_98,class_11,name_1074);
+         _interfaces.push(IModel,class_98,class_11,IWeaponController);
       }
       
-      public function name_1436() : name_320
+      public function name_1436() : ItemProperty
       {
-         return name_320.name_436;
+         return ItemProperty.PLASMA_RESISTANCE;
       }
       
       public function objectLoaded(param1:ClientObject) : void
@@ -140,7 +140,7 @@ package package_154
          this.method_1223();
          if(var_1001 == null)
          {
-            var_1001 = name_100(Main.osgi.name_6(name_100)).textureMaterialRegistry.getMaterial(null,new const_492().bitmapData,1);
+            var_1001 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry)).textureMaterialRegistry.getMaterial(null,new const_492().bitmapData,1);
          }
       }
       
@@ -156,7 +156,7 @@ package package_154
             }
          }
          this.var_1071 = new Dictionary();
-         name_100(Main.osgi.name_6(name_100)).textureMaterialRegistry.disposeMaterial(var_1001);
+         IMaterialRegistry(Main.osgi.getService(IMaterialRegistry)).textureMaterialRegistry.disposeMaterial(var_1001);
          var_1001 = null;
       }
       
@@ -348,7 +348,7 @@ package package_154
          _loc5_.realShotId = param3;
          _loc5_.dirToTarget = param4;
          _loc5_.reloadTime = this.var_733.reloadMsec.value;
-         Network(Main.osgi.name_6(name_2)).send("battle;start_fire;" + JSON.stringify(_loc5_));
+         Network(Main.osgi.getService(name_2)).send("battle;start_fire;" + JSON.stringify(_loc5_));
       }
       
       public function method_1002(param1:int) : void
@@ -376,7 +376,7 @@ package package_154
          this.method_1273(param1);
       }
       
-      public function method_1271(param1:PlasmaShot, param2:Vector3, param3:Vector3, param4:name_660) : void
+      public function method_1271(param1:PlasmaShot, param2:Vector3, param3:Vector3, param4:Body) : void
       {
          var _loc8_:* = undefined;
          var _loc9_:TankData = null;
@@ -437,7 +437,7 @@ package package_154
          _loc8_.tankPos = param6;
          _loc8_.distance = param7;
          _loc8_.reloadTime = this.var_733.reloadMsec.value;
-         Network(Main.osgi.name_6(name_2)).send("battle;fire;" + JSON.stringify(_loc8_));
+         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(_loc8_));
       }
       
       private function method_1275(param1:ClientObject) : name_1763
@@ -475,11 +475,11 @@ package package_154
       {
          if(this.modelService == null)
          {
-            this.modelService = name_32(Main.osgi.name_6(name_32));
-            this.var_11 = name_83(Main.osgi.name_6(name_83));
-            this.var_13 = Main.osgi.name_6(class_7) as TankModel;
-            this.var_728 = Main.osgi.name_6(name_1188) as WeaponCommonModel;
-            this.var_730 = name_1448(this.modelService.getModelsByInterface(name_1448)[0]);
+            this.modelService = name_32(Main.osgi.getService(name_32));
+            this.var_11 = IBattleField(Main.osgi.getService(IBattleField));
+            this.var_13 = Main.osgi.getService(ITank) as TankModel;
+            this.var_728 = Main.osgi.getService(name_1188) as WeaponCommonModel;
+            this.var_730 = IWeaponWeakeningModel(this.modelService.getModelsByInterface(IWeaponWeakeningModel)[0]);
          }
       }
    }

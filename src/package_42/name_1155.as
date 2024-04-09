@@ -1,8 +1,8 @@
 package package_42
 {
    import alternativa.physics.PhysicsScene;
-   import alternativa.physics.collision.name_774;
-   import alternativa.physics.name_660;
+   import alternativa.physics.collision.CollisionPrimitive;
+   import alternativa.physics.Body;
    import alternativa.tanks.battle.BattleRunner;
    import alternativa.tanks.battle.BattleUtils;
    import alternativa.tanks.utils.name_2391;
@@ -40,7 +40,7 @@ package package_42
          return this.name_678.time;
       }
       
-      public function method_930(param1:Vector.<name_774>) : void
+      public function method_930(param1:Vector.<CollisionPrimitive>) : void
       {
          this.name_247.name_754(param1);
       }
@@ -90,7 +90,7 @@ package package_42
          var _loc6_:Number = NaN;
          var _loc9_:Number = NaN;
          var _loc1_:TankBody = null;
-         var _loc2_:name_660 = null;
+         var _loc2_:Body = null;
          var _loc3_:Vector3 = null;
          var _loc4_:Vector3 = null;
          var _loc5_:Number = NaN;

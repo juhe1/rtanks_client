@@ -30,7 +30,7 @@ package platform.client.fp10.core.resource
          super();
          this.resourceQueue = new PriorityQueue();
          this.resourceEntries = new Dictionary();
-         this.localStorageInternal = IResourceLocalStorageInternal(param1.name_6(IResourceLocalStorageInternal));
+         this.localStorageInternal = IResourceLocalStorageInternal(param1.getService(IResourceLocalStorageInternal));
       }
       
       public function loadResource(param1:Resource, param2:IResourceLoadingListener, param3:int) : void
@@ -180,7 +180,6 @@ package platform.client.fp10.core.resource
       {
          param1.clearFlags(ResourceFlags.LOCAL);
          var _loc2_:String = this.getResourceUrl(param1);
-         trace(_loc2_);
          param1.load(_loc2_,this);
       }
       

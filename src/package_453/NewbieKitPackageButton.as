@@ -3,7 +3,7 @@ package package_453
    import alternativa.osgi.OSGi;
    import alternativa.tanks.model.shop.items.kits.SpecialKitIcons;
    import alternativa.tanks.model.shop.items.kits.class_217;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.Bitmap;
    import flash.text.TextFieldAutoSize;
    import forms.name_1139;
@@ -18,7 +18,7 @@ package package_453
    public class NewbieKitPackageButton extends class_217
    {
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
       private static const const_2663:int = 25;
       
@@ -27,7 +27,7 @@ package package_453
       private static const CENTER:int = 400;
        
       
-      private var var_2229:name_1134;
+      private var var_2229:LabelBase;
       
       private var var_2226:Bitmap;
       
@@ -62,7 +62,7 @@ package package_453
       private function method_3035() : *
       {
          var resources:Vector.<Resource> = new Vector.<Resource>();
-         var image:* = ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry)).getResource(Long.getLong(0,this.var_3422.imageId));
+         var image:* = ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry)).getResource(Long.getLong(0,this.var_3422.imageId));
          this.var_3422.image = image;
          if(image != null && image.isLazy && !image.isLoaded && resources.indexOf(image) < 0)
          {
@@ -107,8 +107,8 @@ package package_453
       
       private function method_3096() : void
       {
-         var _loc1_:name_1134 = null;
-         _loc1_ = new name_1134();
+         var _loc1_:LabelBase = null;
+         _loc1_ = new LabelBase();
          _loc1_.text = name_3386.name_3387(this.var_3422.crystalls,0,false);
          _loc1_.color = name_1139.const_1763;
          _loc1_.autoSize = TextFieldAutoSize.LEFT;
@@ -130,7 +130,7 @@ package package_453
       
       private function method_3097() : void
       {
-         this.var_2229 = new name_1134();
+         this.var_2229 = new LabelBase();
          this.var_2229.text = name_3386.name_3387(this.var_3422.price,0,false) + " " + this.var_3422.currency;
          this.var_2229.color = name_1139.const_1757;
          this.var_2229.size = this.method_3094();
@@ -143,12 +143,12 @@ package package_453
       
       private function addPremiumAndGoldIconAndLabel() : void
       {
-         var _loc1_:name_1134 = null;
+         var _loc1_:LabelBase = null;
          this.var_2226 = new Bitmap();
          this.var_2226.x = 400;
          addChild(this.var_2226);
          var _loc3_:int = int(this.var_3422.premium);
-         _loc1_ = new name_1134();
+         _loc1_ = new LabelBase();
          _loc1_.text = "+" + name_3388.name_3389(_loc3_);
          _loc1_.color = name_1139.name_2012;
          _loc1_.autoSize = TextFieldAutoSize.LEFT;
@@ -183,7 +183,7 @@ package package_453
          var _loc1_:Bitmap = new Bitmap(SpecialKitIcons.name_3391);
          _loc1_.y = -8;
          addChild(_loc1_);
-         var _loc2_:name_1134 = new name_1134();
+         var _loc2_:LabelBase = new LabelBase();
          _loc2_.text = "+" + this.var_3422.supply.toString();
          _loc2_.y = 10;
          _loc2_.color = name_1139.name_2012;

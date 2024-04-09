@@ -4,17 +4,17 @@ package package_162
    import alternativa.engine3d.core.Object3D;
    import alternativa.engine3d.materials.TextureMaterial;
    import alternativa.engine3d.objects.Mesh;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.tanks.engine3d.TextureMaterialRegistry;
    import alternativa.tanks.engine3d.name_1072;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.sfx.LightDataManager;
    import alternativa.tanks.models.sfx.name_1096;
    import alternativa.tanks.models.sfx.name_1716;
    import alternativa.tanks.models.sfx.shoot.name_1187;
-   import alternativa.tanks.services.materialregistry.name_100;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import alternativa.tanks.sfx.Sound3D;
    import alternativa.tanks.sfx.Sound3DEffect;
    import alternativa.tanks.sfx.name_1070;
@@ -50,9 +50,9 @@ package package_162
       
       private static const const_1484:Number = 300;
       
-      private static var var_138:name_118;
+      private static var var_138:IObjectPoolService;
       
-      private static var var_58:name_100;
+      private static var var_58:IMaterialRegistry;
       
       private static var const_1479:Number = 2;
       
@@ -64,7 +64,7 @@ package package_162
       public function SmokySFXModel()
       {
          super();
-         var_365.push(name_66,class_93,name_1187);
+         _interfaces.push(IModel,class_93,name_1187);
       }
       
       private static function method_1266(param1:BitmapData) : TextureMaterial
@@ -84,8 +84,8 @@ package package_162
       
       public function initObject(param1:ClientObject, param2:Sound, param3:Sound, param4:BitmapData, param5:BitmapData) : void
       {
-         var_138 = name_118(Main.osgi.name_6(name_118));
-         var_58 = name_100(Main.osgi.name_6(name_100));
+         var_138 = IObjectPoolService(Main.osgi.getService(IObjectPoolService));
+         var_58 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry));
          var _loc6_:name_1759 = new name_1759();
          _loc6_.name_1761 = method_1266(param4);
          _loc6_.name_1762 = method_1265(param5,300,102);
@@ -141,7 +141,7 @@ package package_162
          var _loc5_:name_1716 = name_1716(var_138.objectPool.getObject(name_1716));
          _loc5_.init(param2,param1,0);
          _loc4_.init(_loc5_,LightDataManager.name_1250(param3.id));
-         var_421 = Main.osgi.name_6(name_83) as BattlefieldModel;
+         var_421 = Main.osgi.getService(IBattleField) as BattlefieldModel;
          var_421.name_217(_loc4_);
       }
       
@@ -155,7 +155,7 @@ package package_162
             throw new ArgumentError("pos can not be null");
          }
          _loc3_.init(_loc4_,LightDataManager.name_1098(param2.id));
-         var_421 = Main.osgi.name_6(name_83) as BattlefieldModel;
+         var_421 = Main.osgi.getService(IBattleField) as BattlefieldModel;
          var_421.name_217(_loc3_);
       }
    }

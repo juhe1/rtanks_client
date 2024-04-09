@@ -4,7 +4,7 @@ package alternativa.tanks.gui.notinclan
    import alternativa.tanks.gui.notinclan.dialogs.name_578;
    import alternativa.tanks.gui.notinclan.dialogs.name_597;
    import alternativa.tanks.models.user.name_65;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.base.name_1890;
    import controls.windowinner.WindowInner;
    import flash.display.Bitmap;
@@ -47,7 +47,7 @@ package alternativa.tanks.gui.notinclan
       
       private var var_1270:name_70;
       
-      private var var_1266:name_1134;
+      private var var_1266:LabelBase;
       
       private var var_1264:WindowInner;
       
@@ -76,7 +76,7 @@ package alternativa.tanks.gui.notinclan
          this.var_1264 = new WindowInner(0,0,WindowInner.name_1428);
          addChild(this.var_1264);
          addChild(image);
-         this.var_1266 = new name_1134();
+         this.var_1266 = new LabelBase();
          this.var_1266.align = TextFormatAlign.CENTER;
          this.var_1266.text = localeService.getText(name_390.const_657);
          this.var_1264.addChild(this.var_1266);

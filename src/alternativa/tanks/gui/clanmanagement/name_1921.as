@@ -1,7 +1,7 @@
 package alternativa.tanks.gui.clanmanagement
 {
    import base.class_122;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.Bitmap;
    import flash.display.Shape;
    import flash.display.StageQuality;
@@ -18,9 +18,9 @@ package alternativa.tanks.gui.clanmanagement
       
       private var image:Bitmap;
       
-      private var var_1777:name_1134;
+      private var var_1777:LabelBase;
       
-      private var var_2633:name_1134;
+      private var var_2633:LabelBase;
       
       private var var_2634:String;
       
@@ -28,11 +28,11 @@ package alternativa.tanks.gui.clanmanagement
       {
          super();
          this.image = param1;
-         this.var_1777 = new name_1134();
+         this.var_1777 = new LabelBase();
          this.var_1777.align = TextFormatAlign.CENTER;
          this.var_1777.wordWrap = true;
          this.var_1777.multiline = true;
-         this.var_2633 = new name_1134();
+         this.var_2633 = new LabelBase();
          this.var_2633.size = 16;
          this.var_2633.bold = true;
          this.image.x = 120 - this.image.bitmapData.width >> 1;

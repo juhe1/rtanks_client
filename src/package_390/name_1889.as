@@ -2,7 +2,7 @@ package package_390
 {
    import alternativa.tanks.model.friends.FriendsService;
    import base.class_122;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.DisplayObjectContainer;
    import flash.display.Sprite;
    import flash.events.Event;
@@ -24,13 +24,13 @@ package package_390
    public class name_1889 extends Sprite
    {
       
-      public static var userInfoService:name_408 = Main.osgi.name_6(name_408) as name_408;
+      public static var userInfoService:name_408 = Main.osgi.getService(name_408) as name_408;
       
-      public static var clanUserInfoService:name_52 = Main.osgi.name_6(name_52) as name_52;
+      public static var clanUserInfoService:name_52 = Main.osgi.getService(name_52) as name_52;
       
-      public static var contextMenuService:name_308 = Main.osgi.name_6(name_308) as name_308;
+      public static var contextMenuService:name_308 = Main.osgi.getService(name_308) as name_308;
       
-      public static var display:DisplayObjectContainer = (Main.osgi.name_6(name_24) as name_24).dialogsLayer as DisplayObjectContainer;
+      public static var display:DisplayObjectContainer = (Main.osgi.getService(name_24) as name_24).dialogsLayer as DisplayObjectContainer;
       
       protected static const const_2059:int = 20;
       
@@ -47,7 +47,7 @@ package package_390
       
       protected var var_2579:name_1666;
       
-      protected var var_1554:name_1134;
+      protected var var_1554:LabelBase;
       
       protected var var_2590:Boolean;
       
@@ -112,7 +112,7 @@ package package_390
          addChild(this.var_2577);
          this.var_2577.filters = this.method_2565();
          this.var_2582 = name_1139.name_1894;
-         this._self = PanelModel(Main.osgi.name_6(name_115)).userName == this.var_913;
+         this._self = PanelModel(Main.osgi.getService(name_115)).userName == this.var_913;
          if(!this._self)
          {
             useHandCursor = true;
@@ -147,7 +147,7 @@ package package_390
       
       protected function method_2566() : void
       {
-         this.var_1554 = new name_1134();
+         this.var_1554 = new LabelBase();
          this.var_1554.x = 20 - 2 + this.method_2568();
          this.var_2577.addChild(this.var_1554);
          this.var_1554.visible = false;
@@ -207,7 +207,7 @@ package package_390
          var _loc4_:Boolean = false;
          var _loc5_:Boolean = false;
          var _loc6_:Boolean = false;
-         if(PanelModel(Main.osgi.name_6(name_115)).userName == this.var_913)
+         if(PanelModel(Main.osgi.getService(name_115)).userName == this.var_913)
          {
             return;
          }

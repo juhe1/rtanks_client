@@ -1,14 +1,14 @@
 package alternativa.tanks.gui.clanmanagement
 {
    import base.class_122;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import controls.windowinner.WindowInner;
    import fl.containers.ScrollPane;
    import fl.controls.ScrollPolicy;
    import flash.display.Sprite;
    import flash.text.AntiAliasType;
    import flash.text.TextFieldAutoSize;
-   import utils.name_1915;
+   import utils.ScrollStyleUtils;
    
    public class name_1923 extends class_122
    {
@@ -34,7 +34,7 @@ package alternativa.tanks.gui.clanmanagement
          this.var_2630 = new ScrollPane();
          this.var_2632 = new Sprite();
          super();
-         this.var_2631 = new WindowInner(0,0,name_1891.name_1428);
+         this.var_2631 = new WindowInner(0,0,TankWindowInner.GREEN);
          addChild(this.var_2631);
          this.description.autoSize = TextFieldAutoSize.LEFT;
          this.description.antiAliasType = AntiAliasType.ADVANCED;
@@ -46,7 +46,7 @@ package alternativa.tanks.gui.clanmanagement
          }
          this.var_2632.addChild(this.description);
          this.var_2631.addChild(this.var_2630);
-         name_1915.name_1918(this.var_2630);
+         ScrollStyleUtils.setGreenStyle(this.var_2630);
          this.var_2630.horizontalScrollPolicy = ScrollPolicy.OFF;
          this.var_2630.verticalScrollPolicy = ScrollPolicy.ON;
          this.var_2630.source = this.var_2632;

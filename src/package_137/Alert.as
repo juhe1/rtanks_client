@@ -1,8 +1,8 @@
 package package_137
 {
    import alternativa.osgi.OSGi;
-   import controls.base.name_1134;
-   import controls.base.name_998;
+   import controls.base.LabelBase;
+   import controls.base.DefaultButtonBase;
    import controls.buttons.ButtonBase;
    import controls.class_139;
    import controls.name_1922;
@@ -72,7 +72,7 @@ package package_137
       
       protected var var_1761:name_1922;
       
-      private var var_633:name_1134;
+      private var var_633:LabelBase;
       
       private var message:String;
       
@@ -119,7 +119,7 @@ package package_137
       
       private function init() : void
       {
-         this.localeService = name_102(OSGi.getInstance().name_6(name_102));
+         this.localeService = name_102(OSGi.getInstance().getService(name_102));
          this.var_1761.name_2241 = this.localeService.getText(name_390.const_777);
          if(name_358.name_990 == null)
          {
@@ -162,7 +162,7 @@ package package_137
       
       private function method_2549() : void
       {
-         this.var_633 = new name_1134();
+         this.var_633 = new LabelBase();
          this.var_633.autoSize = TextFieldAutoSize.CENTER;
          this.var_633.align = TextFormatAlign.CENTER;
          this.var_633.size = 14;
@@ -209,7 +209,7 @@ package package_137
       {
          var _loc2_:Sprite = null;
          var _loc3_:int = 0;
-         var _loc4_:name_998 = null;
+         var _loc4_:DefaultButtonBase = null;
          var _loc5_:int = this.method_1941();
          var _loc6_:int = _loc5_ * this.labels.length / 2;
          addChild(this.alertWindow);
@@ -227,7 +227,7 @@ package package_137
                }
                else
                {
-                  _loc4_ = new name_998();
+                  _loc4_ = new DefaultButtonBase();
                   _loc2_ = _loc4_;
                   _loc4_.label = this.labels[_loc3_];
                }
@@ -361,7 +361,7 @@ package package_137
       private function method_1941() : int
       {
          var _loc1_:int = 80;
-         var _loc2_:name_1134 = new name_1134();
+         var _loc2_:LabelBase = new LabelBase();
          var _loc3_:int = 0;
          while(_loc3_ < this.labels.length)
          {

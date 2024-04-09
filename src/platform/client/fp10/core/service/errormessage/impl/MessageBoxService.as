@@ -23,7 +23,7 @@ package platform.client.fp10.core.service.errormessage.impl
       
       public function showMessage(param1:ErrorType) : void
       {
-         var _loc2_:name_24 = name_24(this.osgi.name_6(name_24));
+         var _loc2_:name_24 = name_24(this.osgi.getService(name_24));
          _loc2_.stage.addChild(this.window.getDisplayObject(param1));
       }
       

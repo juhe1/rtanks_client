@@ -3,16 +3,16 @@ package package_165
    import alternativa.engine3d.core.Object3D;
    import alternativa.engine3d.materials.TextureMaterial;
    import alternativa.engine3d.objects.Mesh;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.tanks.engine3d.TextureMaterialRegistry;
    import alternativa.tanks.engine3d.name_1072;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.sfx.LightDataManager;
    import alternativa.tanks.models.sfx.name_1096;
    import alternativa.tanks.models.sfx.name_1716;
-   import alternativa.tanks.services.materialregistry.name_100;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import alternativa.tanks.sfx.Sound3D;
    import alternativa.tanks.sfx.Sound3DEffect;
    import alternativa.tanks.sfx.name_1070;
@@ -37,9 +37,9 @@ package package_165
       
       private static const const_1487:Number = 110;
       
-      private static var var_58:name_100;
+      private static var var_58:IMaterialRegistry;
       
-      private static var var_138:name_118;
+      private static var var_138:IObjectPoolService;
       
       private static var var_515:Matrix4 = new Matrix4();
       
@@ -50,11 +50,11 @@ package package_165
       
       public function ThunderSFXModel()
       {
-         this.var_421 = Main.osgi.name_6(name_83) as BattlefieldModel;
+         this.var_421 = Main.osgi.getService(IBattleField) as BattlefieldModel;
          super();
-         var_365.push(name_66,name_1701);
-         var_58 = name_100(Main.osgi.name_6(name_100));
-         var_138 = name_118(Main.osgi.name_6(name_118));
+         _interfaces.push(IModel,name_1701);
+         var_58 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry));
+         var_138 = IObjectPoolService(Main.osgi.getService(IObjectPoolService));
       }
       
       private static function method_1266(param1:BitmapData) : TextureMaterial

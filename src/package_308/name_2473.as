@@ -1,6 +1,6 @@
 package package_308
 {
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import alternativa.tanks.battle.BattleUtils;
    import alternativa.tanks.vehicles.tanks.Tank;
    import package_37.Vector3;
@@ -29,7 +29,7 @@ package package_308
          if(this.name_2490())
          {
             this.localPoint.copy(param1);
-            BattleUtils.globalToLocal(param2 as name_660,this.localPoint);
+            BattleUtils.globalToLocal(param2 as Body,this.localPoint);
          }
       }
       

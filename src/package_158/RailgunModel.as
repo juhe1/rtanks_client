@@ -2,17 +2,17 @@ package package_158
 {
    import alternativa.engine3d.materials.TextureMaterial;
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
    import alternativa.tanks.models.battlefield.name_128;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
-   import alternativa.tanks.models.tank.class_7;
-   import alternativa.tanks.models.weapon.name_1074;
+   import alternativa.tanks.models.tank.ITank;
+   import alternativa.tanks.models.weapon.IWeaponController;
    import alternativa.tanks.models.weapon.name_1495;
    import alternativa.tanks.models.weapon.name_903;
    import alternativa.tanks.models.weapon.name_911;
-   import alternativa.tanks.services.materialregistry.name_100;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
    import alternativa.tanks.sfx.name_132;
    import alternativa.tanks.sfx.name_657;
    import package_1.Main;
@@ -23,7 +23,7 @@ package package_158
    import package_338.name_1612;
    import package_37.Vector3;
    import package_4.ClientObject;
-   import package_41.name_320;
+   import package_41.ItemProperty;
    import package_41.Vector3dData;
    import package_52.WeaponsManager;
    import package_7.name_32;
@@ -33,7 +33,7 @@ package package_158
    import scpacker.networking.Network;
    import scpacker.networking.name_2;
    
-   public class RailgunModel extends class_108 implements name_66, name_1612, name_1074, class_11
+   public class RailgunModel extends class_108 implements IModel, name_1612, IWeaponController, class_11
    {
       
       private static const const_1481:name_903 = new name_903();
@@ -51,7 +51,7 @@ package package_158
       
       private var var_11:BattlefieldModel;
       
-      private var var_13:class_7;
+      private var var_13:ITank;
       
       private var var_1008:name_1188;
       
@@ -109,33 +109,33 @@ package package_158
          this.targetPositions = [];
          this.var_1026 = [];
          super();
-         var_365.push(name_66,name_1612,name_1074,class_11);
+         _interfaces.push(IModel,name_1612,IWeaponController,class_11);
          this.objectLoaded(null);
       }
       
-      public function name_1436() : name_320
+      public function name_1436() : ItemProperty
       {
-         return name_320.name_410;
+         return ItemProperty.RAIL_RESISTANCE;
       }
       
       public function objectLoaded(param1:ClientObject) : void
       {
          if(this.var_1008 == null)
          {
-            this.modelService = Main.osgi.name_6(name_32) as name_32;
-            this.var_11 = Main.osgi.name_6(name_83) as BattlefieldModel;
-            this.var_13 = Main.osgi.name_6(class_7) as class_7;
-            this.var_1008 = Main.osgi.name_6(name_1188) as name_1188;
+            this.modelService = Main.osgi.getService(name_32) as name_32;
+            this.var_11 = Main.osgi.getService(IBattleField) as BattlefieldModel;
+            this.var_13 = Main.osgi.getService(ITank) as ITank;
+            this.var_1008 = Main.osgi.getService(name_1188) as name_1188;
          }
          if(var_1001 == null)
          {
-            var_1001 = name_100(Main.osgi.name_6(name_100)).textureMaterialRegistry.getMaterial(null,new const_492().bitmapData,1);
+            var_1001 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry)).textureMaterialRegistry.getMaterial(null,new const_492().bitmapData,1);
          }
       }
       
       public function objectUnloaded(param1:ClientObject) : void
       {
-         name_100(Main.osgi.name_6(name_100)).textureMaterialRegistry.disposeMaterial(var_1001);
+         IMaterialRegistry(Main.osgi.getService(IMaterialRegistry)).textureMaterialRegistry.disposeMaterial(var_1001);
          var_1001 = null;
       }
       
@@ -157,7 +157,7 @@ package package_158
          }
          if(this.var_13 == null)
          {
-            this.var_13 = Main.osgi.name_6(class_7) as class_7;
+            this.var_13 = Main.osgi.getService(ITank) as ITank;
          }
          var _loc4_:TankData = this.var_13.getTankData(_loc3_);
          if(_loc4_.tank == null || !_loc4_.enabled || _loc4_.local)
@@ -166,7 +166,7 @@ package package_158
          }
          if(this.var_1008 == null)
          {
-            this.var_1008 = Main.osgi.name_6(name_1188) as name_1188;
+            this.var_1008 = Main.osgi.getService(name_1188) as name_1188;
          }
          var _loc5_:name_1451 = this.var_1008.name_1457(_loc4_.turret);
          this.var_1016.name_1702(_loc4_.tank.skin.name_200,_loc5_.muzzles[0],this.var_1043,this.var_1042);
@@ -175,7 +175,7 @@ package package_158
          var _loc8_:name_657 = _loc6_.name_1800(_loc4_.turret,_loc4_.user,_loc5_.muzzles[_loc5_.currBarrel],_loc4_.tank.skin.name_200,_loc7_.name_1797);
          if(this.var_11 == null)
          {
-            this.var_11 = Main.osgi.name_6(name_83) as BattlefieldModel;
+            this.var_11 = Main.osgi.getService(IBattleField) as BattlefieldModel;
          }
          if(this.var_1084)
          {
@@ -215,11 +215,11 @@ package package_158
          }
          if(this.var_1008 == null)
          {
-            this.var_1008 = Main.osgi.name_6(name_1188) as name_1188;
+            this.var_1008 = Main.osgi.getService(name_1188) as name_1188;
          }
          if(this.var_11 == null)
          {
-            this.var_11 = Main.osgi.name_6(name_83) as BattlefieldModel;
+            this.var_11 = Main.osgi.getService(IBattleField) as BattlefieldModel;
          }
          _loc7_ = this.var_1008.name_1457(_loc6_.turret);
          _loc8_ = this.method_1289(_loc6_.turret);
@@ -295,7 +295,7 @@ package package_158
          this.var_733 = WeaponsManager.var_495[param1.turret.id];
          this.var_1083 = this.method_1289(param1.turret);
          this.var_727 = this.var_1008.name_1457(param1.turret);
-         this.var_11 = Main.osgi.name_6(name_83) as BattlefieldModel;
+         this.var_11 = Main.osgi.getService(IBattleField) as BattlefieldModel;
          this.targetSystem.name_1804(this.var_11.getBattlefieldData().name_678.name_247,this.var_733.name_1614.value,this.var_733.name_1628.value,this.var_733.name_1618.value,this.var_733.name_1622.value,this.var_1083.weakeningCoeff,null);
          this.reset();
          var _loc3_:Vector3 = this.var_727.muzzles[0];
@@ -352,7 +352,7 @@ package package_158
       
       private function method_1222(param1:ClientObject) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;start_fire");
+         Network(Main.osgi.getService(name_2)).send("battle;start_fire");
       }
       
       public function reset() : void
@@ -452,8 +452,7 @@ package package_158
          _loc7_.targets = param4;
          _loc7_.targetPostitions = param5;
          _loc7_.reloadTime = this.var_733.reloadMsec.value;
-         trace(JSON.stringify(_loc7_));
-         Network(Main.osgi.name_6(name_2)).send("battle;fire;" + JSON.stringify(_loc7_));
+         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(_loc7_));
       }
    }
 }

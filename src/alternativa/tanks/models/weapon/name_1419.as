@@ -2,7 +2,7 @@ package alternativa.tanks.models.weapon
 {
    import alternativa.physics.name_888;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import package_1.Main;
    import package_277.name_904;
    import package_37.Matrix4;
@@ -13,7 +13,7 @@ package alternativa.tanks.models.weapon
    public class name_1419
    {
       
-      public static var battleService:BattlefieldModel = Main.osgi.name_6(name_83) as BattlefieldModel;
+      public static var battleService:BattlefieldModel = Main.osgi.getService(IBattleField) as BattlefieldModel;
       
       private static const const_1889:Number = 6.5;
       

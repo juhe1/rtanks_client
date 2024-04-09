@@ -2,25 +2,25 @@ package
 {
    import alternativa.osgi.OSGi;
    import alternativa.tanks.battle.BattleUtils;
-   import alternativa.tanks.model.name_1605;
+   import alternativa.tanks.model.PingService;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
    import alternativa.tanks.models.battlefield.StatisticsModel;
    import alternativa.tanks.models.battlefield.effects.DamageIndicatorType;
-   import alternativa.tanks.models.battlefield.effects.name_1608;
+   import alternativa.tanks.models.battlefield.effects.DamageEffect;
    import alternativa.tanks.models.battlefield.gui.chat.ChatModel;
-   import alternativa.tanks.models.battlefield.gui.chat.name_1135;
+   import alternativa.tanks.models.battlefield.gui.chat.MessageColor;
    import alternativa.tanks.models.battlefield.gui.chat.name_1339;
-   import alternativa.tanks.models.battlefield.gui.name_80;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.gui.IBattlefieldGUI;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.dom.DOMModel;
-   import alternativa.tanks.models.dom.name_995;
+   import alternativa.tanks.models.dom.IDOMModel;
    import alternativa.tanks.models.sfx.LightDataManager;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
+   import alternativa.tanks.models.tank.ITank;
    import alternativa.tanks.models.weapon.healing.HealingGunModel;
    import alternativa.tanks.models.weapon.machinegun.MachineGunModel;
-   import alternativa.tanks.models.weapon.name_1074;
+   import alternativa.tanks.models.weapon.IWeaponController;
    import alternativa.tanks.models.weapon.shaft.ShaftModel;
    import alternativa.tanks.models.weapon.shotgun.ShotgunModel;
    import alternativa.tanks.vehicles.tanks.chassis.SpeedCharacteristics;
@@ -32,13 +32,13 @@ package
    import forms.battlelist.BattleMode;
    import package_1.BattlefieldModelActivator;
    import package_1.Main;
-   import package_1.name_17;
-   import package_1.name_18;
-   import package_1.name_19;
+   import package_1.BattlefieldSharedActivator;
+   import package_1.TanksWarfareActivator;
+   import package_1.BattlefieldGUIActivator;
    import package_102.Command;
-   import package_102.name_346;
+   import package_102.Type;
    import package_106.AchievementModel;
-   import package_106.name_345;
+   import package_106.IAchievementModel;
    import package_13.Long;
    import package_138.ServerBonusModel;
    import package_143.name_396;
@@ -49,8 +49,8 @@ package
    import package_159.BCSHModel;
    import package_159.name_1594;
    import package_159.name_1600;
-   import package_161.name_1448;
-   import package_161.name_515;
+   import package_161.IWeaponWeakeningModel;
+   import package_161.WeaponWeakeningModel;
    import package_163.FlamethrowerModel;
    import package_163.name_1595;
    import package_164.ThunderModel;
@@ -133,9 +133,9 @@ package
    public class BattleController implements class_6
    {
       
-      public static var resourceRegistry:ResourceRegistry = OSGi.getInstance().name_6(ResourceRegistry) as ResourceRegistry;
+      public static var resourceRegistry:ResourceRegistry = OSGi.getInstance().getService(ResourceRegistry) as ResourceRegistry;
       
-      public static var modelRegistry:name_29 = OSGi.getInstance().name_6(name_29) as name_29;
+      public static var modelRegistry:name_29 = OSGi.getInstance().getService(name_29) as name_29;
       
       public static var tankClientObjectByTankId:Dictionary;
       
@@ -194,27 +194,27 @@ package
          this.var_74 = new ServerBonusModel();
          super();
          this.var_907 = new Space(Long.getLong(419472,230884),null,null,false);
-         name_33(OSGi.getInstance().name_6(name_33)).addSpace(this.var_907);
-         var _loc1_:name_19 = new name_19();
+         name_33(OSGi.getInstance().getService(name_33)).addSpace(this.var_907);
+         var _loc1_:BattlefieldGUIActivator = new BattlefieldGUIActivator();
          _loc1_.start(Main.osgi);
-         var _loc2_:name_17 = new name_17();
+         var _loc2_:BattlefieldSharedActivator = new BattlefieldSharedActivator();
          _loc2_.start(Main.osgi);
-         var _loc3_:name_18 = new name_18();
+         var _loc3_:TanksWarfareActivator = new TanksWarfareActivator();
          _loc3_.start(Main.osgi);
          this.battle = new BattlefieldModelActivator();
          this.battle.start(Main.osgi);
-         var _loc4_:name_18 = new name_18();
+         var _loc4_:TanksWarfareActivator = new TanksWarfareActivator();
          _loc4_.start(Main.osgi);
          tankClientObjectByTankId = new Dictionary();
          var _loc5_:TankExplosionModel = new TankExplosionModel();
-         Main.osgi.name_1(name_93,_loc5_);
+         Main.osgi.registerService(name_93,_loc5_);
          var _loc6_:TankCriticalHitModel = new TankCriticalHitModel();
-         Main.osgi.name_1(name_91,_loc6_);
+         Main.osgi.registerService(name_91,_loc6_);
       }
       
-      public static function getWeaponController(param1:ClientObject) : name_1074
+      public static function getWeaponController(param1:ClientObject) : IWeaponController
       {
-         var _loc3_:name_1074 = null;
+         var _loc3_:IWeaponController = null;
          var _loc2_:String = String(param1.id.split("_")[0]);
          var _loc4_:* = WeaponsManager.var_497[param1.id];
          switch(_loc2_)
@@ -249,7 +249,7 @@ package
                if(var_901 == null)
                {
                   var_901 = new FlamethrowerModel();
-                  Main.osgi.name_1(name_1595,var_901);
+                  Main.osgi.registerService(name_1595,var_901);
                }
                var_901.initObject(WeaponsManager.name_185(param1.id),_loc4_.cone_angle,_loc4_.cooling_speed,_loc4_.heat_limit,_loc4_.heating_speed,_loc4_.range,_loc4_.target_detection_interval);
                _loc3_ = var_901;
@@ -368,7 +368,7 @@ package
          {
             switch(data.type)
             {
-               case name_346.BATTLE:
+               case Type.BATTLE:
                   if(data.name_319[0] == "init_battle_model")
                   {
                      this.method_1115(data.name_319[1]);
@@ -384,17 +384,17 @@ package
                      battle.var_431 = parser.team;
                      battle.timeLeft = parser.currTime;
                      battle.timeLimit = parser.timeLimit;
-                     PanelModel(Main.osgi.name_6(name_115)).isInBattle = true;
+                     PanelModel(Main.osgi.getService(name_115)).isInBattle = true;
                      users = new Array();
-                     StatisticsModel(Main.osgi.name_6(name_80)).initObject(null,parser.name);
+                     StatisticsModel(Main.osgi.getService(IBattlefieldGUI)).initObject(null,parser.name);
                      m20 = 0;
                      for each(obj in parser.users)
                      {
                         users[i] = new name_1099(0,0,obj.nickname,obj.rank,0,0,BattleTeamType.getType(obj.teamType),obj.nickname,obj.suspicious,0,0,0);
                         i++;
                      }
-                     StatisticsModel(Main.osgi.name_6(name_80)).init(new ClientObject("bfObject",null,"bfObject",null),battle,users);
-                     ChatModel(Main.osgi.name_6(IChatBattle)).objectLoaded(null);
+                     StatisticsModel(Main.osgi.getService(IBattlefieldGUI)).init(new ClientObject("bfObject",null,"bfObject",null),battle,users);
+                     ChatModel(Main.osgi.getService(IChatBattle)).objectLoaded(null);
                      this.var_904.init();
                      this.var_903.init();
                   }
@@ -420,24 +420,24 @@ package
                   }
                   else if(data.name_319[0] == "pong")
                   {
-                     name_1605.name_1627();
+                     PingService.name_1627();
                   }
                   else if(data.name_319[0] == "create_levelup_effect")
                   {
-                     TankModel(Main.osgi.name_6(class_7)).createLevelUpEffect(data.name_319[1],data.name_319[2]);
+                     TankModel(Main.osgi.getService(ITank)).createLevelUpEffect(data.name_319[1],data.name_319[2]);
                   }
                   else if(data.name_319[0] == "create_critical_hit_effect")
                   {
-                     TankModel(Main.osgi.name_6(class_7)).createCriticalHitEffect(data.name_319[1]);
+                     TankModel(Main.osgi.getService(ITank)).createCriticalHitEffect(data.name_319[1]);
                   }
                   else if(data.name_319[0] == "battle_message")
                   {
-                     BattlefieldModel(Main.osgi.name_6(name_83)).messages.addMessage(16753920,data.name_319[1]);
+                     BattlefieldModel(Main.osgi.getService(IBattleField)).messages.addMessage(16753920,data.name_319[1]);
                   }
                   else if(data.name_319[0] == "gold_spawn")
                   {
-                     BattlefieldModel(Main.osgi.name_6(name_83)).messages.addMessage(16753920,name_102(Main.osgi.name_6(name_102)).getText(TextConst.const_296));
-                     BattlefieldModel(Main.osgi.name_6(name_83)).soundManager.playSound(SoundResource(resourceRegistry.getResource(Long.getLong(0,53912))).sound,0,1);
+                     BattlefieldModel(Main.osgi.getService(IBattleField)).messages.addMessage(16753920,name_102(Main.osgi.getService(name_102)).getText(TextConst.const_296));
+                     BattlefieldModel(Main.osgi.getService(IBattleField)).soundManager.playSound(SoundResource(resourceRegistry.getResource(Long.getLong(0,53912))).sound,0,1);
                   }
                   else if(data.name_319[0] == "update_spectator_list")
                   {
@@ -447,14 +447,14 @@ package
                   {
                      if(tankClientObjectByTankId[data.name_319[1]] != null)
                      {
-                        TankModel(Main.osgi.name_6(class_7)).activateTank(tankClientObjectByTankId[data.name_319[1]]);
+                        TankModel(Main.osgi.getService(ITank)).activateTank(tankClientObjectByTankId[data.name_319[1]]);
                      }
                   }
                   else if(data.name_319[0] == "kill_tank")
                   {
                      if(tankClientObjectByTankId[data.name_319[1]] != null)
                      {
-                        TankModel(Main.osgi.name_6(class_7)).kill(tankClientObjectByTankId[data.name_319[1]],name_81.method_673(data.name_319[2]),data.name_319[3],this.method_1133(data.name_319[4]));
+                        TankModel(Main.osgi.getService(ITank)).kill(tankClientObjectByTankId[data.name_319[1]],name_81.method_673(data.name_319[2]),data.name_319[3],this.method_1133(data.name_319[4]));
                      }
                   }
                   else if(data.name_319[0] == "prepare_to_spawn")
@@ -463,7 +463,7 @@ package
                      {
                         tempArr = String(data.name_319[2]).split("@");
                         pos = new package_41.Vector3dData(tempArr[0],tempArr[1],tempArr[2]);
-                        TankModel(Main.osgi.name_6(class_7)).prepareToSpawn(tankClientObjectByTankId[data.name_319[1]],pos,new package_41.Vector3dData(0,0,tempArr[3]));
+                        TankModel(Main.osgi.getService(ITank)).prepareToSpawn(tankClientObjectByTankId[data.name_319[1]],pos,new package_41.Vector3dData(0,0,tempArr[3]));
                      }
                   }
                   else if(data.name_319[0] == "spawn")
@@ -478,7 +478,7 @@ package
                   {
                      if(tankClientObjectByTankId[data.name_319[1]] != null)
                      {
-                        TankModel(Main.osgi.name_6(class_7)).rotateTurretTo(tankClientObjectByTankId[data.name_319[1]] as ClientObject,data.name_319[2]);
+                        TankModel(Main.osgi.getService(ITank)).rotateTurretTo(tankClientObjectByTankId[data.name_319[1]] as ClientObject,data.name_319[2]);
                      }
                   }
                   else if(data.name_319[0] == "chat")
@@ -487,7 +487,7 @@ package
                   }
                   else if(data.name_319[0] == "spectator_message")
                   {
-                     ChatModel(Main.osgi.name_6(IChatBattle)).addSpectatorMessage(data.name_319[1],data.name_319[2] == "true" ? true : false);
+                     ChatModel(Main.osgi.getService(IChatBattle)).addSpectatorMessage(data.name_319[1],data.name_319[2] == "true" ? true : false);
                   }
                   else if(data.name_319[0] == "remove_user")
                   {
@@ -495,11 +495,11 @@ package
                   }
                   else if(data.name_319[0] == "confirm_vote")
                   {
-                     BattlefieldModel(Main.osgi.name_6(name_83)).messages.addMessage(name_1135.name_1140,name_102(Main.osgi.name_6(name_102)).getText(name_390.TEXT_TEAM_KICK_COMPLAINT_SENT));
+                     BattlefieldModel(Main.osgi.getService(IBattleField)).messages.addMessage(MessageColor.name_1140,name_102(Main.osgi.getService(name_102)).getText(name_390.TEXT_TEAM_KICK_COMPLAINT_SENT));
                   }
                   else if(data.name_319[0] == "change_suspicious")
                   {
-                     TankModel(Main.osgi.name_6(class_7)).setUserSuspiciousness(data.name_319[1],data.name_319[2]);
+                     TankModel(Main.osgi.getService(ITank)).setUserSuspiciousness(data.name_319[1],data.name_319[2]);
                   }
                   else if(data.name_319[0] == "reset_configuration")
                   {
@@ -507,11 +507,11 @@ package
                   }
                   else if(data.name_319[0] == "start_rearmored")
                   {
-                     TankModel(Main.osgi.name_6(class_7)).onRearmorScheduled(data.name_319[1]);
+                     TankModel(Main.osgi.getService(ITank)).onRearmorScheduled(data.name_319[1]);
                   }
                   else if(data.name_319[0] == "ping")
                   {
-                     Network(Main.osgi.name_6(name_2)).send("battle;ping");
+                     Network(Main.osgi.getService(name_2)).send("battle;ping");
                   }
                   else if(data.name_319[0] != "tracePing")
                   {
@@ -529,25 +529,25 @@ package
                      }
                      else if(data.name_319[0] == "take_bonus_by")
                      {
-                        BattlefieldModel(Main.osgi.name_6(name_83)).bonusTaken(null,data.name_319[1]);
+                        BattlefieldModel(Main.osgi.getService(IBattleField)).bonusTaken(null,data.name_319[1]);
                      }
                      else if(data.name_319[0] == "user_log")
                      {
-                        StatisticsModel(Main.osgi.name_6(name_80)).logUserAction(data.name_319[1],data.name_319[2]);
+                        StatisticsModel(Main.osgi.getService(IBattlefieldGUI)).logUserAction(data.name_319[1],data.name_319[2]);
                      }
                      else if(data.name_319[0] == "set_cry")
                      {
-                        PanelModel(Main.osgi.name_6(name_115)).updateCrystal(null,int(data.name_319[1]));
+                        PanelModel(Main.osgi.getService(name_115)).updateCrystal(null,int(data.name_319[1]));
                      }
                      else if(data.name_319[0] == "remove_bonus")
                      {
-                        BattlefieldModel(Main.osgi.name_6(name_83)).removeBonus(null,data.name_319[1]);
+                        BattlefieldModel(Main.osgi.getService(IBattleField)).removeBonus(null,data.name_319[1]);
                      }
                      else if(data.name_319[0] == "update_direction")
                      {
                         if(tankClientObjectByTankId[data.name_319[1]] != null)
                         {
-                           td = TankModel(Main.osgi.name_6(class_7)).getTankData(tankClientObjectByTankId[data.name_319[1]] as ClientObject);
+                           td = TankModel(Main.osgi.getService(ITank)).getTankData(tankClientObjectByTankId[data.name_319[1]] as ClientObject);
                            if(td != null)
                            {
                               Model.object = td.object;
@@ -560,7 +560,7 @@ package
                      {
                         if(tankClientObjectByTankId[data.name_319[1]] != null)
                         {
-                           td = TankModel(Main.osgi.name_6(class_7)).getTankData(tankClientObjectByTankId[data.name_319[1]] as ClientObject);
+                           td = TankModel(Main.osgi.getService(ITank)).getTankData(tankClientObjectByTankId[data.name_319[1]] as ClientObject);
                            if(td != null)
                            {
                               Model.object = td.object;
@@ -573,8 +573,8 @@ package
                      {
                         if(tankClientObjectByTankId[data.name_319[1]] != null && tankClientObjectByTankId[data.name_319[2]] != null)
                         {
-                           td = TankModel(Main.osgi.name_6(class_7)).getTankData(tankClientObjectByTankId[data.name_319[1]] as ClientObject);
-                           target = TankModel(Main.osgi.name_6(class_7)).getTankData(tankClientObjectByTankId[data.name_319[2]] as ClientObject);
+                           td = TankModel(Main.osgi.getService(ITank)).getTankData(tankClientObjectByTankId[data.name_319[1]] as ClientObject);
+                           target = TankModel(Main.osgi.getService(ITank)).getTankData(tankClientObjectByTankId[data.name_319[2]] as ClientObject);
                            if(td != null && target != null)
                            {
                               parser = JSON.parse(data.name_319[3]);
@@ -608,7 +608,7 @@ package
                      }
                      else if(data.name_319[0] == "change_health")
                      {
-                        TankModel(Main.osgi.name_6(class_7)).changeHealth(tankClientObjectByTankId[data.name_319[1]],data.name_319[2]);
+                        TankModel(Main.osgi.getService(ITank)).changeHealth(tankClientObjectByTankId[data.name_319[1]],data.name_319[2]);
                      }
                      else if(data.name_319[0] == "damage_tank")
                      {
@@ -624,21 +624,21 @@ package
                      }
                      else if(data.name_319[0] == "kick_for_cheats")
                      {
-                        Network(Main.osgi.name_6(name_2)).destroy();
-                        BattlefieldModel(Main.osgi.name_6(name_83)).getConfig().map.destroy();
-                        BattlefieldModel(Main.osgi.name_6(name_83)).getConfig().map = null;
-                        BattlefieldModel(Main.osgi.name_6(name_83)).objectUnloaded(null);
-                        BattleController(Main.osgi.name_6(IBattleController)).destroy();
-                        StatisticsModel(Main.osgi.name_6(name_80)).objectUnloaded(null);
-                        ChatModel(Main.osgi.name_6(IChatBattle)).objectUnloaded(null);
+                        Network(Main.osgi.getService(name_2)).destroy();
+                        BattlefieldModel(Main.osgi.getService(IBattleField)).getConfig().map.destroy();
+                        BattlefieldModel(Main.osgi.getService(IBattleField)).getConfig().map = null;
+                        BattlefieldModel(Main.osgi.getService(IBattleField)).objectUnloaded(null);
+                        BattleController(Main.osgi.getService(IBattleController)).destroy();
+                        StatisticsModel(Main.osgi.getService(IBattlefieldGUI)).objectUnloaded(null);
+                        ChatModel(Main.osgi.getService(IChatBattle)).objectUnloaded(null);
                         i = 0;
                         while(i < Main.mainContainer.numChildren)
                         {
                            Main.mainContainer.removeChildAt(1);
                            i++;
                         }
-                        name_560(Main.osgi.name_6(name_560)).drawBg();
-                        name_560(Main.osgi.name_6(name_560)).showBg();
+                        name_560(Main.osgi.getService(name_560)).drawBg();
+                        name_560(Main.osgi.getService(name_560)).showBg();
                         alertWindow = new Alert(-1,true);
                         alertWindow.name_1626 = "Вы были кикнуты за читы. Пидор. Фу.";
                         Main.systemUILayer.addChild(alertWindow);
@@ -649,7 +649,7 @@ package
                      }
                      else if(data.name_319[0] == "change_fund")
                      {
-                        StatisticsModel(Main.osgi.name_6(name_80)).fundChange(null,data.name_319[1]);
+                        StatisticsModel(Main.osgi.getService(IBattlefieldGUI)).fundChange(null,data.name_319[1]);
                      }
                      else if(data.name_319[0] == "battle_finish")
                      {
@@ -657,8 +657,8 @@ package
                      }
                      else if(data.name_319[0] == "battle_restart")
                      {
-                        StatisticsModel(Main.osgi.name_6(name_80)).restart(null,data.name_319[1]);
-                        BattlefieldModel(Main.osgi.name_6(name_83)).battleRestart(null);
+                        StatisticsModel(Main.osgi.getService(IBattlefieldGUI)).restart(null,data.name_319[1]);
+                        BattlefieldModel(Main.osgi.getService(IBattleField)).battleRestart(null);
                      }
                      else if(data.name_319[0] == "start_fire_twins")
                      {
@@ -674,7 +674,7 @@ package
                      }
                      else if(data.name_319[0] == "show_nube_new_rank")
                      {
-                        achievementModel = Main.osgi.name_6(name_345) as AchievementModel;
+                        achievementModel = Main.osgi.getService(IAchievementModel) as AchievementModel;
                         achievementModel.name_477();
                      }
                      else if(data.name_319[0] == "change_spec_tank")
@@ -683,7 +683,7 @@ package
                      }
                      else if(data.name_319[0] == "change_temperature_tank")
                      {
-                        TankModel(Main.osgi.name_6(class_7)).setTemperature(tankClientObjectByTankId[data.name_319[1]],data.name_319[2]);
+                        TankModel(Main.osgi.getService(ITank)).setTemperature(tankClientObjectByTankId[data.name_319[1]],data.name_319[2]);
                      }
                      else if(data.name_319[0] == "fire_ricochet")
                      {
@@ -691,7 +691,7 @@ package
                      }
                      else if(data.name_319[0] == "change_team_scores")
                      {
-                        StatisticsModel(Main.osgi.name_6(name_80)).changeTeamScore(null,BattleTeamType.getType(data.name_319[1]),data.name_319[2]);
+                        StatisticsModel(Main.osgi.getService(IBattlefieldGUI)).changeTeamScore(null,BattleTeamType.getType(data.name_319[1]),data.name_319[2]);
                      }
                      else if(data.name_319[0] == "init_ctf_model")
                      {
@@ -712,7 +712,7 @@ package
                         redColor = new name_1307(lighting.redColor,lighting.redIntensity);
                         blueColor = new name_1307(lighting.blueColor,lighting.blueIntensity);
                         modeLight = new name_1312(redColor,blueColor,null,lighting.attenuationBegin,lighting.attenuationEnd);
-                        name_272(OSGi.getInstance().name_6(name_272)).setLightForMode(BattleMode.CTF,modeLight);
+                        name_272(OSGi.getInstance().getService(name_272)).setLightForMode(BattleMode.CTF,modeLight);
                         ctfModel = new CTFModel();
                         ctfModel.method_18(ctfCC);
                         ctfModel.initObject(this.var_906,new Vector3(json.posBlueFlag.x,json.posBlueFlag.y,json.posBlueFlag.z),new Vector3(json.posRedFlag.x,json.posRedFlag.y,json.posRedFlag.z));
@@ -728,7 +728,7 @@ package
                         flagsState.blueFlag = blueFlag;
                         flagsState.redFlag = redFlag;
                         ctfModel.method_816(this.var_906,flagsState);
-                        Main.osgi.name_1(name_994,ctfModel);
+                        Main.osgi.registerService(name_994,ctfModel);
                         Base.method_38();
                      }
                      else if(data.name_319[0] == "init_dom_model")
@@ -764,7 +764,7 @@ package
                         bluePointColor = new name_1307(lighting.bluePointColor,lighting.bluePointIntensity);
                         neutralPointColor = new name_1307(lighting.neutralPointColor,lighting.neutralPointIntensity);
                         modeLight = new name_1312(redPointColor,bluePointColor,neutralPointColor,lighting.attenuationBegin,lighting.attenuationEnd);
-                        name_272(OSGi.getInstance().name_6(name_272)).setLightForMode(BattleMode.CP,modeLight);
+                        name_272(OSGi.getInstance().getService(name_272)).setLightForMode(BattleMode.CP,modeLight);
                         model = new DOMModel();
                         model.method_18(pointsCC);
                         points = new Vector.<name_1592>();
@@ -784,31 +784,31 @@ package
                         }
                         model.initObject(points);
                         model.objectLoaded(null);
-                        Main.osgi.name_1(name_995,model);
+                        Main.osgi.registerService(IDOMModel,model);
                         Base.method_38();
                      }
                      else if(data.name_319[0] == "flagTaken")
                      {
-                        CTFModel(Main.osgi.name_6(name_994)).flagTaken(null,data.name_319[1],BattleTeamType.getType(data.name_319[2]));
+                        CTFModel(Main.osgi.getService(name_994)).flagTaken(null,data.name_319[1],BattleTeamType.getType(data.name_319[2]));
                      }
                      else if(data.name_319[0] == "deliver_flag")
                      {
-                        CTFModel(Main.osgi.name_6(name_994)).flagDelivered(null,BattleTeamType.getType(data.name_319[1]),data.name_319[2]);
+                        CTFModel(Main.osgi.getService(name_994)).flagDelivered(null,BattleTeamType.getType(data.name_319[1]),data.name_319[2]);
                      }
                      else if(data.name_319[0] == "flag_drop")
                      {
                         json = JSON.parse(data.name_319[1]);
-                        CTFModel(Main.osgi.name_6(name_994)).dropFlag(null,new package_41.Vector3dData(json.x,json.y,json.z),BattleTeamType.getType(json.flagTeam));
+                        CTFModel(Main.osgi.getService(name_994)).dropFlag(null,new package_41.Vector3dData(json.x,json.y,json.z),BattleTeamType.getType(json.flagTeam));
                      }
                      else if(data.name_319[0] == "return_flag")
                      {
-                        CTFModel(Main.osgi.name_6(name_994)).returnFlagToBase(null,BattleTeamType.getType(data.name_319[1]),data.name_319[2]);
+                        CTFModel(Main.osgi.getService(name_994)).returnFlagToBase(null,BattleTeamType.getType(data.name_319[1]),data.name_319[2]);
                      }
                      else if(data.name_319[0] != "show_warning_table")
                      {
                         if(data.name_319[0] == "change_user_team")
                         {
-                           StatisticsModel(Main.osgi.name_6(name_80)).changeUserTeam(null,data.name_319[1],BattleTeamType.getType(data.name_319[2]));
+                           StatisticsModel(Main.osgi.getService(IBattlefieldGUI)).changeUserTeam(null,data.name_319[1],BattleTeamType.getType(data.name_319[2]));
                         }
                         else if(data.name_319[0] == "init_inventory")
                         {
@@ -918,27 +918,27 @@ package
                         {
                            if(tankClientObjectByTankId[data.name_319[2]] != null)
                            {
-                              DOMModel(Main.osgi.name_6(name_995)).serverTankCapturingPoint(data.name_319[1],tankClientObjectByTankId[data.name_319[2]]);
+                              DOMModel(Main.osgi.getService(IDOMModel)).serverTankCapturingPoint(data.name_319[1],tankClientObjectByTankId[data.name_319[2]]);
                            }
                         }
                         else if(data.name_319[0] == "tank_leave_capturing_point")
                         {
                            if(tankClientObjectByTankId[data.name_319[1]] != null)
                            {
-                              DOMModel(Main.osgi.name_6(name_995)).serverTankLeaveCapturingPoint(tankClientObjectByTankId[data.name_319[1]],data.name_319[2]);
+                              DOMModel(Main.osgi.getService(IDOMModel)).serverTankLeaveCapturingPoint(tankClientObjectByTankId[data.name_319[1]],data.name_319[2]);
                            }
                         }
                         else if(data.name_319[0] == "set_point_score")
                         {
-                           DOMModel(Main.osgi.name_6(name_995)).serverSetPointScore(data.name_319[1],data.name_319[2]);
+                           DOMModel(Main.osgi.getService(IDOMModel)).serverSetPointScore(data.name_319[1],data.name_319[2]);
                         }
                         else if(data.name_319[0] == "point_captured_by")
                         {
-                           DOMModel(Main.osgi.name_6(name_995)).serverPointCapturedBy(data.name_319[1],data.name_319[2]);
+                           DOMModel(Main.osgi.getService(IDOMModel)).serverPointCapturedBy(data.name_319[1],data.name_319[2]);
                         }
                         else if(data.name_319[0] == "point_lost_by")
                         {
-                           DOMModel(Main.osgi.name_6(name_995)).serverPointLostBy(data.name_319[1],data.name_319[2]);
+                           DOMModel(Main.osgi.getService(IDOMModel)).serverPointLostBy(data.name_319[1],data.name_319[2]);
                         }
                         else if(data.name_319[0] == "shaft_quick_shot")
                         {
@@ -946,7 +946,7 @@ package
                         }
                         else if(data.name_319[0] == "update_point_predestal")
                         {
-                           DOMModel(Main.osgi.name_6(name_995)).updatePedestal(data.name_319[1],data.name_319[2]);
+                           DOMModel(Main.osgi.getService(IDOMModel)).updatePedestal(data.name_319[1],data.name_319[2]);
                         }
                         else if(data.name_319[0] == "init_sfx_data")
                         {
@@ -1014,11 +1014,11 @@ package
       private function method_1129(param1:ClientObject, param2:int, param3:String) : void
       {
          var _loc5_:DamageIndicatorType = null;
-         var _loc4_:Boolean = BattlefieldModel(Main.osgi.name_6(name_83)).isEnableDamageUpEffect();
+         var _loc4_:Boolean = BattlefieldModel(Main.osgi.getService(IBattleField)).isEnableDamageUpEffect();
          if(_loc4_)
          {
             _loc5_ = DamageIndicatorType.name_1621(param3);
-            new name_1608().name_220(TankModel(Main.osgi.name_6(class_7)).getTankData(tankClientObjectByTankId[param1.id] as ClientObject).tank,Math.floor(param2),_loc5_);
+            new DamageEffect().name_220(TankModel(Main.osgi.getService(ITank)).getTankData(tankClientObjectByTankId[param1.id] as ClientObject).tank,Math.floor(param2),_loc5_);
          }
       }
       
@@ -1052,7 +1052,7 @@ package
          _loc4_.turnSpeed = _loc3_.turnSpeed;
          _loc4_.turretRotationSpeed = _loc3_.turretRotationSpeed;
          _loc4_.turretRotationAccel = _loc3_.turretRotationAccel;
-         TankModel(Main.osgi.name_6(class_7)).changeSpecification(param1,_loc4_,_loc3_.immediate);
+         TankModel(Main.osgi.getService(ITank)).changeSpecification(param1,_loc4_,_loc3_.immediate);
       }
       
       private function method_1114(param1:ClientObject, param2:String) : void
@@ -1086,15 +1086,15 @@ package
             _loc5_ = new name_1099(_loc4_.kills,_loc4_.deaths,_loc4_.id,_loc4_.rank,_loc4_.score,_loc4_.prize,BattleTeamType.getType(_loc4_.team_type),_loc4_.id,Boolean(_loc4_.suspicious == "true"),_loc4_.premiumBonusReward,_loc4_.newbiesAbonementBonusReward,_loc4_.stars);
             _loc3_.push(_loc5_);
          }
-         StatisticsModel(Main.osgi.name_6(name_80)).finish(null,_loc3_,_loc2_.time_to_restart / 1000);
-         BattlefieldModel(Main.osgi.name_6(name_83)).battleFinish(null);
+         StatisticsModel(Main.osgi.getService(IBattlefieldGUI)).finish(null,_loc3_,_loc2_.time_to_restart / 1000);
+         BattlefieldModel(Main.osgi.getService(IBattleField)).battleFinish(null);
       }
       
       private function method_1123(param1:String) : void
       {
          var _loc2_:Object = JSON.parse(param1);
          var _loc3_:name_1099 = new name_1099(_loc2_.kills,_loc2_.deaths,_loc2_.id,_loc2_.rank,_loc2_.score,0,BattleTeamType.getType(_loc2_.team_type),_loc2_.id,Boolean(_loc2_.suspicious == "true"),0,0,0);
-         StatisticsModel(Main.osgi.name_6(name_80)).changeUsersStat(null,new Array(_loc3_));
+         StatisticsModel(Main.osgi.getService(IBattlefieldGUI)).changeUsersStat(null,new Array(_loc3_));
       }
       
       private function method_1124(param1:String) : void
@@ -1106,7 +1106,7 @@ package
          _loc5_.speed = _loc2_.speed;
          _loc5_.turnSpeed = _loc2_.turn_speed;
          _loc5_.turretRotationSpeed = _loc2_.turret_rotation_speed;
-         TankModel(Main.osgi.name_6(class_7)).spawn(tankClientObjectByTankId[_loc2_.tank_id],_loc5_,BattleTeamType.getType(_loc2_.team_type),_loc3_,_loc4_,_loc2_.health,_loc2_.incration_id);
+         TankModel(Main.osgi.getService(ITank)).spawn(tankClientObjectByTankId[_loc2_.tank_id],_loc5_,BattleTeamType.getType(_loc2_.team_type),_loc3_,_loc4_,_loc2_.health,_loc2_.incration_id);
       }
       
       private function method_1122(param1:String) : void
@@ -1115,8 +1115,8 @@ package
          var _loc6_:name_1454 = null;
          var _loc7_:* = undefined;
          var _loc2_:Object = JSON.parse(param1);
-         var _loc3_:name_32 = Main.osgi.name_6(name_32) as name_32;
-         var _loc4_:name_515 = name_515(_loc3_.getModelsByInterface(name_1448)[0]);
+         var _loc3_:name_32 = Main.osgi.getService(name_32) as name_32;
+         var _loc4_:WeaponWeakeningModel = WeaponWeakeningModel(_loc3_.getModelsByInterface(IWeaponWeakeningModel)[0]);
          for each(_loc5_ in _loc2_.weapons)
          {
             _loc6_ = new name_1454(_loc5_.reload);
@@ -1179,16 +1179,16 @@ package
       private function method_1121(param1:ClientObject, param2:String) : void
       {
          var _loc6_:FlamethrowerModel = null;
-         if(TankModel(Main.osgi.name_6(class_7)) == null)
+         if(TankModel(Main.osgi.getService(ITank)) == null)
          {
             return;
          }
-         var _loc3_:name_32 = Main.osgi.name_6(name_32) as name_32;
-         if(TankModel(Main.osgi.name_6(class_7)) == null || tankClientObjectByTankId[param1.id] as ClientObject == null)
+         var _loc3_:name_32 = Main.osgi.getService(name_32) as name_32;
+         if(TankModel(Main.osgi.getService(ITank)) == null || tankClientObjectByTankId[param1.id] as ClientObject == null)
          {
             return;
          }
-         var _loc4_:TankData = TankModel(Main.osgi.name_6(class_7)).getTankData(tankClientObjectByTankId[param1.id] as ClientObject);
+         var _loc4_:TankData = TankModel(Main.osgi.getService(ITank)).getTankData(tankClientObjectByTankId[param1.id] as ClientObject);
          if(_loc4_ == null || _loc4_.turret == null || _loc4_.turret.id == null)
          {
             return;
@@ -1197,7 +1197,7 @@ package
          switch(_loc5_)
          {
             case "flamethrower":
-               _loc6_ = Main.osgi.name_6(name_1595) as FlamethrowerModel;
+               _loc6_ = Main.osgi.getService(name_1595) as FlamethrowerModel;
                _loc6_.name_1602(param1,param2);
                break;
             case "isida":
@@ -1224,12 +1224,12 @@ package
          var user:ClientObject = param1;
          var firing:String = param2;
          var argsJSON:String = param3;
-         models = Main.osgi.name_6(name_32) as name_32;
-         if(TankModel(Main.osgi.name_6(class_7)) == null || tankClientObjectByTankId[user.id] as ClientObject == null)
+         models = Main.osgi.getService(name_32) as name_32;
+         if(TankModel(Main.osgi.getService(ITank)) == null || tankClientObjectByTankId[user.id] as ClientObject == null)
          {
             return;
          }
-         td = TankModel(Main.osgi.name_6(class_7)).getTankData(tankClientObjectByTankId[user.id] as ClientObject);
+         td = TankModel(Main.osgi.getService(ITank)).getTankData(tankClientObjectByTankId[user.id] as ClientObject);
          if(td == null || td.turret == null || td.turret.id == null)
          {
             return;
@@ -1244,7 +1244,7 @@ package
                   railgun.name_1601(user,firing);
                   break;
                case "flamethrower":
-                  flamethrower = Main.osgi.name_6(name_1595) as FlamethrowerModel;
+                  flamethrower = Main.osgi.getService(name_1595) as FlamethrowerModel;
                   flamethrower.name_1601(user,firing);
                   break;
                case "isida":
@@ -1307,7 +1307,7 @@ package
          {
             return;
          }
-         td = TankModel(Main.osgi.name_6(class_7)).getTankData(tankClientObjectByTankId[user.id] as ClientObject);
+         td = TankModel(Main.osgi.getService(ITank)).getTankData(tankClientObjectByTankId[user.id] as ClientObject);
          if(td == null || td.turret == null || td.turret.id == null)
          {
             return;
@@ -1401,7 +1401,7 @@ package
          var _loc4_:Vector.<name_1243> = new Vector.<name_1243>();
          for each(_loc5_ in param2.targets)
          {
-            _loc6_ = TankModel(Main.osgi.name_6(class_7)).getTankData(tankClientObjectByTankId[_loc5_.target] as ClientObject);
+            _loc6_ = TankModel(Main.osgi.getService(ITank)).getTankData(tankClientObjectByTankId[_loc5_.target] as ClientObject);
             if(!(_loc6_ == null || _loc6_.turret == null || _loc6_.turret.id == null))
             {
                _loc4_.push(new name_1243(new package_67.Vector3d(_loc5_.dir.x,_loc5_.dir.y,_loc5_.dir.z),new package_67.Vector3d(_loc5_.localHitPoint.x,_loc5_.localHitPoint.y,_loc5_.localHitPoint.z),_loc5_.numberHits,_loc6_.object));
@@ -1422,7 +1422,7 @@ package
          var _loc2_:Object = JSON.parse(param1);
          var _loc3_:ClientClass = new ClientClass(_loc2_.id,null,_loc2_.id,null);
          var _loc4_:ClientObject = new ClientObject(_loc2_.id,_loc3_,_loc3_.name,null);
-         BattlefieldModel(Main.osgi.name_6(name_83)).addBonus(_loc4_,_loc2_.id,Long.getLong(0,_loc2_.bonus_id),Long.getLong(0,_loc2_.cords),Long.getLong(0,_loc2_.parachute),Long.getLong(0,_loc2_.parachute_inner),new package_41.Vector3dData(_loc2_.x,_loc2_.y,_loc2_.z),false,_loc2_.disappearing_time);
+         BattlefieldModel(Main.osgi.getService(IBattleField)).addBonus(_loc4_,_loc2_.id,Long.getLong(0,_loc2_.bonus_id),Long.getLong(0,_loc2_.cords),Long.getLong(0,_loc2_.parachute),Long.getLong(0,_loc2_.parachute_inner),new package_41.Vector3dData(_loc2_.x,_loc2_.y,_loc2_.z),false,_loc2_.disappearing_time);
       }
       
       private function method_1136(param1:String) : void
@@ -1435,7 +1435,7 @@ package
          {
             _loc4_ = new ClientClass(_loc3_.id,null,_loc3_.id,null);
             _loc5_ = new ClientObject(_loc3_.id,_loc4_,_loc4_.name,null);
-            BattlefieldModel(Main.osgi.name_6(name_83)).addBonus(_loc5_,_loc3_.id,Long.getLong(0,_loc3_.bonus_id),Long.getLong(0,_loc3_.cords),Long.getLong(0,_loc3_.parachute),Long.getLong(0,_loc3_.parachute_inner),new package_41.Vector3dData(_loc3_.x,_loc3_.y,_loc3_.z),true);
+            BattlefieldModel(Main.osgi.getService(IBattleField)).addBonus(_loc5_,_loc3_.id,Long.getLong(0,_loc3_.bonus_id),Long.getLong(0,_loc3_.cords),Long.getLong(0,_loc3_.parachute),Long.getLong(0,_loc3_.parachute_inner),new package_41.Vector3dData(_loc3_.x,_loc3_.y,_loc3_.z),true);
          }
       }
       
@@ -1446,7 +1446,7 @@ package
          var _loc4_:int = int(_loc2_.ctrlBits);
          if(tankClientObjectByTankId[_loc2_.tank_id] != null)
          {
-            TankModel(Main.osgi.name_6(class_7)).setControlState(TankModel(Main.osgi.name_6(class_7)).getTankData(tankClientObjectByTankId[_loc2_.tank_id]),_loc4_);
+            TankModel(Main.osgi.getService(ITank)).setControlState(TankModel(Main.osgi.getService(ITank)).getTankData(tankClientObjectByTankId[_loc2_.tank_id]),_loc4_);
          }
       }
       
@@ -1473,7 +1473,7 @@ package
          var _loc8_:int = int(_loc2_.ctrlBits);
          if(tankClientObjectByTankId[_loc2_.tank_id] != null)
          {
-            TankModel(Main.osgi.name_6(class_7)).move(tankClientObjectByTankId[_loc2_.tank_id] as ClientObject,_loc3_,_loc4_,_loc5_,_loc6_,_loc7_,_loc8_,false);
+            TankModel(Main.osgi.getService(ITank)).move(tankClientObjectByTankId[_loc2_.tank_id] as ClientObject,_loc3_,_loc4_,_loc5_,_loc6_,_loc7_,_loc8_,false);
          }
       }
       
@@ -1498,8 +1498,8 @@ package
             return;
          }
          var _loc2_:ClientObject = tankClientObjectByTankId[param1];
-         TankModel(Main.osgi.name_6(class_7)).objectUnloaded(_loc2_);
-         StatisticsModel(Main.osgi.name_6(name_80)).userDisconnect(null,param1);
+         TankModel(Main.osgi.getService(ITank)).objectUnloaded(_loc2_);
+         StatisticsModel(Main.osgi.getService(IBattlefieldGUI)).userDisconnect(null,param1);
          if(_loc2_ != null)
          {
             _loc3_ = _loc2_.method_19(TankModel);
@@ -1514,11 +1514,11 @@ package
          var _loc2_:Object = JSON.parse(param1);
          if(!_loc2_.system)
          {
-            ChatModel(Main.osgi.name_6(IChatBattle)).addMessage(null,null,_loc2_.message,BattleTeamType.getType(_loc2_.team_type),_loc2_.team,_loc2_.nickname,_loc2_.rank,_loc2_.chat_level);
+            ChatModel(Main.osgi.getService(IChatBattle)).addMessage(null,null,_loc2_.message,BattleTeamType.getType(_loc2_.team_type),_loc2_.team,_loc2_.nickname,_loc2_.rank,_loc2_.chat_level);
          }
          else
          {
-            ChatModel(Main.osgi.name_6(IChatBattle)).addSystemMessage(null,_loc2_.message);
+            ChatModel(Main.osgi.getService(IChatBattle)).addSystemMessage(null,_loc2_.message);
          }
       }
       
@@ -1545,7 +1545,7 @@ package
          var _loc8_:int = int(_loc2_.ctrlBits);
          if(tankClientObjectByTankId[_loc2_.tank_id] != null)
          {
-            TankModel(Main.osgi.name_6(class_7)).move(tankClientObjectByTankId[_loc2_.tank_id] as ClientObject,_loc3_,_loc4_,_loc5_,_loc6_,_loc7_,_loc8_,true);
+            TankModel(Main.osgi.getService(ITank)).move(tankClientObjectByTankId[_loc2_.tank_id] as ClientObject,_loc3_,_loc4_,_loc5_,_loc6_,_loc7_,_loc8_,true);
          }
       }
       
@@ -1557,11 +1557,11 @@ package
             return;
          }
          var _loc3_:ClientObject = tankClientObjectByTankId[_loc2_.tank_id];
-         TankModel(Main.osgi.name_6(class_7)).objectUnloaded(_loc3_);
+         TankModel(Main.osgi.getService(ITank)).objectUnloaded(_loc3_);
          delete tankClientObjectByTankId[_loc2_.tank_id];
          this.initTank(param1);
-         TankModel(Main.osgi.name_6(class_7)).resetFirstSpawn();
-         StatisticsModel(Main.osgi.name_6(name_80)).logUserAction(_loc2_.tank_id,name_102(Main.osgi.name_6(name_102)).getText(name_390.name_1629));
+         TankModel(Main.osgi.getService(ITank)).resetFirstSpawn();
+         StatisticsModel(Main.osgi.getService(IBattlefieldGUI)).logUserAction(_loc2_.tank_id,name_102(Main.osgi.getService(name_102)).getText(name_390.name_1629));
       }
       
       private function initTank(param1:String) : void
@@ -1622,7 +1622,7 @@ package
          tankSoundResources.engineMovingSoundId = Long.getLong(0,_loc11_.engineMovingSoundId);
          tankSoundResources.engineStartMovingSoundId = Long.getLong(0,_loc11_.engineStartMovingSoundId);
          tankSoundResources.turretRotationSoundId = Long.getLong(0,_loc11_.turretRotationSoundId);
-         var tankModel:TankModel = Main.osgi.name_6(class_7) as TankModel;
+         var tankModel:TankModel = Main.osgi.getService(ITank) as TankModel;
          if(clientTank.self)
          {
             name_771 = true;
@@ -1674,7 +1674,7 @@ package
       
       private function method_1115(param1:String) : void
       {
-         this.method_1120(PanelModel(Main.osgi.name_6(name_115)).userName,PanelModel(Main.osgi.name_6(name_115)).userName);
+         this.method_1120(PanelModel(Main.osgi.getService(name_115)).userName,PanelModel(Main.osgi.getService(name_115)).userName);
          var _loc2_:Object = JSON.parse(param1);
          var _loc3_:name_676 = new name_676();
          _loc3_.ambientSound = SoundResource(resourceRegistry.getResource(Long.getLong(0,_loc2_.ambientSound))).sound;
@@ -1690,7 +1690,7 @@ package
          _loc5_.right = ImageResource(resourceRegistry.getResource(Long.getLong(0,_loc4_.right)));
          _loc5_.top = ImageResource(resourceRegistry.getResource(Long.getLong(0,_loc4_.top)));
          this.battle.var_71.initObject(client,null,_loc3_,_loc2_.kick_period_ms,_loc2_.map_id,Long.getLong(0,_loc2_.map_resource_id),_loc2_.invisible_time,_loc2_.gravity,_loc5_,_loc2_.spectator,_loc2_.reArmorEnabled);
-         name_272(OSGi.getInstance().name_6(name_272)).setBonusLighting(1,null,null);
+         name_272(OSGi.getInstance().getService(name_272)).setBonusLighting(1,null,null);
          var _loc6_:Object = JSON.parse(_loc2_.graphics_data);
          this.battle.var_71.var_117.viewport.method_782(_loc6_.fogColor,_loc6_.fogAlpha,_loc6_.fogNear,_loc6_.fogFar);
          this.battle.var_71.var_117.viewport.method_785(_loc6_.ssaoRadius,_loc6_.ssaoRange,_loc6_.ssaoColor,_loc6_.ssaoAlpha);
@@ -1748,7 +1748,7 @@ package
       
       public function destroy() : void
       {
-         BattlefieldModel(Main.osgi.name_6(name_83)).spectatorMode = false;
+         BattlefieldModel(Main.osgi.getService(IBattleField)).spectatorMode = false;
          name_771 = false;
          BonusCache.destroy();
          LightDataManager.destroy();

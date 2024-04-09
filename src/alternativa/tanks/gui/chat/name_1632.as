@@ -1,12 +1,12 @@
 package alternativa.tanks.gui.chat
 {
-   import controls.base.name_1134;
-   import controls.base.name_998;
-   import controls.name_1891;
+   import controls.base.LabelBase;
+   import controls.base.DefaultButtonBase;
+   import controls.TankWindowInner;
    import flash.display.Bitmap;
    import flash.display.BitmapData;
    import flash.events.MouseEvent;
-   import forms.name_1838;
+   import forms.TankWindowWithHeader;
    import package_379.class_123;
    import package_54.name_102;
    import projects.tanks.clients.fp10.libraries.name_390;
@@ -25,15 +25,15 @@ package alternativa.tanks.gui.chat
       private static const const_1598:int = 11;
        
       
-      private var name_983:name_998;
+      private var name_983:DefaultButtonBase;
       
-      private var window:name_1838;
+      private var window:TankWindowWithHeader;
       
       private var var_2405:Bitmap;
       
-      private var var_2404:name_1134;
+      private var var_2404:LabelBase;
       
-      private var var_1737:name_1891;
+      private var var_1737:TankWindowInner;
       
       public function name_1632(param1:String)
       {
@@ -48,7 +48,7 @@ package alternativa.tanks.gui.chat
       
       private function method_1327() : void
       {
-         this.window = name_1838.name_1844(localeService.getText(name_390.const_710));
+         this.window = TankWindowWithHeader.createWindow(localeService.getText(name_390.const_710));
          addChild(this.window);
          this.window.width = 608;
       }
@@ -63,11 +63,11 @@ package alternativa.tanks.gui.chat
       
       private function method_2404(param1:String) : void
       {
-         this.var_1737 = new name_1891(0,0,name_1891.name_1428);
+         this.var_1737 = new TankWindowInner(0,0,TankWindowInner.GREEN);
          this.var_1737.x = 11;
          this.var_1737.width = 608 - 11 * 2;
          this.window.addChild(this.var_1737);
-         this.var_2404 = new name_1134();
+         this.var_2404 = new LabelBase();
          this.var_2404.wordWrap = true;
          this.var_2404.multiline = true;
          this.var_2404.text = localeService.getText(name_390.const_929).replace("%link%",param1);
@@ -80,7 +80,7 @@ package alternativa.tanks.gui.chat
       
       private function method_2403() : void
       {
-         var _loc1_:name_1134 = new name_1134();
+         var _loc1_:LabelBase = new LabelBase();
          _loc1_.wordWrap = true;
          _loc1_.multiline = true;
          _loc1_.text = localeService.getText(name_390.const_690);
@@ -95,7 +95,7 @@ package alternativa.tanks.gui.chat
       
       private function method_1331() : void
       {
-         this.name_983 = new name_998();
+         this.name_983 = new DefaultButtonBase();
          this.name_983.label = localeService.getText(name_390.const_1168);
          this.name_983.x = 608 - 11 - this.name_983.width;
          this.name_983.y = this.var_1737.y + this.var_1737.height + 11;

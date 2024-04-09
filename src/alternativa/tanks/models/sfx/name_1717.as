@@ -8,7 +8,7 @@ package alternativa.tanks.models.sfx
    import package_37.Vector3;
    import package_42.TanksCollisionDetector;
    import package_42.name_73;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_76.name_735;
    
    public class name_1717 extends class_30 implements name_2314
@@ -24,7 +24,7 @@ package alternativa.tanks.models.sfx
       
       private static const const_2010:Vector3 = new Vector3();
       
-      private static const var_711:name_124 = new name_124();
+      private static const var_711:RayHit = new RayHit();
       
       private static const const_438:Number = 20;
       

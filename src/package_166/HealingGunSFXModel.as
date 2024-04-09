@@ -3,15 +3,15 @@ package package_166
    import alternativa.engine3d.core.Object3D;
    import alternativa.engine3d.materials.Material;
    import alternativa.engine3d.materials.TextureMaterial;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.tanks.engine3d.name_1072;
    import alternativa.tanks.engine3d.name_1076;
    import alternativa.tanks.engine3d.name_1773;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
-   import alternativa.tanks.services.materialregistry.name_100;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import alternativa.tanks.utils.GraphicsUtils;
    import flash.display.BitmapData;
    import flash.filters.BitmapFilter;
@@ -34,22 +34,22 @@ package package_166
       
       private static const const_1479:Number = 1;
       
-      private static var var_58:name_100;
+      private static var var_58:IMaterialRegistry;
       
-      private static var var_138:name_118;
+      private static var var_138:IObjectPoolService;
        
       
-      private var battlefield:name_83;
+      private var battlefield:IBattleField;
       
       private var var_728:name_1188;
       
       public function HealingGunSFXModel()
       {
          super();
-         var_365.push(name_66,class_100,class_101);
+         _interfaces.push(IModel,class_100,class_101);
          name_1774.name_725();
-         var_58 = name_100(Main.osgi.name_6(name_100));
-         var_138 = name_118(Main.osgi.name_6(name_118));
+         var_58 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry));
+         var_138 = IObjectPoolService(Main.osgi.getService(IObjectPoolService));
       }
       
       private static function method_1276(param1:String, param2:String) : BitmapFilter
@@ -87,8 +87,8 @@ package package_166
          var _loc9_:name_32 = null;
          if(this.battlefield == null)
          {
-            _loc9_ = name_32(Main.osgi.name_6(name_32));
-            this.battlefield = name_83(Main.osgi.name_6(name_83));
+            _loc9_ = name_32(Main.osgi.getService(name_32));
+            this.battlefield = IBattleField(Main.osgi.getService(IBattleField));
             this.var_728 = name_1188(_loc9_.getModelsByInterface(name_1188)[0]);
          }
          var _loc10_:name_1772 = new name_1772();

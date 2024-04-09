@@ -1,8 +1,8 @@
 package package_263
 {
    import alternativa.tanks.model.friends.FriendsService;
-   import controls.base.name_1134;
-   import controls.name_1891;
+   import controls.base.LabelBase;
+   import controls.TankWindowInner;
    import controls.name_1922;
    import flash.display.DisplayObjectContainer;
    import flash.display.Shape;
@@ -30,13 +30,13 @@ package package_263
    public class ContextMenu extends Sprite
    {
       
-      public static var display:DisplayObjectContainer = (Main.osgi.name_6(name_24) as name_24).noticesLayer as DisplayObjectContainer;
+      public static var display:DisplayObjectContainer = (Main.osgi.getService(name_24) as name_24).noticesLayer as DisplayObjectContainer;
       
-      public static var userInfoService:name_408 = Main.osgi.name_6(name_408) as name_408;
+      public static var userInfoService:name_408 = Main.osgi.getService(name_408) as name_408;
       
       public static var contextMenuService:name_308;
       
-      public static var localeService:name_102 = Main.osgi.name_6(name_102) as name_102;
+      public static var localeService:name_102 = Main.osgi.getService(name_102) as name_102;
       
       public static var battleInfoService:name_274;
       
@@ -49,11 +49,11 @@ package package_263
       
       private var var_1169:name_1922;
       
-      private var var_1568:name_1891;
+      private var var_1568:TankWindowInner;
       
-      private var var_1554:name_1134;
+      private var var_1554:LabelBase;
       
-      private var var_1555:name_1134;
+      private var var_1555:LabelBase;
       
       private var var_1562:name_2147;
       
@@ -204,14 +204,14 @@ package package_263
          tabChildren = false;
          this.var_1169 = new name_1922();
          addChild(this.var_1169);
-         this.var_1568 = new name_1891(0,0,name_1891.name_1428);
+         this.var_1568 = new TankWindowInner(0,0,TankWindowInner.GREEN);
          addChild(this.var_1568);
-         this.var_1554 = new name_1134();
+         this.var_1554 = new LabelBase();
          this.var_1554.mouseEnabled = false;
          addChild(this.var_1554);
          this.var_1561 = new SmallRankIcon();
          addChild(this.var_1561);
-         this.var_1555 = new name_1134();
+         this.var_1555 = new LabelBase();
          addChild(this.var_1555);
          this.var_1553 = new Vector.<name_2147>();
          this.var_1571 = new Vector.<name_2147>();
@@ -427,7 +427,7 @@ package package_263
       
       private function method_1754(param1:MouseEvent) : void
       {
-         PanelModel(Main.osgi.name_6(name_115)).onInviteUser(this.var_913);
+         PanelModel(Main.osgi.getService(name_115)).onInviteUser(this.var_913);
          this.hide();
       }
       

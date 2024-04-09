@@ -2,7 +2,7 @@ package forms
 {
    import alternativa.osgi.OSGi;
    import alternativa.tanks.service.name_554;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.containers.HorizontalStackPanel;
    import controls.name_1922;
    import controls.name_2123;
@@ -12,12 +12,12 @@ package forms
    public class ExternalEntranceForm extends name_1922
    {
       
-      public static var var_3560:name_554 = OSGi.getInstance().name_6(name_554) as name_554;
+      public static var var_3560:name_554 = OSGi.getInstance().getService(name_554) as name_554;
        
       
       public var name_3490:name_2123;
       
-      private var var_1826:name_1134;
+      private var var_1826:LabelBase;
       
       private var var_3700:HorizontalStackPanel;
       
@@ -30,7 +30,7 @@ package forms
          this.var_3700 = new HorizontalStackPanel();
          this.buttons = new Dictionary();
          super(param1,param2);
-         this.var_1826 = new name_1134();
+         this.var_1826 = new LabelBase();
          this.var_1826.text = param3;
          this.var_1826.y = 15;
          this.var_1826.x = param1 / 2 - this.var_1826.width / 2;

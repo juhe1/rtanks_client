@@ -4,11 +4,11 @@ package package_253
    import alternativa.tanks.gui.settings.tabs.SettingsTabView;
    import assets.icons.InputCheckIcon;
    import controls.base.TankInput;
-   import controls.base.name_1134;
-   import controls.base.name_998;
+   import controls.base.LabelBase;
+   import controls.base.DefaultButtonBase;
    import controls.containers.HorizontalStackPanel;
    import controls.containers.VerticalStackPanel;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import controls.name_2118;
    import controls.name_2122;
    import controls.name_2123;
@@ -77,7 +77,7 @@ package package_253
       
       private var var_1501:TankInput;
       
-      private var var_1511:name_998;
+      private var var_1511:DefaultButtonBase;
       
       private var pass1CheckIcon:InputCheckIcon;
       
@@ -91,17 +91,17 @@ package package_253
       
       private var var_1514:name_2116;
       
-      private var var_1506:name_998;
+      private var var_1506:DefaultButtonBase;
       
       private var var_1512:Boolean;
       
       private var var_1509:name_2118;
       
-      private var var_1502:name_1134;
+      private var var_1502:LabelBase;
       
-      private var var_1507:name_998;
+      private var var_1507:DefaultButtonBase;
       
-      private var var_1510:name_998;
+      private var var_1510:DefaultButtonBase;
       
       public var var_377:Boolean = false;
       
@@ -109,7 +109,7 @@ package package_253
       
       public var var_1518:String;
       
-      private var var_1504:name_998;
+      private var var_1504:DefaultButtonBase;
       
       private var var_1516:String;
       
@@ -117,7 +117,7 @@ package package_253
       
       private var var_1508:InputCheckIcon;
       
-      private var var_1505:name_998;
+      private var var_1505:DefaultButtonBase;
       
       public function name_789(param1:String, param2:Boolean, param3:Boolean, param4:String, param5:String)
       {
@@ -174,19 +174,19 @@ package package_253
       
       private function method_1711(param1:String, param2:String, param3:String) : DisplayObject
       {
-         var _loc5_:name_1891 = null;
-         var _loc7_:name_1134 = null;
+         var _loc5_:TankWindowInner = null;
+         var _loc7_:LabelBase = null;
          var _loc4_:VerticalStackPanel = new VerticalStackPanel();
          _loc4_.name_2121(3);
-         _loc5_ = new name_1891(SettingsWindow.name_2112,0,name_1891.name_2114);
-         var _loc6_:name_1134 = new name_1134();
+         _loc5_ = new TankWindowInner(SettingsWindow.name_2112,0,TankWindowInner.name_2114);
+         var _loc6_:LabelBase = new LabelBase();
          _loc6_.antiAliasType = AntiAliasType.ADVANCED;
          _loc6_.sharpness = -100;
          _loc6_.thickness = 100;
          _loc6_.text = "防沉迷验证登记";
          _loc5_.addChild(_loc6_);
          _loc4_.addItem(_loc6_);
-         _loc7_ = new name_1134();
+         _loc7_ = new LabelBase();
          _loc5_.addChild(_loc7_);
          _loc7_.text = "您的真实姓名:";
          _loc7_.x = 8;
@@ -196,7 +196,7 @@ package package_253
          this.name_1855.x = _loc7_.x + _loc7_.width + 8;
          this.name_1855.y = _loc5_.y + 8;
          _loc7_.y = this.name_1855.y + Math.round((this.name_1855.height - _loc7_.textHeight) * 0.5) - 2;
-         var _loc8_:name_1134 = new name_1134();
+         var _loc8_:LabelBase = new LabelBase();
          _loc5_.addChild(_loc8_);
          _loc8_.text = "身份证号码:";
          _loc8_.x = 8;
@@ -211,7 +211,7 @@ package package_253
          this.name_1855.textField.text = param3 != null && param3 != "null" ? param3 : "";
          this.var_1501.addEventListener(name_2014.name_2020,this.method_1710);
          this.name_1855.addEventListener(name_2014.name_2020,this.method_1707);
-         this.var_1504 = new name_998();
+         this.var_1504 = new DefaultButtonBase();
          this.var_1504.label = localeService.getText(name_390.const_1039);
          this.var_1504.addEventListener(MouseEvent.CLICK,this.method_1703);
          _loc5_.height = 8 * 4 + 2 * this.name_1855.height + this.var_1504.height;
@@ -222,10 +222,10 @@ package package_253
          return _loc4_;
       }
       
-      private function method_1709() : name_1891
+      private function method_1709() : TankWindowInner
       {
-         var _loc1_:name_1891 = new name_1891(SettingsWindow.name_2112,2 * 8 + 30,name_1891.name_2114);
-         this.var_1506 = new name_998();
+         var _loc1_:TankWindowInner = new TankWindowInner(SettingsWindow.name_2112,2 * 8 + 30,TankWindowInner.name_2114);
+         this.var_1506 = new DefaultButtonBase();
          this.var_1506.width = 210;
          this.var_1506.label = localeService.getText(name_390.const_1206);
          this.var_1506.x = (SettingsWindow.name_2112 - this.var_1506.width) / 2;
@@ -235,12 +235,12 @@ package package_253
          return _loc1_;
       }
       
-      private function method_1724(param1:String) : name_1891
+      private function method_1724(param1:String) : TankWindowInner
       {
-         var _loc2_:name_1891 = new name_1891(SettingsWindow.name_2112,30 * 3 + 4 * 8,name_1891.name_2114);
-         var _loc3_:name_1134 = this.method_582(localeService.getText(name_390.const_773));
-         var _loc4_:name_1134 = this.method_582(localeService.getText(name_390.const_625));
-         var _loc5_:name_1134 = this.method_582(localeService.getText(name_390.const_1110));
+         var _loc2_:TankWindowInner = new TankWindowInner(SettingsWindow.name_2112,30 * 3 + 4 * 8,TankWindowInner.name_2114);
+         var _loc3_:LabelBase = this.method_582(localeService.getText(name_390.const_773));
+         var _loc4_:LabelBase = this.method_582(localeService.getText(name_390.const_625));
+         var _loc5_:LabelBase = this.method_582(localeService.getText(name_390.const_1110));
          var _loc6_:int = (SettingsWindow.name_2112 - _loc3_.width - _loc4_.width - _loc5_.width - 7 * 8) / 3 + 1;
          this.var_1499 = new TankInput();
          this.var_1499.hidden = true;
@@ -276,7 +276,7 @@ package package_253
          _loc2_.addChild(this.pass1);
          _loc2_.addChild(_loc5_);
          _loc2_.addChild(this.pass2);
-         this.var_1505 = new name_998();
+         this.var_1505 = new DefaultButtonBase();
          this.var_1505.label = localeService.getText(name_390.const_586);
          this.var_1505.addEventListener(MouseEvent.CLICK,this.method_1705);
          this.var_1505.x = SettingsWindow.name_2112 - 8 - this.var_1505.width;
@@ -311,10 +311,10 @@ package package_253
          return _loc2_;
       }
       
-      private function method_1725() : name_1891
+      private function method_1725() : TankWindowInner
       {
-         var _loc1_:name_1891 = new name_1891(SettingsWindow.name_2112,30 + 2 * 8,name_1891.name_2114);
-         var _loc2_:name_1134 = this.method_582(localeService.getText(name_390.const_778));
+         var _loc1_:TankWindowInner = new TankWindowInner(SettingsWindow.name_2112,30 + 2 * 8,TankWindowInner.name_2114);
+         var _loc2_:LabelBase = this.method_582(localeService.getText(name_390.const_778));
          var _loc3_:int = _loc2_.width + 8;
          _loc2_.x = int(SettingsWindow.name_2112 / 2 - _loc3_ / 2);
          _loc2_.y += 8;
@@ -333,8 +333,8 @@ package package_253
       {
          var _loc2_:HorizontalStackPanel = new HorizontalStackPanel();
          _loc2_.name_2121(8);
-         var _loc3_:name_1134 = this.method_582(localeService.getText(name_390.const_1339));
-         this.var_1511 = new name_998();
+         var _loc3_:LabelBase = this.method_582(localeService.getText(name_390.const_1339));
+         this.var_1511 = new DefaultButtonBase();
          this.var_1511.label = localeService.getText(name_390.const_1333);
          this.var_1511.addEventListener(MouseEvent.CLICK,this.method_1706);
          this.var_1500 = new TankInput();
@@ -347,9 +347,9 @@ package package_253
          return _loc2_;
       }
       
-      private function method_582(param1:String) : name_1134
+      private function method_582(param1:String) : LabelBase
       {
-         var _loc2_:name_1134 = new name_1134();
+         var _loc2_:LabelBase = new LabelBase();
          _loc2_.text = param1;
          _loc2_.y = Math.round((30 - _loc2_.textHeight) * 0.5) - 2;
          return _loc2_;
@@ -489,25 +489,25 @@ package package_253
          this.var_1505.enable = this.pass1.value == this.pass2.value && this.pass1.validValue && this.pass2.validValue;
       }
       
-      private function method_1708() : name_1891
+      private function method_1708() : TankWindowInner
       {
-         var _loc1_:name_1134 = null;
+         var _loc1_:LabelBase = null;
          var _loc2_:Bitmap = null;
          var _loc3_:Bitmap = null;
          var _loc4_:Boolean = false;
-         var _loc5_:name_1891 = new name_1891(SettingsWindow.name_2112,0,name_1891.name_2114);
+         var _loc5_:TankWindowInner = new TankWindowInner(SettingsWindow.name_2112,0,TankWindowInner.name_2114);
          this.var_1512 = Boolean(socialNetworkService.method_1316("vkontakte")) && Boolean(socialNetworkService.method_1316("discord"));
          var _loc6_:Sprite = new Sprite();
          if(this.var_1512)
          {
-            _loc1_ = new name_1134();
+            _loc1_ = new LabelBase();
             _loc1_.text = localeService.getText(name_390.const_672);
             _loc1_.y = 5;
             _loc6_.addChild(_loc1_);
             _loc2_ = SocialNetworkIcon.name_2126();
             _loc3_ = SocialNetworkIcon.name_2124();
-            this.var_1507 = new name_998();
-            this.var_1510 = new name_998();
+            this.var_1507 = new DefaultButtonBase();
+            this.var_1510 = new DefaultButtonBase();
             _loc2_.y = _loc1_.y + _loc1_.height + 8;
             _loc6_.addChild(_loc2_);
             this.var_1507.label = !!socialNetworkService.method_1310("vkontakte") ? String(localeService.getText(name_390.const_801)) : String(localeService.getText(name_390.const_1187));
@@ -529,7 +529,7 @@ package package_253
          {
             this.var_1516 = !!socialNetworkService.method_1316("vkontakte") ? "vkontakte" : "discord";
             _loc4_ = Boolean(socialNetworkService.method_1310(this.var_1516));
-            this.var_1502 = new name_1134();
+            this.var_1502 = new LabelBase();
             this.var_1502.text = _loc4_ ? String(localeService.getText(name_390.const_1354)) : String(localeService.getText(name_390.const_715));
             _loc6_.addChild(this.var_1502);
             this.var_1509 = this.var_1516 == "vkontakte" ? new name_2122() : new name_2123();

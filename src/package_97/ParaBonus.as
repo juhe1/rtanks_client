@@ -5,10 +5,10 @@ package package_97
    import alternativa.engine3d.materials.Material;
    import alternativa.engine3d.objects.Mesh;
    import alternativa.physics.collision.class_44;
-   import alternativa.physics.collision.name_774;
+   import alternativa.physics.collision.CollisionPrimitive;
    import alternativa.physics.name_886;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.sfx.name_1464;
    import alternativa.tanks.vehicles.tanks.Tank;
    import flash.geom.ColorTransform;
@@ -23,7 +23,7 @@ package package_97
    import package_37.Vector3;
    import package_42.TanksCollisionDetector;
    import package_42.name_73;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_68.name_175;
    import package_74.name_272;
    
@@ -84,7 +84,7 @@ package package_97
       
       private static var var_325:Vector3 = new Vector3();
       
-      private static const const_372:name_124 = new name_124();
+      private static const const_372:RayHit = new RayHit();
       
       private static const N:Vector3 = new Vector3();
       
@@ -192,7 +192,7 @@ package package_97
          this.var_740 = new name_1470(this);
          this.var_609 = new OmniLight(0,0,0);
          this.var_743 = new name_1474(this);
-         this.battleService = BattlefieldModel(Main.osgi.name_6(name_83));
+         this.battleService = BattlefieldModel(Main.osgi.getService(IBattleField));
       }
       
       public static function create(param1:name_1469) : ParaBonus
@@ -553,7 +553,7 @@ package package_97
          this.var_743.deactivate();
       }
       
-      public function method_1008(param1:name_774) : Boolean
+      public function method_1008(param1:CollisionPrimitive) : Boolean
       {
          if(param1.name_787 is Tank)
          {

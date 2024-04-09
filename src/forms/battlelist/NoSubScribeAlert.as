@@ -26,7 +26,7 @@ package forms.battlelist
       public function NoSubScribeAlert()
       {
          super();
-         var _loc1_:name_102 = Main.osgi.name_6(name_102) as name_102;
+         var _loc1_:name_102 = Main.osgi.getService(name_102) as name_102;
          this.bg = new name_1154();
          this.bg.height = 69;
          addChild(this.bg);

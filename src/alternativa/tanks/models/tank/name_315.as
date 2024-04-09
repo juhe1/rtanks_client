@@ -7,15 +7,15 @@ package alternativa.tanks.models.tank
    import package_4.ClientObject;
    import platform.client.fp10.core.type.name_70;
    
-   public class name_315 implements class_7
+   public class name_315 implements ITank
    {
        
       
       private var object:name_70;
       
-      private var impl:class_7;
+      private var impl:ITank;
       
-      public function name_315(param1:name_70, param2:class_7)
+      public function name_315(param1:name_70, param2:ITank)
       {
          super();
          this.object = param1;

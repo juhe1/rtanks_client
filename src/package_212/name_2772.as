@@ -1,6 +1,6 @@
 package package_212
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.Bitmap;
    import flash.display.BitmapData;
    import flash.display.Sprite;
@@ -27,7 +27,7 @@ package package_212
       
       private var var_3376:Bitmap;
       
-      private var var_3370:name_1134;
+      private var var_3370:LabelBase;
       
       private var _count:int = 0;
       
@@ -40,7 +40,7 @@ package package_212
          addChild(this.var_3369);
          this.var_3376 = new Bitmap(var_3373);
          addChild(this.var_3376);
-         this.var_3370 = new name_1134();
+         this.var_3370 = new LabelBase();
          addChild(this.var_3370);
          this.visible = false;
          this.resize();

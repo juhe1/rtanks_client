@@ -159,7 +159,7 @@ package controls.checkbox
       private function method_530() : void
       {
          this.var_2679.visible = this.var_2681;
-         dispatchEvent(new name_2018(name_2018.name_2025));
+         dispatchEvent(new CheckBoxEvent(CheckBoxEvent.STATE_CHANGED));
       }
    }
 }

@@ -1,7 +1,7 @@
 package alternativa.tanks.gui.notinclan.dialogs
 {
    import alternativa.tanks.models.user.name_65;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.base.name_1890;
    import controls.windowinner.WindowInner;
    import flash.display.Bitmap;
@@ -30,7 +30,7 @@ package alternativa.tanks.gui.notinclan.dialogs
       
       private var var_1251:WindowInner;
       
-      private var var_1327:name_1134;
+      private var var_1327:LabelBase;
       
       public function name_597()
       {
@@ -39,7 +39,7 @@ package alternativa.tanks.gui.notinclan.dialogs
          super();
          this.var_643 = new name_1890();
          this.var_643.name_1342(localeService.getText(name_390.const_733));
-         this.var_1327 = new name_1134();
+         this.var_1327 = new LabelBase();
          this.var_1327.wordWrap = true;
          this.var_1327.align = TextFormatAlign.CENTER;
          this.var_1327.text = localeService.getText(name_390.const_1425);

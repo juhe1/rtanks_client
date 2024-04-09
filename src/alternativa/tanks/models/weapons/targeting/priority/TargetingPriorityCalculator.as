@@ -1,9 +1,9 @@
 package alternativa.tanks.models.weapons.targeting.priority
 {
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import package_320.class_38;
    import package_442.name_2708;
-   import package_61.name_124;
+   import package_61.RayHit;
    
    public class TargetingPriorityCalculator
    {
@@ -39,9 +39,9 @@ package alternativa.tanks.models.weapons.targeting.priority
          return this.var_2485.method_960(param1.getTank(),param1.method_1242(),param2);
       }
       
-      public function name_2705(param1:Number, param2:Vector.<name_124>) : Number
+      public function name_2705(param1:Number, param2:Vector.<RayHit>) : Number
       {
-         var _loc3_:name_124 = null;
+         var _loc3_:RayHit = null;
          var _loc4_:Number = 1;
          var _loc5_:Number = 0;
          for each(_loc3_ in param2)
@@ -52,9 +52,9 @@ package alternativa.tanks.models.weapons.targeting.priority
          return _loc5_;
       }
       
-      private function method_2488(param1:Number, param2:name_124) : Number
+      private function method_2488(param1:Number, param2:RayHit) : Number
       {
-         var _loc3_:name_660 = param2.var_81.name_787;
+         var _loc3_:Body = param2.var_81.name_787;
          if(param2.var_460)
          {
             return 0;

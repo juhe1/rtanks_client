@@ -84,7 +84,7 @@ package package_144
       
       protected function method_2419(param1:String, param2:Number) : void
       {
-         var _loc3_:BattleSelectModel = OSGi.getInstance().name_6(name_386) as BattleSelectModel;
+         var _loc3_:BattleSelectModel = OSGi.getInstance().getService(name_386) as BattleSelectModel;
          if(_loc3_ != null)
          {
             _loc3_.method_1981(param1,param2);

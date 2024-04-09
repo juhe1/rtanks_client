@@ -1,6 +1,6 @@
 package
 {
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.osgi.OSGi;
    import alternativa.tanks.gui.tables.kits.description.KitsInfoData;
    import alternativa.tanks.loader.name_13;
@@ -20,7 +20,7 @@ package
    import package_1.Main;
    import package_1.name_372;
    import package_102.Command;
-   import package_102.name_346;
+   import package_102.Type;
    import package_103.name_323;
    import package_103.name_328;
    import package_104.name_327;
@@ -31,7 +31,7 @@ package
    import package_105.name_321;
    import package_106.Achievement;
    import package_106.AchievementModel;
-   import package_106.name_345;
+   import package_106.IAchievementModel;
    import package_107.name_326;
    import package_107.name_335;
    import package_107.name_368;
@@ -97,7 +97,7 @@ package
    import package_31.PanelModel;
    import package_31.name_115;
    import package_39.Model;
-   import package_41.name_320;
+   import package_41.ItemProperty;
    import package_47.BattleTeamType;
    import package_54.name_102;
    import package_7.name_32;
@@ -122,13 +122,13 @@ package
    public class Lobby implements class_6
    {
       
-      public static var resourceRegistry:ResourceRegistry = OSGi.getInstance().name_6(ResourceRegistry) as ResourceRegistry;
+      public static var resourceRegistry:ResourceRegistry = OSGi.getInstance().getService(ResourceRegistry) as ResourceRegistry;
       
-      public static var var_72:name_45 = OSGi.getInstance().name_6(name_45) as name_45;
+      public static var var_72:name_45 = OSGi.getInstance().getService(name_45) as name_45;
       
-      public static var modelRegistry:name_29 = OSGi.getInstance().name_6(name_29) as name_29;
+      public static var modelRegistry:name_29 = OSGi.getInstance().getService(name_29) as name_29;
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
       public static var battleTimeLeftService:name_465;
       
@@ -173,11 +173,11 @@ package
          this.battleSelect = new BattleSelectModelActivator();
          this.garage = new GarageModelActivator();
          this.garage.start(Main.osgi);
-         this.modelRegister = Main.osgi.name_6(name_32) as name_32;
-         this.var_75 = (this.modelRegister.getModelsByInterface(name_364) as Vector.<name_66>)[0] as name_364 as ItemEffectModel;
+         this.modelRegister = Main.osgi.getService(name_32) as name_32;
+         this.var_75 = (this.modelRegister.getModelsByInterface(name_364) as Vector.<IModel>)[0] as name_364 as ItemEffectModel;
          this.space = new Space(Long.getLong(83525459,4193025),null,null,false);
-         name_33(OSGi.getInstance().name_6(name_33)).addSpace(this.space);
-         name_33(OSGi.getInstance().name_6(name_33)).currentSpace = this.space;
+         name_33(OSGi.getInstance().getService(name_33)).addSpace(this.space);
+         name_33(OSGi.getInstance().getService(name_33)).currentSpace = this.space;
          var _loc1_:Vector.<Long> = new Vector.<Long>();
          _loc1_.push(Long.getLong(1543015131,1817260381));
          _loc1_.push(Long.getLong(28163628,1959753058));
@@ -209,80 +209,80 @@ package
          this.space.name_15(Long.getLong(-87265,4551894),var_72.getClass(Long.getLong(763265,-2356138)),"SkinsItemModel");
       }
       
-      public static function getItemProperty(param1:String) : name_320
+      public static function getItemProperty(param1:String) : ItemProperty
       {
          switch(param1)
          {
             case "damage":
-               return name_320.name_474;
+               return ItemProperty.DAMAGE;
             case "damage_per_second":
-               return name_320.name_466;
+               return ItemProperty.DAMAGE_PER_SECOND;
             case "critical_chance":
-               return name_320.name_442;
+               return ItemProperty.CRITICAL_CHANCE;
             case "critical_damage":
-               return name_320.name_428;
+               return ItemProperty.CRITICAL_DAMAGE;
             case "impact_force":
-               return name_320.name_490;
+               return ItemProperty.IMPACT_FORCE;
             case "heating_time":
-               return name_320.name_464;
+               return ItemProperty.HEALING_TIME;
             case "aiming_error":
-               return name_320.name_453;
+               return ItemProperty.AIMING_ERROR;
             case "cone_angle":
-               return name_320.name_457;
+               return ItemProperty.CONE_ANGLE;
             case "shot_area":
-               return name_320.name_482;
+               return ItemProperty.SHOT_AREA;
             case "shot_frequency":
-               return name_320.name_473;
+               return ItemProperty.SHOT_FREQUENCY;
             case "shot_range":
-               return name_320.name_421;
+               return ItemProperty.SHOT_SPEED;
             case "turn_speed":
-               return name_320.name_439;
+               return ItemProperty.TURN_SPEED;
             case "power":
-               return name_320.name_481;
+               return ItemProperty.POWER;
             case "weight":
-               return name_320.name_447;
+               return ItemProperty.WEIGHT;
             case "mech_resistance":
-               return name_320.name_462;
+               return ItemProperty.MECH_RESISTANCE;
             case "shotgun_resistance":
-               return name_320.name_434;
+               return ItemProperty.SHOTGUN_RESISTANCE;
             case "all_resistance":
-               return name_320.name_487;
+               return ItemProperty.ALL_RESISTANCE;
             case "vulcan_resistance":
-               return name_320.name_417;
+               return ItemProperty.VULCAN_RESISTANCE;
             case "plasma_resistance":
-               return name_320.name_436;
+               return ItemProperty.PLASMA_RESISTANCE;
             case "rail_resistance":
-               return name_320.name_410;
+               return ItemProperty.RAIL_RESISTANCE;
             case "mine_resistance":
-               return name_320.name_444;
+               return ItemProperty.MINE_RESISTANCE;
             case "vampire_resistance":
-               return name_320.name_443;
+               return ItemProperty.VAMPIRE_RESISTANCE;
             case "armor":
-               return name_320.ARMOR;
+               return ItemProperty.ARMOR;
             case "turret_turn_speed":
-               return name_320.name_479;
+               return ItemProperty.TURRET_TURN_SPEED;
             case "fire_resistance":
-               return name_320.name_419;
+               return ItemProperty.FIRE_RESISTANCE;
             case "thunder_resistance":
-               return name_320.name_433;
+               return ItemProperty.THUNDER_RESISTANCE;
             case "freeze_resistance":
-               return name_320.name_411;
+               return ItemProperty.FREEZE_RESISTANCE;
             case "ricochet_resistance":
-               return name_320.name_491;
+               return ItemProperty.RICOCHET_RESISTANCE;
             case "healing_radius":
-               return name_320.name_455;
+               return ItemProperty.HEALING_RADIUS;
             case "heal_rate":
-               return name_320.name_448;
+               return ItemProperty.HEAL_RATE;
             case "vampire_rate":
-               return name_320.name_450;
+               return ItemProperty.VAMPIRE_RATE;
             case "speed":
-               return name_320.name_424;
+               return ItemProperty.SPEED;
             case "shaft_damage":
-               return name_320.name_460;
+               return ItemProperty.SHAFT_DAMAGE;
             case "shaft_shot_frequency":
-               return name_320.name_478;
+               return ItemProperty.SHAFT_SHOT_FREQUENCY;
             case "shaft_resistance":
-               return name_320.name_488;
+               return ItemProperty.SHAFT_RESISTANCE;
             default:
                return null;
          }
@@ -387,7 +387,7 @@ package
          {
             switch(data.type)
             {
-               case name_346.name_414:
+               case Type.LOBBY_CHAT:
                   if(data.name_319[0] == "system")
                   {
                      if(!this.var_73)
@@ -433,9 +433,9 @@ package
                            channels.push(channel);
                         }
                         chatCC.channels = channels;
-                        Main.osgi.name_1(name_400,this.chat.name_332);
+                        Main.osgi.registerService(name_400,this.chat.name_332);
                         this.chat.name_332.method_18(chatCC);
-                        this.chat.name_332.initObject(Game.getInstance.var_6,["https://rtanks.online/"],(Main.osgi.name_6(name_361) as name_351).name);
+                        this.chat.name_332.initObject(Game.getInstance.var_6,["https://rtanks.online/"],(Main.osgi.getService(name_361) as name_351).name);
                         this.chat.name_332.objectLoaded(Game.getInstance.var_6);
                         this.method_108(data.name_319[1]);
                         this.method_109(data.name_319[2]);
@@ -458,30 +458,30 @@ package
                      }
                   }
                   break;
-               case name_346.name_451:
+               case Type.LOBBY:
                   if(data.name_319[0] == "init_panel")
                   {
                      this.parseAndInitPanelInfo(data.name_319[1]);
                   }
                   else if(data.name_319[0] == "set_stars")
                   {
-                     name_360(OSGi.getInstance().name_6(name_360)).setStars(int(data.name_319[1]));
+                     name_360(OSGi.getInstance().getService(name_360)).setStars(int(data.name_319[1]));
                   }
                   else if(data.name_319[0] == "add_crystall")
                   {
-                     PanelModel(Main.osgi.name_6(name_115)).updateCrystal(null,int(data.name_319[1]));
+                     PanelModel(Main.osgi.getService(name_115)).updateCrystal(null,int(data.name_319[1]));
                   }
                   else if(data.name_319[0] == "add_score")
                   {
-                     PanelModel(Main.osgi.name_6(name_115)).updateScore(null,int(data.name_319[1]));
+                     PanelModel(Main.osgi.getService(name_115)).updateScore(null,int(data.name_319[1]));
                   }
                   else if(data.name_319[0] == "update_rang_progress")
                   {
-                     PanelModel(Main.osgi.name_6(name_115)).updateRankProgress(null,int(data.name_319[1]));
+                     PanelModel(Main.osgi.getService(name_115)).updateRankProgress(null,int(data.name_319[1]));
                   }
                   else if(data.name_319[0] == "update_rang")
                   {
-                     PanelModel(Main.osgi.name_6(name_115)).updateRang(null,int(data.name_319[1]),int(data.name_319[2]));
+                     PanelModel(Main.osgi.getService(name_115)).updateRang(null,int(data.name_319[1]),int(data.name_319[2]));
                   }
                   else if(data.name_319[0] == "change_layout_state")
                   {
@@ -528,7 +528,7 @@ package
                      else if(data.name_319[0] == "navigate_url")
                      {
                         navigateToURL(new URLRequest(data.name_319[1]),"_self");
-                        PanelModel(Main.osgi.name_6(name_115)).unlock();
+                        PanelModel(Main.osgi.getService(name_115)).unlock();
                      }
                      else if(data.name_319[0] == "update_user_info")
                      {
@@ -545,10 +545,10 @@ package
                            clanData.minRankForJoinClan = clanObj.minRankForJoinClan;
                            clanData.userId = userObj.nickname;
                            clanInfo = new name_353(clanData);
-                           name_52(Main.osgi.name_6(name_52)).updateUserClanInfo(clanInfo);
+                           name_52(Main.osgi.getService(name_52)).updateUserClanInfo(clanInfo);
                         }
                         userInfo = new name_350(userObj.nickname,userObj.rank,userObj.premium,userObj.online);
-                        UserInfoService(Main.osgi.name_6(name_408)).updateUserInfo(userInfo.nickname,userInfo);
+                        UserInfoService(Main.osgi.getService(name_408)).updateUserInfo(userInfo.nickname,userInfo);
                      }
                      else if(data.name_319[0] == "add_to_accepted")
                      {
@@ -589,31 +589,31 @@ package
                      else if(data.name_319[0] == "init_friends_list")
                      {
                         FriendsService.name_398 = data.name_319[1];
-                        PanelModel(Main.osgi.name_6(name_115)).openFriends();
+                        PanelModel(Main.osgi.getService(name_115)).openFriends();
                      }
                      else if(data.name_319[0] == "update_friends_list")
                      {
                         FriendsService.name_398 = data.name_319[1];
-                        PanelModel(Main.osgi.name_6(name_115)).updateFriendsList();
+                        PanelModel(Main.osgi.getService(name_115)).updateFriendsList();
                      }
                      else if(data.name_319[0] == "show_invite")
                      {
                         invObject = JSON.parse(data.name_319[1]);
                         message = this.method_100(invObject);
                         userId = String(invObject.userId);
-                        PanelModel(Main.osgi.name_6(name_115)).onBattleInvite(userId,message);
+                        PanelModel(Main.osgi.getService(name_115)).onBattleInvite(userId,message);
                      }
                      else if(data.name_319[0] == "invite_response")
                      {
-                        PanelModel(Main.osgi.name_6(name_115)).onResponseInviteNotification(data.name_319[1],data.name_319[2]);
+                        PanelModel(Main.osgi.getService(name_115)).onResponseInviteNotification(data.name_319[1],data.name_319[2]);
                      }
                      else if(data.name_319[0] == "accept_battle_invite")
                      {
-                        PanelModel(Main.osgi.name_6(name_115)).onAcceptBattleInvite(data.name_319[1]);
+                        PanelModel(Main.osgi.getService(name_115)).onAcceptBattleInvite(data.name_319[1]);
                      }
                      else if(data.name_319[0] == "reject_battle_invite")
                      {
-                        PanelModel(Main.osgi.name_6(name_115)).onRejectBattleInvite(data.name_319[1]);
+                        PanelModel(Main.osgi.getService(name_115)).onRejectBattleInvite(data.name_319[1]);
                      }
                      else if(data.name_319[0] == "update_count_users_in_dm_battle")
                      {
@@ -667,7 +667,7 @@ package
                      }
                      else if(data.name_319[0] == "server_message")
                      {
-                        name_42(OSGi.getInstance().name_6(name_42)).showAlert(data.name_319[1],Vector.<String>([localeService.getText(name_358.OK)]));
+                        name_42(OSGi.getInstance().getService(name_42)).showAlert(data.name_319[1],Vector.<String>([localeService.getText(name_358.OK)]));
                      }
                      else if(data.name_319[0] == "show_bonuses")
                      {
@@ -691,7 +691,7 @@ package
                      }
                      else if(data.name_319[0] == "show_nube_new_rank")
                      {
-                        achievementModel = Main.osgi.name_6(name_345) as AchievementModel;
+                        achievementModel = Main.osgi.getService(IAchievementModel) as AchievementModel;
                         achievementModel.name_477();
                      }
                      else if(data.name_319[0] == "init_battlecontroller")
@@ -699,13 +699,13 @@ package
                         OSGi.clientLog.log("Lobby","init_battlecontroller");
                         try
                         {
-                           PanelModel(Main.osgi.name_6(name_115)).startBattle(null);
-                           if(BattleController(Main.osgi.name_6(IBattleController)) == null)
+                           PanelModel(Main.osgi.getService(name_115)).startBattle(null);
+                           if(BattleController(Main.osgi.getService(IBattleController)) == null)
                            {
                               temp = new BattleController();
-                              Main.osgi.name_1(IBattleController,temp);
+                              Main.osgi.registerService(IBattleController,temp);
                            }
-                           Network(Main.osgi.name_6(name_2)).addEventListener(Main.osgi.name_6(IBattleController) as BattleController);
+                           Network(Main.osgi.getService(name_2)).addEventListener(Main.osgi.getService(IBattleController) as BattleController);
                         }
                         catch(e:Error)
                         {
@@ -714,17 +714,17 @@ package
                      }
                      else if(data.name_319[0] == "server_halt")
                      {
-                        PanelModel(Main.osgi.name_6(name_115)).serverHalt(null,50,0,0,null);
+                        PanelModel(Main.osgi.getService(name_115)).serverHalt(null,50,0,0,null);
                      }
                      else if(data.name_319[0] == "show_profile")
                      {
                         parser = JSON.parse(data.name_319[1]);
-                        PanelModel(Main.osgi.name_6(name_115)).openProfile(null,parser.emailNotice,parser.isComfirmEmail,false,"","");
+                        PanelModel(Main.osgi.getService(name_115)).openProfile(null,parser.emailNotice,parser.isComfirmEmail,false,"","");
                      }
                      else if(data.name_319[0] == "open_shop")
                      {
-                        PanelModel(Main.osgi.name_6(name_115)).onShopWindow(JSON.parse(data.name_319[1]));
-                        name_13(Main.osgi.name_6(name_13)).hideForcibly();
+                        PanelModel(Main.osgi.getService(name_115)).onShopWindow(JSON.parse(data.name_319[1]));
+                        name_13(Main.osgi.getService(name_13)).hideForcibly();
                      }
                      else if(data.name_319[0] == "open_url")
                      {
@@ -742,15 +742,15 @@ package
                      }
                      else if(data.name_319[0] == "activate_promocode_successfully")
                      {
-                        name_369(Main.osgi.name_6(name_366)).activatedSuccessfully();
+                        name_369(Main.osgi.getService(name_366)).activatedSuccessfully();
                      }
                      else if(data.name_319[0] == "activate_promocode_failed")
                      {
-                        name_369(Main.osgi.name_6(name_366)).activatedFailed();
+                        name_369(Main.osgi.getService(name_366)).activatedFailed();
                      }
                      else if(data.name_319[0] == "open_recovery_window")
                      {
-                        PanelModel(Main.osgi.name_6(name_115)).openRecoveryWindow(data.name_319[1]);
+                        PanelModel(Main.osgi.getService(name_115)).openRecoveryWindow(data.name_319[1]);
                      }
                      else if(data.name_319[0] == "effect_stopped")
                      {
@@ -772,19 +772,18 @@ package
                      }
                      else if(data.name_319[0] == "start_premium_account")
                      {
-                        PanelModel(Main.osgi.name_6(name_115)).openPremiumAlertWindow();
+                        PanelModel(Main.osgi.getService(name_115)).openPremiumAlertWindow();
                      }
                      else if(data.name_319[0] == "end_premium_account")
                      {
-                        PanelModel(Main.osgi.name_6(name_115)).onCompletePremium(data.name_319[1]);
+                        PanelModel(Main.osgi.getService(name_115)).onCompletePremium(data.name_319[1]);
                      }
                      else if(data.name_319[0] == "update_premium_status")
                      {
-                        PanelModel(Main.osgi.name_6(name_115)).updatePremiumStatus(data.name_319[1]);
+                        PanelModel(Main.osgi.getService(name_115)).updatePremiumStatus(data.name_319[1]);
                      }
                      else if(data.name_319[0] == "open_lootbox")
                      {
-                        trace(data.name_319[1]);
                         rewards = new Vector.<name_331>();
                         parser = JSON.parse(data.name_319[1]);
                         for each(reward_item in parser)
@@ -808,7 +807,7 @@ package
                      else if(data.name_319[0] == "show_news")
                      {
                         parser = JSON.parse(data.name_319[1]);
-                        newsModel = Main.osgi.name_6(name_406) as name_347;
+                        newsModel = Main.osgi.getService(name_406) as name_347;
                         news = new Vector.<name_342>();
                         for each(news_item in parser)
                         {
@@ -843,11 +842,11 @@ package
                      }
                      else if(data.name_319[0] == "start_event")
                      {
-                        name_44(OSGi.getInstance().name_6(name_44)).startEvent(int(data.name_319[1]));
+                        name_44(OSGi.getInstance().getService(name_44)).startEvent(int(data.name_319[1]));
                      }
                      else if(data.name_319[0] == "set_battle_pass")
                      {
-                        name_357(OSGi.getInstance().name_6(name_357)).setState(Boolean(data.name_319[1] == "true"));
+                        name_357(OSGi.getInstance().getService(name_357)).setState(Boolean(data.name_319[1] == "true"));
                      }
                      else if(data.name_319[0] == "show_empty_quests")
                      {
@@ -962,15 +961,15 @@ package
                      }
                      else if(data.name_319[0] == "show_quest_notification")
                      {
-                        (Main.osgi.name_6(name_339) as name_339).showNotification();
+                        (Main.osgi.getService(name_339) as name_339).showNotification();
                      }
                      else if(data.name_319[0] == "hide_quest_notification")
                      {
-                        (Main.osgi.name_6(name_339) as name_339).hideNotification();
+                        (Main.osgi.getService(name_339) as name_339).hideNotification();
                      }
                      else if(data.name_319[0] == "show_achievements")
                      {
-                        achievementModel = Main.osgi.name_6(name_345) as AchievementModel;
+                        achievementModel = Main.osgi.getService(IAchievementModel) as AchievementModel;
                         parser = JSON.parse(data.name_319[1]);
                         achievements = new Vector.<Achievement>();
                         for each(achievementId in parser.ids)
@@ -981,13 +980,13 @@ package
                      }
                      else if(data.name_319[0] == "complete_achievement")
                      {
-                        achievementModel = Main.osgi.name_6(name_345) as AchievementModel;
+                        achievementModel = Main.osgi.getService(IAchievementModel) as AchievementModel;
                         achievement = Achievement.name_378(parseInt(data.name_319[1]));
                         achievementModel.name_449(achievement);
                      }
                   }
                   break;
-               case name_346.GARAGE:
+               case Type.GARAGE:
                   if(data.name_319[0] == "init_garage_items")
                   {
                      this.parseGarageItems(data.name_319[1],data.src);
@@ -1077,7 +1076,7 @@ package
          {
             _loc3_.push(new name_348(_loc4_.date,_loc4_.text,0,_loc4_.header,Long.getLong(0,int(_loc4_.id)),String(_loc4_.icon_id)));
          }
-         name_363(OSGi.getInstance().name_6(name_363)).setInitialNewsItems(_loc3_);
+         name_363(OSGi.getInstance().getService(name_363)).setInitialNewsItems(_loc3_);
       }
       
       private function method_108(param1:String) : void
@@ -1123,7 +1122,7 @@ package
          var _loc2_:Object = JSON.parse(param1);
          if(Boolean(_loc2_.null_battle))
          {
-            name_42(OSGi.getInstance().name_6(name_42)).showAlert(localeService.getText(name_390.name_429),Vector.<String>([localeService.getText(name_358.OK)]));
+            name_42(OSGi.getInstance().getService(name_42)).showAlert(localeService.getText(name_390.name_429),Vector.<String>([localeService.getText(name_358.OK)]));
             return;
          }
          var _loc3_:Array = new Array();
@@ -1400,10 +1399,10 @@ package
                this.garage.name_322.name_394(null,[infoItem]);
                itemObject = null;
             }
-            Network(Main.osgi.name_6(name_2)).send("garage;get_garage_data");
-            PanelModel(Main.osgi.name_6(name_115)).addListener(this.garage.name_322);
-            Main.osgi.name_1(name_381,this.garage.name_322);
-            PanelModel(Main.osgi.name_6(name_115)).isGarageSelect = true;
+            Network(Main.osgi.getService(name_2)).send("garage;get_garage_data");
+            PanelModel(Main.osgi.getService(name_115)).addListener(this.garage.name_322);
+            Main.osgi.registerService(name_381,this.garage.name_322);
+            PanelModel(Main.osgi.getService(name_115)).isGarageSelect = true;
          }
          catch(e:Error)
          {
@@ -1491,7 +1490,7 @@ package
          var json:String = param1;
          try
          {
-            Main.osgi.name_1(name_386,this.battleSelect.battleSelectModel);
+            Main.osgi.registerService(name_386,this.battleSelect.battleSelectModel);
             maps = new Array();
             battles = new Array();
             js = JSON.parse(json);
@@ -1567,19 +1566,19 @@ package
       
       public function initPanel(param1:int, param2:String, param3:Boolean, param4:String, param5:int, param6:int, param7:int, param8:int, param9:int) : void
       {
-         var _loc10_:PanelModel = PanelModel(Main.osgi.name_6(name_115));
+         var _loc10_:PanelModel = PanelModel(Main.osgi.getService(name_115));
          _loc10_.initObject(Game.getInstance.var_6,param1,param2,param3,param4,param5,param6,param7,param8,param9);
          _loc10_.lock();
          var _loc11_:name_351 = new name_351(param4,param4,param7);
-         Main.osgi.name_1(name_361,_loc11_);
+         Main.osgi.registerService(name_361,_loc11_);
          this.init();
       }
       
       public function beforeAuth() : void
       {
-         this.networker = Main.osgi.name_6(name_2) as Network;
+         this.networker = Main.osgi.getService(name_2) as Network;
          this.networker.addEventListener(this);
-         this.networker.addEventListener(ClansController(Main.osgi.name_6(ClansController)));
+         this.networker.addEventListener(ClansController(Main.osgi.getService(ClansController)));
          Model.object = this.space.getObject(Long.getLong(92381,9324110));
          name_170(modelRegistry.getModel(Long.getLong(1223707112,492148927))).objectLoaded();
          Model.method_38();

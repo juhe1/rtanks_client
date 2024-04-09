@@ -1,12 +1,12 @@
 package package_103
 {
-   import package_41.name_320;
+   import package_41.ItemProperty;
    
    public class name_323
    {
        
       
-      public var property:name_320;
+      public var property:ItemProperty;
       
       public var value:String;
       

@@ -4,19 +4,19 @@ package alternativa.tanks.models.weapon.shaft
    import alternativa.engine3d.core.RayIntersectionData;
    import alternativa.engine3d.materials.TextureMaterial;
    import alternativa.model.class_11;
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
    import alternativa.tanks.models.battlefield.name_1194;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
-   import alternativa.tanks.models.weapon.name_1074;
+   import alternativa.tanks.models.tank.ITank;
+   import alternativa.tanks.models.weapon.IWeaponController;
    import alternativa.tanks.models.weapon.name_1495;
    import alternativa.tanks.models.weapon.name_903;
    import alternativa.tanks.models.weapon.name_911;
-   import alternativa.tanks.services.materialregistry.name_100;
-   import alternativa.tanks.utils.name_75;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
+   import alternativa.tanks.utils.MathUtils;
    import alternativa.tanks.vehicles.tanks.Tank;
    import alternativa.tanks.vehicles.tanks.TankSkin;
    import flash.display.Bitmap;
@@ -24,7 +24,7 @@ package alternativa.tanks.models.weapon.shaft
    import flash.utils.Dictionary;
    import flash.utils.getTimer;
    import package_1.Main;
-   import package_161.name_1448;
+   import package_161.IWeaponWeakeningModel;
    import package_167.name_1454;
    import package_299.ShaftSFXModel;
    import package_308.name_1251;
@@ -35,7 +35,7 @@ package alternativa.tanks.models.weapon.shaft
    import package_37.Vector3;
    import package_4.ClientObject;
    import package_40.TankSpawnState;
-   import package_41.name_320;
+   import package_41.ItemProperty;
    import package_41.Vector3dData;
    import package_42.TanksCollisionDetector;
    import package_42.name_73;
@@ -43,7 +43,7 @@ package alternativa.tanks.models.weapon.shaft
    import package_422.ShaftTargetSystem;
    import package_47.BattleTeamType;
    import package_52.WeaponsManager;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_7.name_32;
    import package_71.name_277;
    import package_76.name_735;
@@ -53,10 +53,10 @@ package alternativa.tanks.models.weapon.shaft
    import scpacker.networking.Network;
    import scpacker.networking.name_2;
    
-   public class ShaftModel implements class_83, class_11, name_1074
+   public class ShaftModel implements class_83, class_11, IWeaponController
    {
       
-      private static const const_363:Number = name_75.method_604(15);
+      private static const const_363:Number = MathUtils.method_604(15);
       
       private static const const_1823:Number = 8;
       
@@ -129,7 +129,7 @@ package alternativa.tanks.models.weapon.shaft
       
       private var var_13:TankModel;
       
-      private var var_730:name_1448;
+      private var var_730:IWeaponWeakeningModel;
       
       private var name_247:TanksCollisionDetector;
       
@@ -179,7 +179,7 @@ package alternativa.tanks.models.weapon.shaft
       
       private var var_2110:MultybodyCollisionPredicate;
       
-      private var var_711:name_124;
+      private var var_711:RayHit;
       
       private var var_2107:ShaftTargetSystem;
       
@@ -189,7 +189,7 @@ package alternativa.tanks.models.weapon.shaft
       
       private var var_2105:Boolean;
       
-      private var var_2112:name_124;
+      private var var_2112:RayHit;
       
       private var var_2111:name_1252;
       
@@ -209,22 +209,22 @@ package alternativa.tanks.models.weapon.shaft
          this.var_2106 = name_1261.RECHARGE;
          this.name_1271 = new name_1268();
          this.var_2110 = new MultybodyCollisionPredicate();
-         this.var_711 = new name_124();
+         this.var_711 = new RayHit();
          this.var_2107 = new ShaftTargetSystem();
          this.var_1082 = new ShaftShotResult();
-         this.var_2112 = new name_124();
+         this.var_2112 = new RayHit();
          this.var_2111 = new name_1252();
          this.var_2113 = new name_1252();
          super();
       }
       
-      public static function globalToLocal(param1:name_660, param2:Vector3) : void
+      public static function globalToLocal(param1:Body, param2:Vector3) : void
       {
          param2.subtract(param1.state.position);
          param2.vTransformBy3Tr(param1.name_225);
       }
       
-      public static function localToGlobal(param1:name_660, param2:Vector3) : void
+      public static function localToGlobal(param1:Body, param2:Vector3) : void
       {
          param2.vTransformBy3(param1.name_225);
          param2.vAdd(param1.state.position);
@@ -265,9 +265,9 @@ package alternativa.tanks.models.weapon.shaft
          }
       }
       
-      public function name_1436() : name_320
+      public function name_1436() : ItemProperty
       {
-         return name_320.name_488;
+         return ItemProperty.SHAFT_RESISTANCE;
       }
       
       public function initObject(param1:ClientObject, param2:Number, param3:Number, param4:Number, param5:Number, param6:Number, param7:Number, param8:Number, param9:Number, param10:Number, param11:Number, param12:Number, param13:Number) : void
@@ -293,19 +293,19 @@ package alternativa.tanks.models.weapon.shaft
       {
          if(this.modelService == null)
          {
-            this.modelService = name_32(Main.osgi.name_6(name_32));
-            this.var_11 = Main.osgi.name_6(name_83) as BattlefieldModel;
-            this.var_13 = Main.osgi.name_6(class_7) as TankModel;
-            this.var_728 = Main.osgi.name_6(name_1188) as name_1188;
-            this.var_730 = name_1448(this.modelService.getModelsByInterface(name_1448)[0]);
-            this.var_1008 = Main.osgi.name_6(name_1188) as name_1188;
+            this.modelService = name_32(Main.osgi.getService(name_32));
+            this.var_11 = Main.osgi.getService(IBattleField) as BattlefieldModel;
+            this.var_13 = Main.osgi.getService(ITank) as TankModel;
+            this.var_728 = Main.osgi.getService(name_1188) as name_1188;
+            this.var_730 = IWeaponWeakeningModel(this.modelService.getModelsByInterface(IWeaponWeakeningModel)[0]);
+            this.var_1008 = Main.osgi.getService(name_1188) as name_1188;
             this.var_2101 = this.var_11.var_117.viewport.const_393;
             this.var_2098 = new SetControllerForTemporaryItems(this.var_2101);
             this.name_247 = TanksCollisionDetector(this.var_11.var_117.name_678.name_247);
          }
          if(var_1001 == null)
          {
-            var_1001 = name_100(Main.osgi.name_6(name_100)).textureMaterialRegistry.getMaterial(null,new const_492().bitmapData,1);
+            var_1001 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry)).textureMaterialRegistry.getMaterial(null,new const_492().bitmapData,1);
          }
       }
       
@@ -327,7 +327,7 @@ package alternativa.tanks.models.weapon.shaft
       
       public function objectUnloaded(param1:ClientObject) : void
       {
-         name_100(Main.osgi.name_6(name_100)).textureMaterialRegistry.disposeMaterial(var_1001);
+         IMaterialRegistry(Main.osgi.getService(IMaterialRegistry)).textureMaterialRegistry.disposeMaterial(var_1001);
          var_1001 = null;
       }
       
@@ -349,15 +349,15 @@ package alternativa.tanks.models.weapon.shaft
          var _loc8_:name_735 = null;
          if(this.tank == null)
          {
-            this.tank = TankData.name_106.tank;
+            this.tank = TankData.localTankData.tank;
          }
-         if(this.activate && TankData.name_106.name_87 == TankSpawnState.ACTIVE)
+         if(this.activate && TankData.localTankData.name_87 == TankSpawnState.ACTIVE)
          {
             this.var_2100 += param2;
          }
          else
          {
-            if(TankData.name_106.name_87 == TankSpawnState.ACTIVE && this.var_2100 > 0 && this.var_2100 < 300)
+            if(TankData.localTankData.name_87 == TankSpawnState.ACTIVE && this.var_2100 > 0 && this.var_2100 < 300)
             {
                this.var_2105 = true;
             }
@@ -371,16 +371,16 @@ package alternativa.tanks.models.weapon.shaft
                this.var_2104 = true;
                Main.stage.addChild(this.var_2097);
                this.var_2096.camera = this.var_11.var_117.viewport.camera;
-               this.var_2096.skin = TankData.name_106.tank.skin;
-               this.var_2096.var_560.name_2486(TankData.name_106.tank.skin.name_200);
+               this.var_2096.skin = TankData.localTankData.tank.skin;
+               this.var_2096.var_560.name_2486(TankData.localTankData.tank.skin.name_200);
                _loc4_ = new Vector3();
-               _loc5_ = this.var_1008.name_1457(TankData.name_106.turret);
-               TankData.name_106.tank.method_480(_loc4_,_loc5_.muzzles);
+               _loc5_ = this.var_1008.name_1457(TankData.localTankData.turret);
+               TankData.localTankData.tank.method_480(_loc4_,_loc5_.muzzles);
                this.var_2096.var_560.name_2489(_loc4_);
                this.var_2096.var_560.elevation = 0;
                this.var_2096.var_560.name_1269 = 0;
                this.var_2096.enter(param1);
-               _loc6_ = TankData.name_106.tank;
+               _loc6_ = TankData.localTankData.tank;
                _loc6_.title.hide();
                _loc7_ = _loc6_.title.method_670();
                this.var_2099 = new Bitmap(_loc7_);
@@ -415,7 +415,7 @@ package alternativa.tanks.models.weapon.shaft
                   {
                      Main.stage.removeChild(this.var_2097);
                      Main.stage.removeChild(this.var_2099);
-                     _loc6_ = TankData.name_106.tank;
+                     _loc6_ = TankData.localTankData.tank;
                      _loc6_.title.show();
                      this.var_11.method_200();
                      this.var_11.method_198();
@@ -474,12 +474,12 @@ package alternativa.tanks.models.weapon.shaft
       
       private function method_2214(param1:ShaftShotResult) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;quick_shot_shaft;" + param1.name_2487());
+         Network(Main.osgi.getService(name_2)).send("battle;quick_shot_shaft;" + param1.name_2487());
       }
       
       private function method_2207() : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;start_fire");
+         Network(Main.osgi.getService(name_2)).send("battle;start_fire");
       }
       
       private function method_2211(param1:int, param2:Vector3, param3:Array) : void
@@ -493,7 +493,7 @@ package alternativa.tanks.models.weapon.shaft
          json.targets = aims;
          json.energy = this.name_1259(this.var_11.name_165().method_923());
          json.muzzle = const_1481.name_1421;
-         Network(Main.osgi.name_6(name_2)).send("battle;fire;" + JSON.stringify(json,function(param1:*, param2:*):*
+         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(json,function(param1:*, param2:*):*
          {
             var _loc3_:* = undefined;
             var _loc4_:* = undefined;
@@ -517,9 +517,9 @@ package alternativa.tanks.models.weapon.shaft
          var _loc1_:int = 0;
          var _loc2_:TankData = null;
          var _loc3_:Tank = null;
-         var _loc4_:TankData = TankData.name_106;
+         var _loc4_:TankData = TankData.localTankData;
          var _loc5_:name_1451 = this.var_1008.name_1457(_loc4_.turret);
-         var _loc6_:ShaftSFXModel = WeaponsManager.createShaftSFXModel(TankData.name_106.turret);
+         var _loc6_:ShaftSFXModel = WeaponsManager.createShaftSFXModel(TankData.localTankData.turret);
          this.var_1016.method_797(_loc4_.tank.skin.name_200,_loc5_.muzzles[0],const_1481.name_1421,var_1006,this.var_1012,const_1481.direction);
          this.var_2107.name_1705(_loc4_,var_1006,const_1481.direction,this.var_1012,this.var_11.getBattlefieldData().tanks,this.var_1082);
          if(this.var_1082.hitPoints.length != 0)
@@ -549,7 +549,7 @@ package alternativa.tanks.models.weapon.shaft
          }
          _loc6_.method_2103(_loc4_.turret,_loc4_.tank.skin.name_909.name_929,_loc4_.tank.skin.name_200);
          _loc6_.method_2101(_loc4_.turret,_loc4_.user,const_1481.name_1421);
-         TankData.name_106.tank.method_432(const_1481.name_1421,const_1481.direction,-_loc5_.kickback);
+         TankData.localTankData.tank.method_432(const_1481.name_1421,const_1481.direction,-_loc5_.kickback);
          this.method_2198(name_1261.RECHARGE,0,this.var_11.name_165().method_923());
          this.method_2214(this.var_1082);
       }
@@ -562,7 +562,7 @@ package alternativa.tanks.models.weapon.shaft
          var _loc8_:TankData = null;
          var _loc9_:Tank = null;
          var _loc10_:TankData = this.var_13.getTankData(param1);
-         if(_loc10_ == TankData.name_106)
+         if(_loc10_ == TankData.localTankData)
          {
             return;
          }
@@ -572,7 +572,7 @@ package alternativa.tanks.models.weapon.shaft
          }
          if(this.var_1008 == null)
          {
-            this.var_1008 = Main.osgi.name_6(name_1188) as name_1188;
+            this.var_1008 = Main.osgi.getService(name_1188) as name_1188;
          }
          var _loc11_:name_1451 = this.var_1008.name_1457(_loc10_.turret);
          var _loc12_:name_1268 = _loc10_.turret.method_16(name_1268) as name_1268;
@@ -617,13 +617,13 @@ package alternativa.tanks.models.weapon.shaft
          var _loc5_:Vector3 = null;
          var _loc6_:TankData = null;
          var _loc7_:TankData = this.var_13.getTankData(param1);
-         if(_loc7_ == TankData.name_106)
+         if(_loc7_ == TankData.localTankData)
          {
             return;
          }
          if(this.var_1008 == null)
          {
-            this.var_1008 = Main.osgi.name_6(name_1188) as name_1188;
+            this.var_1008 = Main.osgi.getService(name_1188) as name_1188;
          }
          var _loc8_:name_1451 = this.var_1008.name_1457(_loc7_.turret);
          this.var_1016.name_1702(_loc7_.tank.skin.name_200,_loc8_.muzzles[0],const_1481.name_1421,const_1481.direction);
@@ -655,10 +655,10 @@ package alternativa.tanks.models.weapon.shaft
       {
          var _loc2_:Object = null;
          var _loc3_:Tank = null;
-         var _loc4_:name_1451 = this.var_728.name_1457(TankData.name_106.turret);
-         var _loc5_:ShaftSFXModel = WeaponsManager.createShaftSFXModel(TankData.name_106.turret);
+         var _loc4_:name_1451 = this.var_728.name_1457(TankData.localTankData.turret);
+         var _loc5_:ShaftSFXModel = WeaponsManager.createShaftSFXModel(TankData.localTankData.turret);
          var _loc6_:int = this.var_11.name_165().method_923();
-         _loc5_.method_2100(TankData.name_106.user);
+         _loc5_.method_2100(TankData.localTankData.user);
          this.method_2197().method_878();
          this.name_106.tank.method_491(const_1481,_loc4_.muzzles);
          var _loc7_:name_2472 = this.method_2205();
@@ -668,18 +668,18 @@ package alternativa.tanks.models.weapon.shaft
          while(_loc9_ < _loc7_.aims.length)
          {
             _loc2_ = _loc7_.aims[_loc9_];
-            this.method_2200(TankData.name_106.user,_loc2_.targetHitPoint,_direction);
+            this.method_2200(TankData.localTankData.user,_loc2_.targetHitPoint,_direction);
             _loc3_ = _loc2_.target;
             _loc3_.method_432(_loc2_.targetHitPoint,_direction,_loc4_.impactForce);
             _loc9_++;
          }
          if(_loc7_.name_2475 != null)
          {
-            this.method_2199(TankData.name_106.user,_loc7_.name_2475,_direction);
+            this.method_2199(TankData.localTankData.user,_loc7_.name_2475,_direction);
             this.var_11.addDecal(_loc7_.name_2475,const_1481.name_1421,50,var_1001);
          }
-         _loc5_.method_2101(TankData.name_106.turret,TankData.name_106.user,const_1481.name_1421);
-         TankData.name_106.tank.method_432(const_1481.name_1421,const_1481.direction,-_loc4_.kickback);
+         _loc5_.method_2101(TankData.localTankData.turret,TankData.localTankData.user,const_1481.name_1421);
+         TankData.localTankData.tank.method_432(const_1481.name_1421,const_1481.direction,-_loc4_.kickback);
          this.method_2211(_loc6_,_loc7_.name_2475,_loc7_.aims);
          this.method_2198(name_1261.RECHARGE,Math.min(this.name_1259(_loc6_),0),_loc6_);
          this.var_2096.var_566 = name_1251.name_1266;
@@ -690,7 +690,7 @@ package alternativa.tanks.models.weapon.shaft
          var _loc4_:TankData = this.var_13.getTankData(param1);
          if(this.var_1008 == null)
          {
-            this.var_1008 = Main.osgi.name_6(name_1188) as name_1188;
+            this.var_1008 = Main.osgi.getService(name_1188) as name_1188;
          }
          var _loc5_:name_1451 = this.var_1008.name_1457(_loc4_.turret);
          this.var_1016.name_1702(_loc4_.tank.skin.name_200,_loc5_.muzzles[0],const_1481.name_1421,const_1481.direction);
@@ -703,7 +703,7 @@ package alternativa.tanks.models.weapon.shaft
          var _loc4_:TankData = this.var_13.getTankData(param1);
          if(this.var_1008 == null)
          {
-            this.var_1008 = Main.osgi.name_6(name_1188) as name_1188;
+            this.var_1008 = Main.osgi.getService(name_1188) as name_1188;
          }
          var _loc5_:name_1451 = this.var_1008.name_1457(_loc4_.turret);
          this.var_1016.name_1702(_loc4_.tank.skin.name_200,_loc5_.muzzles[0],const_1481.name_1421,const_1481.direction);
@@ -714,9 +714,9 @@ package alternativa.tanks.models.weapon.shaft
       public function method_2202() : Boolean
       {
          var _loc1_:Object3D = null;
-         var _loc2_:name_1451 = this.var_728.name_1457(TankData.name_106.turret);
+         var _loc2_:name_1451 = this.var_728.name_1457(TankData.localTankData.turret);
          this.name_106.tank.method_491(const_1481,_loc2_.muzzles);
-         var _loc3_:Vector3 = TankData.name_106.tank.state.position;
+         var _loc3_:Vector3 = TankData.localTankData.tank.state.position;
          _direction.diff(const_1481.name_1422,_loc3_);
          this.var_2098.name_2470(this.name_106.tank.skin.name_200);
          this.var_2098.name_2470(this.name_106.tank.skin.name_123);
@@ -893,10 +893,10 @@ package alternativa.tanks.models.weapon.shaft
       public function name_1274() : void
       {
          this.var_13.lockControls(true);
-         this.var_13.method_47(TankData.name_106,0,true);
-         this.var_13.setControlState(TankData.name_106,0,true);
-         var _loc1_:ShaftSFXModel = WeaponsManager.createShaftSFXModel(TankData.name_106.turret);
-         _loc1_.method_2104(TankData.name_106.turret,TankData.name_106.user,TankData.name_106.tank.skin.name_200);
+         this.var_13.method_47(TankData.localTankData,0,true);
+         this.var_13.setControlState(TankData.localTankData,0,true);
+         var _loc1_:ShaftSFXModel = WeaponsManager.createShaftSFXModel(TankData.localTankData.turret);
+         _loc1_.method_2104(TankData.localTankData.turret,TankData.localTankData.user,TankData.localTankData.tank.skin.name_200);
       }
       
       public function getStatus() : Number
@@ -924,13 +924,13 @@ package alternativa.tanks.models.weapon.shaft
       
       private function method_2209(param1:int) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;begin_enegry_drain;" + param1);
+         Network(Main.osgi.getService(name_2)).send("battle;begin_enegry_drain;" + param1);
       }
       
       public function name_1259(param1:Number) : Number
       {
          var _loc2_:Number = this.var_2109 + (param1 - this.var_2108) * this.var_2103 / 1000;
-         return name_75.method_218(_loc2_,0,this.name_1271.name_2469);
+         return MathUtils.method_218(_loc2_,0,this.name_1271.name_2469);
       }
       
       public function method_1550(param1:int, param2:int) : void
@@ -946,13 +946,13 @@ package alternativa.tanks.models.weapon.shaft
       public function method_999(param1:TankData) : void
       {
          var _loc2_:Tank = null;
-         if(TankData.name_106 == param1)
+         if(TankData.localTankData == param1)
          {
             if(Main.stage.contains(this.var_2097))
             {
                Main.stage.removeChild(this.var_2097);
                Main.stage.removeChild(this.var_2099);
-               _loc2_ = TankData.name_106.tank;
+               _loc2_ = TankData.localTankData.tank;
                _loc2_.title.show();
                this.var_11.method_200();
                this.var_11.method_198();
@@ -971,14 +971,14 @@ package alternativa.tanks.models.weapon.shaft
       public function reset() : void
       {
          this.method_2198(name_1261.RECHARGE,this.name_1271.name_2469,this.var_11.name_165().method_923());
-         if(TankData.name_106 == null)
+         if(TankData.localTankData == null)
          {
             return;
          }
-         var _loc1_:ShaftSFXModel = WeaponsManager.createShaftSFXModel(TankData.name_106.turret);
-         _loc1_.method_2100(TankData.name_106.user);
+         var _loc1_:ShaftSFXModel = WeaponsManager.createShaftSFXModel(TankData.localTankData.turret);
+         _loc1_.method_2100(TankData.localTankData.user);
          this.var_2102 = false;
-         var _loc2_:BattleTeamType = TankData.name_106.teamType;
+         var _loc2_:BattleTeamType = TankData.localTankData.teamType;
          if(this.var_2097 != null)
          {
             this.var_2097.method_872(this.method_968(_loc2_));
@@ -1004,7 +1004,6 @@ package alternativa.tanks.models.weapon.shaft
          this.name_106 = param1;
          this.var_733 = WeaponsManager.var_495[param1.turret.id];
          this.var_727 = this.var_728.name_1457(param1.turret);
-         trace(this.var_733.name_1614.value,this.var_733.name_1628.value,this.var_733.name_1618.value,this.var_733.name_1622.value);
          this.var_2107.name_1804(this.var_11.getBattlefieldData().name_678.name_247,this.var_733.name_1614.value,this.var_733.name_1628.value,this.var_733.name_1618.value,this.var_733.name_1622.value,1,null);
          this.name_1271 = param1.turret.method_16(name_1268) as name_1268;
          this.var_2097 = new ReticleDisplay(Indicator.name_2483(param1.turret),0);
@@ -1036,7 +1035,7 @@ package alternativa.tanks.models.weapon.shaft
 }
 
 import alternativa.physics.collision.name_1160;
-import alternativa.physics.name_660;
+import alternativa.physics.Body;
 import flash.utils.Dictionary;
 
 class MultybodyCollisionPredicate implements name_1160
@@ -1051,7 +1050,7 @@ class MultybodyCollisionPredicate implements name_1160
       super();
    }
    
-   public function considerBody(param1:name_660) : Boolean
+   public function considerBody(param1:Body) : Boolean
    {
       return this.bodies[param1] == null;
    }

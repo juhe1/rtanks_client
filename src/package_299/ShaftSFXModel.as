@@ -5,10 +5,10 @@ package package_299
    import alternativa.tanks.engine3d.TextureMaterialRegistry;
    import alternativa.tanks.engine3d.name_1072;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.sfx.name_1716;
-   import alternativa.tanks.services.materialregistry.name_100;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import alternativa.tanks.sfx.Sound3D;
    import alternativa.tanks.sfx.Sound3DEffect;
    import alternativa.tanks.sfx.name_1070;
@@ -50,7 +50,7 @@ package package_299
       
       private static const const_1783:int = 300;
       
-      private static var var_138:name_118;
+      private static var var_138:IObjectPoolService;
        
       
       private const const_1488:Number = 0.4;
@@ -60,8 +60,8 @@ package package_299
       public function ShaftSFXModel()
       {
          super();
-         var_138 = name_118(Main.osgi.name_6(name_118));
-         this.var_11 = Main.osgi.name_6(name_83) as BattlefieldModel;
+         var_138 = IObjectPoolService(Main.osgi.getService(IObjectPoolService));
+         this.var_11 = Main.osgi.getService(IBattleField) as BattlefieldModel;
       }
       
       private static function method_1276(param1:String, param2:String) : BitmapFilter
@@ -77,7 +77,7 @@ package package_299
       private static function name_1073(param1:BitmapData, param2:BitmapFilter, param3:Number, param4:Number, param5:*) : name_1072
       {
          var _loc6_:BitmapData = GraphicsUtils.name_1786(param1,param2);
-         var _loc7_:name_1072 = GraphicsUtils.name_1073(name_100(Main.osgi.name_6(name_100)).textureMaterialRegistry as TextureMaterialRegistry,_loc6_,param4,param5);
+         var _loc7_:name_1072 = GraphicsUtils.name_1073(IMaterialRegistry(Main.osgi.getService(IMaterialRegistry)).textureMaterialRegistry as TextureMaterialRegistry,_loc6_,param4,param5);
          _loc7_.material.resolution = param3 / param4;
          return _loc7_;
       }
@@ -85,7 +85,7 @@ package package_299
       private static function method_1290(param1:BitmapData, param2:BitmapFilter) : TextureMaterial
       {
          var _loc3_:BitmapData = GraphicsUtils.name_1786(param1,param2);
-         var _loc4_:TextureMaterial = name_100(Main.osgi.name_6(name_100)).textureMaterialRegistry.getMaterial(null,_loc3_,2);
+         var _loc4_:TextureMaterial = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry)).textureMaterialRegistry.getMaterial(null,_loc3_,2);
          _loc4_.resolution = TrailEffect1.WIDTH / param1.width;
          return _loc4_;
       }
@@ -291,9 +291,9 @@ package package_299
       public function objectUnloaded(param1:ClientObject) : void
       {
          var _loc2_:name_2402 = this.method_1264(param1);
-         name_100(Main.osgi.name_6(name_100)).textureMaterialRegistry.disposeMaterial(_loc2_.trailMaterial);
-         name_100(Main.osgi.name_6(name_100)).textureMaterialRegistry.disposeMaterial(_loc2_.name_1762.material);
-         name_100(Main.osgi.name_6(name_100)).textureMaterialRegistry.disposeMaterial(_loc2_.name_2406.material);
+         IMaterialRegistry(Main.osgi.getService(IMaterialRegistry)).textureMaterialRegistry.disposeMaterial(_loc2_.trailMaterial);
+         IMaterialRegistry(Main.osgi.getService(IMaterialRegistry)).textureMaterialRegistry.disposeMaterial(_loc2_.name_1762.material);
+         IMaterialRegistry(Main.osgi.getService(IMaterialRegistry)).textureMaterialRegistry.disposeMaterial(_loc2_.name_2406.material);
       }
       
       private function method_1264(param1:ClientObject) : name_2402

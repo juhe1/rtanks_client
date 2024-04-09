@@ -5,7 +5,7 @@ package scpacker.resource
    import alternativa.tanks.service.name_554;
    import flash.events.EventDispatcher;
    import package_102.Command;
-   import package_102.name_346;
+   import package_102.Type;
    import package_124.name_42;
    import package_13.Long;
    import package_137.AlertService;
@@ -24,7 +24,7 @@ package scpacker.resource
    public class ResourceLoaderModel extends EventDispatcher implements class_6
    {
       
-      public static var modelRegistry:name_29 = OSGi.getInstance().name_6(name_29) as name_29;
+      public static var modelRegistry:name_29 = OSGi.getInstance().getService(name_29) as name_29;
        
       
       private var var_105:LocalizationLoader;
@@ -42,27 +42,27 @@ package scpacker.resource
       {
          var _loc2_:Object = null;
          var _loc3_:* = undefined;
-         if(param1.type == name_346.SYSTEM)
+         if(param1.type == Type.SYSTEM)
          {
             switch(param1.name_319[0])
             {
                case "init_localization":
                   this.var_105.name_556(param1.name_319[1]);
-                  AlertService(OSGi.getInstance().name_6(name_42)).init();
+                  AlertService(OSGi.getInstance().getService(name_42)).init();
                   break;
                case "init_social_network":
                   _loc2_ = JSON.parse(param1.name_319[1]);
                   for each(_loc3_ in _loc2_)
                   {
-                     name_554(OSGi.getInstance().name_6(name_554)).setEnabled(_loc3_.snId,_loc3_.enabled);
+                     name_554(OSGi.getInstance().getService(name_554)).setEnabled(_loc3_.snId,_loc3_.enabled);
                   }
                   break;
                case "load_resources":
                   this.method_132(JSON.parse(param1.name_319[1]),parseInt(param1.name_319[2]));
                   break;
                case "init_auth":
-                  name_13(OSGi.getInstance().name_6(name_13)).hideForcibly();
-                  Authorization(OSGi.getInstance().name_6(IAuthorization)).init();
+                  name_13(OSGi.getInstance().getService(name_13)).hideForcibly();
+                  Authorization(OSGi.getInstance().getService(IAuthorization)).init();
             }
          }
       }
@@ -80,7 +80,7 @@ package scpacker.resource
          try
          {
             Model.object = this.var_106;
-            OSGi.getInstance().name_6(DispatcherModel).loadDependencies(new name_555(id,this.method_131(resources,id)));
+            OSGi.getInstance().getService(DispatcherModel).loadDependencies(new name_555(id,this.method_131(resources,id)));
             OSGi.clientLog.log("ResourceLoaderModel","Start loading resource list, size: %1",resources.length);
             Model.method_38();
          }
@@ -102,7 +102,7 @@ package scpacker.resource
          {
             return _loc3_;
          }
-         var _loc4_:ResourceRegistry = ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry));
+         var _loc4_:ResourceRegistry = ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry));
          for each(_loc5_ in param1)
          {
             _loc6_ = null;

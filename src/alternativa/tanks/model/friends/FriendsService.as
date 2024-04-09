@@ -34,7 +34,6 @@ package alternativa.tanks.model.friends
          method_1175(param1);
          method_1170(param1);
          method_1171(param1);
-         trace(param1);
       }
       
       public static function method_1174(param1:String) : name_1666
@@ -69,27 +68,27 @@ package alternativa.tanks.model.friends
       
       public static function method_1180(param1:String) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby;make_friend;" + param1);
+         Network(Main.osgi.getService(name_2)).send("lobby;make_friend;" + param1);
       }
       
       public static function method_851(param1:String) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby;cancel_request;" + param1);
+         Network(Main.osgi.getService(name_2)).send("lobby;cancel_request;" + param1);
       }
       
       public static function method_371(param1:String) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby;deny_friend;" + param1);
+         Network(Main.osgi.getService(name_2)).send("lobby;deny_friend;" + param1);
       }
       
       public static function method_346(param1:String) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby;accept_friend;" + param1);
+         Network(Main.osgi.getService(name_2)).send("lobby;accept_friend;" + param1);
       }
       
       public static function method_1178(param1:String) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby;remove_new_accepted;" + param1);
+         Network(Main.osgi.getService(name_2)).send("lobby;remove_new_accepted;" + param1);
       }
       
       public static function name_476(param1:String) : void
@@ -250,7 +249,7 @@ package alternativa.tanks.model.friends
       public static function method_1182(param1:String) : Boolean
       {
          var _loc2_:Boolean = false;
-         if(PanelModel(Main.osgi.name_6(name_115)).isBattleSelect || PanelModel(Main.osgi.name_6(name_115)).isInBattle)
+         if(PanelModel(Main.osgi.getService(name_115)).isBattleSelect || PanelModel(Main.osgi.getService(name_115)).isInBattle)
          {
             if(method_1174(param1) == name_1666.name_1669)
             {

@@ -1,6 +1,6 @@
 package alternativa.tanks.model
 {
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import flash.utils.Dictionary;
    import package_1.Main;
    import package_328.class_57;
@@ -22,19 +22,19 @@ package alternativa.tanks.model
       public function ItemEffectModel()
       {
          super();
-         var_365.push(name_66);
-         var_365.push(name_364);
-         var_365.push(class_58);
+         _interfaces.push(IModel);
+         _interfaces.push(name_364);
+         _interfaces.push(class_58);
          this.var_889 = new Dictionary();
          this.var_890 = new Dictionary();
-         this.modelRegister = Main.osgi.name_6(name_32) as name_32;
+         this.modelRegister = Main.osgi.getService(name_32) as name_32;
       }
       
       public function name_399(param1:String, param2:Number) : void
       {
          var _loc4_:int = 0;
          this.var_889[param1] = param2;
-         var _loc3_:Vector.<name_66> = this.modelRegister.getModelsByInterface(class_51);
+         var _loc3_:Vector.<IModel> = this.modelRegister.getModelsByInterface(class_51);
          if(_loc3_ != null)
          {
             _loc4_ = 0;
@@ -50,7 +50,7 @@ package alternativa.tanks.model
       {
          var _loc3_:int = 0;
          this.var_889[param1] = null;
-         var _loc2_:Vector.<name_66> = this.modelRegister.getModelsByInterface(class_51);
+         var _loc2_:Vector.<IModel> = this.modelRegister.getModelsByInterface(class_51);
          if(_loc2_ != null)
          {
             _loc3_ = 0;

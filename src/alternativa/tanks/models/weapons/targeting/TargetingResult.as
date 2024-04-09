@@ -2,7 +2,7 @@ package alternativa.tanks.models.weapons.targeting
 {
    import alternativa.tanks.battle.BattleUtils;
    import package_37.Vector3;
-   import package_61.name_124;
+   import package_61.RayHit;
    
    public class TargetingResult
    {
@@ -10,9 +10,9 @@ package alternativa.tanks.models.weapons.targeting
       
       private var direction:Vector3;
       
-      private var var_460:name_124;
+      private var var_460:RayHit;
       
-      private var var_2486:Vector.<name_124>;
+      private var var_2486:Vector.<RayHit>;
       
       public function TargetingResult()
       {
@@ -25,7 +25,7 @@ package alternativa.tanks.models.weapons.targeting
          return this.var_460 != null;
       }
       
-      public function method_2492() : name_124
+      public function method_2492() : RayHit
       {
          return this.var_460;
       }
@@ -35,7 +35,7 @@ package alternativa.tanks.models.weapons.targeting
          return this.direction;
       }
       
-      public function method_2491() : Vector.<name_124>
+      public function method_2491() : Vector.<RayHit>
       {
          return this.var_2486;
       }
@@ -50,9 +50,9 @@ package alternativa.tanks.models.weapons.targeting
          return this.var_460 != null || this.var_2486.length > 0;
       }
       
-      public function name_452(param1:Vector3, param2:Vector.<name_124>) : void
+      public function name_452(param1:Vector3, param2:Vector.<RayHit>) : void
       {
-         var _loc3_:name_124 = null;
+         var _loc3_:RayHit = null;
          this.direction.copy(param1);
          this.var_2486 = param2.concat();
          this.var_460 = null;
@@ -66,7 +66,7 @@ package alternativa.tanks.models.weapons.targeting
          }
       }
       
-      public function name_1751() : name_124
+      public function name_1751() : RayHit
       {
          if(this.var_460 != null)
          {

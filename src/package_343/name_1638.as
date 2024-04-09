@@ -1,11 +1,11 @@
 package package_343
 {
-   import package_41.name_320;
+   import package_41.ItemProperty;
    
    public interface name_1638
    {
        
       
-      function method_501() : Vector.<name_320>;
+      function method_501() : Vector.<ItemProperty>;
    }
 }

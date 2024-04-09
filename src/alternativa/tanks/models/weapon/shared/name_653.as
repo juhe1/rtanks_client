@@ -1,10 +1,10 @@
 package alternativa.tanks.models.weapon.shared
 {
-   import alternativa.physics.name_660;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.physics.Body;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.vehicles.tanks.Tank;
-   import package_161.name_1448;
+   import package_161.IWeaponWeakeningModel;
    import package_167.name_1454;
    import package_47.BattleTeamType;
    import package_7.name_32;
@@ -35,7 +35,7 @@ package alternativa.tanks.models.weapon.shared
          this.var_690 = param4;
       }
       
-      public static function create(param1:TankData, param2:name_1454, param3:name_83, param4:name_1448, param5:name_32) : name_653
+      public static function create(param1:TankData, param2:name_1454, param3:IBattleField, param4:IWeaponWeakeningModel, param5:name_32) : name_653
       {
          var _loc6_:Number = NaN;
          if(param4 != null)
@@ -50,7 +50,7 @@ package alternativa.tanks.models.weapon.shared
          return new name_653(param1,null,_loc6_,_loc7_);
       }
       
-      public function method_960(param1:name_660, param2:Number, param3:Number) : Number
+      public function method_960(param1:Body, param2:Number, param3:Number) : Number
       {
          var _loc4_:Tank = param1 as Tank;
          if(_loc4_ == null)

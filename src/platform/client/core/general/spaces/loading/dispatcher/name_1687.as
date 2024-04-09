@@ -31,13 +31,13 @@ package platform.client.core.general.spaces.loading.dispatcher
          super();
          this.model = param1;
          var _loc2_:ByteArray = new ByteArray();
-         this.var_235 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_235 = name_840(OSGi.getInstance().getService(name_840));
          this.var_2047 = new name_69(_loc2_,_loc2_,new OptionalMap());
       }
       
       public function name_1692(param1:int) : void
       {
-         Network(OSGi.getInstance().name_6(name_2)).send("system;resources_loaded;" + param1);
+         Network(OSGi.getInstance().getService(name_2)).send("system;resources_loaded;" + param1);
       }
    }
 }

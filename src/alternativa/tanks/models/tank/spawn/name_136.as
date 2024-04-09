@@ -1,8 +1,8 @@
 package alternativa.tanks.models.tank.spawn
 {
    import alternativa.osgi.OSGi;
-   import alternativa.tanks.models.battlefield.name_83;
-   import alternativa.tanks.models.tank.class_7;
+   import alternativa.tanks.models.battlefield.IBattleField;
+   import alternativa.tanks.models.tank.ITank;
    import package_101.TankSpawnerModelBase;
    import package_101.name_291;
    import package_305.name_1216;
@@ -19,9 +19,9 @@ package alternativa.tanks.models.tank.spawn
    public class name_136 extends TankSpawnerModelBase implements name_279, name_291, name_287, name_170
    {
       
-      public static var battleService:name_83 = OSGi.getInstance().name_6(name_83) as name_83;
+      public static var battleService:IBattleField = OSGi.getInstance().getService(IBattleField) as IBattleField;
       
-      public static var battleEventDispatcher:name_96 = OSGi.getInstance().name_6(name_96) as name_96;
+      public static var battleEventDispatcher:name_96 = OSGi.getInstance().getService(name_96) as name_96;
       
       private static const const_386:Vector3d = new Vector3d(0,0,0);
        
@@ -57,7 +57,7 @@ package alternativa.tanks.models.tank.spawn
       
       public function objectLoaded() : void
       {
-         var _loc2_:class_7 = class_7(object.name_176(class_7));
+         var _loc2_:ITank = ITank(object.name_176(ITank));
          if(_loc2_.isLocal())
          {
             putData(name_1216,new name_1218(object,server));
@@ -103,7 +103,7 @@ package alternativa.tanks.models.tank.spawn
       
       public function objectUnloaded() : void
       {
-         var _loc1_:class_7 = class_7(object.name_176(class_7));
+         var _loc1_:ITank = ITank(object.name_176(ITank));
          if(_loc1_.isLocal())
          {
             if(Boolean(this.var_539))

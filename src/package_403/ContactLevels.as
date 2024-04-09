@@ -1,7 +1,7 @@
 package package_403
 {
    import alternativa.physics.BodyContact;
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    
    public class ContactLevels
    {
@@ -31,7 +31,7 @@ package package_403
          this.var_793.length = 0;
       }
       
-      public function name_2863(param1:Vector.<BodyContact>, param2:Vector.<name_660>) : void
+      public function name_2863(param1:Vector.<BodyContact>, param2:Vector.<Body>) : void
       {
          var _loc3_:int = 0;
          var _loc4_:BodyContact = null;
@@ -67,7 +67,7 @@ package package_403
          return !(param1.body1.var_317 && param1.body2.var_317);
       }
       
-      private function method_3054(param1:BodyContact) : name_660
+      private function method_3054(param1:BodyContact) : Body
       {
          if(param1.body1.var_317)
          {
@@ -83,7 +83,7 @@ package package_403
          this.var_793.length = _loc2_;
       }
       
-      public function name_2865(param1:Vector.<name_660>, param2:Vector.<BodyContact>, param3:Vector.<name_660>) : void
+      public function name_2865(param1:Vector.<Body>, param2:Vector.<BodyContact>, param3:Vector.<Body>) : void
       {
          var _loc4_:int = 0;
          var _loc5_:BodyContact = null;
@@ -114,12 +114,12 @@ package package_403
          }
       }
       
-      private function method_3057(param1:Vector.<name_660>, param2:BodyContact) : Boolean
+      private function method_3057(param1:Vector.<Body>, param2:BodyContact) : Boolean
       {
          return param1.indexOf(param2.body1) >= 0 || param1.indexOf(param2.body2) >= 0;
       }
       
-      private function method_3056(param1:BodyContact, param2:Vector.<name_660>) : name_660
+      private function method_3056(param1:BodyContact, param2:Vector.<Body>) : Body
       {
          if(param2.indexOf(param1.body1) < 0)
          {

@@ -14,9 +14,9 @@ package package_380
    public class QuestTabButtonsList extends class_122
    {
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
-      public static var var_2541:name_44 = OSGi.getInstance().name_6(name_44) as name_44;
+      public static var var_2541:name_44 = OSGi.getInstance().getService(name_44) as name_44;
       
       public static var const_1530:int = 30;
       

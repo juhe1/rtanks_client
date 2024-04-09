@@ -1,6 +1,6 @@
 package package_181
 {
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import flash.display.BitmapData;
    import flash.utils.Dictionary;
    import package_1.Main;
@@ -20,7 +20,7 @@ package package_181
       public function BannerModel()
       {
          super();
-         var_365.push(name_66,class_129,class_130);
+         _interfaces.push(IModel,class_129,class_130);
          this.var_1129 = new Dictionary();
          this.url = new Dictionary();
       }

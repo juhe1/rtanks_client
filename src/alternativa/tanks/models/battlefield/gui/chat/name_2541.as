@@ -11,7 +11,7 @@ package alternativa.tanks.models.battlefield.gui.chat
    public class name_2541 extends name_2537
    {
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
        
       
       private var message:String;
@@ -33,7 +33,7 @@ package alternativa.tanks.models.battlefield.gui.chat
          _loc4_ = 0;
          _loc4_ = 14;
          this.var_3141 = new Label();
-         this.var_3141.color = name_1135.name_1140;
+         this.var_3141.color = MessageColor.name_1140;
          this.var_3141.text = localeService.getText(name_390.const_837) + ":";
          this.var_3141.thickness = 50;
          this.var_3141.sharpness = 0;
@@ -41,7 +41,7 @@ package alternativa.tanks.models.battlefield.gui.chat
          var_2577.addChild(this.var_3141);
          this.var_3141.x = _loc4_;
          _loc4_ += this.var_3141.textWidth + 1;
-         this.var_633.color = name_1135.method_2075(BattleTeamType.NONE,param3,true);
+         this.var_633.color = MessageColor.method_2075(BattleTeamType.NONE,param3,true);
          this.var_633.antiAliasType = AntiAliasType.ADVANCED;
          this.var_633.thickness = 150;
          this.var_633.sharpness = 200;

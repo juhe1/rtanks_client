@@ -41,7 +41,7 @@ package package_20
       public function toString() : String
       {
          var _loc1_:int = 0;
-         var _loc2_:name_29 = name_29(OSGi.getInstance().name_6(name_29));
+         var _loc2_:name_29 = name_29(OSGi.getInstance().getService(name_29));
          var _loc3_:String = "ClientClass\n";
          _loc3_ += "  id: " + this.var_21 + "\n";
          if(this.var_232.length > 0)

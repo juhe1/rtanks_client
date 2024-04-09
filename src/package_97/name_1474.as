@@ -1,7 +1,7 @@
 package package_97
 {
-   import alternativa.physics.collision.name_774;
-   import alternativa.physics.name_660;
+   import alternativa.physics.collision.CollisionPrimitive;
+   import alternativa.physics.Body;
    import alternativa.physics.name_888;
    import alternativa.physics.name_889;
    import alternativa.tanks.battle.name_712;
@@ -62,9 +62,9 @@ package package_97
          this.const_1887.calculateAABB();
       }
       
-      public function method_1636(param1:name_660) : void
+      public function method_1636(param1:Body) : void
       {
-         var _loc2_:name_774 = null;
+         var _loc2_:CollisionPrimitive = null;
          var _loc3_:name_889 = param1.var_302.head;
          while(_loc3_ != null)
          {

@@ -10,7 +10,7 @@ package package_145
    public class name_494 implements name_493
    {
       
-      public static var log:name_26 = name_26(OSGi.getInstance().name_6(name_26));
+      public static var log:name_26 = name_26(OSGi.getInstance().getService(name_26));
        
       
       private var var_971:name_1675;

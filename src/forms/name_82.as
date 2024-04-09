@@ -35,7 +35,7 @@ package forms
          this.bg = new name_1154();
          this.label = new Label();
          super();
-         var _loc3_:name_102 = Main.osgi.name_6(name_102) as name_102;
+         var _loc3_:name_102 = Main.osgi.getService(name_102) as name_102;
          var _loc4_:String = param2 == 0 ? String(_loc3_.getText(TextConst.BATTLE_TEAM_RED)) : String(_loc3_.getText(TextConst.BATTLE_TEAM_BLUE));
          this.label.align = TextFormatAlign.CENTER;
          this.label.size = 14;

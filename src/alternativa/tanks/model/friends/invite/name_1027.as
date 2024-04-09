@@ -1,6 +1,6 @@
 package alternativa.tanks.model.friends.invite
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import forms.name_1139;
    import package_175.class_151;
    import package_390.name_1889;
@@ -9,7 +9,7 @@ package alternativa.tanks.model.friends.invite
    {
        
       
-      private var var_1775:name_1134;
+      private var var_1775:LabelBase;
       
       private var var_1367:name_1889;
       
@@ -23,7 +23,7 @@ package alternativa.tanks.model.friends.invite
          super.init();
          this.var_1367 = new name_1889(userId);
          addChild(this.var_1367);
-         this.var_1775 = new name_1134();
+         this.var_1775 = new LabelBase();
          this.var_1775.mouseEnabled = false;
          addChild(this.var_1775);
          this.var_1775.color = name_1139.name_1894;

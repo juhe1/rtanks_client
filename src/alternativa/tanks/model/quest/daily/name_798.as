@@ -15,11 +15,11 @@ package alternativa.tanks.model.quest.daily
    public class name_798 extends DailyQuestShowingModelBase implements name_335, name_170, name_805
    {
       
-      public static var var_644:class_27 = OSGi.getInstance().name_6(class_27) as class_27;
+      public static var var_644:class_27 = OSGi.getInstance().getService(class_27) as class_27;
       
-      public static var var_1548:name_548 = OSGi.getInstance().name_6(name_548) as name_548;
+      public static var var_1548:name_548 = OSGi.getInstance().getService(name_548) as name_548;
       
-      public static var var_1549:name_551 = OSGi.getInstance().name_6(name_551) as name_551;
+      public static var var_1549:name_551 = OSGi.getInstance().getService(name_551) as name_551;
        
       
       public function name_798()

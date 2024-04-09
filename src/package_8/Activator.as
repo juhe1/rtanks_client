@@ -21,7 +21,7 @@ package package_8
    import alternativa.tanks.models.clan.*;
    import alternativa.tanks.models.panel.*;
    import alternativa.tanks.models.user.*;
-   import package_11.name_23;
+   import package_11.IBundleActivator;
    import package_12.name_24;
    import package_124.name_42;
    import package_128.name_636;
@@ -104,7 +104,7 @@ package package_8
    import projects.tanks.client.clans.user.name_614;
    import projects.tanks.client.clans.user.name_650;
    
-   public class Activator implements name_23
+   public class Activator implements IBundleActivator
    {
       
       public static var osgi:OSGi;
@@ -255,10 +255,10 @@ package package_8
          osgi.name_40(name_65,name_592,"clanUserService");
          osgi.name_40(name_65,name_589,"clanUserService");
          osgi.name_40(name_65,name_596,"clanUserService");
-         var _loc3_:name_29 = osgi.name_6(name_29) as name_29;
+         var _loc3_:name_29 = osgi.getService(name_29) as name_29;
          _loc3_.name_275(name_569,name_624);
          _loc3_.name_270(name_569,ISourceDataEvents);
-         var _loc4_:name_29 = osgi.name_6(name_29) as name_29;
+         var _loc4_:name_29 = osgi.getService(name_29) as name_29;
          _loc4_.add(new name_570(),Vector.<Class>([name_619,name_572,name_569,name_287,name_141]));
          _loc3_.name_275(name_572,name_647);
          _loc3_.name_270(name_572,IClanModelEvents);

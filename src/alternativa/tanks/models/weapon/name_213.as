@@ -26,6 +26,6 @@ package alternativa.tanks.models.weapon
       
       function method_577(param1:ClientObject) : Number;
       
-      function getWeaponController() : name_1074;
+      function getWeaponController() : IWeaponController;
    }
 }

@@ -41,7 +41,7 @@ package package_35
       private function activate(param1:Event) : void
       {
          var _loc4_:class_5 = null;
-         var _loc2_:name_25 = OSGi.osgi.name_6(name_25) as name_25;
+         var _loc2_:name_25 = OSGi.osgi.getService(name_25) as name_25;
          _loc2_.name_848("FOCUS","activate");
          var _loc3_:int = 0;
          while(_loc3_ < this.var_1106.length)
@@ -55,7 +55,7 @@ package package_35
       private function deactivate(param1:Event) : void
       {
          var _loc4_:class_5 = null;
-         var _loc2_:name_25 = OSGi.osgi.name_6(name_25) as name_25;
+         var _loc2_:name_25 = OSGi.osgi.getService(name_25) as name_25;
          _loc2_.name_848("FOCUS","deactivate");
          var _loc3_:int = 0;
          while(_loc3_ < this.var_1106.length)

@@ -128,7 +128,7 @@ package package_474
       
       public static function method_3286(param1:int, param2:int, param3:int) : name_3588
       {
-         var _loc4_:String = String((Main.osgi.name_6(name_102) as name_102).language);
+         var _loc4_:String = String((Main.osgi.getService(name_102) as name_102).language);
          switch(_loc4_.toLowerCase())
          {
             case "ru":

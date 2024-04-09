@@ -12,7 +12,7 @@ package package_380
    public class name_2716 extends class_163
    {
       
-      public static var var_2550:name_542 = OSGi.getInstance().name_6(name_542) as name_542;
+      public static var var_2550:name_542 = OSGi.getInstance().getService(name_542) as name_542;
       
       private static const const_2587:int = -16;
       

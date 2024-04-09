@@ -14,7 +14,7 @@ package package_305
    public class name_1218 implements name_1216, AutoClosable
    {
       
-      public static var battleEventDispatcher:name_96 = OSGi.getInstance().name_6(name_96) as name_96;
+      public static var battleEventDispatcher:name_96 = OSGi.getInstance().getService(name_96) as name_96;
        
       
       private var name_700:name_70;

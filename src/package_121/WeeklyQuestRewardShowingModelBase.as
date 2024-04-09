@@ -30,7 +30,7 @@ package package_121
       
       public function WeeklyQuestRewardShowingModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_387(this);
          this.var_25 = Long.getLong(432617209,-1426923357);
          this.var_1525 = Long.getLong(1076222089,1622955023);

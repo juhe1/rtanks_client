@@ -2,22 +2,22 @@ package package_151
 {
    import alternativa.engine3d.core.Object3D;
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
-   import alternativa.physics.name_660;
+   import alternativa.model.IModel;
+   import alternativa.physics.Body;
    import alternativa.tanks.engine3d.name_1072;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.sfx.LightDataManager;
    import alternativa.tanks.models.sfx.name_1096;
    import alternativa.tanks.models.sfx.name_1716;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
-   import alternativa.tanks.models.weapon.name_1074;
+   import alternativa.tanks.models.tank.ITank;
+   import alternativa.tanks.models.weapon.IWeaponController;
    import alternativa.tanks.models.weapon.name_903;
    import alternativa.tanks.models.weapon.name_911;
    import alternativa.tanks.models.weapon.shared.name_653;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import alternativa.tanks.sfx.Sound3D;
    import alternativa.tanks.sfx.Sound3DEffect;
    import alternativa.tanks.sfx.name_1070;
@@ -30,7 +30,7 @@ package package_151
    import package_1.Main;
    import package_152.name_1793;
    import package_152.name_1795;
-   import package_161.name_1448;
+   import package_161.IWeaponWeakeningModel;
    import package_167.name_1454;
    import package_278.name_1288;
    import package_278.name_905;
@@ -38,32 +38,32 @@ package package_151
    import package_373.class_105;
    import package_373.class_106;
    import package_4.ClientObject;
-   import package_41.name_320;
+   import package_41.ItemProperty;
    import package_41.Vector3dData;
    import package_42.TanksCollisionDetector;
    import package_42.name_73;
    import package_52.WeaponsManager;
    import package_6.ObjectRegister;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_7.name_32;
    import package_92.name_1188;
    import package_92.name_1451;
    import scpacker.networking.Network;
    import scpacker.networking.name_2;
    
-   public class RicochetModel extends class_105 implements class_106, class_11, name_1074, class_107
+   public class RicochetModel extends class_105 implements class_106, class_11, IWeaponController, class_107
    {
       
       private static const const_1489:name_903 = new name_903();
       
       private static const const_106:Number = 266;
       
-      private static var var_138:name_118;
+      private static var var_138:IObjectPoolService;
        
       
       private var var_728:name_1188;
       
-      private var var_1014:name_1448;
+      private var var_1014:IWeaponWeakeningModel;
       
       private var battlefield:BattlefieldModel;
       
@@ -105,7 +105,7 @@ package package_151
       
       private var var_1075:Vector3;
       
-      private var var_397:name_124;
+      private var var_397:RayHit;
       
       private var var_1078:Number = 150;
       
@@ -125,15 +125,15 @@ package package_151
          this.var_1073 = new Vector3();
          this.var_1077 = new Vector3();
          this.var_1075 = new Vector3();
-         this.var_397 = new name_124();
+         this.var_397 = new RayHit();
          super();
-         var_365.push(name_66,class_11,name_1074);
-         var_138 = name_118(Main.osgi.name_6(name_118));
+         _interfaces.push(IModel,class_11,IWeaponController);
+         var_138 = IObjectPoolService(Main.osgi.getService(IObjectPoolService));
       }
       
-      public function name_1436() : name_320
+      public function name_1436() : ItemProperty
       {
-         return name_320.name_491;
+         return ItemProperty.RICOCHET_RESISTANCE;
       }
       
       public function name_1603(param1:ClientObject, param2:String, param3:Vector3dData, param4:int, param5:int, param6:int, param7:Number) : void
@@ -200,9 +200,9 @@ package package_151
          param1.method_12(name_1792,_loc8_);
          if(this.battlefield == null)
          {
-            _loc9_ = name_32(Main.osgi.name_6(name_32));
-            this.battlefield = BattlefieldModel(Main.osgi.name_6(name_83));
-            this.var_13 = TankModel(Main.osgi.name_6(class_7));
+            _loc9_ = name_32(Main.osgi.getService(name_32));
+            this.battlefield = BattlefieldModel(Main.osgi.getService(IBattleField));
+            this.var_13 = TankModel(Main.osgi.getService(ITank));
             this.var_728 = name_1188(_loc9_.getModelsByInterface(name_1188)[0]);
          }
          this.objectLoaded(param1);
@@ -213,8 +213,8 @@ package package_151
          var _loc2_:name_32 = null;
          if(this.var_1014 == null)
          {
-            _loc2_ = name_32(Main.osgi.name_6(name_32));
-            this.var_1014 = name_1448(_loc2_.getModelsByInterface(name_1448)[0]);
+            _loc2_ = name_32(Main.osgi.getService(name_32));
+            this.var_1014 = IWeaponWeakeningModel(_loc2_.getModelsByInterface(IWeaponWeakeningModel)[0]);
          }
       }
       
@@ -238,10 +238,10 @@ package package_151
          this.name_106 = param1;
          this.var_1072 = name_1792(_loc2_.method_16(name_1792));
          this.var_1074 = name_1793(_loc2_.method_16(name_1793));
-         var _loc3_:name_32 = name_32(Main.osgi.name_6(name_32));
+         var _loc3_:name_32 = name_32(Main.osgi.getService(name_32));
          this.var_733 = WeaponsManager.var_495[_loc2_.id];
          this.var_727 = this.var_728.name_1457(param1.turret);
-         var _loc4_:name_83 = name_83(Main.osgi.name_6(name_83));
+         var _loc4_:IBattleField = IBattleField(Main.osgi.getService(IBattleField));
          var _loc5_:TanksCollisionDetector = _loc4_.getBattlefieldData().name_247;
          var _loc6_:name_653 = name_653.create(this.name_106,this.var_733,this.battlefield,this.var_1014,_loc3_);
          this.targetSystem = new name_1794(this.var_733.name_1614.value,this.var_733.name_1628.value,this.var_733.name_1618.value,this.var_733.name_1622.value,this.var_1072.shotDistance,_loc5_,_loc6_);
@@ -284,7 +284,7 @@ package package_151
          return this.currentEnergy.value / this.var_1072.energyCapacity;
       }
       
-      public function method_1282(param1:RicochetShot, param2:Vector3, param3:Vector3, param4:name_660) : void
+      public function method_1282(param1:RicochetShot, param2:Vector3, param3:Vector3, param4:Body) : void
       {
          var _loc5_:Tank = null;
          var _loc6_:TankData = null;
@@ -316,7 +316,7 @@ package package_151
          _loc11_.y = param8;
          _loc11_.z = param9;
          _loc11_.reloadTime = this.var_733.reloadMsec.value;
-         Network(Main.osgi.name_6(name_2)).send("battle;fire;" + JSON.stringify(_loc11_));
+         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(_loc11_));
       }
       
       private function method_1284(param1:Vector3, param2:name_1793, param3:ClientObject) : void
@@ -398,7 +398,7 @@ package package_151
          var _loc5_:Object = new Object();
          _loc5_.self_hit = true;
          _loc5_.reloadTime = this.var_733.reloadMsec.value;
-         Network(Main.osgi.name_6(name_2)).send("battle;fire;" + JSON.stringify(_loc5_));
+         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(_loc5_));
       }
       
       private function method_1217(param1:ClientObject, param2:int, param3:Number, param4:Number, param5:Number) : void
@@ -408,7 +408,7 @@ package package_151
          _loc6_.x = param3;
          _loc6_.y = param4;
          _loc6_.z = param5;
-         Network(Main.osgi.name_6(name_2)).send("battle;start_fire;" + JSON.stringify(_loc6_));
+         Network(Main.osgi.getService(name_2)).send("battle;start_fire;" + JSON.stringify(_loc6_));
       }
       
       private function name_1249(param1:TankData, param2:name_1792, param3:name_1793, param4:name_1451, param5:Vector3, param6:Vector3, param7:Vector3, param8:Vector3) : RicochetShot

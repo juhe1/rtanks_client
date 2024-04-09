@@ -5,7 +5,7 @@ package alternativa.tanks.models.weapon.machinegun
    import alternativa.osgi.OSGi;
    import alternativa.tanks.engine3d.TextureMaterialRegistry;
    import alternativa.tanks.engine3d.name_1072;
-   import alternativa.tanks.services.materialregistry.name_100;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
    import alternativa.tanks.utils.GraphicsUtils;
    import flash.display.BitmapData;
    import flash.filters.BitmapFilter;
@@ -16,7 +16,7 @@ package alternativa.tanks.models.weapon.machinegun
    public class name_2410
    {
       
-      public static var var_58:TextureMaterialRegistry = TextureMaterialRegistry(name_100(OSGi.getInstance().name_6(name_100)).textureMaterialRegistry);
+      public static var var_58:TextureMaterialRegistry = TextureMaterialRegistry(IMaterialRegistry(OSGi.getInstance().getService(IMaterialRegistry)).textureMaterialRegistry);
        
       
       private var var_2020:Sound;

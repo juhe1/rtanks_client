@@ -3,10 +3,10 @@ package package_1
    import alternativa.osgi.OSGi;
    import flash.text.Font;
    import flash.text.TextFormat;
-   import package_11.name_23;
+   import package_11.IBundleActivator;
    import var_5.name_269;
    
-   public class name_7 implements name_23
+   public class name_7 implements IBundleActivator
    {
       
       private static const const_18:Class = name_268;

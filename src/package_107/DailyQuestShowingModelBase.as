@@ -36,7 +36,7 @@ package package_107
       
       public function DailyQuestShowingModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_335(this);
          this.var_25 = Long.getLong(1734194361,-1013591761);
          this.var_1541 = Long.getLong(27042981,-1604202185);

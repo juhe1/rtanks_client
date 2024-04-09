@@ -6,7 +6,7 @@ package package_409
    public class name_2229
    {
       
-      public static var localeService:name_102 = Main.osgi.name_6(name_102) as name_102;
+      public static var localeService:name_102 = Main.osgi.getService(name_102) as name_102;
        
       
       public var color:uint;

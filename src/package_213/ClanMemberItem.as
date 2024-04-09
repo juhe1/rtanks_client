@@ -4,7 +4,7 @@ package package_213
    import alternativa.tanks.gui.clanmanagement.ClanPermissionsManager;
    import alternativa.tanks.gui.clanmanagement.clanmemberlist.*;
    import alternativa.tanks.gui.clanmanagement.name_2047;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.DisplayObject;
    import flash.events.Event;
    import flash.events.MouseEvent;
@@ -31,17 +31,17 @@ package package_213
       
       public var var_1371:ContextMenuPermissionLabel;
       
-      private var var_1376:name_1134;
+      private var var_1376:LabelBase;
       
-      private var var_1374:name_1134;
+      private var var_1374:LabelBase;
       
-      private var var_1375:name_1134;
+      private var var_1375:LabelBase;
       
-      private var var_1373:name_1134;
+      private var var_1373:LabelBase;
       
-      private var var_1372:name_1134;
+      private var var_1372:LabelBase;
       
-      private var lastOnlineDate:name_1134;
+      private var lastOnlineDate:LabelBase;
       
       public var newIndicator:NewClanMemberIndicator;
       
@@ -108,9 +108,9 @@ package package_213
          addEventListener(Event.REMOVED_FROM_STAGE,this.method_886,false,0,true);
       }
       
-      private static function method_582() : name_1134
+      private static function method_582() : LabelBase
       {
-         var _loc1_:name_1134 = new name_1134();
+         var _loc1_:LabelBase = new LabelBase();
          _loc1_.autoSize = TextFieldAutoSize.LEFT;
          _loc1_.align = TextFormatAlign.LEFT;
          _loc1_.multiline = true;

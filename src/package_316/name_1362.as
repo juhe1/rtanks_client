@@ -18,11 +18,11 @@ package package_316
    public class name_1362 extends name_1890 implements name_979
    {
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
-      public static var var_644:class_27 = OSGi.getInstance().name_6(class_27) as class_27;
+      public static var var_644:class_27 = OSGi.getInstance().getService(class_27) as class_27;
       
-      public static var var_2230:name_807 = OSGi.getInstance().name_6(name_807) as name_807;
+      public static var var_2230:name_807 = OSGi.getInstance().getService(name_807) as name_807;
        
       
       private var var_2227:Sprite;

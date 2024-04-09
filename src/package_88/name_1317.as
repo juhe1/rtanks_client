@@ -2,14 +2,14 @@ package package_88
 {
    import alternativa.engine3d.objects.Mesh;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import package_1.Main;
    import package_37.Vector3;
    
    public class name_1317
    {
       
-      public static var battleService:BattlefieldModel = Main.osgi.name_6(name_83) as BattlefieldModel;
+      public static var battleService:BattlefieldModel = Main.osgi.getService(IBattleField) as BattlefieldModel;
        
       
       protected var mesh:Mesh;

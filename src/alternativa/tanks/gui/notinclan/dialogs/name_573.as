@@ -2,10 +2,10 @@ package alternativa.tanks.gui.notinclan.dialogs
 {
    import alternativa.tanks.gui.clanmanagement.ClanActionsManager;
    import alternativa.tanks.gui.clanmanagement.clanmemberlist.class_138;
-   import controls.base.name_998;
+   import controls.base.DefaultButtonBase;
    import flash.events.Event;
    import flash.events.MouseEvent;
-   import forms.name_1838;
+   import forms.TankWindowWithHeader;
    import package_25.name_52;
    import package_26.name_62;
    import package_379.class_123;
@@ -26,9 +26,9 @@ package alternativa.tanks.gui.notinclan.dialogs
       public static const const_1535:Number = 7;
        
       
-      protected var name_983:name_998;
+      protected var name_983:DefaultButtonBase;
       
-      protected var window:name_1838;
+      protected var window:TankWindowWithHeader;
       
       private var _width:Number;
       
@@ -38,9 +38,9 @@ package alternativa.tanks.gui.notinclan.dialogs
       {
          super();
          ClanActionsManager.name_1931(this);
-         this.window = name_1838.name_1844(localeService.getText(this.method_1477()));
+         this.window = TankWindowWithHeader.createWindow(localeService.getText(this.method_1477()));
          addEventListener(Event.ADDED_TO_STAGE,this.onAddedToStage);
-         this.name_983 = new name_998();
+         this.name_983 = new DefaultButtonBase();
          this.name_983.label = localeService.getText(name_390.const_1168);
          this.name_983.addEventListener(MouseEvent.CLICK,this.method_1475);
          addChild(this.window);

@@ -4,7 +4,7 @@ package alternativa.tanks.vehicles.tanks
    import alternativa.engine3d.core.Object3D;
    import alternativa.engine3d.objects.Mesh;
    import alternativa.osgi.OSGi;
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import alternativa.physics.name_886;
    import alternativa.physics.name_888;
    import alternativa.physics.name_889;
@@ -14,7 +14,7 @@ package alternativa.tanks.vehicles.tanks
    import alternativa.tanks.battle.class_21;
    import alternativa.tanks.battle.class_22;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.turret.name_914;
    import alternativa.tanks.models.weapon.name_903;
@@ -43,7 +43,7 @@ package alternativa.tanks.vehicles.tanks
    import package_76.FollowCameraController;
    import platform.client.fp10.core.type.name_70;
    
-   public class Tank extends name_660 implements class_19, class_21, class_22, class_20
+   public class Tank extends Body implements class_19, class_21, class_22, class_20
    {
       
       private static const const_61:name_888 = new name_888(0,1);
@@ -89,7 +89,7 @@ package alternativa.tanks.vehicles.tanks
       
       public var tankData:TankData;
       
-      private var var_323:name_922;
+      private var var_323:WeaponMount;
       
       public var var_338:Number = 0;
       
@@ -175,7 +175,7 @@ package alternativa.tanks.vehicles.tanks
          this.var_334 = new name_86();
          this.var_332 = new Vector3();
          this.var_331 = new Matrix4();
-         this.var_323 = new name_910(0,0);
+         this.var_323 = new Turret(0,0);
          var _loc7_:Vector3 = method_466(this.skin.name_912.var_308);
          this.name_266 = param4;
          this.chassis = new TrackedChassis(this.var_321,this,_loc7_,this.name_266,this.name_266.damping);
@@ -220,7 +220,7 @@ package alternativa.tanks.vehicles.tanks
          }
       }
       
-      public function method_495() : name_922
+      public function method_495() : WeaponMount
       {
          return this.var_323;
       }
@@ -343,12 +343,12 @@ package alternativa.tanks.vehicles.tanks
          return new Vector3(param1.boundMaxX - param1.boundMinX,param1.boundMaxY - param1.boundMinY,param1.boundMaxZ - param1.boundMinZ);
       }
       
-      public function name_214(param1:Number, param2:Boolean) : void
+      public function setMaxTurretTurnSpeed(param1:Number, param2:Boolean) : void
       {
          this.var_323.name_201(param1,param2);
       }
       
-      public function name_246(param1:Number) : void
+      public function setTurretTurnAcceleration(param1:Number) : void
       {
          this.var_323.name_246(param1);
       }
@@ -358,14 +358,19 @@ package alternativa.tanks.vehicles.tanks
          this.var_323.method_486(param1);
       }
       
-      public function name_201(param1:Number, param2:Boolean) : void
+      public function setMaxTurnSpeed(param1:Number, param2:Boolean) : void
       {
-         this.chassis.name_201(param1,param2);
+         this.chassis.setMaxTurnSpeed(param1,param2);
       }
       
-      public function name_265(param1:Number, param2:Boolean) : void
+      public function setMaxSpeed(param1:Number, param2:Boolean) : void
       {
-         this.chassis.name_265(param1,param2);
+         this.chassis.setMaxSpeed(param1,param2);
+      }
+      
+      public function setAcceleration(param1:Number) : void
+      {
+         this.chassis.setAccelaration(param1);
       }
       
       public function setTemperature(param1:Number) : void
@@ -555,7 +560,7 @@ package alternativa.tanks.vehicles.tanks
       
       private function method_473() : void
       {
-         var _loc1_:name_660 = this.var_321.name_787;
+         var _loc1_:Body = this.var_321.name_787;
          var _loc2_:name_886 = _loc1_.state;
          if(!_loc2_.name_940())
          {
@@ -649,7 +654,7 @@ package alternativa.tanks.vehicles.tanks
          {
             return;
          }
-         name_910(this.var_323).setRemoteDirection(param1);
+         Turret(this.var_323).setRemoteDirection(param1);
       }
       
       public function get title() : UserTitle
@@ -772,7 +777,7 @@ package alternativa.tanks.vehicles.tanks
          return true;
       }
       
-      public function method_456() : name_660
+      public function method_456() : Body
       {
          return this;
       }
@@ -799,7 +804,7 @@ package alternativa.tanks.vehicles.tanks
       
       public function method_459(param1:int = 7) : void
       {
-         var _loc2_:BattlefieldModel = BattlefieldModel(OSGi.getInstance().name_6(name_83));
+         var _loc2_:BattlefieldModel = BattlefieldModel(OSGi.getInstance().getService(IBattleField));
          var _loc3_:Dust = null;
          var _loc4_:int = 0;
          if(_loc2_ != null)

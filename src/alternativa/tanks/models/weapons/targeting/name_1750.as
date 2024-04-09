@@ -6,7 +6,7 @@ package alternativa.tanks.models.weapons.targeting
    import alternativa.tanks.models.weapons.targeting.priority.TargetingPriorityCalculator;
    import package_100.class_39;
    import package_441.TargetingVisualDebug;
-   import package_61.name_124;
+   import package_61.RayHit;
    
    public class name_1750
    {
@@ -39,7 +39,7 @@ package alternativa.tanks.models.weapons.targeting
       public function target(param1:name_903) : TargetingResult
       {
          var _loc2_:name_2702 = null;
-         var _loc3_:Vector.<name_124> = null;
+         var _loc3_:Vector.<RayHit> = null;
          var _loc4_:Number = NaN;
          var _loc5_:Vector.<name_2702> = this.var_2481.name_2707(param1);
          _loc5_.push(new name_2702(param1.direction,0,0));

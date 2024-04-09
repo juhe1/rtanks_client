@@ -31,9 +31,9 @@ package package_484
       
       private static const const_2939:int = 200;
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
-      public static var resourceRegistry:ResourceRegistry = OSGi.getInstance().name_6(ResourceRegistry) as ResourceRegistry;
+      public static var resourceRegistry:ResourceRegistry = OSGi.getInstance().getService(ResourceRegistry) as ResourceRegistry;
        
       
       private var icon:Bitmap;
@@ -59,7 +59,7 @@ package package_484
          this.var_643 = new name_1890();
          this.var_3753 = new name_1890();
          super();
-         var _loc3_:name_324 = GarageModel(OSGi.getInstance().name_6(name_381)).getObjectItemParams(param2);
+         var _loc3_:name_324 = GarageModel(OSGi.getInstance().getService(name_381)).getObjectItemParams(param2);
          this.item = param1;
          this.skin = param2;
          this.icon.x = 30;

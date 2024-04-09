@@ -15,7 +15,7 @@ package package_261
       
       private static const const_1581:int = 1000;
       
-      public static var lobbyLayoutService:name_94 = OSGi.getInstance().name_6(name_94) as name_94;
+      public static var lobbyLayoutService:name_94 = OSGi.getInstance().getService(name_94) as name_94;
        
       
       private var var_1497:Date;

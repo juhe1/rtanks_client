@@ -1,7 +1,7 @@
 package package_182
 {
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.tanks.gui.ConfugirationsNewbiesWindow;
    import alternativa.tanks.gui.CongratulationsWindowPresent;
    import alternativa.tanks.gui.CongratulationsWindowWithBanner;
@@ -38,10 +38,10 @@ package package_182
       public function BonusModel()
       {
          super();
-         var_365.push(name_66,name_659,name_1587,class_11);
+         _interfaces.push(IModel,name_659,name_1587,class_11);
          this.dialogsLayer = Main.dialogsLayer;
-         var _loc1_:name_32 = Main.osgi.name_6(name_32) as name_32;
-         this.panelModel = (_loc1_.getModelsByInterface(name_115) as Vector.<name_66>)[0] as name_115;
+         var _loc1_:name_32 = Main.osgi.getService(name_32) as name_32;
+         this.panelModel = (_loc1_.getModelsByInterface(name_115) as Vector.<IModel>)[0] as name_115;
       }
       
       public function name_437(param1:ClientObject, param2:Array, param3:String) : void
@@ -49,7 +49,7 @@ package package_182
          if(param2.length > 0)
          {
             this.panelModel.blur();
-            this.var_1123 = new CongratulationsWindowWithBanner(name_102(Main.osgi.name_6(name_102)).getText(TextConst.const_278),param2,null);
+            this.var_1123 = new CongratulationsWindowWithBanner(name_102(Main.osgi.getService(name_102)).getText(TextConst.const_278),param2,null);
             this.dialogsLayer.addChild(this.var_1123);
             this.var_1123.name_983.addEventListener(MouseEvent.CLICK,this.method_1145);
             this.method_1080();

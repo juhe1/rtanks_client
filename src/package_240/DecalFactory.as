@@ -7,14 +7,14 @@ package package_240
    import flash.geom.Vector3D;
    import package_37.Vector3;
    import package_42.name_73;
-   import package_61.name_124;
+   import package_61.RayHit;
    
    public class DecalFactory
    {
       
       private static const const_1559:Number = 1.4835298641951802;
       
-      private static const var_397:name_124 = new name_124();
+      private static const var_397:RayHit = new RayHit();
       
       private static const direction:Vector3 = new Vector3();
       

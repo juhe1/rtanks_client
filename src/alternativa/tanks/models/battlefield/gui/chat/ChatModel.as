@@ -1,10 +1,10 @@
 package alternativa.tanks.models.battlefield.gui.chat
 {
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.osgi.OSGi;
    import alternativa.tanks.models.battlefield.name_193;
-   import alternativa.tanks.service.settings.name_108;
+   import alternativa.tanks.service.settings.IBattleSettings;
    import flash.display.DisplayObjectContainer;
    import flash.events.KeyboardEvent;
    import flash.ui.Keyboard;
@@ -26,7 +26,7 @@ package alternativa.tanks.models.battlefield.gui.chat
    public class ChatModel extends ChatModelBase implements name_400, class_11, class_1, IChatBattle
    {
       
-      public static var contextMenuService:name_308 = OSGi.getInstance().name_6(name_308) as name_308;
+      public static var contextMenuService:name_308 = OSGi.getInstance().getService(name_308) as name_308;
        
       
       private var var_63:name_193;
@@ -53,10 +53,10 @@ package alternativa.tanks.models.battlefield.gui.chat
       {
          this.var_1142 = new Vector.<String>();
          super();
-         var_365.push(name_66,name_400,class_11,name_1829,class_1);
+         _interfaces.push(IModel,name_400,class_11,name_1829,class_1);
          this.contentLayer = Main.contentUILayer;
          this.var_1141 = new BattleChat();
-         Main.osgi.name_1(IChatBattle,this);
+         Main.osgi.registerService(IChatBattle,this);
       }
       
       public function getChat() : BattleChat
@@ -72,7 +72,7 @@ package alternativa.tanks.models.battlefield.gui.chat
          this.var_1141.addEventListener(name_1337.name_1345,this.method_1388);
          this.var_1141.addEventListener(name_1337.name_1348,this.method_1389);
          Main.stage.addEventListener(KeyboardEvent.KEY_UP,this.onKeyUp);
-         var _loc2_:name_32 = Main.osgi.name_6(name_32) as name_32;
+         var _loc2_:name_32 = Main.osgi.getService(name_32) as name_32;
          this.var_1141.method_891 = this.method_1391().showChat;
          contextMenuService.addEventListener(ContextMenuServiceEvent.VOTE_USER,this.method_1390);
          this.var_1144 = new KeyboardBinder(this.var_1141.input);
@@ -187,7 +187,7 @@ package alternativa.tanks.models.battlefield.gui.chat
          var _loc4_:RegExp = /;/g;
          var _loc5_:RegExp = /~/g;
          param2 = param2.replace(_loc4_," ").replace(_loc5_," ");
-         Network(Main.osgi.name_6(name_2)).send("battle;chat;" + param2 + ";" + param3);
+         Network(Main.osgi.getService(name_2)).send("battle;chat;" + param2 + ";" + param3);
       }
       
       private function method_1392(param1:Boolean) : void
@@ -244,9 +244,9 @@ package alternativa.tanks.models.battlefield.gui.chat
          }
       }
       
-      private function method_1391() : name_108
+      private function method_1391() : IBattleSettings
       {
-         return name_108(Main.osgi.name_6(name_108));
+         return IBattleSettings(Main.osgi.getService(IBattleSettings));
       }
    }
 }

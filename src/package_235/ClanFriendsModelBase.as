@@ -34,7 +34,7 @@ package package_235
       
       public function ClanFriendsModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_635(this);
          this.var_25 = Long.getLong(1889621503,1893984398);
          this.var_1378 = Long.getLong(2135860306,-1585042188);

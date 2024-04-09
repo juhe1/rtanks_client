@@ -15,7 +15,7 @@ package package_96
    public class ResistanceButton extends ShopButton
    {
       
-      public static var var_2347:name_1358 = OSGi.getInstance().name_6(name_1358) as name_1358;
+      public static var var_2347:name_1358 = OSGi.getInstance().getService(name_1358) as name_1358;
       
       private static const const_2466:Class = name_3190;
       

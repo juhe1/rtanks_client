@@ -1,8 +1,8 @@
 package alternativa.tanks.model.friends.invite
 {
    import assets.cellrenderer.battlelist.PaydIcon;
-   import controls.base.name_1134;
-   import controls.base.name_998;
+   import controls.base.LabelBase;
+   import controls.base.DefaultButtonBase;
    import flash.events.MouseEvent;
    import flash.external.ExternalInterface;
    import flash.text.TextLineMetrics;
@@ -16,7 +16,7 @@ package alternativa.tanks.model.friends.invite
    import package_54.LocaleService;
    import package_54.name_102;
    import package_60.TextConst;
-   import package_95.name_298;
+   import package_95.IStorageService;
    import package_95.name_526;
    import scpacker.networking.Network;
    import scpacker.networking.name_2;
@@ -24,9 +24,9 @@ package alternativa.tanks.model.friends.invite
    public class BattleInviteNotification extends class_151
    {
       
-      public static var localeService:name_102 = LocaleService(Main.osgi.name_6(name_102));
+      public static var localeService:name_102 = LocaleService(Main.osgi.getService(name_102));
       
-      public static var storageService:name_298 = name_526(Main.osgi.name_6(name_298));
+      public static var storageService:IStorageService = name_526(Main.osgi.getService(IStorageService));
       
       private static const const_1576:int = 96;
       
@@ -39,13 +39,13 @@ package alternativa.tanks.model.friends.invite
       
       private var var_2890:Boolean;
       
-      private var var_1866:name_1134;
+      private var var_1866:LabelBase;
       
-      private var var_2885:name_1134;
+      private var var_2885:LabelBase;
       
-      private var var_1868:name_998;
+      private var var_1868:DefaultButtonBase;
       
-      private var var_1867:name_998;
+      private var var_1867:DefaultButtonBase;
       
       private var var_2887:Boolean;
       
@@ -82,12 +82,12 @@ package alternativa.tanks.model.friends.invite
          this.var_2887 = this.var_2890 && !ExternalInterface.available;
          this.var_1367 = new name_1889(userId);
          addChild(this.var_1367);
-         this.var_1866 = new name_1134();
+         this.var_1866 = new LabelBase();
          this.var_1866.color = name_1139.name_1894;
          this.var_1866.mouseEnabled = false;
          addChild(this.var_1866);
          this.var_1866.htmlText = message;
-         this.var_2885 = new name_1134();
+         this.var_2885 = new LabelBase();
          this.var_2885.color = name_1139.name_1894;
          this.var_2885.mouseEnabled = false;
          addChild(this.var_2885);
@@ -98,11 +98,11 @@ package alternativa.tanks.model.friends.invite
             this.var_2886.gotoAndStop(1);
             addChild(this.var_2886);
          }
-         this.var_1867 = new name_998();
+         this.var_1867 = new DefaultButtonBase();
          this.var_1867.width = 96;
          this.var_1867.label = localeService.getText(TextConst.const_346);
          addChild(this.var_1867);
-         this.var_1868 = new name_998();
+         this.var_1868 = new DefaultButtonBase();
          this.var_1868.width = 96;
          this.var_1868.label = localeService.getText(TextConst.const_354);
          addChild(this.var_1868);
@@ -126,8 +126,8 @@ package alternativa.tanks.model.friends.invite
       
       private function method_2027(param1:MouseEvent) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby;accept_invite;" + userId);
-         PanelModel(Main.osgi.name_6(name_115)).goToBattle(this.var_2889);
+         Network(Main.osgi.getService(name_2)).send("lobby;accept_invite;" + userId);
+         PanelModel(Main.osgi.getService(name_115)).goToBattle(this.var_2889);
          hide();
       }
       
@@ -138,7 +138,7 @@ package alternativa.tanks.model.friends.invite
       
       override protected function method_1655() : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby;reject_invite;" + userId);
+         Network(Main.osgi.getService(name_2)).send("lobby;reject_invite;" + userId);
          if(this.var_2887 && !method_2721())
          {
             method_2720();

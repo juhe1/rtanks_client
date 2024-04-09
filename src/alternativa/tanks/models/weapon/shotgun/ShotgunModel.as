@@ -3,12 +3,12 @@ package alternativa.tanks.models.weapon.shotgun
    import alternativa.model.class_11;
    import alternativa.osgi.OSGi;
    import alternativa.tanks.battle.BattleUtils;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
+   import alternativa.tanks.models.tank.ITank;
    import alternativa.tanks.models.weapon.WeaponObject;
-   import alternativa.tanks.models.weapon.name_1074;
+   import alternativa.tanks.models.weapon.IWeaponController;
    import alternativa.tanks.models.weapon.name_903;
    import alternativa.tanks.models.weapon.name_911;
    import alternativa.tanks.models.weapon.shared.name_653;
@@ -17,15 +17,15 @@ package alternativa.tanks.models.weapon.shotgun
    import flash.utils.Dictionary;
    import flash.utils.getTimer;
    import package_13.Long;
-   import package_161.name_1448;
-   import package_161.name_515;
+   import package_161.IWeaponWeakeningModel;
+   import package_161.WeaponWeakeningModel;
    import package_167.name_1454;
-   import package_322.class_43;
+   import package_322.IShotModelBase;
    import package_323.name_1447;
    import package_37.Vector3;
    import package_39.Model;
    import package_4.ClientObject;
-   import package_41.name_320;
+   import package_41.ItemProperty;
    import package_52.WeaponsManager;
    import package_63.name_162;
    import package_7.name_32;
@@ -41,7 +41,7 @@ package alternativa.tanks.models.weapon.shotgun
    import platform.client.fp10.core.type.name_70;
    import projects.tanks.client.battlefield.models.tankparts.weapons.common.name_1378;
    
-   public class ShotgunModel extends name_304 implements class_43, class_11, name_1074, name_273
+   public class ShotgunModel extends name_304 implements IShotModelBase, class_11, IWeaponController, name_273
    {
       
       protected static const var_557:name_903 = new name_903();
@@ -49,13 +49,13 @@ package alternativa.tanks.models.weapon.shotgun
       
       private var modelService:name_32;
       
-      private var var_11:name_83;
+      private var var_11:IBattleField;
       
       private var var_13:TankModel;
       
       private var var_728:name_1188;
       
-      private var var_730:name_1448;
+      private var var_730:IWeaponWeakeningModel;
       
       private var name_106:TankData;
       
@@ -93,9 +93,9 @@ package alternativa.tanks.models.weapon.shotgun
          this.var_722 = new Vector3();
       }
       
-      public function name_1436() : name_320
+      public function name_1436() : ItemProperty
       {
-         return name_320.name_434;
+         return ItemProperty.SHOTGUN_RESISTANCE;
       }
       
       public function objectLoaded(param1:ClientObject) : void
@@ -104,11 +104,11 @@ package alternativa.tanks.models.weapon.shotgun
          {
             return;
          }
-         this.modelService = name_32(OSGi.getInstance().name_6(name_32));
-         this.var_11 = OSGi.getInstance().name_6(name_83) as name_83;
-         this.var_13 = OSGi.getInstance().name_6(class_7) as TankModel;
-         this.var_728 = OSGi.getInstance().name_6(name_1188) as name_1188;
-         this.var_730 = name_1448(this.modelService.getModelsByInterface(name_1448)[0]);
+         this.modelService = name_32(OSGi.getInstance().getService(name_32));
+         this.var_11 = OSGi.getInstance().getService(IBattleField) as IBattleField;
+         this.var_13 = OSGi.getInstance().getService(ITank) as TankModel;
+         this.var_728 = OSGi.getInstance().getService(name_1188) as name_1188;
+         this.var_730 = IWeaponWeakeningModel(this.modelService.getModelsByInterface(IWeaponWeakeningModel)[0]);
       }
       
       public function objectUnloaded(param1:ClientObject) : void
@@ -146,7 +146,7 @@ package alternativa.tanks.models.weapon.shotgun
          this.name_106 = param1;
          this.var_727 = this.var_728.name_1457(param1.turret);
          Model.object = param1.object;
-         var _loc2_:name_29 = OSGi.getInstance().name_6(name_29) as name_29;
+         var _loc2_:name_29 = OSGi.getInstance().getService(name_29) as name_29;
          _loc2_.getModel(Long.getLong(1519945329,-715940911)).method_18(param1.turret.method_16(name_162));
          Model.method_38();
          this.var_11.method_147(name_653.create(param1,WeaponsManager.var_495[param1.turret.id],null,null,null));
@@ -249,16 +249,16 @@ package alternativa.tanks.models.weapon.shotgun
       private function method_1003(param1:Vector.<name_1243>, param2:TankData) : void
       {
          var _loc3_:name_1243 = null;
-         var _loc4_:class_7 = null;
+         var _loc4_:ITank = null;
          var _loc5_:Tank = null;
          var _loc6_:Vector3 = null;
          var _loc7_:Number = NaN;
          var _loc8_:WeaponObject = null;
          var _loc9_:Number = 0;
-         var _loc10_:name_515 = null;
+         var _loc10_:WeaponWeakeningModel = null;
          for each(_loc3_ in param1)
          {
-            _loc4_ = class_7(_loc3_.target.name_176(class_7));
+            _loc4_ = ITank(_loc3_.target.name_176(ITank));
             _loc5_ = _loc4_.getTank();
             _loc6_ = BattleUtils.getVector3(_loc3_.localHitPoint);
             BattleUtils.localToGlobal(_loc5_.method_456(),_loc6_);
@@ -286,7 +286,7 @@ package alternativa.tanks.models.weapon.shotgun
       
       public function method_796(param1:name_70, param2:Vector3, param3:Vector.<name_1243>) : void
       {
-         var _loc4_:class_7 = class_7(param1.name_176(class_7));
+         var _loc4_:ITank = ITank(param1.name_176(ITank));
          var _loc5_:Tank = _loc4_.getTank();
          this.method_797(_loc5_);
          this.method_1003(param3,_loc5_.tankData);

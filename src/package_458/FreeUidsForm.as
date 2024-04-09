@@ -1,6 +1,6 @@
 package package_458
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.dropdownlist.DPLBackground;
    import flash.display.Sprite;
    import flash.events.KeyboardEvent;
@@ -15,9 +15,9 @@ package package_458
    public class FreeUidsForm extends Sprite
    {
       
-      public static var display:name_529 = Main.osgi.name_6(name_24) as name_529;
+      public static var display:name_529 = Main.osgi.getService(name_24) as name_529;
       
-      public static var localeService:name_102 = Main.osgi.name_6(name_102) as name_102;
+      public static var localeService:name_102 = Main.osgi.getService(name_102) as name_102;
       
       public static const const_1475:int = 200;
       
@@ -32,7 +32,7 @@ package package_458
       
       private var var_1445:DPLBackground;
       
-      private var _label:name_1134;
+      private var _label:LabelBase;
       
       private var _items:Array;
       
@@ -52,7 +52,7 @@ package package_458
          this._items = [];
          this.var_1445 = new DPLBackground(this._width,137);
          addChild(this.var_1445);
-         this._label = new name_1134();
+         this._label = new LabelBase();
          this._label.width = this._width;
          this._label.text = localeService.getText(TextConst.const_339);
          this._label.x = 6;

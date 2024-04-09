@@ -1,7 +1,7 @@
 package package_146
 {
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import package_350.class_62;
    import package_350.class_63;
    import package_4.ClientObject;
@@ -13,9 +13,9 @@ package package_146
       public function name_495()
       {
          super();
-         var_365.push(name_66);
-         var_365.push(class_63);
-         var_365.push(class_11);
+         _interfaces.push(IModel);
+         _interfaces.push(class_63);
+         _interfaces.push(class_11);
       }
       
       public function objectLoaded(param1:ClientObject) : void

@@ -6,8 +6,8 @@ package alternativa.physics.collision
    {
        
       
-      function method_694(param1:name_774, param2:name_774, param3:Vector.<ShapeContact>) : void;
+      function method_694(param1:CollisionPrimitive, param2:CollisionPrimitive, param3:Vector.<ShapeContact>) : void;
       
-      function name_1176(param1:name_774, param2:name_774) : Boolean;
+      function name_1176(param1:CollisionPrimitive, param2:CollisionPrimitive) : Boolean;
    }
 }

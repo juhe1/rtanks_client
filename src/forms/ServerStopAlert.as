@@ -37,7 +37,7 @@ package forms
       
       protected function init() : void
       {
-         var _loc1_:name_102 = Main.osgi.name_6(name_102) as name_102;
+         var _loc1_:name_102 = Main.osgi.getService(name_102) as name_102;
          this.var_1740.align = TextFormatAlign.CENTER;
          this.str = _loc1_.getText(TextConst.SERVER_STOP_ALERT_TEXT);
          this.var_1740.text = this.getText(this.str,"88");

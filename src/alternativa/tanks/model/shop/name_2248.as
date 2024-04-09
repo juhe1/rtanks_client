@@ -21,7 +21,7 @@ package alternativa.tanks.model.shop
       {
          super();
          this.service = new name_369();
-         Main.osgi.name_1(name_366,this.service);
+         Main.osgi.registerService(name_366,this.service);
          this.service.addEventListener(name_1576.name_1577,this.method_2726);
          this.service.addEventListener(name_1576.name_1578,this.method_2727);
       }
@@ -53,7 +53,7 @@ package alternativa.tanks.model.shop
       
       private function method_2728(param1:SendPromoCodeEvent) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby;try_activate_promocode;" + param1.name_2912());
+         Network(Main.osgi.getService(name_2)).send("lobby;try_activate_promocode;" + param1.name_2912());
       }
       
       public function destroy() : void
@@ -63,7 +63,7 @@ package alternativa.tanks.model.shop
             this.form.removeEventListener(SendPromoCodeEvent.name_2910,this.method_2728);
          }
          this.form = null;
-         Main.osgi.name_48(name_366);
+         Main.osgi.unregisterService(name_366);
          this.service.removeEventListener(name_1576.name_1577,this.method_2726);
          this.service.removeEventListener(name_1576.name_1578,this.method_2727);
          this.service = null;

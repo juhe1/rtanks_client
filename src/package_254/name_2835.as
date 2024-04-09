@@ -8,7 +8,7 @@ package package_254
    public class name_2835
    {
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
       private static const const_1581:int = 1000;
       

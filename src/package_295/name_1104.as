@@ -1,6 +1,6 @@
 package package_295
 {
-   import alternativa.tanks.model.name_1605;
+   import alternativa.tanks.model.PingService;
    import controls.Label;
    import flash.display.Sprite;
    import flash.events.Event;
@@ -117,8 +117,8 @@ package package_295
       
       private function method_347(param1:TimerEvent) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;ping");
-         name_1605.name_2350();
+         Network(Main.osgi.getService(name_2)).send("battle;ping");
+         PingService.name_2350();
       }
       
       private function onEnterFrame(param1:Event) : void
@@ -160,8 +160,8 @@ package package_295
             this.time = _loc2_;
             this.counter = 0;
             _loc4_ = getTimer();
-            _loc5_ = _loc4_ - name_1605.name_2349();
-            _loc6_ = name_1605.name_2348();
+            _loc5_ = _loc4_ - PingService.name_2349();
+            _loc6_ = PingService.name_2348();
             if(_loc6_ > 2000)
             {
                _loc6_ = 999;

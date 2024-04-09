@@ -2,9 +2,9 @@ package alternativa.tanks.models.weapon.shotgun
 {
    import alternativa.osgi.OSGi;
    import alternativa.physics.collision.name_1160;
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import alternativa.tanks.battle.BattleUtils;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.weapon.WeaponObject;
    import alternativa.tanks.models.weapon.name_2505;
    import alternativa.tanks.models.weapon.name_903;
@@ -16,7 +16,7 @@ package alternativa.tanks.models.weapon.shotgun
    import package_42.TanksCollisionDetector;
    import package_42.name_73;
    import package_52.WeaponsManager;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_63.name_162;
    import package_67.Vector3d;
    import projects.tanks.client.battlefield.models.tankparts.weapons.common.name_1378;
@@ -24,13 +24,13 @@ package alternativa.tanks.models.weapon.shotgun
    public class ShotgunRicochetTargetingSystem implements name_1160
    {
       
-      public static var battleService:name_83 = name_83(OSGi.getInstance().name_6(name_83));
+      public static var battleService:IBattleField = IBattleField(OSGi.getInstance().getService(IBattleField));
       
       private static const const_1855:Number = 458.3662361046586;
       
       private static const const_1856:Number = 90;
       
-      private static const var_397:name_124 = new name_124();
+      private static const var_397:RayHit = new RayHit();
       
       private static const const_1854:Vector3 = new Vector3();
       
@@ -49,7 +49,7 @@ package alternativa.tanks.models.weapon.shotgun
       
       private var var_2185:int;
       
-      private var var_2183:name_660;
+      private var var_2183:Body;
       
       private var name_247:TanksCollisionDetector;
       
@@ -99,12 +99,12 @@ package alternativa.tanks.models.weapon.shotgun
          return Math.min(458.3662361046586,1 / (2 * Math.atan(90 / (2 * param1))));
       }
       
-      public function considerBody(param1:name_660) : Boolean
+      public function considerBody(param1:Body) : Boolean
       {
          return this.var_2183 != param1 || this.var_2185 > 0;
       }
       
-      public function name_1453(param1:name_903, param2:name_660, param3:Vector3) : Vector.<name_1378>
+      public function name_1453(param1:name_903, param2:Body, param3:Vector3) : Vector.<name_1378>
       {
          var _loc4_:Number = NaN;
          var _loc5_:name_2504 = null;
@@ -141,7 +141,7 @@ package alternativa.tanks.models.weapon.shotgun
       
       private function method_2243(param1:Vector3, param2:Vector3, param3:Number) : Number
       {
-         var _loc4_:name_660 = null;
+         var _loc4_:Body = null;
          this.var_2185 = 0;
          const_1854.copy(param1);
          var_1724.copy(param2);
@@ -174,7 +174,7 @@ package alternativa.tanks.models.weapon.shotgun
          return 0;
       }
       
-      private function method_2241(param1:name_660, param2:Number, param3:Number) : Number
+      private function method_2241(param1:Body, param2:Number, param3:Number) : Number
       {
          var _loc4_:Number = this.maxDistance - param2;
          return this.var_689.method_960(param1,_loc4_,param3);

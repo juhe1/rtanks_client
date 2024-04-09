@@ -10,7 +10,7 @@ package alternativa.tanks.gui.shop.components.notification
    public class name_3379 extends Sprite
    {
       
-      public static var var_3676:name_534 = Main.osgi.name_6(name_534) as name_534;
+      public static var var_3676:name_534 = Main.osgi.getService(name_534) as name_534;
        
       
       private var var_3677:Bitmap;

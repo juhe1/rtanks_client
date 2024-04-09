@@ -31,7 +31,7 @@ package package_216
       
       public function ClanUserIncomingModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_644(this);
          this.var_25 = Long.getLong(1120804751,-1974844538);
          this.var_1175 = Long.getLong(591561906,1809211473);

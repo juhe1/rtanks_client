@@ -1,6 +1,6 @@
 package package_4
 {
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import flash.utils.Dictionary;
    import package_13.Long;
    import package_6.ClientClass;
@@ -45,12 +45,12 @@ package package_4
          this.var_18 = new Dictionary();
       }
       
-      public function method_17(param1:name_66) : void
+      public function method_17(param1:IModel) : void
       {
          this.models.push(param1);
       }
       
-      public function method_13(param1:name_66) : void
+      public function method_13(param1:IModel) : void
       {
          var _loc2_:int = this.models.indexOf(param1);
          this.models.splice(_loc2_,1);
@@ -73,12 +73,12 @@ package package_4
          return _loc2_;
       }
       
-      public function method_11(param1:name_66) : Object
+      public function method_11(param1:IModel) : Object
       {
          return this.var_19[param1];
       }
       
-      public function method_18(param1:name_66, param2:Object) : void
+      public function method_18(param1:IModel, param2:Object) : void
       {
          this.var_19[param1] = param2;
       }

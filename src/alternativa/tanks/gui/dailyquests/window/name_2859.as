@@ -1,8 +1,8 @@
 package alternativa.tanks.gui.dailyquests.window
 {
    import alternativa.osgi.OSGi;
-   import controls.base.name_1134;
-   import controls.name_1891;
+   import controls.base.LabelBase;
+   import controls.TankWindowInner;
    import flash.display.Bitmap;
    import flash.display.Sprite;
    import flash.text.TextFormatAlign;
@@ -12,7 +12,7 @@ package alternativa.tanks.gui.dailyquests.window
    public class name_2859 extends Sprite
    {
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
        
       
       private const const_2609:uint = 16777215;
@@ -25,9 +25,9 @@ package alternativa.tanks.gui.dailyquests.window
       
       private const const_2618:int = 5;
       
-      private var var_1737:name_1891;
+      private var var_1737:TankWindowInner;
       
-      private var var_3366:name_1134;
+      private var var_3366:LabelBase;
       
       public function name_2859()
       {
@@ -40,7 +40,7 @@ package alternativa.tanks.gui.dailyquests.window
       
       private function method_3027() : void
       {
-         this.var_1737 = new name_1891(0,0,name_1891.name_1428);
+         this.var_1737 = new TankWindowInner(0,0,TankWindowInner.GREEN);
          this.var_1737.width = QuestWindow.const_2201;
          addChild(this.var_1737);
       }
@@ -57,7 +57,7 @@ package alternativa.tanks.gui.dailyquests.window
       
       private function method_1627() : void
       {
-         this.var_3366 = new name_1134();
+         this.var_3366 = new LabelBase();
          this.var_3366.color = 16777215;
          this.var_3366.align = TextFormatAlign.CENTER;
          this.var_3366.text = localeService.getText(name_390.const_1078);

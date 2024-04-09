@@ -44,17 +44,17 @@ package projects.tanks.client.panel.model.dailyquest
       
       public function name_2131(param1:String, param2:int) : void
       {
-         Network(OSGi.getInstance().name_6(name_2)).send("lobby;change_quest;" + param1 + ";" + param2);
+         Network(OSGi.getInstance().getService(name_2)).send("lobby;change_quest;" + param1 + ";" + param2);
       }
       
       public function name_2130(param1:String) : void
       {
-         Network(OSGi.getInstance().name_6(name_2)).send("lobby;change_quest;" + param1 + ";" + 0);
+         Network(OSGi.getInstance().getService(name_2)).send("lobby;change_quest;" + param1 + ";" + 0);
       }
       
       public function takePrize(param1:String) : void
       {
-         Network(OSGi.getInstance().name_6(name_2)).send("lobby;quest_take_prize;" + param1);
+         Network(OSGi.getInstance().getService(name_2)).send("lobby;quest_take_prize;" + param1);
       }
    }
 }

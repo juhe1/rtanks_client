@@ -11,7 +11,7 @@ package package_33
       
       private static var var_2884:Dictionary;
       
-      public static var localeService:name_102 = name_102(OSGi.getInstance().name_6(name_102));
+      public static var localeService:name_102 = name_102(OSGi.getInstance().getService(name_102));
        
       
       public function KeyCodesConverter()

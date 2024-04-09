@@ -21,7 +21,7 @@ package package_116
       
       public function EquipmentConstraintsNamingModelBase()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_1665(this);
          this.var_25 = Long.getLong(1124951823,1347902856);
          super();

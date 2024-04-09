@@ -3,14 +3,14 @@ package package_155
    import alternativa.engine3d.core.Object3D;
    import alternativa.engine3d.materials.TextureMaterial;
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.tanks.engine3d.TextureMaterialRegistry;
    import alternativa.tanks.engine3d.name_1072;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.sfx.*;
    import alternativa.tanks.models.tank.TankData;
-   import alternativa.tanks.services.materialregistry.name_100;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import alternativa.tanks.sfx.Sound3D;
    import alternativa.tanks.sfx.name_1497;
    import alternativa.tanks.sfx.name_1718;
@@ -20,7 +20,7 @@ package package_155
    import flash.media.Sound;
    import package_1.Main;
    import package_159.name_1594;
-   import package_161.name_1448;
+   import package_161.IWeaponWeakeningModel;
    import package_163.name_1595;
    import package_163.name_1729;
    import package_359.class_77;
@@ -39,12 +39,12 @@ package package_155
       
       private static const const_1480:Number = 1;
       
-      private static var var_138:name_118;
+      private static var var_138:IObjectPoolService;
       
-      private static var var_58:name_100;
+      private static var var_58:IMaterialRegistry;
        
       
-      private var battlefield:name_83;
+      private var battlefield:IBattleField;
       
       private var var_1045:name_1714;
       
@@ -53,16 +53,16 @@ package package_155
       public function FlamethrowerSFXModel()
       {
          super();
-         var_365.push(name_66,class_77,class_76,class_11);
-         var_138 = name_118(Main.osgi.name_6(name_118));
-         var_58 = name_100(Main.osgi.name_6(name_100));
+         _interfaces.push(IModel,class_77,class_76,class_11);
+         var_138 = IObjectPoolService(Main.osgi.getService(IObjectPoolService));
+         var_58 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry));
       }
       
       public function initObject(param1:ClientObject, param2:BitmapData, param3:BitmapData, param4:Sound) : void
       {
          if(this.battlefield == null)
          {
-            this.battlefield = name_83(Main.osgi.name_6(name_83));
+            this.battlefield = IBattleField(Main.osgi.getService(IBattleField));
          }
          var _loc5_:name_1715 = new name_1715();
          _loc5_.name_1725 = this.method_1238(param2);
@@ -88,9 +88,9 @@ package package_155
          return _loc2_;
       }
       
-      public function method_1235(param1:TankData, param2:Vector3, param3:Object3D, param4:name_1448) : name_1497
+      public function method_1235(param1:TankData, param2:Vector3, param3:Object3D, param4:IWeaponWeakeningModel) : name_1497
       {
-         var _loc5_:name_1595 = name_1595(Main.osgi.name_6(name_1595));
+         var _loc5_:name_1595 = name_1595(Main.osgi.getService(name_1595));
          var _loc6_:name_1729 = _loc5_.name_1735(param1.turret);
          var _loc7_:name_1715 = this.getData(param1.turret);
          var _loc8_:StreamWeaponGraphicEffect = StreamWeaponGraphicEffect(var_138.objectPool.getObject(StreamWeaponGraphicEffect));
@@ -120,7 +120,7 @@ package package_155
       
       public function objectLoaded(param1:ClientObject) : void
       {
-         var _loc2_:name_32 = name_32(Main.osgi.name_6(name_32));
+         var _loc2_:name_32 = name_32(Main.osgi.getService(name_32));
          var _loc3_:name_1715 = this.getData(param1);
          var _loc4_:Vector.<name_1594> = WeaponsManager.colorTransform[param1.id];
          if(_loc4_ != null)

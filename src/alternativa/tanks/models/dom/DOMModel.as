@@ -4,17 +4,17 @@ package alternativa.tanks.models.dom
    import alternativa.osgi.OSGi;
    import alternativa.tanks.engine3d.TextureMaterialRegistry;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.gui.name_80;
+   import alternativa.tanks.models.battlefield.gui.IBattlefieldGUI;
    import alternativa.tanks.models.battlefield.name_128;
    import alternativa.tanks.models.battlefield.name_652;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.dom.hud.KeyPointMarkers;
    import alternativa.tanks.models.dom.hud.KeyPointView;
    import alternativa.tanks.models.dom.hud.name_2231;
    import alternativa.tanks.models.tank.TankData;
-   import alternativa.tanks.models.tank.class_7;
-   import alternativa.tanks.services.materialregistry.name_100;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.tanks.models.tank.ITank;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import alternativa.tanks.sfx.Sound3D;
    import alternativa.tanks.sfx.Sound3DEffect;
    import alternativa.tanks.sfx.name_132;
@@ -37,10 +37,10 @@ package alternativa.tanks.models.dom
    import scpacker.networking.Network;
    import scpacker.networking.name_2;
    
-   public class DOMModel extends ControlPointsModelBase implements name_995, class_11, name_652
+   public class DOMModel extends ControlPointsModelBase implements IDOMModel, class_11, name_652
    {
       
-      private static var var_138:name_118;
+      private static var var_138:IObjectPoolService;
       
       private static var var_58:TextureMaterialRegistry;
       
@@ -53,7 +53,7 @@ package alternativa.tanks.models.dom
       
       private var var_1757:Dictionary;
       
-      private var var_13:class_7;
+      private var var_13:ITank;
       
       private var var_11:BattlefieldModel;
       
@@ -77,7 +77,7 @@ package alternativa.tanks.models.dom
       
       private var lostPointSound:Sound;
       
-      private var var_590:name_80;
+      private var var_590:IBattlefieldGUI;
       
       private var var_1759:Vector.<KeyPointsHUDPanel>;
       
@@ -88,14 +88,14 @@ package alternativa.tanks.models.dom
          this.var_1759 = new Vector.<KeyPointsHUDPanel>();
          super();
          this.points = new Vector.<Point>();
-         var_138 = name_118(Main.osgi.name_6(name_118));
-         var_58 = name_100(OSGi.getInstance().name_6(name_100)).textureMaterialRegistry as TextureMaterialRegistry;
-         var _loc1_:name_32 = name_32(Main.osgi.name_6(name_32));
-         this.var_11 = Main.osgi.name_6(name_83) as BattlefieldModel;
-         this.var_590 = Main.osgi.name_6(name_80) as name_80;
+         var_138 = IObjectPoolService(Main.osgi.getService(IObjectPoolService));
+         var_58 = IMaterialRegistry(OSGi.getInstance().getService(IMaterialRegistry)).textureMaterialRegistry as TextureMaterialRegistry;
+         var _loc1_:name_32 = name_32(Main.osgi.getService(name_32));
+         this.var_11 = Main.osgi.getService(IBattleField) as BattlefieldModel;
+         this.var_590 = Main.osgi.getService(IBattlefieldGUI) as IBattlefieldGUI;
          this.var_11.method_152(this);
          this.var_117 = this.var_11.getBattlefieldData();
-         this.var_13 = Main.osgi.name_6(class_7) as class_7;
+         this.var_13 = Main.osgi.getService(ITank) as ITank;
          this.var_1756 = new BeamEffects(this.var_11);
          this.var_1755 = new KeyPointMarkers(this.var_11.var_117.viewport.camera,this.var_11);
          this.var_11.var_117.viewport.name_755(this.var_1755,0);
@@ -167,7 +167,7 @@ package alternativa.tanks.models.dom
       
       public function method_1939(param1:Point, param2:TankData) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;tank_capturing_point;" + param1.id + ";" + this.method_1935(param2.tank.state.position));
+         Network(Main.osgi.getService(name_2)).send("battle;tank_capturing_point;" + param1.id + ";" + this.method_1935(param2.tank.state.position));
       }
       
       public function method_56(param1:Sound, param2:Point) : void
@@ -187,7 +187,7 @@ package alternativa.tanks.models.dom
       
       public function method_1938(param1:Point, param2:TankData) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("battle;tank_leave_capturing_point;" + param1.id);
+         Network(Main.osgi.getService(name_2)).send("battle;tank_leave_capturing_point;" + param1.id);
       }
       
       public function serverSetPointScore(param1:int, param2:int) : void

@@ -10,7 +10,7 @@ package package_446
    public class name_3370 extends Sprite
    {
       
-      public static var var_3673:name_339 = name_339(Main.osgi.name_6(name_339));
+      public static var var_3673:name_339 = name_339(Main.osgi.getService(name_339));
       
       private static var var_3675:Class = name_3581;
       

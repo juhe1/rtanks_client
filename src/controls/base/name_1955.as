@@ -17,7 +17,7 @@ package controls.base
       
       private var var_2647:name_2015;
       
-      private var var_2646:name_1134;
+      private var var_2646:LabelBase;
       
       private var var_2653:Function;
       
@@ -31,7 +31,7 @@ package controls.base
       
       public function name_1955(param1:String, param2:Boolean = false)
       {
-         this.var_2646 = new name_1134();
+         this.var_2646 = new LabelBase();
          super();
          this.var_2648 = param2;
          this.var_2646.text = param1;

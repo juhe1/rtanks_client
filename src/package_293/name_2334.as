@@ -28,7 +28,7 @@ package package_293
       
       public function name_2337(param1:int) : void
       {
-         var _loc2_:name_102 = name_102(Main.osgi.name_6(name_102));
+         var _loc2_:name_102 = name_102(Main.osgi.getService(name_102));
          var _loc3_:String = String(_loc2_.getText(TextConst.BATTLE_FUND));
          label.text = _loc3_ + ": " + Money.name_876(param1,false);
          this.update();

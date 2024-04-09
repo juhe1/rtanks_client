@@ -3,9 +3,9 @@ package package_210
    import alternativa.tanks.gui.clanmanagement.name_1921;
    import alternativa.tanks.gui.clanmanagement.name_1923;
    import alternativa.tanks.gui.notinclan.dialogs.name_573;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.base.name_1890;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import controls.windowinner.WindowInner;
    import flash.display.Bitmap;
    import flash.events.MouseEvent;
@@ -62,19 +62,19 @@ package package_210
       
       private var var_1182:WindowInner;
       
-      private var var_1181:name_1134;
+      private var var_1181:LabelBase;
       
-      private var var_1187:name_1134;
+      private var var_1187:LabelBase;
       
-      private var var_1184:name_1134;
+      private var var_1184:LabelBase;
       
       private var var_1191:name_1889;
       
-      private var var_1186:name_1134;
+      private var var_1186:LabelBase;
       
       private var var_1190:name_634;
       
-      private var var_1189:name_1134;
+      private var var_1189:LabelBase;
       
       private var var_1223:name_1921;
       
@@ -106,10 +106,10 @@ package package_210
          this.var_1231 = name_2059;
          this.var_1233 = name_2057;
          this.var_1232 = name_2058;
-         this.var_1181 = new name_1134();
-         this.var_1187 = new name_1134();
-         this.var_1184 = new name_1134();
-         this.var_1189 = new name_1134();
+         this.var_1181 = new LabelBase();
+         this.var_1187 = new LabelBase();
+         this.var_1184 = new LabelBase();
+         this.var_1189 = new LabelBase();
          this.method_1570 = new name_1890();
          super();
          this.clanData = param1;
@@ -121,7 +121,7 @@ package package_210
       
       private function method_1611(param1:name_861) : void
       {
-         this.var_1182 = new WindowInner(900 - 2 * 11,231,name_1891.name_1428);
+         this.var_1182 = new WindowInner(900 - 2 * 11,231,TankWindowInner.GREEN);
          this.var_1182.name_1895 = true;
          addChild(this.var_1182);
          this.var_1181.bold = true;
@@ -131,7 +131,7 @@ package package_210
          this.var_1190 = new name_634(this.name_1893(param1.flagId));
          this.var_1187.text = "[" + param1.tag + "]";
          this.var_1189.text = localeService.getText(name_390.const_940) + " " + name_2002.name_2009(new Date(param1.createTime));
-         this.var_1186 = new name_1134();
+         this.var_1186 = new LabelBase();
          this.var_1186.text = localeService.getText(name_390.const_987);
          this.var_1184.text = localeService.getText(name_390.const_1142);
          this.var_1187.color = name_1139.name_1894;

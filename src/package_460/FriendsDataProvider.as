@@ -11,7 +11,7 @@ package package_460
    public class FriendsDataProvider extends DataProvider
    {
       
-      public static var userInfoService:name_408 = OSGi.getInstance().name_6(name_408) as name_408;
+      public static var userInfoService:name_408 = OSGi.getInstance().getService(name_408) as name_408;
       
       public static const name_3015:String = "isNew";
       

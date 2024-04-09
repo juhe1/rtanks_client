@@ -1,6 +1,6 @@
 package package_446
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.panel.BaseButton;
    import flash.display.Bitmap;
    import flash.events.MouseEvent;
@@ -18,7 +18,7 @@ package package_446
       
       private var var_3415:Bitmap;
       
-      private var var_3412:name_1134;
+      private var var_3412:LabelBase;
       
       private var _x:int;
       
@@ -39,7 +39,7 @@ package package_446
       
       private function method_582() : void
       {
-         this.var_3412 = new name_1134();
+         this.var_3412 = new LabelBase();
          this.var_3412.x = 18;
          this.var_3412.y = 4;
          this.var_3412.width = this.width - 18;

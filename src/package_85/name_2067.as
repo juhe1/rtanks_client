@@ -12,9 +12,9 @@ package package_85
    public class name_2067 extends Sprite
    {
       
-      public static var var_815:name_791 = OSGi.getInstance().name_6(name_791) as name_791;
+      public static var var_815:name_791 = OSGi.getInstance().getService(name_791) as name_791;
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
        
       
       private var var_2712:Bitmap;

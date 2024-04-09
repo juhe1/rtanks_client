@@ -44,9 +44,9 @@ package package_147
       {
          super();
          var _loc1_:OSGi = OSGi.getInstance();
-         this.modelRegister = _loc1_.name_6(name_29) as name_29;
-         this.resourceRegistry = _loc1_.name_6(ResourceRegistry) as ResourceRegistry;
-         this.var_984 = _loc1_.name_6(name_33) as name_33;
+         this.modelRegister = _loc1_.getService(name_29) as name_29;
+         this.resourceRegistry = _loc1_.getService(ResourceRegistry) as ResourceRegistry;
+         this.var_984 = _loc1_.getService(name_33) as name_33;
          var_17 = var_17 || logService.getLogger("dispatcher");
       }
       
@@ -59,7 +59,7 @@ package package_147
       
       private static function method_1208(param1:String) : void
       {
-         IErrorMessageService(OSGi.getInstance().name_6(IErrorMessageService)).showMessage(new name_1691(param1));
+         IErrorMessageService(OSGi.getInstance().getService(IErrorMessageService)).showMessage(new name_1691(param1));
       }
       
       public function loadDependencies(param1:name_555) : void

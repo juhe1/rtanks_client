@@ -2,7 +2,7 @@ package alternativa.tanks.gui.clanmanagement
 {
    import alternativa.tanks.gui.components.name_1956;
    import alternativa.tanks.gui.notinclan.dialogs.name_573;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.base.name_1890;
    import controls.base.name_1955;
    import controls.dropdownlist.DropDownList;
@@ -42,21 +42,21 @@ package alternativa.tanks.gui.clanmanagement
       
       private var var_1271:name_1955;
       
-      private var var_1279:name_1134;
+      private var var_1279:LabelBase;
       
       private var var_1277:FlagsDropDownList;
       
-      private var var_1280:name_1134;
+      private var var_1280:LabelBase;
       
       private var var_1275:DropDownList;
       
-      private var var_1281:name_1134;
+      private var var_1281:LabelBase;
       
       private var var_1283:DropDownList;
       
       private var var_1273:name_1956;
       
-      private var var_1278:name_1134;
+      private var var_1278:LabelBase;
       
       private var var_1276:name_1890;
       
@@ -98,12 +98,12 @@ package alternativa.tanks.gui.clanmanagement
          this.var_1273.addEventListener(FocusEvent.FOCUS_IN,this.method_1510);
          this.var_1273.addEventListener(FocusEvent.FOCUS_OUT,this.method_1514);
          addChild(this.var_1273);
-         this.var_1278 = new name_1134();
+         this.var_1278 = new LabelBase();
          this.var_1278.text = localeService.getText(name_390.const_1113);
          this.var_1278.textColor = 7829367;
          this.var_1278.mouseEnabled = false;
          this.var_1278.visible = this.var_1273.text.length == 0;
-         this.var_1280 = new name_1134();
+         this.var_1280 = new LabelBase();
          this.var_1280.text = localeService.getText(name_390.const_1158);
          this.var_1280.mouseEnabled = false;
          addChild(this.var_1280);
@@ -122,10 +122,10 @@ package alternativa.tanks.gui.clanmanagement
          this.var_1275.width = 84;
          this.var_1275.height = 75;
          addChild(this.var_1275);
-         this.var_1279 = new name_1134();
+         this.var_1279 = new LabelBase();
          this.var_1279.text = localeService.getText(name_390.const_817);
          addChild(this.var_1279);
-         this.var_1281 = new name_1134();
+         this.var_1281 = new LabelBase();
          this.var_1281.text = localeService.getText(name_390.const_1298);
          this.var_1281.mouseEnabled = false;
          addChild(this.var_1281);

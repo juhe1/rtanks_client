@@ -17,7 +17,7 @@ package controls
       
       private var var_503:Shape;
       
-      private var bg:name_1891;
+      private var bg:TankWindowInner;
       
       private const format:TextFormat = new TextFormat("MyriadPro",12,16777215);
       
@@ -30,7 +30,7 @@ package controls
       public function name_2292()
       {
          this.var_503 = new Shape();
-         this.bg = new name_1891(0);
+         this.bg = new TankWindowInner(0);
          this.name_2291 = new name_2777();
          super();
          addChild(this.var_503);

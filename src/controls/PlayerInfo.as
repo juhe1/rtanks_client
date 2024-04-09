@@ -240,7 +240,7 @@ package controls
       
       private function name_239() : void
       {
-         var _loc1_:name_102 = Main.osgi.name_6(name_102) as name_102;
+         var _loc1_:name_102 = Main.osgi.getService(name_102) as name_102;
          this.var_270.name_872.text = String(this.var_275) + " / " + String(this.var_283) + "   " + Rank.name(this.var_277) + " " + this.var_280;
          this.var_270.progress = this.var_274;
          this.var_271.name_877(Math.floor(Math.random() * 100000));

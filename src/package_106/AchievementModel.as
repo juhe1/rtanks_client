@@ -46,7 +46,7 @@ package package_106
          this.var_924 = new name_1655();
          this.var_926 = new name_1657();
          this.var_925 = new name_1656();
-         this.var_815 = Main.osgi.name_6(name_791) as HelpService;
+         this.var_815 = Main.osgi.getService(name_791) as HelpService;
          this.var_815.name_981("GarageModel",800,this.var_924,false);
          this.var_815.name_981("GarageModel",802,this.var_925,false);
          this.var_923 = new Vector.<Achievement>();
@@ -55,7 +55,7 @@ package package_106
       
       public function objectLoaded(param1:Vector.<Achievement>) : void
       {
-         this.panelModel = Main.osgi.name_6(name_115) as name_115;
+         this.panelModel = Main.osgi.getService(name_115) as name_115;
          this.method_1150(param1);
       }
       
@@ -82,7 +82,7 @@ package package_106
          {
             this.panelModel.blur();
          }
-         var _loc2_:name_102 = name_102(Main.osgi.name_6(name_102));
+         var _loc2_:name_102 = name_102(Main.osgi.getService(name_102));
          var _loc3_:String = String(_loc2_.getText(param1 == Achievement.FIRST_PURCHASE ? TextConst.const_279 : TextConst.const_288));
          this.window = new AchievementCongratulationsWindow();
          this.window.init(_loc3_);
@@ -98,7 +98,7 @@ package package_106
          {
             this.panelModel.blur();
          }
-         var _loc1_:name_102 = name_102(Main.osgi.name_6(name_102));
+         var _loc1_:name_102 = name_102(Main.osgi.getService(name_102));
          var _loc2_:String = String(_loc1_.getText(TextConst.const_244));
          this.window = new AchievementCongratulationsWindow();
          this.window.init(_loc2_);

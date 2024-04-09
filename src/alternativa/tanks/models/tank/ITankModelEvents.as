@@ -7,7 +7,7 @@ package alternativa.tanks.models.tank
    import package_4.ClientObject;
    import platform.client.fp10.core.type.name_70;
    
-   public class ITankModelEvents implements class_7
+   public class ITankModelEvents implements ITank
    {
        
       
@@ -51,14 +51,14 @@ package alternativa.tanks.models.tank
       {
          var result:Boolean = Boolean(null);
          var i:int = 0;
-         var m:class_7 = null;
+         var m:ITank = null;
          try
          {
             Model.object = this.object;
             i = 0;
             while(i < this.impl.length)
             {
-               m = class_7(this.impl[i]);
+               m = ITank(this.impl[i]);
                result = Boolean(m.userControlsEnabled);
                i++;
             }
@@ -75,14 +75,14 @@ package alternativa.tanks.models.tank
       {
          var pos:Vector3D = param1;
          var i:int = 0;
-         var m:class_7 = null;
+         var m:ITank = null;
          try
          {
             Model.object = this.object;
             i = 0;
             while(i < this.impl.length)
             {
-               m = class_7(this.impl[i]);
+               m = ITank(this.impl[i]);
                m.method_32(pos);
                i++;
             }
@@ -100,14 +100,14 @@ package alternativa.tanks.models.tank
          var effectId:int = param2;
          var duration:int = param3;
          var i:int = 0;
-         var m:class_7 = null;
+         var m:ITank = null;
          try
          {
             Model.object = this.object;
             i = 0;
             while(i < this.impl.length)
             {
-               m = class_7(this.impl[i]);
+               m = ITank(this.impl[i]);
                m.method_34(clientObject,effectId,duration);
                i++;
             }
@@ -124,14 +124,14 @@ package alternativa.tanks.models.tank
          var clientObject:ClientObject = param1;
          var effectId:int = param2;
          var i:int = 0;
-         var m:class_7 = null;
+         var m:ITank = null;
          try
          {
             Model.object = this.object;
             i = 0;
             while(i < this.impl.length)
             {
-               m = class_7(this.impl[i]);
+               m = ITank(this.impl[i]);
                m.method_36(clientObject,effectId);
                i++;
             }
@@ -147,14 +147,14 @@ package alternativa.tanks.models.tank
       {
          var result:Tank = null;
          var i:int = 0;
-         var m:class_7 = null;
+         var m:ITank = null;
          try
          {
             Model.object = this.object;
             i = 0;
             while(i < this.impl.length)
             {
-               m = class_7(this.impl[i]);
+               m = ITank(this.impl[i]);
                result = m.getTank();
                i++;
             }
@@ -170,14 +170,14 @@ package alternativa.tanks.models.tank
       {
          var result:Boolean = false;
          var i:int = 0;
-         var m:class_7 = null;
+         var m:ITank = null;
          try
          {
             Model.object = this.object;
             i = 0;
             while(i < this.impl.length)
             {
-               m = class_7(this.impl[i]);
+               m = ITank(this.impl[i]);
                result = Boolean(m.isLocal());
                i++;
             }

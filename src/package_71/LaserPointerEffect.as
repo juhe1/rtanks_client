@@ -5,11 +5,11 @@ package package_71
    import alternativa.engine3d.core.Sorting;
    import alternativa.engine3d.objects.Sprite3D;
    import alternativa.osgi.OSGi;
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import alternativa.tanks.battle.BattleUtils;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
    import alternativa.tanks.models.battlefield.name_1194;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.sfx.name_1716;
    import alternativa.tanks.sfx.name_2500;
    import alternativa.tanks.sfx.name_657;
@@ -34,7 +34,7 @@ package package_71
       
       public static var name_1330:BitmapData = new const_1839().bitmapData;
       
-      public static var battleService:name_83 = OSGi.getInstance().name_6(name_83) as name_83;
+      public static var battleService:IBattleField = OSGi.getInstance().getService(IBattleField) as IBattleField;
       
       private static const const_1838:Dictionary = new Dictionary();
       
@@ -236,7 +236,7 @@ package package_71
          if(this.var_2173 != null)
          {
             this.const_1836.copy(this.var_2176);
-            BattleUtils.localToGlobal(this.var_2173 as name_660,this.const_1836);
+            BattleUtils.localToGlobal(this.var_2173 as Body,this.const_1836);
             this.direction.vDiff(this.const_1836,this.const_1837).normalize();
             this.var_2174 = _loc2_.vDot(this.direction);
          }

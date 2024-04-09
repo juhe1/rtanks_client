@@ -8,7 +8,7 @@ package package_89
    import controls.timer.CountDownTimer;
    import package_103.name_323;
    import package_315.name_1357;
-   import package_41.name_320;
+   import package_41.ItemProperty;
    import package_75.name_274;
    import package_96.MountedResistancesPanel;
    import platform.client.fp10.core.type.name_70;
@@ -92,9 +92,9 @@ package package_89
                this.getView().name_1529(param1,param2);
             }
             this.var_805.mount(param1,param2);
-            _loc3_ = GarageModel(OSGi.getInstance().name_6(name_381)).getObjectItemParams(param2);
-            GarageModel(OSGi.getInstance().name_6(name_381)).mountItem(null,null,_loc3_.baseItemId,null);
-            name_381(OSGi.getInstance().name_6(name_381)).getView().itemInfoPanel.onMountItem();
+            _loc3_ = GarageModel(OSGi.getInstance().getService(name_381)).getObjectItemParams(param2);
+            GarageModel(OSGi.getInstance().getService(name_381)).mountItem(null,null,_loc3_.baseItemId,null);
+            name_381(OSGi.getInstance().getService(name_381)).getView().itemInfoPanel.onMountItem();
          }
       }
       
@@ -115,9 +115,9 @@ package package_89
       {
          this.getView().name_1528(param1);
          this.var_805.name_1370(param1);
-         var _loc2_:name_324 = GarageModel(OSGi.getInstance().name_6(name_381)).getObjectItemParams(param1);
-         GarageModel(OSGi.getInstance().name_6(name_381)).mountItem(null,_loc2_.baseItemId,null,null);
-         name_381(OSGi.getInstance().name_6(name_381)).getView().itemInfoPanel.onMountItem();
+         var _loc2_:name_324 = GarageModel(OSGi.getInstance().getService(name_381)).getObjectItemParams(param1);
+         GarageModel(OSGi.getInstance().getService(name_381)).mountItem(null,_loc2_.baseItemId,null,null);
+         name_381(OSGi.getInstance().getService(name_381)).getView().itemInfoPanel.onMountItem();
       }
       
       public function name_1365(param1:name_70) : Boolean
@@ -153,10 +153,10 @@ package package_89
          {
             return false;
          }
-         var _loc3_:name_324 = GarageModel(OSGi.getInstance().name_6(name_381)).getObjectItemParams(param1);
+         var _loc3_:name_324 = GarageModel(OSGi.getInstance().getService(name_381)).getObjectItemParams(param1);
          for each(_loc2_ in _loc3_.itemProperties)
          {
-            if(_loc2_.property == name_320.name_487)
+            if(_loc2_.property == ItemProperty.ALL_RESISTANCE)
             {
                return true;
             }

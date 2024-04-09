@@ -2,26 +2,26 @@ package package_154
 {
    import alternativa.physics.collision.name_1083;
    import alternativa.physics.collision.name_1160;
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import alternativa.tanks.engine3d.AnimatedSprite3D;
    import alternativa.tanks.engine3d.name_1072;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.sfx.LightDataManager;
    import alternativa.tanks.models.sfx.name_1096;
    import alternativa.tanks.models.sfx.name_2710;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.weapon.name_1419;
    import alternativa.tanks.sfx.name_657;
-   import alternativa.tanks.utils.name_75;
+   import alternativa.tanks.utils.MathUtils;
    import package_1.Main;
    import package_153.name_1770;
-   import package_161.name_1448;
+   import package_161.IWeaponWeakeningModel;
    import package_37.Matrix3;
    import package_37.Vector3;
    import package_4.ClientObject;
    import package_42.name_73;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_68.name_175;
    import package_76.name_735;
    
@@ -50,7 +50,7 @@ package package_154
       
       private static var var_2495:Vector3 = new Vector3();
       
-      private static var const_372:name_124 = new name_124();
+      private static var const_372:RayHit = new RayHit();
        
       
       public var shotId:int;
@@ -81,7 +81,7 @@ package package_154
       
       private var var_2497:BattlefieldModel;
       
-      private var var_1014:name_1448;
+      private var var_1014:IWeaponWeakeningModel;
       
       private var sfxData:name_1770;
       
@@ -93,7 +93,7 @@ package package_154
       {
          this.var_2491 = new Vector3();
          this.direction = new Vector3();
-         this.var_2497 = Main.osgi.name_6(name_83) as BattlefieldModel;
+         this.var_2497 = Main.osgi.getService(IBattleField) as BattlefieldModel;
          super();
          this.var_2494 = new Vector.<Vector3>(8);
          var _loc1_:int = 0;
@@ -118,7 +118,7 @@ package package_154
          return _loc1_;
       }
       
-      public function init(param1:int, param2:Boolean, param3:name_1763, param4:Vector3, param5:Vector3, param6:TankData, param7:class_99, param8:name_1770, param9:name_1083, param10:name_1448) : void
+      public function init(param1:int, param2:Boolean, param3:name_1763, param4:Vector3, param5:Vector3, param6:TankData, param7:class_99, param8:name_1770, param9:name_1083, param10:IWeaponWeakeningModel) : void
       {
          this.shotId = param1;
          this.active = param2;
@@ -134,7 +134,7 @@ package package_154
          this.sprite.name_1433(_loc11_);
          this.sprite.name_1431(this.sprite.name_2313() * Math.random());
          this.sprite.alpha = 1;
-         this.sprite.rotation = name_75.PI2 * Math.random();
+         this.sprite.rotation = MathUtils.PI2 * Math.random();
          this.var_1046 = name_1096(this.var_2497.getObjectPool().getObject(name_1096));
          this.var_2498 = name_2710(this.var_2497.getObjectPool().getObject(name_2710));
          this.var_1046.init(this.var_2498,LightDataManager.name_1723(param6.turret.id),name_1096.const_1705,true);
@@ -157,7 +157,7 @@ package package_154
       {
          var _loc5_:int = 0;
          var _loc6_:Vector3 = null;
-         var _loc11_:name_660 = null;
+         var _loc11_:Body = null;
          var _loc12_:Boolean = false;
          if(this.name_1769 > this.var_2493.name_1767)
          {
@@ -266,9 +266,9 @@ package package_154
          this.name_1769 = this.var_2493.name_1767 + 1;
       }
       
-      public function considerBody(param1:name_660) : Boolean
+      public function considerBody(param1:Body) : Boolean
       {
-         return param1 != this.name_1764.tank as name_660;
+         return param1 != this.name_1764.tank as Body;
       }
       
       public function toString() : String

@@ -3,11 +3,11 @@ package package_73
    import alternativa.engine3d.materials.TextureMaterial;
    import alternativa.engine3d.objects.Sprite3D;
    import alternativa.osgi.OSGi;
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import alternativa.tanks.battle.BattleUtils;
    import alternativa.tanks.engine3d.AnimatedSprite3D;
    import alternativa.tanks.engine3d.name_1072;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.weapon.name_2505;
    import alternativa.tanks.models.weapon.name_903;
    import alternativa.tanks.models.weapon.shotgun.PelletDirectionCalculator;
@@ -17,7 +17,7 @@ package package_73
    import alternativa.tanks.sfx.name_657;
    import alternativa.tanks.vehicles.tanks.class_20;
    import flash.display.BlendMode;
-   import package_161.name_515;
+   import package_161.WeaponWeakeningModel;
    import package_238.ObjectPool;
    import package_238.class_30;
    import package_240.name_656;
@@ -25,14 +25,14 @@ package package_73
    import package_4.ClientObject;
    import package_42.TanksCollisionDetector;
    import package_42.name_73;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_68.name_175;
    import package_76.name_735;
    
    public class ShotgunShotEffect extends class_30 implements name_657
    {
       
-      public static var battleService:name_83 = name_83(OSGi.getInstance().name_6(name_83));
+      public static var battleService:IBattleField = IBattleField(OSGi.getInstance().getService(IBattleField));
       
       private static const const_498:Number = 16;
       
@@ -64,7 +64,7 @@ package package_73
       
       private static const const_2334:Number = 30;
       
-      private static const var_397:name_124 = new name_124();
+      private static const var_397:RayHit = new RayHit();
       
       private static const var_2184:name_2505 = new name_2505();
       
@@ -430,13 +430,13 @@ package package_73
          this.var_3102 = 5000;
       }
       
-      private function method_2877(param1:name_1247, param2:name_903, param3:Vector3, param4:name_660) : void
+      private function method_2877(param1:name_1247, param2:name_903, param3:Vector3, param4:Body) : void
       {
          var _loc5_:Vector3 = null;
          var _loc6_:Vector.<Vector3> = this.method_2882(param1,param2,param3);
          var _loc7_:TanksCollisionDetector = battleService.getBattlefieldData().name_247;
          var_2184.name_2506 = param4;
-         var _loc8_:name_515 = param1.name_1456();
+         var _loc8_:WeaponWeakeningModel = param1.name_1456();
          var _loc9_:Number = _loc8_.method_1242(param1.getObject()) * 100;
          while(this.var_3099.length < _loc6_.length)
          {

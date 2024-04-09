@@ -2,10 +2,10 @@ package forms.battlelist
 {
    import alternativa.tanks.model.BattleSelectModel;
    import assets.icons.InputCheckIcon;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.base.name_2016;
-   import controls.base.name_998;
-   import controls.name_1891;
+   import controls.base.DefaultButtonBase;
+   import controls.TankWindowInner;
    import flash.display.Bitmap;
    import flash.display.BitmapData;
    import flash.display.DisplayObject;
@@ -83,17 +83,17 @@ package forms.battlelist
       
       private var var_3460:Bitmap;
       
-      private var bg:name_1891;
+      private var bg:TankWindowInner;
       
-      private var var_3456:name_1134;
+      private var var_3456:LabelBase;
       
-      private var var_1740:name_1134;
+      private var var_1740:LabelBase;
       
-      private var var_3452:name_1134;
+      private var var_3452:LabelBase;
       
       private var var_3453:name_2935;
       
-      private var var_1325:name_1134;
+      private var var_1325:LabelBase;
       
       private var preview:Sprite;
       
@@ -101,7 +101,7 @@ package forms.battlelist
       
       private var var_3447:name_2016;
       
-      private var var_3448:name_998;
+      private var var_3448:DefaultButtonBase;
       
       private var var_3458:Boolean = false;
       
@@ -109,7 +109,7 @@ package forms.battlelist
       
       private var var_3457:int;
       
-      private var var_3449:name_998;
+      private var var_3449:DefaultButtonBase;
       
       public var var_3469:int = 0;
       
@@ -122,7 +122,7 @@ package forms.battlelist
          this.preview = new Sprite();
          this.rect = new Rectangle(0,0,400,300);
          super();
-         localeService = Main.osgi.name_6(name_102) as name_102;
+         localeService = Main.osgi.getService(name_102) as name_102;
          filter = [new GlowFilter(0,1,6,6)];
          this.var_3446 = new Sprite();
          this.var_3445 = new Sprite();
@@ -137,16 +137,16 @@ package forms.battlelist
          this.var_3455 = new Bitmap(name_3401.name_3413);
          this.var_3468 = new Bitmap(name_3401.name_3407);
          this.var_3460 = new Bitmap(name_3401.name_3408);
-         this.var_3456 = new name_1134();
-         this.var_1740 = new name_1134();
-         this.var_3452 = new name_1134();
+         this.var_3456 = new LabelBase();
+         this.var_1740 = new LabelBase();
+         this.var_3452 = new LabelBase();
          this.var_3453 = new BigWhiteTimeLeftIndicator();
-         this.bg = new name_1891(100,100,name_1891.name_2114);
-         this.var_1325 = new name_1134();
+         this.bg = new TankWindowInner(100,100,TankWindowInner.name_2114);
+         this.var_1325 = new LabelBase();
          this.preview = new Sprite();
          this.rect = new Rectangle(0,0,400,300);
          this.var_3454 = new Sprite();
-         this.var_3449 = new name_998();
+         this.var_3449 = new DefaultButtonBase();
          addChild(this.preview);
          addChild(this.bg);
          addChild(this.var_1325);
@@ -159,7 +159,7 @@ package forms.battlelist
          this.var_3449.label = "Spectator";
          this.var_3449.addEventListener(MouseEvent.CLICK,function(param1:MouseEvent):void
          {
-            var _loc2_:BattleSelectModel = Main.osgi.name_6(name_386) as BattleSelectModel;
+            var _loc2_:BattleSelectModel = Main.osgi.getService(name_386) as BattleSelectModel;
             if(_loc2_ == null)
             {
                return;
@@ -358,7 +358,7 @@ package forms.battlelist
          if(this.var_3443.name_2929.length > 0 && this.var_3447 == null)
          {
             this.var_3447 = new name_2016();
-            this.var_3448 = new name_998();
+            this.var_3448 = new DefaultButtonBase();
             addChild(this.var_3447);
             addChild(this.var_3448);
          }

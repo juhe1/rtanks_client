@@ -2,7 +2,7 @@ package alternativa.tanks.models.tank
 {
    import flash.utils.Dictionary;
    
-   public class TankEventDispatcher implements name_103
+   public class TankEventDispatcher implements ITankEventDispatcher
    {
        
       

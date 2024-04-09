@@ -1,13 +1,13 @@
 package package_69
 {
    import alternativa.tanks.loader.name_13;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import package_53.name_94;
    
    public class name_271 implements name_211
    {
       
-      public static var battleSerivce:name_83;
+      public static var battleSerivce:IBattleField;
       
       public static var loaderWindowService:name_13;
       

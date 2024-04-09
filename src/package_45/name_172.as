@@ -13,7 +13,7 @@ package package_45
    public class name_172 implements name_657
    {
       
-      private static var modelService:name_32 = name_32(Main.osgi.name_6(name_32));
+      private static var modelService:name_32 = name_32(Main.osgi.getService(name_32));
       
       private static var delay:name_679 = new name_679("tankexpl_goffset",110,0,2000);
        
@@ -73,7 +73,7 @@ package package_45
          {
             return;
          }
-         var _loc2_:TankCriticalHitModel = Main.osgi.name_6(name_91) as TankCriticalHitModel;
+         var _loc2_:TankCriticalHitModel = Main.osgi.getService(name_91) as TankCriticalHitModel;
          _loc2_.method_502(this.tankData.hull,this.tankData);
       }
    }

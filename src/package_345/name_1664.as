@@ -9,7 +9,7 @@ package package_345
    public class name_1664 extends EquipmentConstraintsNamingModelBase implements name_1665, name_170
    {
       
-      public static var var_2421:BattleFormatUtil = OSGi.getInstance().name_6(BattleFormatUtil) as BattleFormatUtil;
+      public static var var_2421:BattleFormatUtil = OSGi.getInstance().getService(BattleFormatUtil) as BattleFormatUtil;
        
       
       public function name_1664()

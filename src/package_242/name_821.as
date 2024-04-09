@@ -16,7 +16,7 @@ package package_242
          super();
          this.var_1416 = param1;
          this.var_1417 = param2;
-         var _loc3_:name_27 = name_27(OSGi.getInstance().name_6(name_27));
+         var _loc3_:name_27 = name_27(OSGi.getInstance().getService(name_27));
          if(_loc3_ != null)
          {
             _loc3_.method_212(this);
@@ -30,7 +30,7 @@ package package_242
       
       public function destroy() : void
       {
-         var _loc1_:name_27 = name_27(OSGi.getInstance().name_6(name_27));
+         var _loc1_:name_27 = name_27(OSGi.getInstance().getService(name_27));
          if(_loc1_ != null)
          {
             _loc1_.method_215(this.var_1416);

@@ -3,7 +3,7 @@ package alternativa.tanks.gui.dailyquests.window
    import alternativa.tanks.gui.dailyquests.window.buttons.name_3311;
    import alternativa.tanks.gui.dailyquests.window.buttons.name_3347;
    import controls.base.name_1890;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import flash.display.Bitmap;
    import flash.display.Sprite;
    import flash.events.MouseEvent;
@@ -23,7 +23,7 @@ package alternativa.tanks.gui.dailyquests.window
       
       private const const_2600:int = 4;
       
-      private var var_1737:name_1891;
+      private var var_1737:TankWindowInner;
       
       private var var_3387:DailyQuestItemViewInfoPanel;
       
@@ -46,7 +46,7 @@ package alternativa.tanks.gui.dailyquests.window
       
       private function method_3027() : void
       {
-         this.var_1737 = new name_1891(0,0,name_1891.name_1428);
+         this.var_1737 = new TankWindowInner(0,0,TankWindowInner.GREEN);
          this.var_1737.width = QuestWindow.const_2203;
          addChild(this.var_1737);
       }

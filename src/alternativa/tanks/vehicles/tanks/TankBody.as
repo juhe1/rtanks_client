@@ -1,7 +1,7 @@
 package alternativa.tanks.vehicles.tanks
 {
-   import alternativa.physics.collision.name_774;
-   import alternativa.physics.name_660;
+   import alternativa.physics.collision.CollisionPrimitive;
+   import alternativa.physics.Body;
    import package_277.name_904;
    import package_37.Vector3;
    import package_42.SoaringChecker;
@@ -12,15 +12,15 @@ package alternativa.tanks.vehicles.tanks
       
       public var id:int;
       
-      public var name_787:name_660;
+      public var name_787:Body;
       
       public var name_908:name_904;
       
-      public var name_1174:Vector.<name_774>;
+      public var name_1174:Vector.<CollisionPrimitive>;
       
       public var name_1168:Boolean;
       
-      public var name_1171:Vector.<name_660>;
+      public var name_1171:Vector.<Body>;
       
       public var name_1175:Boolean;
       
@@ -30,10 +30,10 @@ package alternativa.tanks.vehicles.tanks
       
       private var var_1705:SoaringChecker;
       
-      public function TankBody(param1:name_660)
+      public function TankBody(param1:Body)
       {
-         this.name_1174 = new Vector.<name_774>();
-         this.name_1171 = new Vector.<name_660>();
+         this.name_1174 = new Vector.<CollisionPrimitive>();
+         this.name_1171 = new Vector.<Body>();
          this.name_961 = new Vector3();
          super();
          this.name_787 = param1;

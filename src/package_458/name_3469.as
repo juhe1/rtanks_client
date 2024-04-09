@@ -1,7 +1,7 @@
 package package_458
 {
    import assets.combo.name_2780;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.Sprite;
    
    public class name_3469 extends Sprite
@@ -40,7 +40,7 @@ package package_458
          this.var_3693.height = 20;
          this.var_3693.x = 3;
          addChild(this.var_3693);
-         var _loc1_:name_1134 = new name_1134();
+         var _loc1_:LabelBase = new LabelBase();
          addChild(_loc1_);
          _loc1_.text = this.var_1557;
          _loc1_.x = FreeUidsForm.const_2720;

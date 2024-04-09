@@ -43,7 +43,7 @@ package projects.tanks.client.panel.model.donationalert
       
       public function class_152()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_388(this);
          this.var_25 = Long.getLong(790638048,-212453148);
          this.var_1467 = Long.getLong(1759230741,1008086188);

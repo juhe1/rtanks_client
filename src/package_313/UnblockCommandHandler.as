@@ -26,7 +26,7 @@ package package_313
          }
          var _loc2_:String = String(param1[0]);
          LobbyChat.name_2153(_loc2_);
-         var _loc3_:name_102 = name_102(Main.osgi.name_6(name_102));
+         var _loc3_:name_102 = name_102(Main.osgi.getService(name_102));
          this.var_633.addSystemMessage(_loc3_.getText(TextConst.CHAT_PANEL_COMMAND_UNBLOCK,_loc2_));
          return true;
       }

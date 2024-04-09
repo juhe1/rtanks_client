@@ -1,7 +1,7 @@
 package package_84
 {
-   import alternativa.physics.name_660;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.physics.Body;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.weapon.healing.name_1413;
    import alternativa.tanks.models.weapon.shared.name_651;
    import alternativa.tanks.models.weapon.shared.name_653;
@@ -11,7 +11,7 @@ package package_84
    public class name_300 implements class_38
    {
       
-      public static var battleService:name_83;
+      public static var battleService:IBattleField;
        
       
       private const const_458:Number = 0.0001;
@@ -55,7 +55,7 @@ package package_84
          {
             return 0;
          }
-         var _loc4_:name_660 = param1 as name_660;
+         var _loc4_:Body = param1 as Body;
          var _loc5_:Number = this.var_149.method_960(_loc4_,param2,param3);
          return this.var_689.method_960(_loc4_) + _loc5_ * 0.0001 + this.method_961(param1);
       }

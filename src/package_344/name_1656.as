@@ -13,7 +13,7 @@ package package_344
       public function name_1656()
       {
          super();
-         var _loc1_:name_102 = name_102(Main.osgi.name_6(name_102));
+         var _loc1_:name_102 = name_102(Main.osgi.getService(name_102));
          text = _loc1_.getText(TextConst.const_352);
          arrowLehgth = int(_loc1_.getText(TextConst.const_241));
          arrowAlign = name_2221.TOP_LEFT;

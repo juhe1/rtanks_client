@@ -95,7 +95,7 @@ package forms.friends.list.renderer
       
       private function method_3167(param1:MouseEvent) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby;cancel_request;" + this.var_1367.uid);
+         Network(Main.osgi.getService(name_2)).send("lobby;cancel_request;" + this.var_1367.uid);
       }
       
       override public function set selected(param1:Boolean) : void

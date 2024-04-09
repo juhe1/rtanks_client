@@ -3,16 +3,16 @@ package package_400
    import alternativa.osgi.OSGi;
    import alternativa.tanks.gui.name_2856;
    import assets.icons.GarageItemBackground;
-   import controls.base.name_1134;
-   import controls.base.name_998;
-   import controls.name_1891;
+   import controls.base.LabelBase;
+   import controls.base.DefaultButtonBase;
+   import controls.TankWindowInner;
    import controls.name_1922;
    import flash.display.Bitmap;
    import flash.display.BitmapData;
    import flash.display.Sprite;
    import flash.events.MouseEvent;
    import flash.geom.Point;
-   import forms.name_1838;
+   import forms.TankWindowWithHeader;
    import package_121.name_343;
    import package_379.class_123;
    import package_54.name_102;
@@ -33,14 +33,14 @@ package package_400
       
       private static const SPACE:int = 8;
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
        
       
-      private var var_1182:name_1891;
+      private var var_1182:TankWindowInner;
       
-      private var name_983:name_998;
+      private var name_983:DefaultButtonBase;
       
-      private var messageLabel:name_1134;
+      private var messageLabel:LabelBase;
       
       private var name_1029:Point;
       
@@ -62,7 +62,7 @@ package package_400
          _loc9_ = Math.ceil(param1.length / 2);
          this.var_2557 = new Sprite();
          this.var_1739 = _loc8_.width + 12 * 2 + 9 * 2 + (_loc8_.width + 8) * (_loc9_ - 1);
-         this.messageLabel = new name_1134();
+         this.messageLabel = new LabelBase();
          this.messageLabel.wordWrap = true;
          this.messageLabel.multiline = true;
          this.messageLabel.text = param2;
@@ -72,9 +72,9 @@ package package_400
          this.messageLabel.y = 110 + 12 * 2;
          this.messageLabel.width = this.var_1739 - 12 * 4;
          this.name_1029 = new Point(this.var_1739,90 + this.messageLabel.height + 33 + 12 * 2 + 9 * 3);
-         var _loc10_:* = param3 ? name_1838.name_1844(localeService.getText(name_390.const_1415),this.name_1029.x,this.name_1029.y) : new name_1922(this.name_1029.x,this.name_1029.y);
+         var _loc10_:* = param3 ? TankWindowWithHeader.createWindow(localeService.getText(name_390.const_1415),this.name_1029.x,this.name_1029.y) : new name_1922(this.name_1029.x,this.name_1029.y);
          addChild(_loc10_);
-         this.var_1182 = new name_1891(0,0,name_1891.name_1428);
+         this.var_1182 = new TankWindowInner(0,0,TankWindowInner.GREEN);
          addChild(this.var_1182);
          this.var_1182.x = 12;
          this.var_1182.y = 12;
@@ -111,7 +111,7 @@ package package_400
             _loc12_++;
          }
          this.name_1029.y += this.var_2557.height;
-         this.name_983 = new name_998();
+         this.name_983 = new DefaultButtonBase();
          this.name_1029.y += this.name_983.height;
          addChild(this.name_983);
          this.name_983.label = localeService.getText(name_390.const_675);
@@ -123,12 +123,12 @@ package package_400
          this.name_983.addEventListener(MouseEvent.CLICK,this.method_2629);
       }
       
-      private function method_2630(param1:int, param2:GarageItemBackground) : name_1134
+      private function method_2630(param1:int, param2:GarageItemBackground) : LabelBase
       {
-         var _loc3_:name_1134 = null;
+         var _loc3_:LabelBase = null;
          if(param1 > 0)
          {
-            _loc3_ = new name_1134();
+            _loc3_ = new LabelBase();
             this.var_2557.addChild(_loc3_);
             _loc3_.size = 16;
             _loc3_.color = 5898034;

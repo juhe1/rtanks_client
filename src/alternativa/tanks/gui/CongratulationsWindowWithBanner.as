@@ -1,10 +1,10 @@
 package alternativa.tanks.gui
 {
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import assets.icons.GarageItemBackground;
    import controls.DefaultButton;
    import controls.Label;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import controls.name_1922;
    import controls.name_2296;
    import flash.display.Bitmap;
@@ -30,7 +30,7 @@ package alternativa.tanks.gui
       
       private var window:name_1922;
       
-      private var var_1182:name_1891;
+      private var var_1182:TankWindowInner;
       
       public var name_983:DefaultButton;
       
@@ -68,7 +68,7 @@ package alternativa.tanks.gui
          var _loc14_:class_130 = null;
          super();
          _loc4_ = new GarageItemBackground(GarageItemBackground.ENGINE_NORMAL);
-         var _loc5_:name_102 = name_102(Main.osgi.name_6(name_102));
+         var _loc5_:name_102 = name_102(Main.osgi.getService(name_102));
          var _loc6_:Boolean = (param2.length & 1) == 0;
          if(param2.length == 1)
          {
@@ -101,9 +101,9 @@ package alternativa.tanks.gui
          this.name_1029 = new Point(this.var_1739,this.messageLabel.height + this.const_1677.y + 12 * 3 + 9 * 3);
          this.window = new name_1922(this.name_1029.x,this.name_1029.y);
          addChild(this.window);
-         this.window.name_2241 = name_102(Main.osgi.name_6(name_102)).getText(TextConst.GUI_LANG);
+         this.window.name_2241 = name_102(Main.osgi.getService(name_102)).getText(TextConst.GUI_LANG);
          this.window.header = name_2296.CONGRATULATIONS;
-         this.var_1182 = new name_1891(0,0,name_1891.name_1428);
+         this.var_1182 = new TankWindowInner(0,0,TankWindowInner.GREEN);
          addChild(this.var_1182);
          this.var_1182.x = 12;
          this.var_1182.y = 12;
@@ -136,7 +136,7 @@ package alternativa.tanks.gui
          this.name_1029.y += this.var_2557.height;
          this.name_983 = new DefaultButton();
          addChild(this.name_983);
-         this.name_983.label = name_102(Main.osgi.name_6(name_102)).getText(TextConst.FREE_BONUSES_WINDOW_BUTTON_CLOSE_TEXT);
+         this.name_983.label = name_102(Main.osgi.getService(name_102)).getText(TextConst.FREE_BONUSES_WINDOW_BUTTON_CLOSE_TEXT);
          this.name_983.y = this.name_1029.y - 9 - this.const_1677.y - 2;
          this.method_2533();
          addChild(this.var_1819);
@@ -145,8 +145,8 @@ package alternativa.tanks.gui
          if(param3 != null)
          {
             this.var_2559 = param3;
-            _loc13_ = Main.osgi.name_6(name_32) as name_32;
-            _loc14_ = (_loc13_.getModelsByInterface(class_130) as Vector.<name_66>)[0] as class_130;
+            _loc13_ = Main.osgi.getService(name_32) as name_32;
+            _loc14_ = (_loc13_.getModelsByInterface(class_130) as Vector.<IModel>)[0] as class_130;
             this.method_2534 = _loc14_.method_1366(param3);
             this.var_2558 = _loc14_.method_1365(param3);
             this.var_1819.addEventListener(MouseEvent.CLICK,this.onBannerClick);
@@ -196,8 +196,8 @@ package alternativa.tanks.gui
       {
          Main.method_8("BannerModel","onBannerClick");
          navigateToURL(new URLRequest(this.var_2558),"_blank");
-         var _loc2_:name_32 = Main.osgi.name_6(name_32) as name_32;
-         var _loc3_:class_130 = (_loc2_.getModelsByInterface(class_130) as Vector.<name_66>)[0] as class_130;
+         var _loc2_:name_32 = Main.osgi.getService(name_32) as name_32;
+         var _loc3_:class_130 = (_loc2_.getModelsByInterface(class_130) as Vector.<IModel>)[0] as class_130;
          _loc3_.method_1367(this.var_2559);
       }
    }

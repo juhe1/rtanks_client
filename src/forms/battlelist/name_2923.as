@@ -2,7 +2,7 @@ package forms.battlelist
 {
    import assets.name_2295;
    import controls.BigButton;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.events.MouseEvent;
    import flash.filters.DropShadowFilter;
    import utils.name_1986;
@@ -13,14 +13,14 @@ package forms.battlelist
       
       private var var_2994:name_2295;
       
-      private var var_2359:name_1134;
+      private var var_2359:LabelBase;
       
       private var var_2995:int = 0;
       
       public function name_2923()
       {
          this.var_2994 = new name_2295();
-         this.var_2359 = new name_1134();
+         this.var_2359 = new LabelBase();
          super();
          addChild(this.var_2994);
          addChild(this.var_2359);

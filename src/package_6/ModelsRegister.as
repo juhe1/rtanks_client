@@ -1,6 +1,6 @@
 package package_6
 {
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import flash.utils.Dictionary;
    import flash.utils.IDataInput;
    import package_1.Main;
@@ -23,7 +23,7 @@ package package_6
       
       private var var_193:Dictionary;
       
-      private var var_192:Vector.<name_66>;
+      private var var_192:Vector.<IModel>;
       
       public function ModelsRegister()
       {
@@ -33,7 +33,7 @@ package package_6
          this.var_190 = new Dictionary();
          this.var_191 = new Dictionary();
          this.var_193 = new Dictionary();
-         this.var_192 = new Vector.<name_66>();
+         this.var_192 = new Vector.<IModel>();
       }
       
       public function register(param1:String, param2:String) : void
@@ -57,10 +57,10 @@ package package_6
          return this.var_193[param1];
       }
       
-      public function add(param1:name_66) : void
+      public function add(param1:IModel) : void
       {
          var _loc5_:Class = null;
-         var _loc6_:Vector.<name_66> = null;
+         var _loc6_:Vector.<IModel> = null;
          Main.method_8("MODEL REGISTER","add model %1",param1);
          this.var_192.push(param1);
          var _loc2_:String = String(param1.id);
@@ -74,7 +74,7 @@ package package_6
             _loc6_ = this.var_191[_loc5_];
             if(_loc6_ == null)
             {
-               this.var_191[_loc5_] = _loc6_ = new Vector.<name_66>();
+               this.var_191[_loc5_] = _loc6_ = new Vector.<IModel>();
             }
             _loc6_.push(param1);
             _loc4_++;
@@ -85,12 +85,12 @@ package package_6
       public function remove(param1:String) : void
       {
          var _loc2_:* = undefined;
-         var _loc3_:name_66 = null;
+         var _loc3_:IModel = null;
          var _loc4_:Vector.<Class> = null;
          var _loc5_:int = 0;
          var _loc6_:String = null;
          var _loc7_:Class = null;
-         var _loc8_:Vector.<name_66> = null;
+         var _loc8_:Vector.<IModel> = null;
          var _loc9_:int = 0;
          Main.method_8("MODEL REGISTER","remove model id: %1",param1);
          this.var_192.splice(this.var_192.indexOf(this.var_188[param1]),1);
@@ -102,7 +102,7 @@ package package_6
                delete this.var_190[_loc2_];
             }
          }
-         _loc3_ = name_66(this.var_188[param1]);
+         _loc3_ = IModel(this.var_188[param1]);
          Main.method_8("MODEL REGISTER","   model instance: %1",_loc3_);
          _loc4_ = this.var_189[param1] as Vector.<Class>;
          Main.method_8("MODEL REGISTER","   model interfaces: %1",_loc4_);
@@ -110,7 +110,7 @@ package package_6
          while(_loc5_ < _loc4_.length)
          {
             _loc7_ = _loc4_[_loc5_];
-            _loc8_ = this.var_191[_loc7_] as Vector.<name_66>;
+            _loc8_ = this.var_191[_loc7_] as Vector.<IModel>;
             Main.method_8("MODEL REGISTER","   models for interface %1: %2",_loc7_,_loc8_);
             _loc9_ = _loc8_.indexOf(_loc3_);
             _loc8_.splice(_loc9_,1);
@@ -124,7 +124,7 @@ package package_6
       public function invoke(param1:ClientObject, param2:String, param3:IDataInput, param4:Object) : void
       {
          var _loc5_:String = String(this.var_190[param2]);
-         var _loc6_:name_66 = name_66(this.var_188[_loc5_]);
+         var _loc6_:IModel = IModel(this.var_188[_loc5_]);
          Main.method_8("MODEL REGISTER","invoke");
          Main.method_8("MODEL REGISTER","   methodId: " + param2,255);
          Main.method_8("MODEL REGISTER","   clientObjectId: " + param1.id,255);
@@ -140,21 +140,21 @@ package package_6
          }
       }
       
-      public function getModel(param1:String) : name_66
+      public function getModel(param1:String) : IModel
       {
          return this.var_188[param1];
       }
       
-      public function getModelsByInterface(param1:Class) : Vector.<name_66>
+      public function getModelsByInterface(param1:Class) : Vector.<IModel>
       {
          Main.method_8("MODEL REGISTER","getModelsByInterface %1: %2",param1,this.var_191[param1]);
          return this.var_191[param1];
       }
       
-      public function method_260(param1:ClientObject, param2:Class) : name_66
+      public function method_260(param1:ClientObject, param2:Class) : IModel
       {
          var _loc3_:String = null;
-         var _loc4_:name_66 = null;
+         var _loc4_:IModel = null;
          var _loc7_:Vector.<Class> = null;
          var _loc8_:int = 0;
          if(param1 == null)
@@ -196,11 +196,11 @@ package package_6
          return _loc4_;
       }
       
-      public function getModelsForObject(param1:ClientObject, param2:Class) : Vector.<name_66>
+      public function getModelsForObject(param1:ClientObject, param2:Class) : Vector.<IModel>
       {
          var _loc6_:Vector.<Class> = null;
          var _loc7_:int = 0;
-         var _loc3_:Vector.<name_66> = new Vector.<name_66>();
+         var _loc3_:Vector.<IModel> = new Vector.<IModel>();
          var _loc4_:Vector.<String> = param1.method_15();
          var _loc5_:int = _loc4_.length - 1;
          while(_loc5_ >= 0)
@@ -230,7 +230,7 @@ package package_6
          return this.var_189[param1];
       }
       
-      public function get method_256() : Vector.<name_66>
+      public function get method_256() : Vector.<IModel>
       {
          return this.var_192;
       }

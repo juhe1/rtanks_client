@@ -1,11 +1,11 @@
 package alternativa.tanks.models.weapon.shared
 {
    import alternativa.physics.collision.name_1083;
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import flash.utils.Dictionary;
    import package_37.Matrix3;
    import package_37.Vector3;
-   import package_61.name_124;
+   import package_61.RayHit;
    
    public class ConicAreaTargetSystem
    {
@@ -33,7 +33,7 @@ package alternativa.tanks.models.weapon.shared
       
       private var const_430:Matrix3;
       
-      private var var_711:name_124;
+      private var var_711:RayHit;
       
       private var var_2431:GunPredicate;
       
@@ -50,7 +50,7 @@ package alternativa.tanks.models.weapon.shared
          this.var_1012 = new Vector3();
          this.matrix = new Matrix3();
          this.const_430 = new Matrix3();
-         this.var_711 = new name_124();
+         this.var_711 = new RayHit();
          this.var_2431 = new GunPredicate();
          this.var_2436 = new Vector3();
          this.var_2439 = new Vector3();
@@ -63,7 +63,7 @@ package alternativa.tanks.models.weapon.shared
          this.var_1056 = param6;
       }
       
-      public function name_1705(param1:name_660, param2:Number, param3:Number, param4:Vector3, param5:Vector3, param6:Vector3, param7:Array, param8:Array, param9:Array) : void
+      public function name_1705(param1:Body, param2:Number, param3:Number, param4:Vector3, param5:Vector3, param6:Vector3, param7:Array, param8:Array, param9:Array) : void
       {
          var _loc15_:* = undefined;
          var _loc16_:Number = NaN;
@@ -131,7 +131,7 @@ package alternativa.tanks.models.weapon.shared
       
       private function method_2467(param1:Vector3, param2:Vector3, param3:Number) : void
       {
-         var _loc5_:name_660 = null;
+         var _loc5_:Body = null;
          var _loc6_:Number = NaN;
          const_114.vCopy(param1);
          var _loc4_:Number = 0;
@@ -170,14 +170,14 @@ package alternativa.tanks.models.weapon.shared
 }
 
 import alternativa.physics.collision.name_1160;
-import alternativa.physics.name_660;
+import alternativa.physics.Body;
 import flash.utils.Dictionary;
 
 class GunPredicate implements name_1160
 {
     
    
-   public var shooter:name_660;
+   public var shooter:Body;
    
    private var targets:Dictionary;
    
@@ -190,17 +190,17 @@ class GunPredicate implements name_1160
       super();
    }
    
-   public function considerBody(param1:name_660) : Boolean
+   public function considerBody(param1:Body) : Boolean
    {
       return this.shooter != param1 && this.targets[param1] == null && this.invalidTargets[param1] == null;
    }
    
-   public function addTarget(param1:name_660) : void
+   public function addTarget(param1:Body) : void
    {
       this.targets[param1] = true;
    }
    
-   public function addInvalidTarget(param1:name_660) : void
+   public function addInvalidTarget(param1:Body) : void
    {
       this.invalidTargets[param1] = true;
    }

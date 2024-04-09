@@ -1,7 +1,7 @@
 package package_449
 {
-   import alternativa.tanks.model.shop.name_2246;
-   import controls.base.name_1134;
+   import alternativa.tanks.model.shop.ShopWindow;
+   import controls.base.LabelBase;
    import flash.display.Bitmap;
    import flash.display.BitmapData;
    import flash.text.TextFieldAutoSize;
@@ -17,7 +17,7 @@ package package_449
    public class CrystalPackageItem extends class_216
    {
       
-      public static var localeService:name_102 = Main.osgi.name_6(name_102) as name_102;
+      public static var localeService:name_102 = Main.osgi.getService(name_102) as name_102;
       
       private static const const_2659:int = 18;
       
@@ -38,19 +38,19 @@ package package_449
       
       private var var_3434:Bitmap;
       
-      private var var_1827:name_1134;
+      private var var_1827:LabelBase;
       
       private var var_3435:Bitmap;
       
-      private var var_2229:name_1134;
+      private var var_2229:LabelBase;
       
-      private var var_3424:name_1134;
+      private var var_3424:LabelBase;
       
       private var var_2226:Bitmap;
       
-      private var var_3431:name_1134;
+      private var var_3431:LabelBase;
       
-      private var var_3432:name_1134;
+      private var var_3432:LabelBase;
       
       private var var_3433:Bitmap;
       
@@ -83,7 +83,7 @@ package package_449
       
       private function method_3106() : void
       {
-         this.var_1827 = new name_1134();
+         this.var_1827 = new LabelBase();
          this.var_1827.text = name_3386.name_3387(this.var_3422.crystalls_count,0,false);
          this.var_1827.color = 23704;
          this.var_1827.autoSize = TextFieldAutoSize.LEFT;
@@ -93,7 +93,7 @@ package package_449
          addChild(this.var_1827);
          this.var_3435 = new Bitmap(CrystalPackageItemIcons.name_3398);
          addChild(this.var_3435);
-         this.var_2229 = new name_1134();
+         this.var_2229 = new LabelBase();
          method_3087(this.var_2229);
          this.var_2229.text = name_3386.name_3387(this.var_3422.price,0,false) + " " + this.var_3422.currency;
          this.var_2229.color = 4144959;
@@ -106,7 +106,7 @@ package package_449
       
       private function method_3107() : void
       {
-         this.var_3424 = new name_1134();
+         this.var_3424 = new LabelBase();
          this.var_3424.text = "+" + this.var_3422.premium_duration + " " + name_3388.name_3399(this.var_3422.premium_duration).charAt(0);
          this.var_3424.color = name_1139.name_2012;
          this.var_3424.autoSize = TextFieldAutoSize.LEFT;
@@ -120,11 +120,11 @@ package package_449
       
       private function method_3104() : void
       {
-         if(name_2246.name_2252)
+         if(ShopWindow.name_2252)
          {
             name_1146(name_3383.RED);
          }
-         this.var_3431 = new name_1134();
+         this.var_3431 = new LabelBase();
          this.var_3431.text = "+" + name_3386.name_3387(this.var_3422.bonus_crystalls,0,false);
          this.var_3431.color = 16777215;
          this.var_3431.autoSize = TextFieldAutoSize.LEFT;
@@ -132,7 +132,7 @@ package package_449
          this.var_3431.bold = true;
          this.var_3431.mouseEnabled = false;
          addChild(this.var_3431);
-         this.var_3432 = new name_1134();
+         this.var_3432 = new LabelBase();
          this.var_3432.text = localeService.getText(name_390.const_589);
          this.var_3432.color = 16777215;
          this.var_3432.autoSize = TextFieldAutoSize.LEFT;

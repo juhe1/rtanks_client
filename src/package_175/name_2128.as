@@ -1,6 +1,6 @@
 package package_175
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import forms.name_1139;
    
    public class name_2128 extends class_151
@@ -11,7 +11,7 @@ package package_175
       private static const const_2198:int = 7;
        
       
-      private var var_1775:name_1134;
+      private var var_1775:LabelBase;
       
       public function name_2128(param1:String)
       {
@@ -21,7 +21,7 @@ package package_175
       override protected function init() : void
       {
          super.init();
-         this.var_1775 = new name_1134();
+         this.var_1775 = new LabelBase();
          this.var_1775.color = name_1139.name_1894;
          this.var_1775.mouseEnabled = false;
          addChild(this.var_1775);

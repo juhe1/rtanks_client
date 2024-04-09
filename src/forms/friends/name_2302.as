@@ -1,6 +1,6 @@
 package forms.friends
 {
-   public class name_2302 extends name_2306 implements name_3030
+   public class name_2302 extends FriendWindowButton implements name_3030
    {
        
       

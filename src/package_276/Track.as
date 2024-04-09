@@ -1,13 +1,13 @@
 package package_276
 {
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    import package_37.Vector3;
    
    public class Track
    {
        
       
-      public var name_787:name_660;
+      public var name_787:Body;
       
       public var name_2090:Vector.<name_2088>;
       
@@ -23,7 +23,7 @@ package package_276
       
       public const const_2101:Vector3 = new Vector3();
       
-      public function Track(param1:name_660, param2:int, param3:Vector3, param4:Number, param5:name_906, param6:int)
+      public function Track(param1:Body, param2:int, param3:Vector3, param4:Number, param5:name_906, param6:int)
       {
          super();
          this.name_787 = param1;
@@ -31,7 +31,7 @@ package package_276
          this.method_2589(param2,param3,param4,param5);
       }
       
-      private static function name_1420(param1:name_660) : Boolean
+      private static function name_1420(param1:Body) : Boolean
       {
          return param1 != null && param1.tank != null;
       }

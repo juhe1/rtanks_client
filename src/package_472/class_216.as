@@ -1,6 +1,6 @@
 package package_472
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.events.MouseEvent;
    import package_411.name_2247;
    
@@ -21,7 +21,7 @@ package package_472
          super(param2);
       }
       
-      protected function method_3087(param1:name_1134) : void
+      protected function method_3087(param1:LabelBase) : void
       {
       }
       

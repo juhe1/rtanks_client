@@ -37,7 +37,7 @@ package package_390
          var _loc4_:Boolean = false;
          var _loc5_:Boolean = false;
          var _loc6_:Boolean = false;
-         if(PanelModel(Main.osgi.name_6(name_115)).userName == var_913)
+         if(PanelModel(Main.osgi.getService(name_115)).userName == var_913)
          {
             dispatchEvent(new UserLabelEvent(UserLabelEvent.CLICK_WITH_CTRL,var_1557,true));
             return;

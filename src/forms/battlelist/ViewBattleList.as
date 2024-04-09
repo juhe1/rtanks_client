@@ -5,10 +5,10 @@ package forms.battlelist
    import assets.scroller.color.ScrollThumbSkinGreen;
    import assets.scroller.color.ScrollTrackGreen;
    import controls.DefaultButton;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.buttons.BigButton;
    import controls.buttons.skin.name_2937;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import fl.controls.List;
    import fl.controls.ScrollBar;
    import fl.data.DataProvider;
@@ -26,7 +26,7 @@ package forms.battlelist
    import flash.ui.Keyboard;
    import flash.utils.Timer;
    import forms.name_1139;
-   import forms.name_1838;
+   import forms.TankWindowWithHeader;
    import package_1.Main;
    import package_280.name_2263;
    import package_455.name_2931;
@@ -36,7 +36,7 @@ package forms.battlelist
    import package_457.name_2935;
    import package_54.name_102;
    import package_60.TextConst;
-   import package_95.name_298;
+   import package_95.IStorageService;
    import projects.tanks.clients.fp10.libraries.name_390;
    import scpacker.networking.Network;
    import scpacker.networking.name_2;
@@ -44,16 +44,16 @@ package forms.battlelist
    public class ViewBattleList extends Sprite
    {
       
-      public static var storageService:name_298 = OSGi.getInstance().name_6(name_298) as name_298;
+      public static var storageService:IStorageService = OSGi.getInstance().getService(IStorageService) as IStorageService;
       
       private static const const_2262:String = "BATTLE_LIST_MODE_FILTER";
       
       private static const const_2261:BattleMode = BattleMode.TDM;
        
       
-      private var var_2197:name_1838;
+      private var var_2197:TankWindowWithHeader;
       
-      private var var_1182:name_1891;
+      private var var_1182:TankWindowInner;
       
       private var var_2941:BigButton;
       
@@ -81,7 +81,7 @@ package forms.battlelist
       
       public function ViewBattleList()
       {
-         this.var_1182 = new name_1891(100,100,name_1891.name_1428);
+         this.var_1182 = new TankWindowInner(100,100,TankWindowInner.GREEN);
          this.var_1794 = new List();
          this.var_1347 = new DataProvider();
          this.var_2942 = new DataProvider();
@@ -121,17 +121,17 @@ package forms.battlelist
       private function method_2737(param1:MouseEvent) : void
       {
          this.var_2941.enabled = false;
-         Network(OSGi.getInstance().name_6(name_2)).send("lobby;start_matchmaking");
+         Network(OSGi.getInstance().getService(name_2)).send("lobby;start_matchmaking");
       }
       
       private function method_2068(param1:Event) : void
       {
-         var _loc2_:name_102 = Main.osgi.name_6(name_102) as name_102;
+         var _loc2_:name_102 = Main.osgi.getService(name_102) as name_102;
          removeEventListener(Event.ADDED_TO_STAGE,this.method_2068);
-         this.var_2197 = new name_1838(_loc2_.getText(name_390.const_1103));
+         this.var_2197 = new TankWindowWithHeader(_loc2_.getText(name_390.const_1103));
          addChild(this.var_2197);
          addChild(this.var_1182);
-         this.var_1182.name_1895 = true;
+         this.var_1182.showBlink = true;
          this.var_2941 = new BigButton();
          this.var_1794.rowHeight = 20;
          this.var_1794.setStyle("cellRenderer",BattleListRenderer);
@@ -448,12 +448,12 @@ package forms.battlelist
       private function method_2586(param1:Boolean, param2:Object) : Sprite
       {
          var _loc3_:Bitmap = null;
-         var _loc5_:name_1134 = null;
+         var _loc5_:LabelBase = null;
          var _loc7_:name_2933 = null;
          var _loc12_:name_2935 = null;
-         var _loc13_:name_1134 = null;
+         var _loc13_:LabelBase = null;
          var _loc14_:Bitmap = null;
-         var _loc15_:name_1134 = null;
+         var _loc15_:LabelBase = null;
          var _loc16_:name_2932 = null;
          var _loc17_:name_2932 = null;
          var _loc18_:name_2932 = null;
@@ -487,7 +487,7 @@ package forms.battlelist
             _loc19_.x = 0;
             _loc4_.addChild(_loc19_);
          }
-         _loc5_ = new name_1134();
+         _loc5_ = new LabelBase();
          _loc5_.size = 12;
          _loc5_.color = Boolean(param2.suspicious) ? name_1139.const_1758 : (!!param2.accessible ? uint(name_1139.name_1894) : uint(name_1139.name_2149));
          _loc5_.text = param2.gamename;
@@ -504,7 +504,7 @@ package forms.battlelist
             _loc7_.x = _loc11_;
             _loc7_.y = 3;
             _loc4_.addChild(_loc7_);
-            _loc5_ = new name_1134();
+            _loc5_ = new LabelBase();
             _loc5_.autoSize = TextFieldAutoSize.NONE;
             _loc5_.size = 12;
             _loc5_.color = !param2.allfull ? uint(16777215) : uint(8816262);
@@ -517,7 +517,7 @@ package forms.battlelist
             _loc4_.addChild(_loc5_);
             if(param2.friendsDm > 0)
             {
-               _loc16_ = new name_2932(_loc8_,param1,param2.friendsDm,param1 ? (_loc8_ ? name_1891.name_1428 : uint(5789784)) : (_loc8_ ? uint(5898034) : uint(11645361)));
+               _loc16_ = new name_2932(_loc8_,param1,param2.friendsDm,param1 ? (_loc8_ ? TankWindowInner.GREEN : uint(5789784)) : (_loc8_ ? uint(5898034) : uint(11645361)));
                _loc16_.x = _loc11_ + _loc7_.width + 10;
                _loc16_.y = 2;
                _loc4_.addChild(_loc16_);
@@ -535,7 +535,7 @@ package forms.battlelist
             _loc7_.x = _loc11_ + 27;
             _loc7_.y = 3;
             _loc4_.addChild(_loc7_);
-            _loc5_ = new name_1134();
+            _loc5_ = new LabelBase();
             _loc5_.autoSize = TextFieldAutoSize.NONE;
             _loc5_.size = 12;
             _loc5_.align = TextFormatAlign.CENTER;
@@ -546,7 +546,7 @@ package forms.battlelist
             _loc5_.width = 27;
             _loc5_.height = 16;
             _loc4_.addChild(_loc5_);
-            _loc5_ = new name_1134();
+            _loc5_ = new LabelBase();
             _loc5_.autoSize = TextFieldAutoSize.NONE;
             _loc5_.align = TextFormatAlign.CENTER;
             _loc5_.color = !param2.bluefull ? uint(16777215) : uint(8816262);
@@ -558,14 +558,14 @@ package forms.battlelist
             _loc4_.addChild(_loc5_);
             if(Boolean(param2.friendsRed))
             {
-               _loc17_ = new name_2932(_loc8_,param1,param2.friendsRed,param1 ? (_loc8_ ? name_1891.name_1428 : uint(5789784)) : (_loc8_ ? uint(5898034) : uint(11645361)));
+               _loc17_ = new name_2932(_loc8_,param1,param2.friendsRed,param1 ? (_loc8_ ? TankWindowInner.GREEN : uint(5789784)) : (_loc8_ ? uint(5898034) : uint(11645361)));
                _loc17_.x = _loc11_ - _loc17_.width - 9;
                _loc17_.y = 2;
                _loc4_.addChild(_loc17_);
             }
             if(Boolean(param2.friendsBlue))
             {
-               _loc18_ = new name_2932(_loc8_,param1,param2.friendsBlue,param1 ? (_loc8_ ? name_1891.name_1428 : uint(5789784)) : (_loc8_ ? uint(5898034) : uint(11645361)));
+               _loc18_ = new name_2932(_loc8_,param1,param2.friendsBlue,param1 ? (_loc8_ ? TankWindowInner.GREEN : uint(5789784)) : (_loc8_ ? uint(5898034) : uint(11645361)));
                _loc18_.x = _loc11_ + 27 + _loc7_.width + 10;
                _loc18_.y = 2;
                _loc4_.addChild(_loc18_);
@@ -578,7 +578,7 @@ package forms.battlelist
             _loc12_.y = 4;
             _loc4_.addChild(_loc12_);
             _loc12_.method_1981(param2.percentLeft);
-            _loc13_ = new name_1134();
+            _loc13_ = new LabelBase();
             _loc13_.size = 12;
             _loc13_.color = !!param2.accessible ? uint(name_1139.name_1894) : uint(name_1139.name_2149);
             _loc13_.autoSize = TextFieldAutoSize.RIGHT;
@@ -594,7 +594,7 @@ package forms.battlelist
             _loc14_.x = _loc9_ - 6;
             _loc14_.y = 4;
             _loc4_.addChild(_loc14_);
-            _loc15_ = new name_1134();
+            _loc15_ = new LabelBase();
             _loc15_.size = 12;
             _loc15_.color = !!param2.accessible ? uint(name_1139.name_1894) : uint(name_1139.name_2149);
             _loc15_.autoSize = TextFieldAutoSize.RIGHT;

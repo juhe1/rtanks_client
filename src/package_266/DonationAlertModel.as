@@ -2,7 +2,7 @@ package package_266
 {
    import alternativa.osgi.OSGi;
    import alternativa.tanks.gui.ThanksForPurchaseWindow;
-   import alternativa.tanks.service.settings.name_108;
+   import alternativa.tanks.service.settings.IBattleSettings;
    import flash.events.Event;
    import flash.utils.setTimeout;
    import package_117.name_341;
@@ -20,9 +20,9 @@ package package_266
    public class DonationAlertModel extends class_152 implements name_388, name_170, name_287
    {
       
-      public static var settingsService:name_108 = OSGi.getInstance().name_6(name_108) as name_108;
+      public static var settingsService:IBattleSettings = OSGi.getInstance().getService(IBattleSettings) as IBattleSettings;
       
-      public static var lobbyLayoutService:name_94 = OSGi.getInstance().name_6(name_94) as name_94;
+      public static var lobbyLayoutService:name_94 = OSGi.getInstance().getService(name_94) as name_94;
        
       
       private var window:ThanksForPurchaseWindow = null;

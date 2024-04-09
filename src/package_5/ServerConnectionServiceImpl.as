@@ -29,7 +29,7 @@ package package_5
          var _loc3_:String = param1.method_88;
          var _loc4_:int = param1.ports[0];
          this.networker.connect(_loc3_,_loc4_);
-         Main.osgi.name_1(name_2,this.networker);
+         Main.osgi.registerService(name_2,this.networker);
       }
    }
 }

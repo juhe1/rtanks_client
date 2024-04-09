@@ -3,10 +3,10 @@ package alternativa.tanks.model.quest.common.gui.window
    import alternativa.osgi.OSGi;
    import alternativa.tanks.model.quest.common.gui.CommonQuestTab;
    import alternativa.tanks.model.quest.common.name_551;
-   import controls.base.name_998;
+   import controls.base.DefaultButtonBase;
    import flash.events.MouseEvent;
    import flash.utils.Dictionary;
-   import forms.name_1838;
+   import forms.TankWindowWithHeader;
    import package_280.MainButtonBarEvents;
    import package_31.PanelModel;
    import package_31.name_115;
@@ -31,16 +31,16 @@ package alternativa.tanks.model.quest.common.gui.window
       
       public static const const_1519:int = 518;
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
        
       
       private var var_1120:Boolean;
       
-      private var window:name_1838;
+      private var window:TankWindowWithHeader;
       
       private var var_1117:QuestTabButtonsList;
       
-      private var name_983:name_998;
+      private var name_983:DefaultButtonBase;
       
       private var var_1119:Dictionary;
       
@@ -59,7 +59,7 @@ package alternativa.tanks.model.quest.common.gui.window
       {
          if(!this.var_1121)
          {
-            PanelModel(OSGi.getInstance().name_6(name_115)).getPanel().buttonBar.addEventListener(MainButtonBarEvents.name_1024,this.method_515);
+            PanelModel(OSGi.getInstance().getService(name_115)).getPanel().buttonBar.addEventListener(MainButtonBarEvents.name_1024,this.method_515);
             this.method_1327();
             this.method_1325();
             this.method_1331();
@@ -99,13 +99,13 @@ package alternativa.tanks.model.quest.common.gui.window
       
       private function method_1327() : void
       {
-         this.window = name_1838.name_1844(localeService.getText(name_390.const_1140),876,518);
+         this.window = TankWindowWithHeader.createWindow(localeService.getText(name_390.const_1140),876,518);
          addChild(this.window);
       }
       
       private function method_1331() : void
       {
-         this.name_983 = new name_998();
+         this.name_983 = new DefaultButtonBase();
          this.name_983.label = localeService.getText(name_390.const_1168);
          this.name_983.x = 876 - this.name_983.width - 12;
          this.name_983.y = 518 - this.name_983.height - 12;

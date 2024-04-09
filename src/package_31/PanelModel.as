@@ -1,7 +1,7 @@
 package package_31
 {
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.osgi.OSGi;
    import alternativa.tanks.config.TanksMap;
    import alternativa.tanks.gui.NewReferalWindow;
@@ -18,17 +18,17 @@ package package_31
    import alternativa.tanks.models.battlefield.BattlefieldModel;
    import alternativa.tanks.models.battlefield.StatisticsModel;
    import alternativa.tanks.models.battlefield.gui.chat.ChatModel;
-   import alternativa.tanks.models.battlefield.gui.name_80;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.gui.IBattlefieldGUI;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.dom.DOMModel;
-   import alternativa.tanks.models.dom.name_995;
+   import alternativa.tanks.models.dom.IDOMModel;
    import alternativa.tanks.service.settings.SettingsService;
    import alternativa.tanks.service.settings.SettingsServiceEvent;
-   import alternativa.tanks.service.settings.name_108;
+   import alternativa.tanks.service.settings.IBattleSettings;
    import controls.PlayerInfo;
    import controls.Rank;
    import controls.RedButton;
-   import controls.base.name_998;
+   import controls.base.DefaultButtonBase;
    import controls.buttons.h30px.name_1012;
    import flash.display.Bitmap;
    import flash.display.BitmapData;
@@ -61,7 +61,7 @@ package package_31
    import package_1.Main;
    import package_10.StartupSettings;
    import package_106.AchievementModel;
-   import package_106.name_345;
+   import package_106.IAchievementModel;
    import package_12.name_24;
    import package_122.name_337;
    import package_124.AlertServiceEvent;
@@ -69,7 +69,7 @@ package package_31
    import package_137.name_358;
    import package_175.name_539;
    import package_176.name_549;
-   import package_177.name_550;
+   import package_177.IDialogsService;
    import package_18.name_34;
    import package_183.name_1034;
    import package_184.class_25;
@@ -115,7 +115,7 @@ package package_31
    import package_75.name_274;
    import package_79.CTFModel;
    import package_80.InventoryModel;
-   import package_95.name_298;
+   import package_95.IStorageService;
    import platform.client.fp10.core.registry.name_29;
    import projects.tanks.client.battleselect.name_386;
    import projects.tanks.client.commons.models.layout.LayoutState;
@@ -127,6 +127,7 @@ package package_31
    import scpacker.networking.Network;
    import scpacker.networking.name_2;
    import scpacker.test.name_1014;
+   import juho.hacking.hackmenu.HackMenuWindow;
    
    public class PanelModel extends class_26 implements class_24, class_11, name_115, class_27, class_25
    {
@@ -198,7 +199,7 @@ package package_31
       
       private var var_389:int;
       
-      private var var_386:ShopModel;
+      private var shopModel:ShopModel;
       
       private var var_367:SettingsWindow;
       
@@ -210,7 +211,9 @@ package package_31
       
       private var var_372:PremiumWelcomeAlert;
       
-      private var var_369:FriendsWindow;
+      private var friendsWindow:FriendsWindow;
+
+      private var hackMenuWindow:HackMenuWindow;
       
       private var var_385:String;
       
@@ -268,7 +271,7 @@ package package_31
       
       public var isInBattle:Boolean = false;
       
-      public var var_388:Vector.<name_66>;
+      public var var_388:Vector.<IModel>;
       
       private var localeService:name_102;
       
@@ -280,21 +283,21 @@ package package_31
       
       public function PanelModel()
       {
-         this.var_388 = new Vector.<name_66>();
+         this.var_388 = new Vector.<IModel>();
          this.name_688 = new Sprite();
          super();
-         var_365.push(name_66,name_115,class_24,class_11,name_1020,class_25);
-         this.modelRegister = Main.osgi.name_6(name_32) as name_32;
-         this.dialogsLayer = (Main.osgi.name_6(name_24) as name_24).dialogsLayer as DisplayObjectContainer;
-         this.localeService = Main.osgi.name_6(name_102) as name_102;
-         this.var_382 = Main.osgi.name_6(name_539) as name_539;
-         this.fullscreenService = Main.osgi.name_6(name_34) as name_34;
+         _interfaces.push(IModel,name_115,class_24,class_11,name_1020,class_25);
+         this.modelRegister = Main.osgi.getService(name_32) as name_32;
+         this.dialogsLayer = (Main.osgi.getService(name_24) as name_24).dialogsLayer as DisplayObjectContainer;
+         this.localeService = Main.osgi.getService(name_102) as name_102;
+         this.var_382 = Main.osgi.getService(name_539) as name_539;
+         this.fullscreenService = Main.osgi.getService(name_34) as name_34;
          this.var_83 = Main.contentUILayer;
          this.keysBindingService = new KeysBindingServiceImpl();
-         Main.osgi.name_1(name_276,this.keysBindingService);
+         Main.osgi.registerService(name_276,this.keysBindingService);
          this.settingsService = new SettingsService();
-         Main.osgi.name_1(name_108,this.settingsService);
-         this.var_168 = Main.osgi.name_6(name_13) as name_13;
+         Main.osgi.registerService(IBattleSettings,this.settingsService);
+         this.var_168 = Main.osgi.getService(name_13) as name_13;
          this.bg = new Shape();
          this.var_376 = new Sprite();
          this.var_384 = new Bitmap();
@@ -314,14 +317,14 @@ package package_31
          this.isTester = param4;
          this.email = param3;
          this.var_366 = new name_996();
-         this.var_386 = new ShopModel();
-         this.lobbyLayoutService = OSGi.getInstance().name_6(name_94) as name_94;
-         this.dialogWindowsDispatcherService = OSGi.getInstance().name_6(name_549) as name_549;
-         this.battleInfoService = OSGi.getInstance().name_6(name_274) as name_274;
-         this.userPropertiesService = OSGi.getInstance().name_6(name_561) as name_561;
+         this.shopModel = new ShopModel();
+         this.lobbyLayoutService = OSGi.getInstance().getService(name_94) as name_94;
+         this.dialogWindowsDispatcherService = OSGi.getInstance().getService(name_549) as name_549;
+         this.battleInfoService = OSGi.getInstance().getService(name_274) as name_274;
+         this.userPropertiesService = OSGi.getInstance().getService(name_561) as name_561;
          this.userPropertiesService.init(param5,param5,param10,param8,1,"","","");
          this.method_535();
-         this.storage = name_298(Main.osgi.name_6(name_298)).getStorage();
+         this.storage = IStorageService(Main.osgi.getService(IStorageService)).getStorage();
          if(this.storage == null)
          {
             throw new Error("storage is null");
@@ -405,11 +408,11 @@ package package_31
       
       public function objectLoaded(param1:ClientObject) : void
       {
-         this.networker = Network(Main.osgi.name_6(name_2));
+         this.networker = Network(Main.osgi.getService(name_2));
          this.var_374 = new BattleInviteModel();
          this.clientObject = param1;
          this.var_371 = new Array();
-         Main.osgi.name_1(class_27,this);
+         Main.osgi.registerService(class_27,this);
          this.method_514();
          this.var_366.buttonBar.soundOn = !this.settingsService.muteSound;
          this.method_543();
@@ -417,7 +420,7 @@ package package_31
       
       private function method_543() : void
       {
-         var _loc1_:name_791 = Main.osgi.name_6(name_791) as name_791;
+         var _loc1_:name_791 = Main.osgi.getService(name_791) as name_791;
          var _loc2_:int = this.method_550();
          var _loc3_:name_1008 = new name_1008(0.5,631,60);
          var _loc4_:int = this.var_366.buttonBar.name_1039() ? int(36) : int(0);
@@ -465,7 +468,7 @@ package package_31
          this.method_542();
          this.removeDisplayObject(this.var_367);
          this.removeDisplayObject(this.var_368);
-         var _loc2_:name_791 = Main.osgi.name_6(name_791) as name_791;
+         var _loc2_:name_791 = Main.osgi.getService(name_791) as name_791;
          _loc2_.hideHelp();
          _loc2_.name_987("PanelModel",1);
          _loc2_.name_987("PanelModel",2);
@@ -474,7 +477,7 @@ package package_31
          _loc2_.name_987("PanelModel",6);
          _loc2_.name_987("PanelModel",10);
          this.var_371 = null;
-         Main.osgi.name_48(class_27);
+         Main.osgi.unregisterService(class_27);
          this.clientObject = null;
       }
       
@@ -485,22 +488,22 @@ package package_31
       public function showGarage(param1:Object) : void
       {
          var _loc2_:BattleSelectModel = null;
-         name_13(Main.osgi.name_6(name_13)).show();
+         name_13(Main.osgi.getService(name_13)).show();
          if(!this.isInBattle)
          {
-            Network(Main.osgi.name_6(name_2)).send("lobby;get_garage_data");
+            Network(Main.osgi.getService(name_2)).send("lobby;get_garage_data");
          }
          if(this.isBattleSelect)
          {
-            _loc2_ = BattleSelectModel(Main.osgi.name_6(name_386));
+            _loc2_ = BattleSelectModel(Main.osgi.getService(name_386));
             _loc2_.objectUnloaded(null);
             this.isBattleSelect = false;
-            Main.osgi.name_48(name_386);
+            Main.osgi.unregisterService(name_386);
          }
          else if(this.isInBattle)
          {
             this.onExitFromBattle();
-            Network(Main.osgi.name_6(name_2)).send("lobby;get_garage_data");
+            Network(Main.osgi.getService(name_2)).send("lobby;get_garage_data");
             this.isInBattle = false;
          }
       }
@@ -508,7 +511,7 @@ package package_31
       public function onExitFromBattle(param1:Boolean = true) : void
       {
          var _loc8_:* = undefined;
-         var _loc2_:BattlefieldModel = BattlefieldModel(Main.osgi.name_6(name_83));
+         var _loc2_:BattlefieldModel = BattlefieldModel(Main.osgi.getService(IBattleField));
          var _loc3_:TanksMap = _loc2_.getConfig().map;
          _loc3_.name_1060.destroyTree();
          _loc3_.destroy();
@@ -529,23 +532,23 @@ package package_31
             }
             _loc2_.var_130 = new Vector.<Object>();
          }
-         BattleController(Main.osgi.name_6(IBattleController)).destroy();
-         StatisticsModel(Main.osgi.name_6(name_80)).objectUnloaded(null);
-         Network(Main.osgi.name_6(name_2)).removeListener(Main.osgi.name_6(IBattleController) as BattleController);
-         ChatModel(Main.osgi.name_6(IChatBattle)).objectUnloaded(null);
-         var _loc4_:CTFModel = Main.osgi.name_6(name_994) as CTFModel;
+         BattleController(Main.osgi.getService(IBattleController)).destroy();
+         StatisticsModel(Main.osgi.getService(IBattlefieldGUI)).objectUnloaded(null);
+         Network(Main.osgi.getService(name_2)).removeListener(Main.osgi.getService(IBattleController) as BattleController);
+         ChatModel(Main.osgi.getService(IChatBattle)).objectUnloaded(null);
+         var _loc4_:CTFModel = Main.osgi.getService(name_994) as CTFModel;
          if(_loc4_ != null)
          {
             _loc4_.objectUnloaded(null);
-            Main.osgi.name_48(name_994);
+            Main.osgi.unregisterService(name_994);
          }
-         var _loc5_:DOMModel = Main.osgi.name_6(name_995) as DOMModel;
+         var _loc5_:DOMModel = Main.osgi.getService(IDOMModel) as DOMModel;
          if(_loc5_ != null)
          {
             _loc5_.objectUnloaded(null);
-            Main.osgi.name_48(name_995);
+            Main.osgi.unregisterService(IDOMModel);
          }
-         var _loc6_:name_32 = name_32(Main.osgi.name_6(name_32));
+         var _loc6_:name_32 = name_32(Main.osgi.getService(name_32));
          var _loc7_:InventoryModel = InventoryModel(_loc6_.getModelsByInterface(name_97)[0]);
          if(_loc7_ != null)
          {
@@ -581,7 +584,7 @@ package package_31
       {
          Main.stage.removeEventListener(Event.RESIZE,this.method_516);
          this.dialogsLayer.removeChild(this.var_370);
-         var _loc2_:String = String((Main.osgi.name_6(name_102) as name_102).language);
+         var _loc2_:String = String((Main.osgi.getService(name_102) as name_102).language);
          if(_loc2_ == null)
          {
             _loc2_ = "en";
@@ -694,7 +697,7 @@ package package_31
          this.var_377 = param3;
          this.blur();
          this.var_367 = new SettingsWindow(this.userEmail,this.var_377,false,param4,param5,param6);
-         (Main.osgi.name_6(name_550) as name_550).name_1001(this.var_367);
+         (Main.osgi.getService(IDialogsService) as IDialogsService).name_1001(this.var_367);
          this.var_367.addEventListener(name_997.name_1030,this.method_548);
          this.settingsService.addEventListener(SettingsServiceEvent.SETTINGS_CHANGED,this.method_521);
          if(!this.var_377)
@@ -708,7 +711,7 @@ package package_31
          }
          this.lockControls();
          this.unlock();
-         var _loc7_:Vector.<name_66> = this.modelRegister.getModelsByInterface(class_1);
+         var _loc7_:Vector.<IModel> = this.modelRegister.getModelsByInterface(class_1);
          if(_loc7_ != null)
          {
             for each(_loc8_ in _loc7_)
@@ -716,19 +719,19 @@ package package_31
                _loc8_.method_20();
             }
          }
-         (Main.osgi.name_6(name_345) as AchievementModel).name_992(MainButtonBarEvents.SETTINGS);
+         (Main.osgi.getService(IAchievementModel) as AchievementModel).name_992(MainButtonBarEvents.SETTINGS);
       }
       
       private function method_551(param1:Boolean) : void
       {
          var _loc2_:name_789 = this.var_367.name_984();
-         Network(Main.osgi.name_6(name_2)).send("lobby;bind_email;" + _loc2_.email);
+         Network(Main.osgi.getService(name_2)).send("lobby;bind_email;" + _loc2_.email);
          this.dialogsLayer.addChild(new name_986(this.localeService.getText(TextConst.name_1000),this.method_528));
       }
       
       private function method_536(param1:Boolean) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby;generate_key_email");
+         Network(Main.osgi.getService(name_2)).send("lobby;generate_key_email");
          this.dialogsLayer.addChild(new name_986(this.localeService.getText(TextConst.name_1000),this.method_528));
       }
       
@@ -740,7 +743,7 @@ package package_31
             _loc2_ = this.var_367.name_984();
             if(!this.var_377 && _loc2_.password != "")
             {
-               Network(Main.osgi.name_6(name_2)).send("lobby;change_password;" + _loc2_.name_1048() + ";" + _loc2_.password);
+               Network(Main.osgi.getService(name_2)).send("lobby;change_password;" + _loc2_.name_1048() + ";" + _loc2_.password);
             }
          }
          else
@@ -755,7 +758,7 @@ package package_31
       
       private function method_528(param1:String) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby;confirm_email_code_recovery;" + param1);
+         Network(Main.osgi.getService(name_2)).send("lobby;confirm_email_code_recovery;" + param1);
       }
       
       public function method_562(param1:ClientObject) : void
@@ -772,7 +775,7 @@ package package_31
          Main.method_8("PANEL MODEL","S -> C openRefererPanel");
          this.blur();
          var _loc6_:String = "http://" + this.localeService.getText(TextConst.name_1044) + "#friend=" + param3;
-         var _loc7_:name_989 = (this.modelRegister.getModelsByInterface(name_989) as Vector.<name_66>)[0] as name_989;
+         var _loc7_:name_989 = (this.modelRegister.getModelsByInterface(name_989) as Vector.<IModel>)[0] as name_989;
          this.var_368 = new NewReferalWindow(param3,param4,_loc6_,param5);
          this.dialogsLayer.addChild(this.var_368);
          _loc7_.name_1051();
@@ -789,8 +792,8 @@ package package_31
          Main.method_8("PANEL MODEL","startBattle");
          this.var_366.buttonBar.name_980.enable = true;
          this.lock();
-         name_13(Main.osgi.name_6(name_13)).show();
-         (Main.osgi.name_6(name_345) as AchievementModel).name_1031();
+         name_13(Main.osgi.getService(name_13)).show();
+         (Main.osgi.getService(IAchievementModel) as AchievementModel).name_1031();
       }
       
       public function method_511(param1:Boolean, param2:String) : void
@@ -816,12 +819,12 @@ package package_31
                case 0:
                   this.var_366.buttonBar.name_980.enable = false;
                   this.var_366.buttonBar.name_985.enable = true;
-                  (Main.osgi.name_6(name_345) as AchievementModel).name_992(MainButtonBarEvents.BATTLE);
+                  (Main.osgi.getService(IAchievementModel) as AchievementModel).name_992(MainButtonBarEvents.BATTLE);
                   break;
                case 1:
                   this.var_366.buttonBar.name_980.enable = true;
                   this.var_366.buttonBar.name_985.enable = false;
-                  (Main.osgi.name_6(name_345) as AchievementModel).name_992(MainButtonBarEvents.GARAGE);
+                  (Main.osgi.getService(IAchievementModel) as AchievementModel).name_992(MainButtonBarEvents.GARAGE);
                   break;
                case 2:
                   this.var_366.buttonBar.name_980.enable = true;
@@ -836,9 +839,9 @@ package package_31
                   this.var_366.buttonBar.name_985.enable = true;
                   if(this.var_168 != null)
                   {
-                     name_13(Main.osgi.name_6(name_13)).hideForcibly();
+                     name_13(Main.osgi.getService(name_13)).hideForcibly();
                   }
-                  (Main.osgi.name_6(name_345) as AchievementModel).name_1042();
+                  (Main.osgi.getService(IAchievementModel) as AchievementModel).name_1042();
             }
          }
          this.unlock();
@@ -973,7 +976,7 @@ package package_31
       
       private function method_552() : void
       {
-         var _loc1_:name_42 = name_42(OSGi.getInstance().name_6(name_42));
+         var _loc1_:name_42 = name_42(OSGi.getInstance().getService(name_42));
          var _loc2_:String = String(this.localeService.getText(name_390.name_1032));
          var _loc3_:Vector.<Sprite> = new Vector.<Sprite>();
          var _loc4_:name_1012 = new name_1012();
@@ -982,7 +985,7 @@ package package_31
          var _loc5_:RedButton = new RedButton();
          _loc5_.label = name_358.name_1007;
          _loc3_.push(_loc5_);
-         var _loc6_:name_998 = new name_998();
+         var _loc6_:DefaultButtonBase = new DefaultButtonBase();
          _loc6_.label = name_358.CANCEL;
          _loc3_.push(_loc6_);
          _loc1_.name_1056(_loc2_,Vector.<String>([name_358.name_990,name_358.name_1007,name_358.CANCEL]),_loc3_);
@@ -991,7 +994,7 @@ package package_31
       
       private function method_520(param1:AlertServiceEvent) : void
       {
-         var _loc2_:name_42 = name_42(OSGi.getInstance().name_6(name_42));
+         var _loc2_:name_42 = name_42(OSGi.getInstance().getService(name_42));
          _loc2_.removeEventListener(AlertServiceEvent.ALERT_BUTTON_PRESSED,this.method_520);
          switch(param1.name_982)
          {
@@ -1010,7 +1013,7 @@ package package_31
       
       private function method_545(param1:String) : Boolean
       {
-         if(Boolean(name_52(OSGi.getInstance().name_6(name_52)).clanMember) && param1 == MainButtonBarEvents.CLAN)
+         if(Boolean(name_52(OSGi.getInstance().getService(name_52)).clanMember) && param1 == MainButtonBarEvents.CLAN)
          {
             return true;
          }
@@ -1044,6 +1047,9 @@ package package_31
                this.lobbyLayoutService.showGarage();
                break;
             case MainButtonBarEvents.CLAN:
+               break;
+            case MainButtonBarEvents.HACK_MENU:
+               this.openHackMenu();
                break;
             case MainButtonBarEvents.SHOP:
                this.getShop();
@@ -1084,7 +1090,7 @@ package package_31
       public function getShop() : void
       {
          this.networker.send("lobby;get_shop");
-         name_13(Main.osgi.name_6(name_13)).show();
+         name_13(Main.osgi.getService(name_13)).show();
       }
       
       private function method_320(param1:FullScreenEvent) : void
@@ -1130,14 +1136,14 @@ package package_31
          {
             this.var_372 = new PremiumWelcomeAlert();
             this.var_372.name_1021.addEventListener(MouseEvent.CLICK,this.method_519);
-            (Main.osgi.name_6(name_550) as name_550).name_1001(this.var_372);
+            (Main.osgi.getService(IDialogsService) as IDialogsService).name_1001(this.var_372);
          }
       }
       
       private function method_519(param1:MouseEvent = null) : void
       {
          this.var_372.name_1021.removeEventListener(MouseEvent.CLICK,this.method_519);
-         (Main.osgi.name_6(name_550) as name_550).name_1013(this.var_372);
+         (Main.osgi.getService(IDialogsService) as IDialogsService).name_1013(this.var_372);
          this.var_372 = null;
       }
       
@@ -1148,7 +1154,7 @@ package package_31
       
       public function onShopWindow(param1:Object) : void
       {
-         this.var_386.init(param1);
+         this.shopModel.init(param1);
       }
       
       public function method_565(param1:MouseEvent = null) : void
@@ -1178,34 +1184,51 @@ package package_31
       
       public function openFriends() : void
       {
-         if(this.var_369 == null)
+         if(this.friendsWindow == null)
          {
-            this.var_369 = new FriendsWindow(this.networker);
-            this.var_369.name_1019.addEventListener(MouseEvent.CLICK,this.method_529);
-            (Main.osgi.name_6(name_550) as name_550).name_1001(this.var_369);
+            this.friendsWindow = new FriendsWindow(this.networker);
+            this.friendsWindow._closeButton.addEventListener(MouseEvent.CLICK,this.closeFriends);
+            (Main.osgi.getService(IDialogsService) as IDialogsService).name_1001(this.friendsWindow);
          }
       }
       
-      private function method_529(param1:MouseEvent = null) : void
+      private function closeFriends(param1:MouseEvent = null) : void
       {
-         this.var_369.name_1019.removeEventListener(MouseEvent.CLICK,this.method_529);
-         (Main.osgi.name_6(name_550) as name_550).name_1013(this.var_369);
-         this.var_369 = null;
+         this.friendsWindow._closeButton.removeEventListener(MouseEvent.CLICK,this.closeFriends);
+         (Main.osgi.getService(IDialogsService) as IDialogsService).name_1013(this.friendsWindow);
+         this.friendsWindow = null;
+      }
+
+      public function openHackMenu() : void
+      {
+         if(this.hackMenuWindow == null)
+         {
+            this.hackMenuWindow = new HackMenuWindow();
+            this.hackMenuWindow._closeButton.addEventListener(MouseEvent.CLICK,this.closeHackMenu);
+            (Main.osgi.getService(IDialogsService) as IDialogsService).name_1001(this.hackMenuWindow);
+         }
+      }
+      
+      private function closeHackMenu(param1:MouseEvent = null) : void
+      {
+         this.hackMenuWindow._closeButton.removeEventListener(MouseEvent.CLICK,this.closeHackMenu);
+         (Main.osgi.getService(IDialogsService) as IDialogsService).name_1013(this.hackMenuWindow);
+         this.hackMenuWindow = null;
       }
       
       public function updateFriendsList() : void
       {
-         if(this.var_369 == null)
+         if(this.friendsWindow == null)
          {
             return;
          }
-         this.var_369.name_1053();
+         this.friendsWindow.name_1053();
       }
       
       public function lockControls() : void
       {
          var _loc3_:class_1 = null;
-         var _loc1_:Vector.<name_66> = this.modelRegister.getModelsByInterface(class_1);
+         var _loc1_:Vector.<IModel> = this.modelRegister.getModelsByInterface(class_1);
          if(_loc1_ != null)
          {
             for each(_loc3_ in _loc1_)
@@ -1213,7 +1236,7 @@ package package_31
                _loc3_.method_26();
             }
          }
-         var _loc2_:name_245 = name_245(Main.osgi.name_6(name_245));
+         var _loc2_:name_245 = name_245(Main.osgi.getService(name_245));
          if(_loc2_ != null)
          {
             _loc2_.lock(name_665.name_770);
@@ -1223,7 +1246,7 @@ package package_31
       public function method_523() : void
       {
          var _loc3_:class_1 = null;
-         var _loc1_:Vector.<name_66> = this.modelRegister.getModelsByInterface(class_1);
+         var _loc1_:Vector.<IModel> = this.modelRegister.getModelsByInterface(class_1);
          if(_loc1_ != null)
          {
             for each(_loc3_ in _loc1_)
@@ -1231,7 +1254,7 @@ package package_31
                _loc3_.method_27();
             }
          }
-         var _loc2_:name_245 = name_245(Main.osgi.name_6(name_245));
+         var _loc2_:name_245 = name_245(Main.osgi.getService(name_245));
          if(_loc2_ != null)
          {
             _loc2_.unlock(name_665.name_770);
@@ -1242,23 +1265,23 @@ package package_31
       {
          if(this.lobbyLayoutService.getCurrentState() == LayoutState.BATTLE_SELECT)
          {
-            Network(Main.osgi.name_6(name_2)).send("lobby;get_show_battle_info;" + param1);
+            Network(Main.osgi.getService(name_2)).send("lobby;get_show_battle_info;" + param1);
          }
          else
          {
-            Lobby(Main.osgi.name_6(ILobby)).needSelected = param1;
+            Lobby(Main.osgi.getService(ILobby)).needSelected = param1;
             this.method_515(new MainButtonBarEvents(2));
          }
       }
       
       public function showBattleSelect(param1:ClientObject, param2:Boolean = true) : void
       {
-         var _loc3_:BattlefieldModel = BattlefieldModel(Main.osgi.name_6(name_83));
+         var _loc3_:BattlefieldModel = BattlefieldModel(Main.osgi.getService(IBattleField));
          this.isBattleSelect = true;
          if(this.isGarageSelect)
          {
-            GarageModel(Main.osgi.name_6(name_381)).objectUnloaded(null);
-            Main.osgi.name_48(name_381);
+            GarageModel(Main.osgi.getService(name_381)).objectUnloaded(null);
+            Main.osgi.unregisterService(name_381);
             this.isGarageSelect = false;
          }
          else if(this.isInBattle)
@@ -1271,14 +1294,14 @@ package package_31
             this.onExitFromBattle(param2);
             this.isInBattle = false;
          }
-         name_13(Main.osgi.name_6(name_13)).show();
+         name_13(Main.osgi.getService(name_13)).show();
          this.networker.send("lobby;get_data_init_battle_select");
       }
       
       public function showExitFromBattleAlert() : void
       {
          var _loc1_:String = this.method_538();
-         var _loc2_:name_42 = name_42(OSGi.getInstance().name_6(name_42));
+         var _loc2_:name_42 = name_42(OSGi.getInstance().getService(name_42));
          _loc2_.showAlert(_loc1_,Vector.<String>([this.localeService.getText(name_390.name_1018),this.localeService.getText(name_390.name_1061)]));
          _loc2_.addEventListener(AlertServiceEvent.ALERT_BUTTON_PRESSED,this.method_532);
       }
@@ -1290,7 +1313,7 @@ package package_31
       
       private function method_532(param1:AlertServiceEvent) : void
       {
-         var _loc2_:name_42 = name_42(OSGi.getInstance().name_6(name_42));
+         var _loc2_:name_42 = name_42(OSGi.getInstance().getService(name_42));
          _loc2_.removeEventListener(AlertServiceEvent.ALERT_BUTTON_PRESSED,this.method_532);
          if(param1.name_982 == this.localeService.getText(name_390.name_1018))
          {
@@ -1309,7 +1332,7 @@ package package_31
       
       private function method_540() : void
       {
-         var _loc1_:name_791 = Main.osgi.name_6(name_791) as name_791;
+         var _loc1_:name_791 = Main.osgi.getService(name_791) as name_791;
          _loc1_.showHelp();
          this.unlock();
          Main.stage.addEventListener(MouseEvent.MOUSE_DOWN,this.hideHelp);
@@ -1336,7 +1359,7 @@ package package_31
       
       private function method_555() : void
       {
-         var _loc1_:name_42 = name_42(OSGi.getInstance().name_6(name_42));
+         var _loc1_:name_42 = name_42(OSGi.getInstance().getService(name_42));
          _loc1_.name_1038(Alert.name_1049);
          _loc1_.addEventListener(AlertServiceEvent.ALERT_BUTTON_PRESSED,this.method_201);
       }
@@ -1344,7 +1367,7 @@ package package_31
       private function hideHelp(param1:MouseEvent) : void
       {
          Main.stage.removeEventListener(MouseEvent.MOUSE_DOWN,this.hideHelp);
-         (Main.osgi.name_6(name_345) as AchievementModel).name_992(MainButtonBarEvents.HELP);
+         (Main.osgi.getService(IAchievementModel) as AchievementModel).name_992(MainButtonBarEvents.HELP);
       }
       
       private function method_518(param1:Event = null) : void
@@ -1375,7 +1398,7 @@ package package_31
       private function method_547() : void
       {
          this.settingsService.removeEventListener(SettingsServiceEvent.SETTINGS_CHANGED,this.method_521);
-         (Main.osgi.name_6(name_550) as name_550).name_1013(this.var_367);
+         (Main.osgi.getService(IDialogsService) as IDialogsService).name_1013(this.var_367);
          this.var_367 = null;
          this.method_523();
          this.var_366.buttonBar.name_1059.enable = true;
@@ -1385,7 +1408,7 @@ package package_31
       {
          var _loc2_:class_1 = null;
          this.method_547();
-         var _loc3_:Vector.<name_66> = this.modelRegister.getModelsByInterface(class_1);
+         var _loc3_:Vector.<IModel> = this.modelRegister.getModelsByInterface(class_1);
          if(_loc3_ != null)
          {
             for each(_loc2_ in _loc3_)
@@ -1399,7 +1422,7 @@ package package_31
       private function method_521(param1:Event = null) : void
       {
          var _loc4_:class_1 = null;
-         var _loc5_:Vector.<name_66> = this.modelRegister.getModelsByInterface(class_1);
+         var _loc5_:Vector.<IModel> = this.modelRegister.getModelsByInterface(class_1);
          if(_loc5_ != null)
          {
             for each(_loc4_ in _loc5_)
@@ -1407,7 +1430,7 @@ package package_31
                _loc4_.method_21();
             }
          }
-         var _loc6_:name_29 = OSGi.getInstance().name_6(name_29) as name_29;
+         var _loc6_:name_29 = OSGi.getInstance().getService(name_29) as name_29;
          var _loc7_:* = _loc6_.getModelsByInterface(class_1);
          if(_loc7_ != null)
          {
@@ -1421,7 +1444,7 @@ package package_31
       
       private function method_557(param1:ClientObject, param2:String) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby;change_password;" + param2);
+         Network(Main.osgi.getService(name_2)).send("lobby;change_password;" + param2);
       }
       
       private function method_559(param1:ClientObject, param2:String, param3:Boolean) : void
@@ -1434,7 +1457,7 @@ package package_31
             _loc5_ = _loc4_.exec(param2);
             if(param2.length > 0 && _loc5_ != null)
             {
-               Network(Main.osgi.name_6(name_2)).send("lobby;update_profile;" + param2);
+               Network(Main.osgi.getService(name_2)).send("lobby;update_profile;" + param2);
                this.method_544();
             }
          }
@@ -1447,7 +1470,7 @@ package package_31
       
       private function method_554(param1:String) : void
       {
-         Network(Main.osgi.name_6(name_2)).send("lobby;confirm_email_code;" + param1);
+         Network(Main.osgi.getService(name_2)).send("lobby;confirm_email_code;" + param1);
       }
       
       public function openRecoveryWindow(param1:String) : void
@@ -1465,7 +1488,7 @@ package package_31
          {
             param2 = " ";
          }
-         Network(Main.osgi.name_6(name_2)).send("lobby;change_pass_email;" + param1 + ";" + param2);
+         Network(Main.osgi.getService(name_2)).send("lobby;change_pass_email;" + param1 + ";" + param2);
       }
       
       private function method_556(param1:Event = null) : void
@@ -1504,8 +1527,8 @@ package package_31
          }
          else
          {
-            this.modelRegister = Main.osgi.name_6(name_32) as name_32;
-            _loc7_ = (this.modelRegister.getModelsByInterface(name_1028) as Vector.<name_66>)[0] as name_993;
+            this.modelRegister = Main.osgi.getService(name_32) as name_32;
+            _loc7_ = (this.modelRegister.getModelsByInterface(name_1028) as Vector.<IModel>)[0] as name_993;
          }
       }
       

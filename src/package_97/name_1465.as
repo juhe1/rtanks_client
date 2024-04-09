@@ -2,7 +2,7 @@ package package_97
 {
    import alternativa.osgi.OSGi;
    import alternativa.tanks.models.battlefield.name_1229;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import package_238.ObjectPool;
    import package_238.class_30;
    
@@ -11,7 +11,7 @@ package package_97
       
       private static const const_1906:Number = 0.005;
       
-      public static var battleService:name_83 = OSGi.getInstance().name_6(name_83) as name_83;
+      public static var battleService:IBattleField = OSGi.getInstance().getService(IBattleField) as IBattleField;
        
       
       private var bonus:ParaBonus;

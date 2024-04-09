@@ -2,14 +2,14 @@ package package_45
 {
    import alternativa.engine3d.objects.Mesh;
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.osgi.OSGi;
    import alternativa.tanks.engine3d.TextureMaterialRegistry;
    import alternativa.tanks.engine3d.name_1072;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
-   import alternativa.tanks.services.materialregistry.name_100;
-   import alternativa.tanks.services.objectpool.name_118;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
+   import alternativa.tanks.services.objectpool.IObjectPoolService;
    import alternativa.tanks.sfx.name_1070;
    import alternativa.tanks.sfx.name_1071;
    import alternativa.tanks.utils.GraphicsUtils;
@@ -22,7 +22,7 @@ package package_45
    import package_37.Matrix3;
    import package_37.Vector3;
    import package_4.ClientObject;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_7.name_32;
    import platform.client.fp10.core.registry.ResourceRegistry;
    import platform.client.fp10.core.resource.types.MultiframeImageResource;
@@ -30,7 +30,7 @@ package package_45
    public class TankCriticalHitModel extends class_28 implements class_29, class_11, name_91
    {
       
-      public static var resourceRegistry:ResourceRegistry = ResourceRegistry(OSGi.getInstance().name_6(ResourceRegistry));
+      public static var resourceRegistry:ResourceRegistry = ResourceRegistry(OSGi.getInstance().getService(ResourceRegistry));
        
       
       private const const_106:Number = 800;
@@ -51,9 +51,9 @@ package package_45
       
       private const const_102:Number = 15;
       
-      private var var_138:name_118;
+      private var var_138:IObjectPoolService;
       
-      private var var_58:name_100;
+      private var var_58:IMaterialRegistry;
       
       private var var_396:name_662;
       
@@ -63,9 +63,9 @@ package package_45
       
       private var var_398:name_662;
       
-      private var var_11:name_83;
+      private var var_11:IBattleField;
       
-      private var var_397:name_124;
+      private var var_397:RayHit;
       
       private var position:Vector3;
       
@@ -77,17 +77,17 @@ package package_45
       
       public function TankCriticalHitModel()
       {
-         this.var_138 = name_118(Main.osgi.name_6(name_118));
-         this.var_58 = name_100(Main.osgi.name_6(name_100));
+         this.var_138 = IObjectPoolService(Main.osgi.getService(IObjectPoolService));
+         this.var_58 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry));
          this.var_396 = new name_662("tankexpl_size",800,1,500);
          this.var_395 = new name_662("tankexpl_scale",1,0,10);
-         this.var_397 = new name_124();
+         this.var_397 = new RayHit();
          this.position = new Vector3();
          this.const_64 = new Vector3();
          this.name_187 = new Vector3();
          this.matrix = new Matrix3();
          super();
-         var_365.push(name_66,class_11,name_91);
+         _interfaces.push(IModel,class_11,name_91);
       }
       
       public function initObject(param1:ClientObject) : void
@@ -95,8 +95,8 @@ package package_45
          var _loc2_:name_32 = null;
          if(this.var_11 == null)
          {
-            _loc2_ = name_32(Main.osgi.name_6(name_32));
-            this.var_11 = Main.osgi.name_6(name_83) as name_83;
+            _loc2_ = name_32(Main.osgi.getService(name_32));
+            this.var_11 = Main.osgi.getService(IBattleField) as IBattleField;
          }
          var _loc3_:MultiframeImageResource = resourceRegistry.getResource(Long.getLong(0,122455)) as MultiframeImageResource;
          var _loc4_:name_1072 = GraphicsUtils.name_1073(this.var_58.textureMaterialRegistry as TextureMaterialRegistry,_loc3_.data,_loc3_.frameWidth,_loc3_.frameHeight);

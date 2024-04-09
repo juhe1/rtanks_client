@@ -11,7 +11,7 @@ package package_416
    import alternativa.engine3d.objects.Sprite3D;
    import alternativa.engine3d.primitives.Box;
    import alternativa.engine3d.primitives.Plane;
-   import alternativa.physics.collision.name_774;
+   import alternativa.physics.collision.CollisionPrimitive;
    import alternativa.physics.name_888;
    import alternativa.proplib.PropLibRegistry;
    import alternativa.proplib.PropLibrary;
@@ -19,7 +19,7 @@ package package_416
    import alternativa.tanks.models.battlefield.BattleView3D;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
    import alternativa.tanks.models.battlefield.name_1194;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.sfx.name_1071;
    import alternativa.utils.clearDictionary;
    import flash.display.BitmapData;
@@ -79,7 +79,7 @@ package package_416
       
       private var var_3017:Vector.<Occluder>;
       
-      private var var_3015:Vector.<name_774>;
+      private var var_3015:Vector.<CollisionPrimitive>;
       
       private var var_3016:Vector.<Object3D>;
       
@@ -125,7 +125,7 @@ package package_416
          this.var_3020 = new Dictionary();
          this.var_3021 = new name_767();
          this.var_3025 = {};
-         this.var_11 = Main.osgi.name_6(name_83) as BattlefieldModel;
+         this.var_11 = Main.osgi.getService(IBattleField) as BattlefieldModel;
          super();
       }
       
@@ -203,7 +203,7 @@ package package_416
          return this.var_3017;
       }
       
-      public function get var_302() : Vector.<name_774>
+      public function get var_302() : Vector.<CollisionPrimitive>
       {
          return this.var_3015;
       }
@@ -282,7 +282,7 @@ package package_416
       private function onLoadingComplete(param1:MapResource) : void
       {
          this.var_3011 = XML(param1.var_975.toString());
-         Network(Main.osgi.name_6(name_2)).send("battle;" + "check_" + "m" + "d5" + "_map;" + MD5.name_3033(this.var_3011.toString()));
+         Network(Main.osgi.getService(name_2)).send("battle;" + "check_" + "m" + "d5" + "_map;" + MD5.name_3033(this.var_3011.toString()));
          this.loader = null;
          this.method_2812();
          this.var_3024.name_3034(this.var_1718);
@@ -523,12 +523,12 @@ package package_416
       private function method_2809() : void
       {
          var _loc1_:Vector3 = null;
-         var _loc2_:name_774 = null;
+         var _loc2_:CollisionPrimitive = null;
          var _loc3_:XML = null;
          var _loc4_:Vector3 = null;
          var _loc5_:Vector3 = null;
          var _loc6_:Vector3 = null;
-         this.var_3015 = new Vector.<name_774>();
+         this.var_3015 = new Vector.<CollisionPrimitive>();
          var _loc7_:Matrix3 = new Matrix3();
          var _loc8_:Vector3 = new Vector3();
          var _loc9_:Vector3 = new Vector3();
@@ -630,7 +630,7 @@ package package_416
                }
                else
                {
-                  (_loc1_ as name_774).destroy();
+                  (_loc1_ as CollisionPrimitive).destroy();
                }
             }
             this.var_3015 = null;
@@ -958,7 +958,7 @@ class Sprite3DMaterialUserEntry extends MaterialUserEntry
 import alternativa.engine3d.core.MipMapping;
 import alternativa.engine3d.materials.TextureMaterial;
 import alternativa.tanks.engine3d.name_1076;
-import alternativa.tanks.services.materialregistry.name_100;
+import alternativa.tanks.services.materialregistry.IMaterialRegistry;
 import flash.display.BitmapData;
 import flash.events.Event;
 import flash.events.EventDispatcher;
@@ -1051,7 +1051,7 @@ class BatchTextureBuilder extends EventDispatcher implements class_35
       else
       {
          this.textures.push(_loc3_.texture);
-         _loc4_ = name_100(Main.osgi.name_6(name_100)).textureMaterialRegistry.getMaterial(name_1076.const_1698,_loc3_.texture,MipMapping.PER_PIXEL);
+         _loc4_ = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry)).textureMaterialRegistry.getMaterial(name_1076.const_1698,_loc3_.texture,MipMapping.PER_PIXEL);
          for each(_loc2_ in this.entries[_loc3_.index].materialUsers)
          {
             _loc2_.setMaterial(_loc4_);

@@ -1,6 +1,6 @@
 package package_491
 {
-   import controls.name_1891;
+   import controls.TankWindowInner;
    
    public class name_3686 extends class_219
    {
@@ -10,16 +10,16 @@ package package_491
       
       private var var_3756:int;
       
-      public var var_1182:name_1891;
+      public var var_1182:TankWindowInner;
       
       public function name_3686(param1:int, param2:int, param3:int)
       {
          super(param1 + 12 * 2,param2 + param3 + 12 * 3);
          this.var_3756 = param3;
-         this.var_1182 = new name_1891(param1,param2,name_1891.name_1428);
+         this.var_1182 = new TankWindowInner(param1,param2,TankWindowInner.GREEN);
          this.var_1182.x = 12;
          this.var_1182.y = 12;
-         this.var_1182.name_1895 = true;
+         this.var_1182.showBlink = true;
          window.addChild(this.var_1182);
       }
       

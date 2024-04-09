@@ -52,7 +52,7 @@ package package_93
       public function method_909(param1:int, param2:Vector3d, param3:Vector.<name_1378>) : void
       {
          var _loc4_:Object = this.method_2304(param1,param2,param3);
-         Network(OSGi.getInstance().name_6(name_2)).send("battle;fire;" + JSON.stringify(_loc4_));
+         Network(OSGi.getInstance().getService(name_2)).send("battle;fire;" + JSON.stringify(_loc4_));
       }
       
       private function method_2304(param1:int, param2:Vector3d, param3:Vector.<name_1378>) : Object

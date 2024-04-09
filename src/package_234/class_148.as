@@ -21,7 +21,7 @@ package package_234
       
       public function class_148()
       {
-         this.var_531 = name_840(OSGi.getInstance().name_6(name_840));
+         this.var_531 = name_840(OSGi.getInstance().getService(name_840));
          this.client = name_633(this);
          this.var_25 = Long.getLong(813924329,-50132824);
          super();

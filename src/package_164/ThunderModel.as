@@ -2,23 +2,23 @@ package package_164
 {
    import alternativa.engine3d.materials.TextureMaterial;
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.physics.collision.name_1083;
    import alternativa.tanks.models.battlefield.name_128;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import alternativa.tanks.models.tank.TankData;
    import alternativa.tanks.models.tank.TankModel;
-   import alternativa.tanks.models.tank.class_7;
-   import alternativa.tanks.models.weapon.name_1074;
+   import alternativa.tanks.models.tank.ITank;
+   import alternativa.tanks.models.weapon.IWeaponController;
    import alternativa.tanks.models.weapon.name_1495;
    import alternativa.tanks.models.weapon.name_911;
    import alternativa.tanks.models.weapon.shared.CommonTargetSystem;
    import alternativa.tanks.models.weapon.shared.name_653;
-   import alternativa.tanks.services.materialregistry.name_100;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
    import alternativa.tanks.sfx.name_1497;
    import alternativa.tanks.vehicles.tanks.Tank;
    import package_1.Main;
-   import package_161.name_1448;
+   import package_161.IWeaponWeakeningModel;
    import package_165.name_1701;
    import package_167.name_1454;
    import package_278.name_1288;
@@ -27,12 +27,12 @@ package package_164
    import package_37.Vector3;
    import package_4.ClientObject;
    import package_40.TankSpawnState;
-   import package_41.name_320;
+   import package_41.ItemProperty;
    import package_41.Vector3dData;
    import package_42.name_73;
    import package_52.WeaponsManager;
    import package_6.ObjectRegister;
-   import package_61.name_124;
+   import package_61.RayHit;
    import package_7.name_32;
    import package_92.name_1188;
    import package_92.name_1451;
@@ -40,7 +40,7 @@ package package_164
    import scpacker.networking.Network;
    import scpacker.networking.name_2;
    
-   public class ThunderModel extends class_69 implements class_68, name_1074, class_11
+   public class ThunderModel extends class_69 implements class_68, IWeaponController, class_11
    {
       
       private static const const_498:Number = 250;
@@ -54,13 +54,13 @@ package package_164
       
       private var modelService:name_32;
       
-      private var var_11:name_83;
+      private var var_11:IBattleField;
       
       private var var_123:TankModel;
       
       private var var_1008:name_1188;
       
-      private var var_1014:name_1448;
+      private var var_1014:IWeaponWeakeningModel;
       
       private var var_564:name_1701;
       
@@ -98,7 +98,7 @@ package package_164
       
       private var var_1015:Vector3;
       
-      private var var_1021:name_124;
+      private var var_1021:RayHit;
       
       private var _hitPos3d:Vector3dData;
       
@@ -134,7 +134,7 @@ package package_164
          this.var_1012 = new Vector3();
          this.var_1000 = new Vector3();
          this.var_1015 = new Vector3();
-         this.var_1021 = new name_124();
+         this.var_1021 = new RayHit();
          this._hitPos3d = new Vector3dData(0,0,0);
          this.var_1020 = new Vector3dData(0,0,0);
          this.var_1018 = [];
@@ -144,12 +144,12 @@ package package_164
          this.var_1009 = Vector.<Vector3>([new Vector3(),new Vector3(),new Vector3()]);
          this.var_1022 = Vector.<Vector3>([new Vector3(),new Vector3(),new Vector3()]);
          super();
-         var_365.push(name_66,name_1074,class_11);
+         _interfaces.push(IModel,IWeaponController,class_11);
       }
       
-      public function name_1436() : name_320
+      public function name_1436() : ItemProperty
       {
-         return name_320.name_433;
+         return ItemProperty.THUNDER_RESISTANCE;
       }
       
       public function initObject(param1:ClientObject, param2:Number, param3:Number, param4:Number, param5:Number) : void
@@ -421,29 +421,29 @@ package package_164
          _loc11_.splashTargetIds = param7;
          _loc11_.splashTargetDistances = param9;
          _loc11_.reloadTime = this.var_733.reloadMsec.value;
-         Network(Main.osgi.name_6(name_2)).send("battle;fire;" + JSON.stringify(_loc11_));
+         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(_loc11_));
       }
       
       public function objectLoaded(param1:ClientObject) : void
       {
          if(this.var_1008 == null)
          {
-            this.modelService = name_32(Main.osgi.name_6(name_32));
-            this.var_11 = name_83(Main.osgi.name_6(name_83));
-            this.var_123 = Main.osgi.name_6(class_7) as TankModel;
+            this.modelService = name_32(Main.osgi.getService(name_32));
+            this.var_11 = IBattleField(Main.osgi.getService(IBattleField));
+            this.var_123 = Main.osgi.getService(ITank) as TankModel;
             this.var_1008 = name_1188(this.modelService.getModelsByInterface(name_1188)[0]);
-            this.var_1014 = name_1448(this.modelService.getModelsByInterface(name_1448)[0]);
+            this.var_1014 = IWeaponWeakeningModel(this.modelService.getModelsByInterface(IWeaponWeakeningModel)[0]);
             this.nextReadyTime.value = 0;
          }
          if(var_1001 == null)
          {
-            var_1001 = name_100(Main.osgi.name_6(name_100)).textureMaterialRegistry.getMaterial(null,new const_492().bitmapData,1);
+            var_1001 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry)).textureMaterialRegistry.getMaterial(null,new const_492().bitmapData,1);
          }
       }
       
       public function objectUnloaded(param1:ClientObject) : void
       {
-         name_100(Main.osgi.name_6(name_100)).textureMaterialRegistry.disposeMaterial(var_1001);
+         IMaterialRegistry(Main.osgi.getService(IMaterialRegistry)).textureMaterialRegistry.disposeMaterial(var_1001);
          var_1001 = null;
       }
       

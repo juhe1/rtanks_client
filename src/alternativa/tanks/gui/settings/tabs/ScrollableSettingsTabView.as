@@ -7,7 +7,7 @@ package alternativa.tanks.gui.settings.tabs
    import flash.display.Sprite;
    import flash.events.MouseEvent;
    import forms.name_1139;
-   import utils.name_1915;
+   import utils.ScrollStyleUtils;
    
    public class ScrollableSettingsTabView extends SettingsTabView
    {
@@ -45,7 +45,7 @@ package alternativa.tanks.gui.settings.tabs
          this.var_2861 = new Sprite();
          this.var_2632.addChild(this.var_2861);
          this.var_2630 = new ScrollPane();
-         name_1915.name_2035(this.var_2630);
+         ScrollStyleUtils.setGrayStyle(this.var_2630);
          this.var_2630.horizontalScrollPolicy = ScrollPolicy.OFF;
          this.var_2630.verticalScrollPolicy = ScrollPolicy.AUTO;
          this.var_2630.source = this.var_2632;

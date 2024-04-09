@@ -3,55 +3,55 @@ package alternativa.tanks.gui.settings.tabs
    import alternativa.tanks.gui.settings.SettingsWindow;
    import alternativa.tanks.gui.settings.controls.GridLayout;
    import alternativa.tanks.service.settings.name_1086;
-   import controls.checkbox.class_195;
-   import controls.name_1891;
+   import controls.checkbox.CheckBoxBase;
+   import controls.TankWindowInner;
    import flash.events.MouseEvent;
    import flash.net.SharedObject;
    import package_1.Main;
    import package_3.GPUCapabilities;
-   import package_95.name_298;
+   import package_95.IStorageService;
    import projects.tanks.clients.fp10.libraries.name_390;
    
    public class name_2198 extends SettingsTabView
    {
        
       
-      private var var_2847:name_1891;
+      private var var_2847:TankWindowInner;
       
-      private var var_2846:class_195;
+      private var var_2846:CheckBoxBase;
       
-      private var var_2851:class_195;
+      private var var_2851:CheckBoxBase;
       
-      private var var_2848:class_195;
+      private var var_2848:CheckBoxBase;
       
-      private var var_2853:class_195;
+      private var var_2853:CheckBoxBase;
       
-      private var var_2850:class_195;
+      private var var_2850:CheckBoxBase;
       
-      private var var_2856:class_195;
+      private var var_2856:CheckBoxBase;
       
-      private var var_2855:class_195;
+      private var var_2855:CheckBoxBase;
       
-      private var var_2849:class_195;
+      private var var_2849:CheckBoxBase;
       
-      private var var_2854:class_195;
+      private var var_2854:CheckBoxBase;
       
-      private var var_2845:class_195;
+      private var var_2845:CheckBoxBase;
       
-      private var var_2857:class_195;
+      private var var_2857:CheckBoxBase;
       
-      private var var_2852:class_195;
+      private var var_2852:CheckBoxBase;
       
-      private var var_2844:class_195;
+      private var var_2844:CheckBoxBase;
       
       private var storage:SharedObject;
       
       public function name_2198()
       {
-         this.storage = name_298(Main.osgi.name_6(name_298)).getStorage();
+         this.storage = IStorageService(Main.osgi.getService(IStorageService)).getStorage();
          var _loc1_:int = 0;
          super();
-         this.var_2847 = new name_1891(0,0,name_1891.name_2114);
+         this.var_2847 = new TankWindowInner(0,0,TankWindowInner.name_2114);
          this.var_2847.width = SettingsWindow.name_2112;
          this.var_2847.y = 0;
          this.var_2847.x = 0;

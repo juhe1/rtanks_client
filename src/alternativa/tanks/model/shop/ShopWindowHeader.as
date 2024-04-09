@@ -1,9 +1,9 @@
 package alternativa.tanks.model.shop
 {
-   import controls.base.name_1134;
-   import controls.base.name_998;
+   import controls.base.LabelBase;
+   import controls.base.DefaultButtonBase;
    import controls.dropdownlist.DropDownList;
-   import controls.name_1891;
+   import controls.TankWindowInner;
    import flash.display.Bitmap;
    import flash.display.BitmapData;
    import flash.display.Sprite;
@@ -14,7 +14,7 @@ package alternativa.tanks.model.shop
    public class ShopWindowHeader extends Sprite
    {
       
-      public static var localeService:name_102 = Main.osgi.name_6(name_102) as name_102;
+      public static var localeService:name_102 = Main.osgi.getService(name_102) as name_102;
       
       private static var var_3439:Class = name_3400;
       
@@ -25,33 +25,33 @@ package alternativa.tanks.model.shop
       
       private var var_3436:Bitmap;
       
-      private var header:name_1134;
+      private var header:LabelBase;
       
-      private var var_3438:name_1891;
+      private var var_3438:TankWindowInner;
       
-      private var var_3437:name_1134;
+      private var var_3437:LabelBase;
       
       public var name_2250:DropDownList;
       
-      public var name_2905:name_998;
+      public var name_2905:DefaultButtonBase;
       
       public function ShopWindowHeader()
       {
-         this.var_3437 = new name_1134();
+         this.var_3437 = new LabelBase();
          super();
-         this.var_3438 = new name_1891(0,0,name_1891.name_2114);
+         this.var_3438 = new TankWindowInner(0,0,TankWindowInner.name_2114);
          addChild(this.var_3438);
          this.var_3436 = new Bitmap(const_2671);
          addChild(this.var_3436);
          this.var_3436.x = 11;
          this.var_3436.y = 5;
-         this.header = new name_1134();
+         this.header = new LabelBase();
          addChild(this.header);
          this.header.multiline = true;
          this.header.wordWrap = true;
          this.header.x = this.var_3436.x + this.var_3436.width + 11;
          this.header.htmlText = localeService.getText(TextConst.SHOP_WINDOW_HEADER_TEXT);
-         if(name_2246.name_2252)
+         if(ShopWindow.name_2252)
          {
             this.var_3437.multiline = true;
             this.var_3437.wordWrap = true;
@@ -65,7 +65,7 @@ package alternativa.tanks.model.shop
          this.name_2250.width = 160;
          this.method_3108();
          addChild(this.name_2250);
-         this.name_2905 = new name_998();
+         this.name_2905 = new DefaultButtonBase();
          this.name_2905.tabEnabled = false;
          this.name_2905.label = localeService.getText(TextConst.FREE_BONUSES_WINDOW_BUTTON_CLOSE_TEXT);
          this.name_2905.visible = false;
@@ -100,7 +100,7 @@ package alternativa.tanks.model.shop
       public function resize(param1:int) : void
       {
          this.var_3438.width = param1;
-         this.var_3438.height = this.var_3436.height + (name_2246.name_2252 ? 55 : 35);
+         this.var_3438.height = this.var_3436.height + (ShopWindow.name_2252 ? 55 : 35);
          this.header.width = param1 - this.header.x - 11;
          this.header.y = this.var_3436.y + (this.var_3436.height - this.header.textHeight >> 1);
          this.var_3437.width = param1 - this.header.x - 11;

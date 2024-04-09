@@ -2,10 +2,10 @@ package package_152
 {
    import alternativa.engine3d.materials.TextureMaterial;
    import alternativa.model.class_11;
-   import alternativa.model.name_66;
+   import alternativa.model.IModel;
    import alternativa.tanks.engine3d.TextureMaterialRegistry;
    import alternativa.tanks.engine3d.name_1072;
-   import alternativa.tanks.services.materialregistry.name_100;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
    import alternativa.tanks.utils.GraphicsUtils;
    import flash.display.BitmapData;
    import flash.filters.BitmapFilter;
@@ -25,14 +25,14 @@ package package_152
    public class RicochetSFXModel extends class_112 implements class_111, class_11, name_1795
    {
       
-      private static var var_58:name_100;
+      private static var var_58:IMaterialRegistry;
        
       
       public function RicochetSFXModel()
       {
          super();
-         var_365.push(name_66,class_11,name_1795);
-         var_58 = name_100(Main.osgi.name_6(name_100));
+         _interfaces.push(IModel,class_11,name_1795);
+         var_58 = IMaterialRegistry(Main.osgi.getService(IMaterialRegistry));
       }
       
       private static function method_1276(param1:String, param2:String) : BitmapFilter
@@ -103,7 +103,7 @@ package package_152
          var _loc2_:name_1793 = null;
          var _loc3_:Vector.<name_1594> = null;
          var _loc4_:name_1594 = null;
-         var _loc5_:name_32 = name_32(Main.osgi.name_6(name_32));
+         var _loc5_:name_32 = name_32(Main.osgi.getService(name_32));
          var _loc6_:name_1737 = name_1737(_loc5_.method_260(param1,name_1737));
          if(_loc6_ != null)
          {

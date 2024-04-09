@@ -3,7 +3,7 @@ package package_452
    import alternativa.osgi.OSGi;
    import alternativa.tanks.model.shop.items.kits.SpecialKitIcons;
    import alternativa.tanks.model.shop.items.kits.class_217;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import flash.display.Bitmap;
    import flash.text.TextFieldAutoSize;
    import forms.name_1139;
@@ -14,7 +14,7 @@ package package_452
    public class BattlePassPackageButton extends class_217
    {
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
       private static const const_2663:int = 25;
       
@@ -23,7 +23,7 @@ package package_452
       private static const CENTER:int = 400;
        
       
-      private var var_2229:name_1134;
+      private var var_2229:LabelBase;
       
       private var var_2226:Bitmap;
       
@@ -80,8 +80,8 @@ package package_452
       
       private function method_3096() : void
       {
-         var _loc1_:name_1134 = null;
-         _loc1_ = new name_1134();
+         var _loc1_:LabelBase = null;
+         _loc1_ = new LabelBase();
          _loc1_.text = name_3386.name_3387(this.var_3422.crystalls,0,false);
          _loc1_.color = name_1139.const_1763;
          _loc1_.autoSize = TextFieldAutoSize.LEFT;
@@ -103,7 +103,7 @@ package package_452
       
       private function method_3097() : void
       {
-         this.var_2229 = new name_1134();
+         this.var_2229 = new LabelBase();
          this.var_2229.text = name_3386.name_3387(this.var_3422.price,0,false) + " " + this.var_3422.currency;
          this.var_2229.color = name_1139.const_1757;
          this.var_2229.size = this.method_3094();
@@ -116,15 +116,15 @@ package package_452
       
       private function addPremiumAndGoldIconAndLabel() : void
       {
-         var _loc1_:name_1134 = null;
-         var _loc2_:name_1134 = null;
+         var _loc1_:LabelBase = null;
+         var _loc2_:LabelBase = null;
          _loc1_ = null;
          _loc2_ = null;
          this.var_2226 = new Bitmap();
          this.var_2226.x = 400;
          addChild(this.var_2226);
          var _loc3_:int = int(this.var_3422.premium);
-         _loc1_ = new name_1134();
+         _loc1_ = new LabelBase();
          _loc1_.text = "+" + name_3388.name_3389(_loc3_);
          _loc1_.color = name_1139.name_2012;
          _loc1_.autoSize = TextFieldAutoSize.LEFT;
@@ -142,7 +142,7 @@ package package_452
             this.var_3423.x = this.var_2226.x + this.var_2226.width + 15;
             this.var_3423.y = 10 + 20;
             addChild(this.var_3423);
-            _loc2_ = new name_1134();
+            _loc2_ = new LabelBase();
             _loc2_.text = "+" + this.var_3422.golds;
             _loc2_.x = this.var_3423.x + 7;
             _loc2_.y = this.var_3423.y + this.var_3423.height - 15;

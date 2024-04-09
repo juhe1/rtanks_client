@@ -2,7 +2,7 @@ package controls
 {
    import alternativa.osgi.OSGi;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.statassets.name_1154;
    import flash.display.Bitmap;
    import flash.display.DisplayObject;
@@ -18,14 +18,14 @@ package controls
       
       public static var battleService:BattlefieldModel;
       
-      public static var localeService:name_102 = OSGi.getInstance().name_6(name_102) as name_102;
+      public static var localeService:name_102 = OSGi.getInstance().getService(name_102) as name_102;
       
       private static const const_1554:Class = name_2065;
       
       private static const const_1555:String = "{time}";
        
       
-      private var var_1393:name_1134;
+      private var var_1393:LabelBase;
       
       private var var_1396:String;
       
@@ -56,7 +56,7 @@ package controls
          addChild(_loc6_);
          _loc6_.y = 33 - 5;
          _loc1_ = _loc6_.y + _loc6_.height + 2 * _loc4_;
-         this.var_1393 = new name_1134();
+         this.var_1393 = new LabelBase();
          this.var_1393.size = _loc5_;
          this.var_1393.autoSize = TextFieldAutoSize.LEFT;
          this.var_1393.text = this.var_1396.replace("{time}"," 99:99");

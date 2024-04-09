@@ -11,8 +11,8 @@ package alternativa.tanks.vehicles.tanks
    import alternativa.tanks.engine3d.name_966;
    import alternativa.tanks.models.battlefield.BattlefieldModel;
    import alternativa.tanks.models.battlefield.name_1194;
-   import alternativa.tanks.models.battlefield.name_83;
-   import alternativa.tanks.services.materialregistry.name_100;
+   import alternativa.tanks.models.battlefield.IBattleField;
+   import alternativa.tanks.services.materialregistry.IMaterialRegistry;
    import flash.geom.ColorTransform;
    import flash.geom.Vector3D;
    import package_1.Main;
@@ -116,11 +116,11 @@ package alternativa.tanks.vehicles.tanks
          }
          if(var_498 == null)
          {
-            var_498 = TextureMaterialRegistry(name_100(Main.osgi.name_6(name_100)).textureMaterialRegistry);
+            var_498 = TextureMaterialRegistry(IMaterialRegistry(Main.osgi.getService(IMaterialRegistry)).textureMaterialRegistry);
          }
          this.hull = param1;
          this.turret = param2;
-         this.var_421 = BattlefieldModel(Main.osgi.name_6(name_83));
+         this.var_421 = BattlefieldModel(Main.osgi.getService(IBattleField));
          this.var_510 = const_375.name_1199(param1);
          this.var_499 = this.method_734(this.var_510.mesh);
          this.var_512 = const_375.name_1198(param2);
@@ -277,7 +277,6 @@ package alternativa.tanks.vehicles.tanks
          this.name_123.alpha = param1;
          this.var_500.alpha = param1;
          this.var_503.alpha = param1 * 0.6;
-         trace(param1);
       }
       
       private function method_737(param1:Vector.<Mesh>) : Boolean

@@ -1,9 +1,9 @@
 package alternativa.tanks.gui.notinclan.dialogs
 {
-   import controls.base.name_1134;
+   import controls.base.LabelBase;
    import controls.base.name_1890;
    import controls.base.name_2016;
-   import controls.checkbox.name_2018;
+   import controls.checkbox.CheckBoxEvent;
    import controls.checkbox.name_2021;
    import controls.name_2015;
    import controls.windowinner.WindowInner;
@@ -62,7 +62,7 @@ package alternativa.tanks.gui.notinclan.dialogs
       
       private var var_1312:name_2021;
       
-      private var var_1317:name_1134;
+      private var var_1317:LabelBase;
       
       private var createButton:name_1890;
       
@@ -70,9 +70,9 @@ package alternativa.tanks.gui.notinclan.dialogs
       
       private var var_1313:name_2015;
       
-      private var var_1316:name_1134;
+      private var var_1316:LabelBase;
       
-      private var var_1315:name_1134;
+      private var var_1315:LabelBase;
       
       private var var_1277:FlagsDropDownList;
       
@@ -103,9 +103,9 @@ package alternativa.tanks.gui.notinclan.dialogs
          this.var_1271.addEventListener(name_2014.name_2020,this.method_1547);
          this.var_1271.tabIndex = 1;
          this.var_1312 = new name_2021();
-         this.var_1312.addEventListener(name_2018.name_2025,this.method_1535);
+         this.var_1312.addEventListener(CheckBoxEvent.STATE_CHANGED,this.method_1535);
          this.var_1312.tabIndex = 3;
-         this.var_1317 = new name_1134();
+         this.var_1317 = new LabelBase();
          this.var_1317.htmlText = localeService.getText(name_390.const_606);
          this.createButton = new name_1890();
          this.createButton.name_1342(localeService.getText(name_390.const_1269));
@@ -118,11 +118,11 @@ package alternativa.tanks.gui.notinclan.dialogs
          this.var_1319.addEventListener(TimerEvent.TIMER_COMPLETE,this.method_1539);
          this.var_1322 = new Timer(500,1);
          this.var_1322.addEventListener(TimerEvent.TIMER_COMPLETE,this.method_1541);
-         this.var_1315 = new name_1134();
+         this.var_1315 = new LabelBase();
          this.var_1315.text = localeService.getText(name_390.const_1379);
          this.var_1315.mouseEnabled = false;
          this.var_1315.color = name_1139.name_2023;
-         this.var_1316 = new name_1134();
+         this.var_1316 = new LabelBase();
          this.var_1316.text = localeService.getText(name_390.const_667);
          this.var_1316.mouseEnabled = false;
          this.var_1316.color = name_1139.name_2023;
@@ -185,7 +185,7 @@ package alternativa.tanks.gui.notinclan.dialogs
          }
       }
       
-      private function method_1535(param1:name_2018) : void
+      private function method_1535(param1:CheckBoxEvent) : void
       {
          this.method_1533();
       }
@@ -263,7 +263,7 @@ package alternativa.tanks.gui.notinclan.dialogs
          this.createButton.removeEventListener(MouseEvent.CLICK,this.method_1537);
          this.var_1272.removeEventListener(name_2014.name_2020,this.method_1538);
          this.var_1319.removeEventListener(TimerEvent.TIMER_COMPLETE,this.method_1539);
-         this.var_1312.removeEventListener(name_2018.name_2025,this.method_1535);
+         this.var_1312.removeEventListener(CheckBoxEvent.STATE_CHANGED,this.method_1535);
       }
       
       private function method_1513(param1:CreateClanServiceEvent) : void

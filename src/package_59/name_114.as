@@ -3,7 +3,7 @@ package package_59
    import alternativa.osgi.OSGi;
    import alternativa.tanks.models.battlefield.gui.ReloaderIndicator;
    import alternativa.tanks.models.battlefield.logic.class_23;
-   import alternativa.tanks.models.battlefield.name_83;
+   import alternativa.tanks.models.battlefield.IBattleField;
    import flash.events.Event;
    import flash.utils.getTimer;
    import package_12.name_24;
@@ -21,11 +21,11 @@ package package_59
    public class name_114 implements AutoClosable, name_290, class_23
    {
       
-      public static var battleEventDispatcher:name_96 = OSGi.getInstance().name_6(name_96) as name_96;
+      public static var battleEventDispatcher:name_96 = OSGi.getInstance().getService(name_96) as name_96;
       
-      public static var display:name_24 = OSGi.getInstance().name_6(name_24) as name_24;
+      public static var display:name_24 = OSGi.getInstance().getService(name_24) as name_24;
       
-      public static var battleService:name_83 = OSGi.getInstance().name_6(name_83) as name_83;
+      public static var battleService:IBattleField = OSGi.getInstance().getService(IBattleField) as IBattleField;
       
       private static const const_73:int = 900;
        

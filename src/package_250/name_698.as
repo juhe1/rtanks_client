@@ -1,7 +1,7 @@
 package package_250
 {
-   import controls.base.name_1134;
-   import controls.base.name_998;
+   import controls.base.LabelBase;
+   import controls.base.DefaultButtonBase;
    import flash.events.MouseEvent;
    import forms.name_1139;
    import package_175.class_151;
@@ -15,25 +15,25 @@ package package_250
       public static var localeService:name_102;
        
       
-      private var messageLabel:name_1134;
+      private var messageLabel:LabelBase;
       
-      private var var_1276:name_998;
+      private var var_1276:DefaultButtonBase;
       
-      private var var_1451:name_998;
+      private var var_1451:DefaultButtonBase;
       
       public function name_698()
       {
          super(null,"ERROR_FATAL");
-         this.messageLabel = new name_1134();
+         this.messageLabel = new LabelBase();
          this.messageLabel.text = "Произошла критическая ошибка";
          this.messageLabel.color = name_1139.name_1894;
          this.messageLabel.mouseEnabled = false;
          addChild(this.messageLabel);
-         this.var_1451 = new name_998();
+         this.var_1451 = new DefaultButtonBase();
          this.var_1451.width = 96 + 15;
          this.var_1451.label = "Перезайти в игру";
          addChild(this.var_1451);
-         this.var_1276 = new name_998();
+         this.var_1276 = new DefaultButtonBase();
          this.var_1276.width = 96;
          this.var_1276.label = "ОК";
          addChild(this.var_1276);

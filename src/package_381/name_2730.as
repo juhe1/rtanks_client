@@ -13,7 +13,7 @@ package package_381
    public class name_2730 extends name_2726
    {
       
-      public static var var_644:class_27 = OSGi.getInstance().name_6(class_27) as class_27;
+      public static var var_644:class_27 = OSGi.getInstance().getService(class_27) as class_27;
        
       
       public function name_2730(param1:name_326)

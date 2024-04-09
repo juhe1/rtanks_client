@@ -1,11 +1,11 @@
 package alternativa.physics.collision
 {
-   import alternativa.physics.name_660;
+   import alternativa.physics.Body;
    
    public interface name_1160
    {
        
       
-      function considerBody(param1:name_660) : Boolean;
+      function considerBody(param1:Body) : Boolean;
    }
 }
