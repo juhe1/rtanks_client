@@ -1119,12 +1119,12 @@ package alternativa.tanks.models.battlefield
       public function method_157(param1:Body, param2:Body) : Boolean
       {
          var _loc3_:TankData = null;
-         if(param1.name_169 != null && param2.name_169 == null)
+         if(param1.postCollisionPredicate != null && param2.postCollisionPredicate == null)
          {
             _loc3_ = this.var_117.tanks[param1];
             ++_loc3_.name_197;
          }
-         else if(param1.name_169 == null && param2.name_169 != null)
+         else if(param1.postCollisionPredicate == null && param2.postCollisionPredicate != null)
          {
             _loc3_ = this.var_117.tanks[param2];
             ++_loc3_.name_197;

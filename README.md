@@ -1,6 +1,8 @@
 # Rtanks client source codes
 Rtanks source code with some modifications (hacks). The code is obfuscated, but i am slowly deobfuscating things that i want to modify. So in future the code will come more readable, but it will never be fully deobfuscated. 
 
+![VSCode](/readme_pictures/hack_menu.png)
+
 ## Compiling
 #### Preparing the SDKs
 We need two SDKs, AIR SDK for debugging and FLEX SDK for compiling.

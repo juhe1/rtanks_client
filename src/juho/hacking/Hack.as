@@ -1,5 +1,6 @@
 package juho.hacking {
    
+   import flash.geom.Vector3D;
    import flash.utils.Dictionary;
    import flash.net.SharedObject;
    
@@ -40,11 +41,29 @@ package juho.hacking {
          saveData.flush();
       }
       
+      private function savePropertyValue(property:HackProperty):void {
+         var newValue:* = property.value;
+         
+         switch (property.type) {
+            case "Vector3D":
+               var value:Vector3D = Vector3D(property.value);
+               
+               newValue = new Object();
+               newValue.x = value.x;
+               newValue.y = value.y;
+               newValue.z = value.z;
+               break;
+            default:
+               break;
+         }
+         this.saveData.data.hackPropertyValuesByName[property.name] = newValue;
+      }
+      
       public function setPropertyValue(_name:String, value:*):void {
          var property:HackProperty = this.hackPropertiesByName[_name];
          property.value = value;
          
-         this.saveData.data.hackPropertyValuesByName[_name] = value;
+         this.savePropertyValue(property);
          
          if (property.callBack != null) {
             property.callBack(value);
@@ -57,13 +76,33 @@ package juho.hacking {
          return property;
       }
       
+      private function loadPropertyFromSaveData(property:HackProperty) : * {
+         if (!saveData.data.hasOwnProperty("hackPropertyValuesByName") || !this.saveData.data.hackPropertyValuesByName.hasOwnProperty(property.name)) {
+            return null;
+         }
+         
+         var valueFromSaveData:* = this.saveData.data.hackPropertyValuesByName[property.name]
+         
+         switch (property.type) {
+            case "Vector3D":
+               var value:Object = Object(valueFromSaveData);
+               return new Vector3D(value.x, value.y, value.z);
+               break;
+            default:
+               return valueFromSaveData;
+               break;
+         }
+      }
+      
       protected function addProperty(_name:String, value:*, _type:String, callBack:Function = null):void {
          var property:HackProperty = new HackProperty(_name, value, _type, callBack);
          this.hackPropertiesByName[_name] = property;
          this.allHackProperties.push(property);
          
-         if (saveData.data.hasOwnProperty("hackPropertyValuesByName") && this.saveData.data.hackPropertyValuesByName.hasOwnProperty(_name)) {
-            property.value = this.saveData.data.hackPropertyValuesByName[_name];
+         var loadedProperty:* = this.loadPropertyFromSaveData(property);
+         
+         if (loadedProperty != null) {
+            property.value = loadedProperty;
          }
       }
    

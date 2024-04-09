@@ -194,8 +194,8 @@ package package_42
                _loc7_ = int(this.const_368.length);
                if(_loc7_ > 0)
                {
-                  _loc8_ = _loc5_.name_169 == null || Boolean(_loc5_.name_169.method_157(_loc5_,_loc6_));
-                  _loc9_ = _loc6_.name_169 == null || Boolean(_loc6_.name_169.method_157(_loc6_,_loc5_));
+                  _loc8_ = _loc5_.postCollisionPredicate == null || Boolean(_loc5_.postCollisionPredicate.method_157(_loc5_,_loc6_));
+                  _loc9_ = _loc6_.postCollisionPredicate == null || Boolean(_loc6_.postCollisionPredicate.method_157(_loc6_,_loc5_));
                   if(_loc8_ && _loc9_)
                   {
                      _loc10_ = BodyContact.create();

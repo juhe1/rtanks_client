@@ -34,7 +34,9 @@ package alternativa.tanks.models.tank
    import flash.utils.getTimer;
    import forms.name_82;
    import juho.hacking.event.HackEventDispatcher;
+   import juho.hacking.event.LocalTankDestroyedEvent;
    import juho.hacking.event.LocalTankInitedEvent;
+   import juho.hacking.event.TankNormalStateSettedEvent;
    import juho.hacking.event.TankSpecificationsChangedEvent;
    import package_1.Main;
    import package_13.Long;
@@ -132,6 +134,9 @@ package alternativa.tanks.models.tank
    
    public class TankModel extends class_8 implements class_12, class_2, class_10, class_11, class_6, class_5, class_1, ITank, class_4, class_3, class_9
    {
+      
+      public static var spoofedLinearVelocity:Vector3dData;
+      public static var spoofedAngularVelocity:Vector3dData;
       
       public static var battleInputService:name_245;
       
@@ -424,6 +429,7 @@ package alternativa.tanks.models.tank
          {
             return;
          }
+         
          this.battlefield.name_147(_loc2_);
          this.method_70(_loc2_);
          if(_loc2_.tank != null)
@@ -480,6 +486,11 @@ package alternativa.tanks.models.tank
          {
             return;
          }
+         
+         if (_loc3_.local) {
+            HackEventDispatcher.singleton.dispatchEvent(new LocalTankDestroyedEvent());
+         }
+         
          this.battlefield.name_147(_loc3_);
          if(_loc3_.tank != null)
          {
@@ -690,7 +701,7 @@ package alternativa.tanks.models.tank
             return;
          }
          _loc2_.name_84("Activated");
-         this.method_55(_loc2_);
+         this.setNormalState(_loc2_);
          if(_loc2_.local)
          {
             this.method_44(0);
@@ -835,7 +846,7 @@ package alternativa.tanks.models.tank
          this.method_49(_loc8_,param4,param5,_loc10_,_loc10_,0,0,true);
          this.method_54(_loc8_);
          _loc8_.sounds.name_145();
-         this.method_52(_loc8_);
+         this.setTransparentState(_loc8_);
          if(_loc8_.local)
          {
             _loc8_ = this.localUserData;
@@ -1175,10 +1186,10 @@ package alternativa.tanks.models.tank
          switch(param2.tankSpawnState)
          {
             case TankSpawnState.NEWCOME:
-               this.method_52(param1);
+               this.setTransparentState(param1);
                break;
             case TankSpawnState.ACTIVE:
-               this.method_55(param1);
+               this.setNormalState(param1);
          }
       }
       
@@ -1363,7 +1374,7 @@ package alternativa.tanks.models.tank
          }
       }
       
-      private function method_46(param1:ClientObject, param2:int, param3:Vector3dData, param4:Vector3dData, param5:Vector3dData, param6:Vector3dData, param7:Number, param8:int) : void
+      private function method_46(param1:ClientObject, param2:int, param3:Vector3dData, param4:Vector3dData, linearVelocity:Vector3dData, angularVelocity:Vector3dData, param7:Number, param8:int) : void
       {
          var _loc9_:int = 0;
          var _loc10_:int = 0;
@@ -1389,7 +1400,13 @@ package alternativa.tanks.models.tank
                param8 = TankModel.CENTER_TURRET;
             }
          }
-         Network(Main.osgi.getService(name_2)).send("battle;move;" + (param3.x + "@" + param3.y + "@" + param3.z) + "@" + (param4.x + "@" + param4.y + "@" + param4.z) + "@" + (param5.x + "@" + param5.y + "@" + param5.z) + "@" + (param6.x - 10000000000000000000 + "@" + param6.y + "@" + param6.z) + ";" + param7 + ";" + param8 + ";" + 1);
+         if (spoofedLinearVelocity != null) {
+            linearVelocity = spoofedLinearVelocity;
+         }
+         if (spoofedAngularVelocity != null) {
+            angularVelocity = spoofedAngularVelocity;
+         }
+         Network(Main.osgi.getService(name_2)).send("battle;move;" + (param3.x + "@" + param3.y + "@" + param3.z) + "@" + (param4.x + "@" + param4.y + "@" + param4.z) + "@" + (linearVelocity.x + "@" + linearVelocity.y + "@" + linearVelocity.z) + "@" + (angularVelocity.x + "@" + angularVelocity.y + "@" + angularVelocity.z) + ";" + param7 + ";" + param8 + ";" + 1);
       }
       
       private function method_57(param1:Vector3) : void
@@ -1420,17 +1437,17 @@ package alternativa.tanks.models.tank
          }
       }
       
-      private function method_52(param1:TankData) : void
+      private function setTransparentState(param1:TankData) : void
       {
          param1.name_87 = TankSpawnState.NEWCOME;
          param1.tank.collisionGroup = name_73.name_171;
          param1.tank.name_142 = name_73.name_183;
          param1.tank.skin.name_123.alpha = 0.5;
          param1.tank.skin.name_144().alpha = 0.5;
-         param1.tank.name_169 = name_166(this.battlefield);
+         param1.tank.postCollisionPredicate = name_166(this.battlefield);
       }
       
-      private function method_55(param1:TankData) : void
+      private function setNormalState(param1:TankData) : void
       {
          param1.name_87 = TankSpawnState.ACTIVE;
          param1.tank.collisionGroup = name_73.name_171 | name_73.name_151 | name_73.WEAPON;
@@ -1441,7 +1458,9 @@ package alternativa.tanks.models.tank
          param1.tank.name_142 = name_73.name_151;
          param1.tank.skin.name_123.alpha = 1;
          param1.tank.skin.name_144().alpha = 1;
-         param1.tank.name_169 = null;
+         param1.tank.postCollisionPredicate = null;
+         
+         HackEventDispatcher.singleton.dispatchEvent(new TankNormalStateSettedEvent(param1.tank));
       }
       
       public function method_28(param1:GameActionEnum, param2:Boolean) : void

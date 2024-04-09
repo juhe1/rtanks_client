@@ -45,7 +45,7 @@ package alternativa.physics
       
       public var var_308:name_767;
       
-      public var name_169:name_166;
+      public var postCollisionPredicate:name_166;
       
       public var state:name_886;
       

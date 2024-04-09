@@ -2,6 +2,7 @@ package juho.hacking.hacks {
    import alternativa.tanks.vehicles.tanks.Tank;
    import juho.hacking.Hack;
    import juho.hacking.event.HackEventDispatcher;
+   import juho.hacking.event.LocalTankDestroyedEvent;
    import juho.hacking.event.LocalTankInitedEvent;
    import juho.hacking.event.TankSpecificationsChangedEvent;
    
@@ -9,7 +10,7 @@ package juho.hacking.hacks {
   
       private static const NAME:String = "Speed Hack";
       
-      // Name is used in saving to disk, so don't change it.
+      // ID is used in saving to disk
       private static const ID:String = "SPEED_HACK";
       
       private var localTank:Tank;
@@ -22,6 +23,7 @@ package juho.hacking.hacks {
          this.addProperty("Turret Rotation Speed", 1000.0, "Number", speedChanged);
          this.addProperty("Accelaration", 1000.0, "Number", speedChanged);
          HackEventDispatcher.singleton.addEventListener(LocalTankInitedEvent.LOCAL_TANK_INITED, this.localTankInited);
+         HackEventDispatcher.singleton.addEventListener(LocalTankDestroyedEvent.LOCAL_TANK_DESTROYED_EVENT, this.localTankDestroyed);
          HackEventDispatcher.singleton.addEventListener(TankSpecificationsChangedEvent.TANK_SPECIFICATIONS_CHANGED_EVENT, this.tankSpecificationsChanged);
       }
       
@@ -40,6 +42,10 @@ package juho.hacking.hacks {
       
       private function localTankInited(e:LocalTankInitedEvent) : void {
          this.localTank = e.localTank;
+      }
+      
+      private function localTankDestroyed(e:LocalTankDestroyedEvent) : void {
+         this.localTank = null;
       }
       
       public function tankSpecificationsChanged(e:TankSpecificationsChangedEvent) : void {
@@ -62,8 +68,6 @@ package juho.hacking.hacks {
          this.localTank.setMaxTurnSpeed(turnSpeed, true);
          this.localTank.setAcceleration(accelaration)
          this.localTank.setMaxTurretTurnSpeed(turretRotationSpeed, true);
-         
-         trace("Changed speed son");
       }
    
    }

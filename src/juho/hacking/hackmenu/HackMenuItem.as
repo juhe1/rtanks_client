@@ -12,6 +12,7 @@ package juho.hacking.hackmenu {
    import flash.display.Shape;
    import flash.display.Sprite;
    import flash.geom.Matrix;
+   import flash.geom.Vector3D;
    import juho.hacking.Hack;
    import juho.hacking.HackProperty;
    
@@ -75,6 +76,9 @@ package juho.hacking.hackmenu {
                case "Number":
                   this.createNumberProperty(property);
                   break;
+               case "Vector3D":
+                  this.createVector3DProperty(property);
+                  break;
                default:
                   break;
             }
@@ -95,7 +99,7 @@ package juho.hacking.hackmenu {
          var input:TankInput = new TankInput();
          input.width = 200;
          input.x = propertyName.width + 13;
-         input.textField.restrict = "0-9";
+         input.textField.restrict = "-0-9.";
          input.textField.text = Number(property.value).toString();
          propertyContainer.addChild(input);
          
@@ -103,12 +107,77 @@ package juho.hacking.hackmenu {
          
          var self:Object = this;
          input.textField.addEventListener(Event.CHANGE, function(event:Event):void {
-            self.numberPropertyChanged(property, parseFloat(input.textField.text));
+            self.hack.setPropertyValue(property.name, parseFloat(input.textField.text));
          });
       }
       
-      private function numberPropertyChanged(property:HackProperty, value:Number) : void {
-         this.hack.setPropertyValue(property.name, value);
+      private function createVector3DProperty(property:HackProperty) : void {
+         var propertyContainer:Sprite = new Sprite();
+         propertyContainer.x = this.currentPropertyPos.x + 8;
+         propertyContainer.y = this.currentPropertyPos.y;
+         addChild(propertyContainer);
+         
+         var propertyName:Label = new Label();
+         propertyName.text = property.name;
+         propertyName.size = 18;
+         propertyContainer.addChild(propertyName);
+         
+         var xLabel:Label = new Label();
+         xLabel.x = propertyName.width + 13;
+         xLabel.text = "X";
+         xLabel.size = 18;
+         propertyContainer.addChild(xLabel);
+         
+         var xInput:TankInput = new TankInput();
+         xInput.width = 80;
+         xInput.x = xLabel.x + xLabel.width + 4;
+         xInput.textField.restrict = "-0-9.";
+         xInput.textField.text = Vector3D(property.value).x.toString();
+         propertyContainer.addChild(xInput);
+         
+         var yLabel:Label = new Label();
+         yLabel.x = xInput.x + xInput.width + 13;
+         yLabel.text = "Y";
+         yLabel.size = 18;
+         propertyContainer.addChild(yLabel);
+         
+         var yInput:TankInput = new TankInput();
+         yInput.width = 80;
+         yInput.x = yLabel.x + yLabel.width + 4;
+         yInput.textField.restrict = "-0-9.";
+         yInput.textField.text = Vector3D(property.value).y.toString();
+         propertyContainer.addChild(yInput);
+         
+         var zLabel:Label = new Label();
+         zLabel.x = yInput.x + yInput.width + 13;
+         zLabel.text = "Z";
+         zLabel.size = 18;
+         propertyContainer.addChild(zLabel);
+         
+         var zInput:TankInput = new TankInput();
+         zInput.width = 80;
+         zInput.x = zLabel.x + zLabel.width + 4;
+         zInput.textField.restrict = "-0-9.";
+         zInput.textField.text = Vector3D(property.value).z.toString();
+         propertyContainer.addChild(zInput);
+         
+         currentPropertyPos = new Point(currentPropertyPos.x, propertyContainer.height + propertyContainer.y + PROPERTY_SPACE)
+         
+         var self:Object = this;
+         xInput.textField.addEventListener(Event.CHANGE, function(event:Event):void {
+            Vector3D(property.value).x = parseFloat(xInput.textField.text);
+            self.hack.setPropertyValue(property.name, property.value);
+         });
+         
+         yInput.textField.addEventListener(Event.CHANGE, function(event:Event):void {
+            Vector3D(property.value).y = parseFloat(yInput.textField.text);
+            self.hack.setPropertyValue(property.name, property.value);
+         });
+         
+         zInput.textField.addEventListener(Event.CHANGE, function(event:Event):void {
+            Vector3D(property.value).z = parseFloat(zInput.textField.text);
+            self.hack.setPropertyValue(property.name, property.value);
+         });
       }
       
       public function sizeContainer(_width:int, _height:int) : void {
