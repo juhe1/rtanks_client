@@ -8,11 +8,15 @@ package juho.hacking.hacks {
    public class SpeedHack extends Hack {
   
       private static const NAME:String = "Speed Hack";
+      
+      // Name is used in saving to disk, so don't change it.
+      private static const ID:String = "SPEED_HACK";
+      
       private var localTank:Tank;
       
       public function SpeedHack() {
-         super();
-         name = NAME;
+         super(NAME, ID);
+         
          this.addProperty("Speed", 1000.0, "Number", speedChanged);
          this.addProperty("Turn Speed", 1000.0, "Number", speedChanged);
          this.addProperty("Turret Rotation Speed", 1000.0, "Number", speedChanged);
