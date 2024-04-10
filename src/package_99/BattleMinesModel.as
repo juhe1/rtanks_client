@@ -55,7 +55,7 @@ package package_99
    import platform.client.fp10.core.resource.types.MultiframeImageResource;
    import projects.tanks.clients.flash.resources.resource.Tanks3DSResource;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class BattleMinesModel extends BattleMinesModelBase implements name_690, class_48, class_11, name_652, class_3
    {
@@ -405,7 +405,7 @@ package package_99
       
       public function method_1044(param1:name_1500) : void
       {
-         Network(Main.osgi.getService(name_2)).send("battle;mine_hit;" + param1.id);
+         Network(Main.osgi.getService(INetworker)).send("battle;mine_hit;" + param1.id);
       }
       
       public function addUser(param1:ClientObject) : void

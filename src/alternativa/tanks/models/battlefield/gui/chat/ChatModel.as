@@ -20,7 +20,7 @@ package alternativa.tanks.models.battlefield.gui.chat
    import package_90.ContextMenuServiceEvent;
    import package_90.name_308;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    import utils.KeyboardBinder;
    
    public class ChatModel extends ChatModelBase implements name_400, class_11, class_1, IChatBattle
@@ -187,7 +187,7 @@ package alternativa.tanks.models.battlefield.gui.chat
          var _loc4_:RegExp = /;/g;
          var _loc5_:RegExp = /~/g;
          param2 = param2.replace(_loc4_," ").replace(_loc5_," ");
-         Network(Main.osgi.getService(name_2)).send("battle;chat;" + param2 + ";" + param3);
+         Network(Main.osgi.getService(INetworker)).send("battle;chat;" + param2 + ";" + param3);
       }
       
       private function method_1392(param1:Boolean) : void

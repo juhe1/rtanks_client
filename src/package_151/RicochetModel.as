@@ -49,7 +49,7 @@ package package_151
    import package_92.name_1188;
    import package_92.name_1451;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class RicochetModel extends class_105 implements class_106, class_11, IWeaponController, class_107
    {
@@ -316,7 +316,7 @@ package package_151
          _loc11_.y = param8;
          _loc11_.z = param9;
          _loc11_.reloadTime = this.var_733.reloadMsec.value;
-         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(_loc11_));
+         Network(Main.osgi.getService(INetworker)).send("battle;fire;" + JSON.stringify(_loc11_));
       }
       
       private function method_1284(param1:Vector3, param2:name_1793, param3:ClientObject) : void
@@ -398,7 +398,7 @@ package package_151
          var _loc5_:Object = new Object();
          _loc5_.self_hit = true;
          _loc5_.reloadTime = this.var_733.reloadMsec.value;
-         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(_loc5_));
+         Network(Main.osgi.getService(INetworker)).send("battle;fire;" + JSON.stringify(_loc5_));
       }
       
       private function method_1217(param1:ClientObject, param2:int, param3:Number, param4:Number, param5:Number) : void
@@ -408,7 +408,7 @@ package package_151
          _loc6_.x = param3;
          _loc6_.y = param4;
          _loc6_.z = param5;
-         Network(Main.osgi.getService(name_2)).send("battle;start_fire;" + JSON.stringify(_loc6_));
+         Network(Main.osgi.getService(INetworker)).send("battle;start_fire;" + JSON.stringify(_loc6_));
       }
       
       private function name_1249(param1:TankData, param2:name_1792, param3:name_1793, param4:name_1451, param5:Vector3, param6:Vector3, param7:Vector3, param8:Vector3) : RicochetShot

@@ -39,7 +39,7 @@ package forms.battlelist
    import package_95.IStorageService;
    import projects.tanks.clients.fp10.libraries.name_390;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class ViewBattleList extends Sprite
    {
@@ -121,7 +121,7 @@ package forms.battlelist
       private function method_2737(param1:MouseEvent) : void
       {
          this.var_2941.enabled = false;
-         Network(OSGi.getInstance().getService(name_2)).send("lobby;start_matchmaking");
+         Network(OSGi.getInstance().getService(INetworker)).send("lobby;start_matchmaking");
       }
       
       private function method_2068(param1:Event) : void

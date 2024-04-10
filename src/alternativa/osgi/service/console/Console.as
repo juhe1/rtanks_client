@@ -19,6 +19,9 @@ package alternativa.osgi.service.console
    import flash.ui.Keyboard;
    import flash.utils.setTimeout;
    import package_242.name_821;
+   import alternativa.osgi.OSGi;
+   import scpacker.networking.Network;
+   import scpacker.networking.INetworker;
    
    public class Console implements name_27
    {
@@ -119,7 +122,12 @@ package alternativa.osgi.service.console
          param1.name_822("console","fg","Установить цвет шрифта",[uint],this.method_233);
          param1.name_822("vars","list","Посмотреть список переменных",[],this.method_241);
          param1.name_822("vars","show","Посмотреть переменную",[String],this.method_227);
-         param1.name_822("vars","set","Установить значение переменной",[String,String],this.method_225);
+         param1.name_822("vars", "set", "Установить значение переменной", [String, String], this.method_225);
+         param1.name_822("hacks","send_command","Send command to server",[String],this.sendCommandToServer);
+      }
+      
+      private function sendCommandToServer(param1:class_16, command:String) : void {
+         Network(OSGi.getInstance().getService(INetworker)).send(command);
       }
       
       private function method_225(param1:class_16, param2:String, param3:String) : void

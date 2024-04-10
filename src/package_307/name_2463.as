@@ -7,7 +7,7 @@ package package_307
    import package_38.name_860;
    import platform.client.fp10.core.model.name_66;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class name_2463
    {
@@ -37,7 +37,7 @@ package package_307
       
       public function loginByHash(param1:String) : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("auth;login_by_hash;" + param1);
+         Network(OSGi.getInstance().getService(INetworker)).send("auth;login_by_hash;" + param1);
       }
       
       public function method_2138(param1:String) : void

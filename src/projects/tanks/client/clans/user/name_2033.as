@@ -8,7 +8,7 @@ package projects.tanks.client.clans.user
    import package_38.name_840;
    import platform.client.fp10.core.model.name_66;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class name_2033
    {
@@ -37,12 +37,12 @@ package projects.tanks.client.clans.user
       
       public function name_2034() : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("clan;hideClan");
+         Network(OSGi.getInstance().getService(INetworker)).send("clan;hideClan");
       }
       
       public function showClan() : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("clan;showClan");
+         Network(OSGi.getInstance().getService(INetworker)).send("clan;showClan");
       }
    }
 }

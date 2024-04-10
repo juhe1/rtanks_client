@@ -62,7 +62,7 @@ package alternativa.tanks.model
    import projects.tanks.client.battleservice.model.name_370;
    import projects.tanks.clients.fp10.libraries.name_390;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class BattleSelectModel extends class_164 implements name_386, class_11, IResourceLoadingListener, class_52, class_3
    {
@@ -336,7 +336,7 @@ package alternativa.tanks.model
          }
          if(Lobby.var_77)
          {
-            Network(Main.osgi.getService(name_2)).send("lobby;user_inited");
+            Network(Main.osgi.getService(INetworker)).send("lobby;user_inited");
             Lobby.var_77 = false;
          }
       }
@@ -885,7 +885,7 @@ package alternativa.tanks.model
          _loc3_.equipmentConstraintsMode = _loc2_.equipmentConstraintsMode;
          _loc3_.parkourMode = _loc2_.parkourMode;
          _loc3_.clanBattle = _loc2_.clanBattle;
-         Network(Main.osgi.getService(name_2)).send("lobby;create_battle;" + JSON.stringify(_loc3_));
+         Network(Main.osgi.getService(INetworker)).send("lobby;create_battle;" + JSON.stringify(_loc3_));
       }
       
       private function method_1970(param1:name_2263) : void
@@ -900,7 +900,7 @@ package alternativa.tanks.model
       
       private function method_1965(param1:ClientObject, param2:String) : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby;get_show_battle_info;" + param2);
+         Network(Main.osgi.getService(INetworker)).send("lobby;get_show_battle_info;" + param2);
       }
       
       private function method_1976(param1:name_2263) : void
@@ -1036,7 +1036,7 @@ package alternativa.tanks.model
       
       private function method_1966(param1:Boolean, param2:Boolean) : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby;" + (!param1 ? "enter_battle;" : "enter_battle_team;") + this.selectedBattleId + ";" + param2);
+         Network(Main.osgi.getService(INetworker)).send("lobby;" + (!param1 ? "enter_battle;" : "enter_battle_team;") + this.selectedBattleId + ";" + param2);
       }
       
       public function name_489() : void
@@ -1050,7 +1050,7 @@ package alternativa.tanks.model
             _loc1_ = new BattleController();
             Main.osgi.registerService(IBattleController,_loc1_);
          }
-         Network(Main.osgi.getService(name_2)).addEventListener(Main.osgi.getService(IBattleController) as BattleController);
+         Network(Main.osgi.getService(INetworker)).addEventListener(Main.osgi.getService(IBattleController) as BattleController);
       }
       
       private function method_1968(param1:name_2263) : void
@@ -1116,8 +1116,8 @@ package alternativa.tanks.model
             _loc1_ = new BattleController();
             Main.osgi.registerService(IBattleController,_loc1_);
          }
-         Network(Main.osgi.getService(name_2)).send("lobby;enter_battle_spectator;" + this.selectedBattleId);
-         Network(Main.osgi.getService(name_2)).addEventListener(Main.osgi.getService(IBattleController) as BattleController);
+         Network(Main.osgi.getService(INetworker)).send("lobby;enter_battle_spectator;" + this.selectedBattleId);
+         Network(Main.osgi.getService(INetworker)).addEventListener(Main.osgi.getService(IBattleController) as BattleController);
       }
    }
 }

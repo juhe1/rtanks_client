@@ -7,7 +7,7 @@ package package_120
    import package_31.name_115;
    import package_346.UserInfoUpdateEvent;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class UserInfoService extends EventDispatcher implements name_408
    {
@@ -29,7 +29,7 @@ package package_120
          var _loc2_:Boolean = this.users[param1] != null;
          if(!_loc2_ && !this.method_1167(param1))
          {
-            Network(Main.osgi.getService(name_2)).send("lobby;get_user_info;" + param1);
+            Network(Main.osgi.getService(INetworker)).send("lobby;get_user_info;" + param1);
             this.method_1165(param1);
          }
          return _loc2_;

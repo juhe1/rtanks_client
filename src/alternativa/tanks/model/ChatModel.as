@@ -24,7 +24,7 @@ package alternativa.tanks.model
    import package_4.ClientObject;
    import package_7.name_32;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class ChatModel extends ChatModelBase implements name_400, class_11
    {
@@ -181,7 +181,7 @@ package alternativa.tanks.model
       
       public function sendMessage(param1:String, param2:String) : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby_chat;" + param2 + ";" + this.name_379.method_2281() + ";" + (param1 != null ? "true" : "false") + ";" + (param1 != "" ? param1 : "NULL") + "");
+         Network(Main.osgi.getService(INetworker)).send("lobby_chat;" + param2 + ";" + this.name_379.method_2281() + ";" + (param1 != null ? "true" : "false") + ";" + (param1 != "" ? param1 : "NULL") + "");
       }
       
       private function method_535() : void
@@ -205,7 +205,7 @@ package alternativa.tanks.model
       
       public function method_2398(param1:ClientObject, param2:String) : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby;get_show_battle_info;" + param2);
+         Network(Main.osgi.getService(INetworker)).send("lobby;get_show_battle_info;" + param2);
       }
       
       private function method_2397(param1:TextEvent) : void

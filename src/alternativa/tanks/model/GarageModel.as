@@ -52,7 +52,7 @@ package alternativa.tanks.model
    import platform.client.fp10.core.type.name_70;
    import projects.tanks.clients.flash.resources.resource.Tanks3DSResource;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class GarageModel extends class_53 implements class_49, class_11, IResourceLoadingListener, name_381, class_50, class_3, name_979, class_51, class_52
    {
@@ -310,7 +310,7 @@ package alternativa.tanks.model
             name_13(Main.osgi.getService(name_13)).hide();
             if(Lobby.var_77)
             {
-               Network(Main.osgi.getService(name_2)).send("lobby;user_inited");
+               Network(Main.osgi.getService(INetworker)).send("lobby;user_inited");
                Lobby.var_77 = false;
             }
             if(var_817 != null)
@@ -501,12 +501,12 @@ package alternativa.tanks.model
       
       public function tryMountItem(param1:ClientObject, param2:String) : void
       {
-         Network(Main.osgi.getService(name_2)).send("garage;try_mount_item;" + param2);
+         Network(Main.osgi.getService(INetworker)).send("garage;try_mount_item;" + param2);
       }
       
       private function method_1097(param1:name_1532) : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby;try_open_item;" + this.var_823);
+         Network(Main.osgi.getService(INetworker)).send("lobby;try_open_item;" + this.var_823);
       }
       
       private function method_1092(param1:name_1532) : void
@@ -642,7 +642,7 @@ package alternativa.tanks.model
       
       public function tryBuyItem(param1:ClientObject, param2:String, param3:int) : void
       {
-         Network(Main.osgi.getService(name_2)).send("garage;try_buy_item;" + param2 + ";" + param3);
+         Network(Main.osgi.getService(INetworker)).send("garage;try_buy_item;" + param2 + ";" + param3);
       }
       
       private function method_1084(param1:MouseEvent) : void
@@ -656,7 +656,7 @@ package alternativa.tanks.model
       public function tryUpgradeItem(param1:ClientObject, param2:String) : void
       {
          this.name_475 = param2;
-         Network(Main.osgi.getService(name_2)).send("garage;try_update_item;" + param2);
+         Network(Main.osgi.getService(INetworker)).send("garage;try_update_item;" + param2);
       }
       
       public function method_1085(param1:name_1532) : void

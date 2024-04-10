@@ -14,7 +14,7 @@ package forms.friends.list.renderer
    import package_481.name_3483;
    import package_54.name_102;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class FriendsIncomingListRenderer extends CellRenderer
    {
@@ -135,13 +135,13 @@ package forms.friends.list.renderer
       
       private function method_3169(param1:MouseEvent) : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby;accept_friend;" + this.var_1367.uid);
+         Network(Main.osgi.getService(INetworker)).send("lobby;accept_friend;" + this.var_1367.uid);
          trace("Принимаем");
       }
       
       private function method_3168(param1:MouseEvent) : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby;deny_friend;" + this.var_1367.uid);
+         Network(Main.osgi.getService(INetworker)).send("lobby;deny_friend;" + this.var_1367.uid);
          trace("Оклоняем");
       }
       

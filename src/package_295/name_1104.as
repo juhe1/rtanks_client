@@ -11,7 +11,7 @@ package package_295
    import flash.utils.getTimer;
    import package_1.Main;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class name_1104 extends Sprite
    {
@@ -117,7 +117,7 @@ package package_295
       
       private function method_347(param1:TimerEvent) : void
       {
-         Network(Main.osgi.getService(name_2)).send("battle;ping");
+         Network(Main.osgi.getService(INetworker)).send("battle;ping");
          PingService.name_2350();
       }
       

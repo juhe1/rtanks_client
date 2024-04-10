@@ -11,7 +11,7 @@ package forms
    import package_1.Main;
    import package_280.name_2014;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    import scpacker.utils.CaptchaParser;
    
    public class name_2433 extends Sprite
@@ -172,7 +172,7 @@ package forms
       
       private function method_2858(param1:Event) : void
       {
-         Network(Main.osgi.getService(name_2)).send("auth;refresh_captcha");
+         Network(Main.osgi.getService(INetworker)).send("auth;refresh_captcha");
       }
       
       public function name_2448(param1:String, param2:String) : void

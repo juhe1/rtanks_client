@@ -16,7 +16,7 @@ package package_80
    import package_49.name_97;
    import package_7.name_32;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class InventoryItemModel extends class_136 implements class_135, name_1440
    {
@@ -113,7 +113,7 @@ package package_80
       
       private function activate(param1:ClientObject, param2:Vector3D) : void
       {
-         Network(Main.osgi.getService(name_2)).send("battle;activate_item;" + param1.id + ";" + param2.x + ";" + param2.y + ";" + param2.z);
+         Network(Main.osgi.getService(INetworker)).send("battle;activate_item;" + param1.id + ";" + param2.x + ";" + param2.y + ";" + param2.z);
       }
    }
 }

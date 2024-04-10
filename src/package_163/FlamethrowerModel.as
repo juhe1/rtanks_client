@@ -28,7 +28,7 @@ package package_163
    import package_92.name_1188;
    import package_92.name_1451;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class FlamethrowerModel extends class_85 implements class_86, name_1595, IWeaponController
    {
@@ -263,17 +263,17 @@ package package_163
          _loc6_.targetDistances = param5;
          _loc6_.tickPeriod = this.var_1052.targetDetectionInterval.value;
          trace(JSON.stringify(_loc6_));
-         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(_loc6_));
+         Network(Main.osgi.getService(INetworker)).send("battle;fire;" + JSON.stringify(_loc6_));
       }
       
       private function method_1222(param1:ClientObject) : void
       {
-         Network(Main.osgi.getService(name_2)).send("battle;start_fire");
+         Network(Main.osgi.getService(INetworker)).send("battle;start_fire");
       }
       
       private function method_1226(param1:ClientObject) : void
       {
-         Network(Main.osgi.getService(name_2)).send("battle;stop_fire");
+         Network(Main.osgi.getService(INetworker)).send("battle;stop_fire");
       }
       
       public function method_1002(param1:int) : void

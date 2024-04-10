@@ -9,7 +9,7 @@ package package_110
    import package_38.name_860;
    import platform.client.fp10.core.model.name_66;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class name_1579
    {
@@ -37,7 +37,7 @@ package package_110
       
       public function open(param1:int) : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("lobby;open_lootbox;" + param1);
+         Network(OSGi.getInstance().getService(INetworker)).send("lobby;open_lootbox;" + param1);
       }
    }
 }

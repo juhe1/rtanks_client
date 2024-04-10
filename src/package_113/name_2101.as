@@ -7,7 +7,7 @@ package package_113
    import package_38.name_860;
    import platform.client.fp10.core.model.name_66;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class name_2101
    {
@@ -32,7 +32,7 @@ package package_113
       
       public function name_2105(param1:String) : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("lobby;removeLink;" + param1);
+         Network(OSGi.getInstance().getService(INetworker)).send("lobby;removeLink;" + param1);
       }
    }
 }

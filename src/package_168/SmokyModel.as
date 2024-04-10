@@ -31,7 +31,7 @@ package package_168
    import package_92.name_1451;
    import package_92.name_1699;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    use namespace alternativa3d;
    
@@ -290,7 +290,7 @@ package package_168
          _loc7_.victimInc = param5;
          _loc7_.tankPos = param6;
          _loc7_.reloadTime = this.var_733.reloadMsec.value;
-         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(_loc7_));
+         Network(Main.osgi.getService(INetworker)).send("battle;fire;" + JSON.stringify(_loc7_));
       }
       
       public function method_1002(param1:int) : void

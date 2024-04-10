@@ -117,7 +117,7 @@ package
    import projects.tanks.clients.fp10.libraries.name_390;
    import scpacker.networking.Network;
    import scpacker.networking.class_6;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class Lobby implements class_6
    {
@@ -705,7 +705,7 @@ package
                               temp = new BattleController();
                               Main.osgi.registerService(IBattleController,temp);
                            }
-                           Network(Main.osgi.getService(name_2)).addEventListener(Main.osgi.getService(IBattleController) as BattleController);
+                           Network(Main.osgi.getService(INetworker)).addEventListener(Main.osgi.getService(IBattleController) as BattleController);
                         }
                         catch(e:Error)
                         {
@@ -1399,7 +1399,7 @@ package
                this.garage.name_322.name_394(null,[infoItem]);
                itemObject = null;
             }
-            Network(Main.osgi.getService(name_2)).send("garage;get_garage_data");
+            Network(Main.osgi.getService(INetworker)).send("garage;get_garage_data");
             PanelModel(Main.osgi.getService(name_115)).addListener(this.garage.name_322);
             Main.osgi.registerService(name_381,this.garage.name_322);
             PanelModel(Main.osgi.getService(name_115)).isGarageSelect = true;
@@ -1576,7 +1576,7 @@ package
       
       public function beforeAuth() : void
       {
-         this.networker = Main.osgi.getService(name_2) as Network;
+         this.networker = Main.osgi.getService(INetworker) as Network;
          this.networker.addEventListener(this);
          this.networker.addEventListener(ClansController(Main.osgi.getService(ClansController)));
          Model.object = this.space.getObject(Long.getLong(92381,9324110));

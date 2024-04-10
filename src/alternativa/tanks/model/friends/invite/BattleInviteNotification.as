@@ -19,7 +19,7 @@ package alternativa.tanks.model.friends.invite
    import package_95.IStorageService;
    import package_95.name_526;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class BattleInviteNotification extends class_151
    {
@@ -126,7 +126,7 @@ package alternativa.tanks.model.friends.invite
       
       private function method_2027(param1:MouseEvent) : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby;accept_invite;" + userId);
+         Network(Main.osgi.getService(INetworker)).send("lobby;accept_invite;" + userId);
          PanelModel(Main.osgi.getService(name_115)).goToBattle(this.var_2889);
          hide();
       }
@@ -138,7 +138,7 @@ package alternativa.tanks.model.friends.invite
       
       override protected function method_1655() : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby;reject_invite;" + userId);
+         Network(Main.osgi.getService(INetworker)).send("lobby;reject_invite;" + userId);
          if(this.var_2887 && !method_2721())
          {
             method_2720();

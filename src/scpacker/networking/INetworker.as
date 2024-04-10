@@ -2,7 +2,7 @@ package scpacker.networking
 {
    import flash.events.Event;
    
-   public interface name_2
+   public interface INetworker
    {
        
       

@@ -45,7 +45,7 @@ package package_416
    import package_61.name_767;
    import projects.tanks.clients.flash.resources.resource.MapResource;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    use namespace alternativa3d;
    
@@ -282,7 +282,7 @@ package package_416
       private function onLoadingComplete(param1:MapResource) : void
       {
          this.var_3011 = XML(param1.var_975.toString());
-         Network(Main.osgi.getService(name_2)).send("battle;" + "check_" + "m" + "d5" + "_map;" + MD5.name_3033(this.var_3011.toString()));
+         Network(Main.osgi.getService(INetworker)).send("battle;" + "check_" + "m" + "d5" + "_map;" + MD5.name_3033(this.var_3011.toString()));
          this.loader = null;
          this.method_2812();
          this.var_3024.name_3034(this.var_1718);

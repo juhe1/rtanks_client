@@ -125,7 +125,7 @@ package package_31
    import projects.tanks.clients.fp10.libraries.tanksservices.utils.name_1015;
    import projects.tanks.clients.fp10.libraries.tanksservices.utils.name_1022;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    import scpacker.test.name_1014;
    import juho.hacking.hackmenu.HackMenuWindow;
    
@@ -408,7 +408,7 @@ package package_31
       
       public function objectLoaded(param1:ClientObject) : void
       {
-         this.networker = Network(Main.osgi.getService(name_2));
+         this.networker = Network(Main.osgi.getService(INetworker));
          this.var_374 = new BattleInviteModel();
          this.clientObject = param1;
          this.var_371 = new Array();
@@ -491,7 +491,7 @@ package package_31
          name_13(Main.osgi.getService(name_13)).show();
          if(!this.isInBattle)
          {
-            Network(Main.osgi.getService(name_2)).send("lobby;get_garage_data");
+            Network(Main.osgi.getService(INetworker)).send("lobby;get_garage_data");
          }
          if(this.isBattleSelect)
          {
@@ -503,7 +503,7 @@ package package_31
          else if(this.isInBattle)
          {
             this.onExitFromBattle();
-            Network(Main.osgi.getService(name_2)).send("lobby;get_garage_data");
+            Network(Main.osgi.getService(INetworker)).send("lobby;get_garage_data");
             this.isInBattle = false;
          }
       }
@@ -534,7 +534,7 @@ package package_31
          }
          BattleController(Main.osgi.getService(IBattleController)).destroy();
          StatisticsModel(Main.osgi.getService(IBattlefieldGUI)).objectUnloaded(null);
-         Network(Main.osgi.getService(name_2)).removeListener(Main.osgi.getService(IBattleController) as BattleController);
+         Network(Main.osgi.getService(INetworker)).removeListener(Main.osgi.getService(IBattleController) as BattleController);
          ChatModel(Main.osgi.getService(IChatBattle)).objectUnloaded(null);
          var _loc4_:CTFModel = Main.osgi.getService(name_994) as CTFModel;
          if(_loc4_ != null)
@@ -725,13 +725,13 @@ package package_31
       private function method_551(param1:Boolean) : void
       {
          var _loc2_:name_789 = this.var_367.name_984();
-         Network(Main.osgi.getService(name_2)).send("lobby;bind_email;" + _loc2_.email);
+         Network(Main.osgi.getService(INetworker)).send("lobby;bind_email;" + _loc2_.email);
          this.dialogsLayer.addChild(new name_986(this.localeService.getText(TextConst.name_1000),this.method_528));
       }
       
       private function method_536(param1:Boolean) : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby;generate_key_email");
+         Network(Main.osgi.getService(INetworker)).send("lobby;generate_key_email");
          this.dialogsLayer.addChild(new name_986(this.localeService.getText(TextConst.name_1000),this.method_528));
       }
       
@@ -743,7 +743,7 @@ package package_31
             _loc2_ = this.var_367.name_984();
             if(!this.var_377 && _loc2_.password != "")
             {
-               Network(Main.osgi.getService(name_2)).send("lobby;change_password;" + _loc2_.name_1048() + ";" + _loc2_.password);
+               Network(Main.osgi.getService(INetworker)).send("lobby;change_password;" + _loc2_.name_1048() + ";" + _loc2_.password);
             }
          }
          else
@@ -758,7 +758,7 @@ package package_31
       
       private function method_528(param1:String) : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby;confirm_email_code_recovery;" + param1);
+         Network(Main.osgi.getService(INetworker)).send("lobby;confirm_email_code_recovery;" + param1);
       }
       
       public function method_562(param1:ClientObject) : void
@@ -1265,7 +1265,7 @@ package package_31
       {
          if(this.lobbyLayoutService.getCurrentState() == LayoutState.BATTLE_SELECT)
          {
-            Network(Main.osgi.getService(name_2)).send("lobby;get_show_battle_info;" + param1);
+            Network(Main.osgi.getService(INetworker)).send("lobby;get_show_battle_info;" + param1);
          }
          else
          {
@@ -1444,7 +1444,7 @@ package package_31
       
       private function method_557(param1:ClientObject, param2:String) : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby;change_password;" + param2);
+         Network(Main.osgi.getService(INetworker)).send("lobby;change_password;" + param2);
       }
       
       private function method_559(param1:ClientObject, param2:String, param3:Boolean) : void
@@ -1457,7 +1457,7 @@ package package_31
             _loc5_ = _loc4_.exec(param2);
             if(param2.length > 0 && _loc5_ != null)
             {
-               Network(Main.osgi.getService(name_2)).send("lobby;update_profile;" + param2);
+               Network(Main.osgi.getService(INetworker)).send("lobby;update_profile;" + param2);
                this.method_544();
             }
          }
@@ -1470,7 +1470,7 @@ package package_31
       
       private function method_554(param1:String) : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby;confirm_email_code;" + param1);
+         Network(Main.osgi.getService(INetworker)).send("lobby;confirm_email_code;" + param1);
       }
       
       public function openRecoveryWindow(param1:String) : void
@@ -1488,7 +1488,7 @@ package package_31
          {
             param2 = " ";
          }
-         Network(Main.osgi.getService(name_2)).send("lobby;change_pass_email;" + param1 + ";" + param2);
+         Network(Main.osgi.getService(INetworker)).send("lobby;change_pass_email;" + param1 + ";" + param2);
       }
       
       private function method_556(param1:Event = null) : void

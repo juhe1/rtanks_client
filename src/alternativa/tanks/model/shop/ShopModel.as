@@ -7,7 +7,7 @@ package alternativa.tanks.model.shop
    import package_411.name_2247;
    import package_54.name_102;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class ShopModel
    {
@@ -86,7 +86,7 @@ package alternativa.tanks.model.shop
          }
          else
          {
-            Network(Main.osgi.getService(name_2)).send("lobby;shop_buy_item;" + param1.itemId + ";" + this.window.header.name_2250.selectedItem.code);
+            Network(Main.osgi.getService(INetworker)).send("lobby;shop_buy_item;" + param1.itemId + ";" + this.window.header.name_2250.selectedItem.code);
          }
       }
    }

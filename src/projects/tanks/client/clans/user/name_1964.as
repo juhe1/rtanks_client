@@ -8,7 +8,7 @@ package projects.tanks.client.clans.user
    import platform.client.fp10.core.model.name_66;
    import platform.client.fp10.core.type.name_70;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class name_1964
    {
@@ -61,37 +61,37 @@ package projects.tanks.client.clans.user
       
       public function accept(param1:name_70) : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("clan;accept;" + param1.id);
+         Network(OSGi.getInstance().getService(INetworker)).send("clan;accept;" + param1.id);
       }
       
       public function add(param1:name_70) : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("clan;add;" + param1.id);
+         Network(OSGi.getInstance().getService(INetworker)).send("clan;add;" + param1.id);
       }
       
       public function name_1980(param1:String) : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("clan;addInClanByName;" + param1);
+         Network(OSGi.getInstance().getService(INetworker)).send("clan;addInClanByName;" + param1);
       }
       
       public function name_1979(param1:String) : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("clan;checkClanName;" + param1);
+         Network(OSGi.getInstance().getService(INetworker)).send("clan;checkClanName;" + param1);
       }
       
       public function method_1410(param1:name_70) : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("clan;reject;" + param1.id);
+         Network(OSGi.getInstance().getService(INetworker)).send("clan;reject;" + param1.id);
       }
       
       public function method_1411() : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("clan;rejectAll");
+         Network(OSGi.getInstance().getService(INetworker)).send("clan;rejectAll");
       }
       
       public function method_1413(param1:name_70) : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("clan;revoke;" + param1.id);
+         Network(OSGi.getInstance().getService(INetworker)).send("clan;revoke;" + param1.id);
       }
    }
 }

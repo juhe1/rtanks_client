@@ -50,7 +50,7 @@ package package_79
    import platform.client.fp10.core.resource.types.StubBitmapData;
    import projects.tanks.clients.flash.resources.resource.Tanks3DSResource;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class CTFModel extends CaptureTheFlagModelBase implements class_2, name_994, class_36, class_11, name_652, class_3
    {
@@ -650,7 +650,7 @@ package package_79
       private function method_812(param1:ClientObject, param2:BattleTeamType) : void
       {
          var _loc3_:Vector3 = this.var_588.tank.state.position;
-         Network(Main.osgi.getService(name_2)).send("battle;attempt_to_take_flag;" + param2.getValue() + ";" + _loc3_.x + ";" + _loc3_.y + ";" + _loc3_.z);
+         Network(Main.osgi.getService(INetworker)).send("battle;attempt_to_take_flag;" + param2.getValue() + ";" + _loc3_.x + ";" + _loc3_.y + ";" + _loc3_.z);
       }
       
       private function method_161(param1:Event) : void
@@ -739,7 +739,7 @@ package package_79
          _loc3_.x = param2.x;
          _loc3_.y = param2.y;
          _loc3_.z = param2.z;
-         Network(Main.osgi.getService(name_2)).send("battle;flag_drop;" + JSON.stringify(_loc3_));
+         Network(Main.osgi.getService(INetworker)).send("battle;flag_drop;" + JSON.stringify(_loc3_));
       }
    }
 }

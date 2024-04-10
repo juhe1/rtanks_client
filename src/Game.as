@@ -39,7 +39,7 @@ package
    import platform.client.fp10.core.network.connection.name_12;
    import platform.client.fp10.core.osgi.ResourceActivator;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    import scpacker.resource.ResourceLoaderModel;
    
    public class Game extends Sprite
@@ -181,7 +181,7 @@ package
       
       private function method_2(param1:Event) : void
       {
-         var _loc2_:Network = Main.osgi.getService(name_2) as Network;
+         var _loc2_:Network = Main.osgi.getService(INetworker) as Network;
          var _loc3_:Lobby = new Lobby();
          Main.osgi.registerService(ILobby,_loc3_);
          Main.osgi.registerService(ClansController,new ClansController());
@@ -193,7 +193,7 @@ package
          _loc5_.name_16(_loc2_);
          var _loc6_:ResourceLoaderModel = new ResourceLoaderModel();
          Main.osgi.registerService(ResourceLoaderModel,_loc6_);
-         Network(Main.osgi.getService(name_2)).addListener(_loc6_);
+         Network(Main.osgi.getService(INetworker)).addListener(_loc6_);
       }
    }
 }

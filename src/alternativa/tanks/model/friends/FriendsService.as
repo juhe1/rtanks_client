@@ -6,7 +6,7 @@ package alternativa.tanks.model.friends
    import package_31.name_115;
    import package_347.name_1666;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class FriendsService
    {
@@ -68,27 +68,27 @@ package alternativa.tanks.model.friends
       
       public static function method_1180(param1:String) : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby;make_friend;" + param1);
+         Network(Main.osgi.getService(INetworker)).send("lobby;make_friend;" + param1);
       }
       
       public static function method_851(param1:String) : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby;cancel_request;" + param1);
+         Network(Main.osgi.getService(INetworker)).send("lobby;cancel_request;" + param1);
       }
       
       public static function method_371(param1:String) : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby;deny_friend;" + param1);
+         Network(Main.osgi.getService(INetworker)).send("lobby;deny_friend;" + param1);
       }
       
       public static function method_346(param1:String) : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby;accept_friend;" + param1);
+         Network(Main.osgi.getService(INetworker)).send("lobby;accept_friend;" + param1);
       }
       
       public static function method_1178(param1:String) : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby;remove_new_accepted;" + param1);
+         Network(Main.osgi.getService(INetworker)).send("lobby;remove_new_accepted;" + param1);
       }
       
       public static function name_476(param1:String) : void

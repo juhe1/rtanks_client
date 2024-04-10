@@ -4,7 +4,7 @@ package package_5
    import package_1.Main;
    import platform.client.fp10.core.network.connection.name_12;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class ServerConnectionServiceImpl implements name_21
    {
@@ -29,7 +29,7 @@ package package_5
          var _loc3_:String = param1.method_88;
          var _loc4_:int = param1.ports[0];
          this.networker.connect(_loc3_,_loc4_);
-         Main.osgi.registerService(name_2,this.networker);
+         Main.osgi.registerService(INetworker,this.networker);
       }
    }
 }

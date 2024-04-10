@@ -45,7 +45,7 @@ package alternativa.tanks.model
    import platform.client.fp10.core.registry.name_29;
    import scpacker.networking.Network;
    import scpacker.networking.class_6;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class UserModel extends class_172 implements class_173, class_11, class_6
    {
@@ -150,7 +150,7 @@ package alternativa.tanks.model
          this.clientObject = param1;
          var _loc2_:SharedObject = IStorageService(Main.osgi.getService(IStorageService)).getStorage();
          var _loc3_:SharedObject = IStorageService(Main.osgi.getService(IStorageService)).getAccountsStorage();
-         this.network = Main.osgi.getService(name_2) as Network;
+         this.network = Main.osgi.getService(INetworker) as Network;
          this.network.addListener(this);
          if(this.var_1796 != null)
          {
@@ -305,7 +305,7 @@ package alternativa.tanks.model
       
       private function method_554(param1:String) : void
       {
-         Network(Main.osgi.getService(name_2)).send("auth;confirm_email_code;" + param1);
+         Network(Main.osgi.getService(INetworker)).send("auth;confirm_email_code;" + param1);
       }
       
       public function method_2166(param1:ClientObject, param2:String) : void
@@ -849,7 +849,7 @@ package alternativa.tanks.model
          {
             return;
          }
-         Network(Main.osgi.getService(name_2)).send("auth;recovery_account;" + param1 + ";" + this.var_2053.name_2431.name_2430.input.value);
+         Network(Main.osgi.getService(INetworker)).send("auth;recovery_account;" + param1 + ";" + this.var_2053.name_2431.name_2430.input.value);
       }
       
       private function method_2147(param1:name_2422) : void
@@ -867,7 +867,7 @@ package alternativa.tanks.model
       
       private function method_2157(param1:String, param2:String) : void
       {
-         Network(Main.osgi.getService(name_2)).send("auth;change_pass_email;" + param1 + ";" + param2);
+         Network(Main.osgi.getService(INetworker)).send("auth;change_pass_email;" + param1 + ";" + param2);
       }
       
       private function method_2153(param1:Event) : void

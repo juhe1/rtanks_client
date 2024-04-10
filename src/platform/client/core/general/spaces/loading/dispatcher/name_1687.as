@@ -9,7 +9,7 @@ package platform.client.core.general.spaces.loading.dispatcher
    import package_38.name_860;
    import platform.client.fp10.core.model.name_66;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class name_1687
    {
@@ -37,7 +37,7 @@ package platform.client.core.general.spaces.loading.dispatcher
       
       public function name_1692(param1:int) : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("system;resources_loaded;" + param1);
+         Network(OSGi.getInstance().getService(INetworker)).send("system;resources_loaded;" + param1);
       }
    }
 }

@@ -38,7 +38,7 @@ package package_164
    import package_92.name_1451;
    import package_92.name_1699;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class ThunderModel extends class_69 implements class_68, IWeaponController, class_11
    {
@@ -421,7 +421,7 @@ package package_164
          _loc11_.splashTargetIds = param7;
          _loc11_.splashTargetDistances = param9;
          _loc11_.reloadTime = this.var_733.reloadMsec.value;
-         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(_loc11_));
+         Network(Main.osgi.getService(INetworker)).send("battle;fire;" + JSON.stringify(_loc11_));
       }
       
       public function objectLoaded(param1:ClientObject) : void

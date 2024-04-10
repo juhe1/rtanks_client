@@ -32,7 +32,7 @@ package package_333
    import package_92.name_1451;
    import package_92.name_1699;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class SnowmanModel implements class_11, class_186, IWeaponController
    {
@@ -311,7 +311,7 @@ package package_333
          _loc5_.realShotId = param3;
          _loc5_.dirToTarget = param4;
          _loc5_.reloadTime = this.var_733.reloadMsec.value;
-         Network(Main.osgi.getService(name_2)).send("battle;start_fire;" + JSON.stringify(_loc5_));
+         Network(Main.osgi.getService(INetworker)).send("battle;start_fire;" + JSON.stringify(_loc5_));
       }
       
       public function method_1002(param1:int) : void
@@ -396,7 +396,7 @@ package package_333
          _loc8_.tankPos = param6;
          _loc8_.distance = param7;
          _loc8_.reloadTime = this.var_733.reloadMsec.value;
-         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(_loc8_));
+         Network(Main.osgi.getService(INetworker)).send("battle;fire;" + JSON.stringify(_loc8_));
       }
       
       private function method_1275(param1:ClientObject) : name_2653

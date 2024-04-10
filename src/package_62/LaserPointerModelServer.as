@@ -10,7 +10,7 @@ package package_62
    import platform.client.fp10.core.model.name_66;
    import platform.client.fp10.core.type.name_70;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class LaserPointerModelServer
    {
@@ -50,17 +50,17 @@ package package_62
          _loc4_.x = param2.x;
          _loc4_.y = param2.y;
          _loc4_.z = param2.z;
-         Network(OSGi.getInstance().getService(name_2)).send("battle;aim_at_tank;" + _loc3_ + ";" + JSON.stringify(_loc4_));
+         Network(OSGi.getInstance().getService(INetworker)).send("battle;aim_at_tank;" + _loc3_ + ";" + JSON.stringify(_loc4_));
       }
       
       public function hide() : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("battle;hide_laser;");
+         Network(OSGi.getInstance().getService(INetworker)).send("battle;hide_laser;");
       }
       
       public function method_877(param1:Number) : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("battle;update_direction;" + param1);
+         Network(OSGi.getInstance().getService(INetworker)).send("battle;update_direction;" + param1);
       }
    }
 }

@@ -31,7 +31,7 @@ package package_158
    import package_92.name_1188;
    import package_92.name_1451;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class RailgunModel extends class_108 implements IModel, name_1612, IWeaponController, class_11
    {
@@ -352,7 +352,7 @@ package package_158
       
       private function method_1222(param1:ClientObject) : void
       {
-         Network(Main.osgi.getService(name_2)).send("battle;start_fire");
+         Network(Main.osgi.getService(INetworker)).send("battle;start_fire");
       }
       
       public function reset() : void
@@ -452,7 +452,7 @@ package package_158
          _loc7_.targets = param4;
          _loc7_.targetPostitions = param5;
          _loc7_.reloadTime = this.var_733.reloadMsec.value;
-         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(_loc7_));
+         Network(Main.osgi.getService(INetworker)).send("battle;fire;" + JSON.stringify(_loc7_));
       }
    }
 }

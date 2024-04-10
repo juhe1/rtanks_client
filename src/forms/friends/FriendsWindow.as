@@ -21,7 +21,7 @@ package forms.friends
    import package_54.name_102;
    import package_60.TextConst;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class FriendsWindow extends Sprite
    {
@@ -163,13 +163,13 @@ package forms.friends
          var _loc2_:Object = null;
          for each(_loc2_ in JSON.parse(FriendsService.name_398).incoming)
          {
-            Network(Main.osgi.getService(name_2)).send("lobby;deny_friend;" + _loc2_.id);
+            Network(Main.osgi.getService(INetworker)).send("lobby;deny_friend;" + _loc2_.id);
          }
       }
       
       private function method_2016(param1:MouseEvent) : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby;make_friend;" + this.var_1851.value);
+         Network(Main.osgi.getService(INetworker)).send("lobby;make_friend;" + this.var_1851.value);
       }
       
       private function method_2023(param1:MouseEvent) : void

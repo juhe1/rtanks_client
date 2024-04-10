@@ -35,7 +35,7 @@ package alternativa.tanks.models.dom
    import package_47.BattleTeamType;
    import package_7.name_32;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class DOMModel extends ControlPointsModelBase implements IDOMModel, class_11, name_652
    {
@@ -167,7 +167,7 @@ package alternativa.tanks.models.dom
       
       public function method_1939(param1:Point, param2:TankData) : void
       {
-         Network(Main.osgi.getService(name_2)).send("battle;tank_capturing_point;" + param1.id + ";" + this.method_1935(param2.tank.state.position));
+         Network(Main.osgi.getService(INetworker)).send("battle;tank_capturing_point;" + param1.id + ";" + this.method_1935(param2.tank.state.position));
       }
       
       public function method_56(param1:Sound, param2:Point) : void
@@ -187,7 +187,7 @@ package alternativa.tanks.models.dom
       
       public function method_1938(param1:Point, param2:TankData) : void
       {
-         Network(Main.osgi.getService(name_2)).send("battle;tank_leave_capturing_point;" + param1.id);
+         Network(Main.osgi.getService(INetworker)).send("battle;tank_leave_capturing_point;" + param1.id);
       }
       
       public function serverSetPointScore(param1:int, param2:int) : void

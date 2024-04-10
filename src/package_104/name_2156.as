@@ -8,7 +8,7 @@ package package_104
    import package_38.name_840;
    import platform.client.fp10.core.model.name_66;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class name_2156
    {
@@ -34,7 +34,7 @@ package package_104
       
       public function method_1766() : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("lobby;requestTiersInfo");
+         Network(OSGi.getInstance().getService(INetworker)).send("lobby;requestTiersInfo");
       }
    }
 }

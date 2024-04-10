@@ -7,7 +7,7 @@ package package_101
    import package_38.name_860;
    import platform.client.fp10.core.model.name_66;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class name_1215
    {
@@ -42,12 +42,12 @@ package package_101
       
       public function method_2130() : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("battle;ready_to_spawn");
+         Network(OSGi.getInstance().getService(INetworker)).send("battle;ready_to_spawn");
       }
       
       public function setReadyToPlace() : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("battle;ready_to_place");
+         Network(OSGi.getInstance().getService(INetworker)).send("battle;ready_to_place");
       }
    }
 }

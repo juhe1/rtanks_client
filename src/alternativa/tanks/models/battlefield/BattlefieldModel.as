@@ -134,7 +134,7 @@ package alternativa.tanks.models.battlefield
    import projects.tanks.client.commons.models.layout.LayoutState;
    import projects.tanks.clients.flash.resources.resource.MapResource;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class BattlefieldModel extends class_13 implements name_306, IBattleField, class_11, class_14, class_6, class_1, name_166, class_3, class_15, class_2
    {
@@ -557,7 +557,7 @@ package alternativa.tanks.models.battlefield
          var _loc4_:Object = new Object();
          _loc4_.bonus_id = param2;
          _loc4_.real_tank_position = new Vector3dData(_loc3_.tank.state.position.x,_loc3_.tank.state.position.y,_loc3_.tank.state.position.z);
-         Network(Main.osgi.getService(name_2)).send("battle;attempt_to_take_bonus;" + JSON.stringify(_loc4_));
+         Network(Main.osgi.getService(INetworker)).send("battle;attempt_to_take_bonus;" + JSON.stringify(_loc4_));
       }
       
       public function method_195(param1:ClientObject) : void
@@ -669,7 +669,7 @@ package alternativa.tanks.models.battlefield
          }
          if(!this.spectatorMode)
          {
-            Network(Main.osgi.getService(name_2)).send("battle;get_init_data_local_tank");
+            Network(Main.osgi.getService(INetworker)).send("battle;get_init_data_local_tank");
             battleInputService.name_743();
             battleInfoService.spectatorMode = false;
             putData(ControlsMiniHelpSupport,new ControlsMiniHelpSupport());
@@ -677,7 +677,7 @@ package alternativa.tanks.models.battlefield
          else
          {
             BattleController.name_771 = true;
-            Network(Main.osgi.getService(name_2)).send("battle;spectator_user_init");
+            Network(Main.osgi.getService(INetworker)).send("battle;spectator_user_init");
             battleInputService.name_768();
             battleInfoService.spectatorMode = true;
             this.method_189();
@@ -1669,7 +1669,7 @@ package alternativa.tanks.models.battlefield
       
       public function method_197() : void
       {
-         Network(Main.osgi.getService(name_2)).send("battle;speedhack_detected");
+         Network(Main.osgi.getService(INetworker)).send("battle;speedhack_detected");
       }
       
       public function method_28(param1:GameActionEnum, param2:Boolean) : void

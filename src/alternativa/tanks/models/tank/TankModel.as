@@ -130,7 +130,7 @@ package alternativa.tanks.models.tank
    import platform.client.fp10.core.type.name_70;
    import projects.tanks.clients.flash.resources.resource.Tanks3DSResource;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class TankModel extends class_8 implements class_12, class_2, class_10, class_11, class_6, class_5, class_1, ITank, class_4, class_3, class_9
    {
@@ -1309,7 +1309,7 @@ package alternativa.tanks.models.tank
       
       public function method_73(param1:ClientObject) : void
       {
-         Network(Main.osgi.getService(name_2)).send("battle;activate_tank");
+         Network(Main.osgi.getService(INetworker)).send("battle;activate_tank");
       }
       
       private function method_66(param1:int, param2:int) : void
@@ -1406,7 +1406,7 @@ package alternativa.tanks.models.tank
          if (spoofedAngularVelocity != null) {
             angularVelocity = spoofedAngularVelocity;
          }
-         Network(Main.osgi.getService(name_2)).send("battle;move;" + (param3.x + "@" + param3.y + "@" + param3.z) + "@" + (param4.x + "@" + param4.y + "@" + param4.z) + "@" + (linearVelocity.x + "@" + linearVelocity.y + "@" + linearVelocity.z) + "@" + (angularVelocity.x + "@" + angularVelocity.y + "@" + angularVelocity.z) + ";" + param7 + ";" + param8 + ";" + 1);
+         Network(Main.osgi.getService(INetworker)).send("battle;move;" + (param3.x + "@" + param3.y + "@" + param3.z) + "@" + (param4.x + "@" + param4.y + "@" + param4.z) + "@" + (linearVelocity.x + "@" + linearVelocity.y + "@" + linearVelocity.z) + "@" + (angularVelocity.x + "@" + angularVelocity.y + "@" + angularVelocity.z) + ";" + param7 + ";" + param8 + ";" + 1);
       }
       
       private function method_57(param1:Vector3) : void
@@ -1421,14 +1421,14 @@ package alternativa.tanks.models.tank
       
       private function method_71(param1:ClientObject, param2:name_81, param3:Vector3dData) : void
       {
-         Network(Main.osgi.getService(name_2)).send("battle;suicide");
+         Network(Main.osgi.getService(INetworker)).send("battle;suicide");
       }
       
       private function method_65(param1:int) : void
       {
          if(this.var_38 >= this.var_44 && this.var_43)
          {
-            Network(Main.osgi.getService(name_2)).send("battle;idle_kick");
+            //Network(Main.osgi.getService(name_2)).send("battle;idle_kick");
             this.var_43 = false;
          }
          else
@@ -1618,7 +1618,7 @@ package alternativa.tanks.models.tank
       
       public function method_85(param1:TankData, param2:Number) : void
       {
-         Network(Main.osgi.getService(name_2)).send("battle;rotate_turret;" + param2);
+         Network(Main.osgi.getService(INetworker)).send("battle;rotate_turret;" + param2);
       }
       
       public function rotateTurretTo(param1:ClientObject, param2:Number) : void

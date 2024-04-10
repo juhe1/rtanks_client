@@ -7,7 +7,7 @@ package projects.tanks.client.panel.model.dailyquest
    import package_38.name_860;
    import platform.client.fp10.core.model.name_66;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class name_2129
    {
@@ -44,17 +44,17 @@ package projects.tanks.client.panel.model.dailyquest
       
       public function name_2131(param1:String, param2:int) : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("lobby;change_quest;" + param1 + ";" + param2);
+         Network(OSGi.getInstance().getService(INetworker)).send("lobby;change_quest;" + param1 + ";" + param2);
       }
       
       public function name_2130(param1:String) : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("lobby;change_quest;" + param1 + ";" + 0);
+         Network(OSGi.getInstance().getService(INetworker)).send("lobby;change_quest;" + param1 + ";" + 0);
       }
       
       public function takePrize(param1:String) : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("lobby;quest_take_prize;" + param1);
+         Network(OSGi.getInstance().getService(INetworker)).send("lobby;quest_take_prize;" + param1);
       }
    }
 }

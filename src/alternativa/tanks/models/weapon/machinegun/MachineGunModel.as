@@ -36,7 +36,7 @@ package alternativa.tanks.models.weapon.machinegun
    import package_92.name_1451;
    import package_92.name_1699;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class MachineGunModel extends class_73 implements class_74, IWeaponController, class_75, class_11, class_23
    {
@@ -282,7 +282,7 @@ package alternativa.tanks.models.weapon.machinegun
       {
          var _loc2_:Object = new Object();
          _loc2_.energy = Math.floor(this.currentEnergy.value);
-         Network(Main.osgi.getService(name_2)).send("battle;start_fire;" + JSON.stringify(_loc2_));
+         Network(Main.osgi.getService(INetworker)).send("battle;start_fire;" + JSON.stringify(_loc2_));
       }
       
       public function method_1001(param1:int, param2:Boolean) : void
@@ -300,7 +300,7 @@ package alternativa.tanks.models.weapon.machinegun
       
       private function method_1226(param1:ClientObject) : void
       {
-         Network(Main.osgi.getService(name_2)).send("battle;stop_fire");
+         Network(Main.osgi.getService(INetworker)).send("battle;stop_fire");
       }
       
       private function getStatus() : Number
@@ -329,7 +329,7 @@ package alternativa.tanks.models.weapon.machinegun
                this.currentEnergy.value = 0;
                if(this.var_1041)
                {
-                  Network(Main.osgi.getService(name_2)).send("battle;start_heat_effect");
+                  Network(Main.osgi.getService(INetworker)).send("battle;start_heat_effect");
                   this.var_1041 = false;
                }
             }
@@ -388,7 +388,7 @@ package alternativa.tanks.models.weapon.machinegun
          var _loc3_:Object = new Object();
          _loc3_.victimId = param1;
          _loc3_.tickPeriod = this.var_1031.damageTickMsec.value;
-         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(_loc3_));
+         Network(Main.osgi.getService(INetworker)).send("battle;fire;" + JSON.stringify(_loc3_));
       }
       
       private function method_1234(param1:Vector3, param2:Number, param3:TankData, param4:Vector3, param5:Number) : void

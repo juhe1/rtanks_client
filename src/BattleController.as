@@ -128,7 +128,7 @@ package
    import scpacker.Base;
    import scpacker.networking.Network;
    import scpacker.networking.class_6;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class BattleController implements class_6
    {
@@ -511,7 +511,7 @@ package
                   }
                   else if(data.name_319[0] == "ping")
                   {
-                     Network(Main.osgi.getService(name_2)).send("battle;ping");
+                     Network(Main.osgi.getService(INetworker)).send("battle;ping");
                   }
                   else if(data.name_319[0] != "tracePing")
                   {
@@ -624,7 +624,7 @@ package
                      }
                      else if(data.name_319[0] == "kick_for_cheats")
                      {
-                        Network(Main.osgi.getService(name_2)).destroy();
+                        Network(Main.osgi.getService(INetworker)).destroy();
                         BattlefieldModel(Main.osgi.getService(IBattleField)).getConfig().map.destroy();
                         BattlefieldModel(Main.osgi.getService(IBattleField)).getConfig().map = null;
                         BattlefieldModel(Main.osgi.getService(IBattleField)).objectUnloaded(null);

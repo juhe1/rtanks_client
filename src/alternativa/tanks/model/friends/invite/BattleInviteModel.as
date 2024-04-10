@@ -14,7 +14,7 @@ package alternativa.tanks.model.friends.invite
    import platform.client.fp10.core.resource.types.SoundResource;
    import projects.tanks.client.battleselect.name_386;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class BattleInviteModel
    {
@@ -105,7 +105,7 @@ package alternativa.tanks.model.friends.invite
       {
          this.var_1772[this.var_1771] = true;
          var _loc1_:String = Main.osgi.getService(name_386) != null ? BattleSelectModel(Main.osgi.getService(name_386)).selectedBattleId : "null";
-         Network(Main.osgi.getService(name_2)).send("lobby;invite_to_battle;" + this.var_1771 + ";" + _loc1_);
+         Network(Main.osgi.getService(INetworker)).send("lobby;invite_to_battle;" + this.var_1771 + ";" + _loc1_);
          this.var_1771 = null;
       }
       

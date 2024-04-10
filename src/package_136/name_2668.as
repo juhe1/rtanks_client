@@ -8,7 +8,7 @@ package package_136
    import platform.client.fp10.core.model.name_66;
    import platform.client.fp10.core.type.name_70;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class name_2668
    {
@@ -33,7 +33,7 @@ package package_136
       
       public function name_2669(param1:name_70) : void
       {
-         Network(OSGi.getInstance().getService(name_2)).send("garage;try_mount_skin;" + param1.name);
+         Network(OSGi.getInstance().getService(INetworker)).send("garage;try_mount_skin;" + param1.name);
       }
    }
 }

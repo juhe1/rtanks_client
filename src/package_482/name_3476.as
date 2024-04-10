@@ -11,7 +11,7 @@ package package_482
    import package_480.name_3474;
    import package_54.name_102;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class name_3476 extends Sprite
    {
@@ -48,7 +48,7 @@ package package_482
          }
          if(PanelModel(Main.osgi.getService(name_115)).isBattleSelect)
          {
-            Network(Main.osgi.getService(name_2)).send("lobby;get_show_battle_info;" + this._data.battleId);
+            Network(Main.osgi.getService(INetworker)).send("lobby;get_show_battle_info;" + this._data.battleId);
          }
          else
          {

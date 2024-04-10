@@ -7,7 +7,7 @@ package alternativa.tanks.model.shop
    import package_125.name_366;
    import package_125.name_369;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class name_2248
    {
@@ -53,7 +53,7 @@ package alternativa.tanks.model.shop
       
       private function method_2728(param1:SendPromoCodeEvent) : void
       {
-         Network(Main.osgi.getService(name_2)).send("lobby;try_activate_promocode;" + param1.name_2912());
+         Network(Main.osgi.getService(INetworker)).send("lobby;try_activate_promocode;" + param1.name_2912());
       }
       
       public function destroy() : void

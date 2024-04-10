@@ -47,7 +47,7 @@ package alternativa.tanks.models.battlefield
    import package_85.ControlsHelper;
    import package_87.TableStatistics;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class StatisticsModel extends class_34 implements class_33, class_11, class_5, IBattlefieldGUI, name_193, class_9, class_1, class_23
    {
@@ -599,7 +599,7 @@ package alternativa.tanks.models.battlefield
       
       private function exit(param1:ClientObject) : void
       {
-         Network(Main.osgi.getService(name_2)).send("battle;exit_from_statistic");
+         Network(Main.osgi.getService(INetworker)).send("battle;exit_from_statistic");
       }
       
       private function onKeyDown(param1:KeyboardEvent) : void

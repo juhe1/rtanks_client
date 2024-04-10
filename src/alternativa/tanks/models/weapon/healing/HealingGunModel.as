@@ -48,7 +48,7 @@ package alternativa.tanks.models.weapon.healing
    import package_92.name_1188;
    import package_92.name_1451;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class HealingGunModel extends class_89 implements class_90, IWeaponController, class_15, class_3
    {
@@ -328,7 +328,7 @@ package alternativa.tanks.models.weapon.healing
       
       private function method_1256(param1:ClientObject) : void
       {
-         Network(Main.osgi.getService(name_2)).send("battle;stop_fire");
+         Network(Main.osgi.getService(INetworker)).send("battle;stop_fire");
       }
       
       public function update(param1:int, param2:int) : Number
@@ -513,7 +513,7 @@ package alternativa.tanks.models.weapon.healing
       {
          var _loc2_:Object = new Object();
          _loc2_.physTime = param1;
-         Network(Main.osgi.getService(name_2)).send("battle;reset_target;" + JSON.stringify(_loc2_));
+         Network(Main.osgi.getService(INetworker)).send("battle;reset_target;" + JSON.stringify(_loc2_));
       }
       
       private function method_1261(param1:ClientObject, param2:int, param3:String, param4:Vector3dData, param5:int) : void
@@ -523,7 +523,7 @@ package alternativa.tanks.models.weapon.healing
          _loc6_.distance = param5;
          _loc6_.tickPeriod = this.var_1058.tickPeriod.value;
          _loc6_.localHitPoint = localHitPoint.toVector3d();
-         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(_loc6_));
+         Network(Main.osgi.getService(INetworker)).send("battle;fire;" + JSON.stringify(_loc6_));
       }
       
       public function handleTankEvent(param1:int, param2:TankData) : void
@@ -616,7 +616,7 @@ package alternativa.tanks.models.weapon.healing
          _loc4_.incId = param2;
          _loc4_.victimId = param3;
          _loc4_.localHitPoint = localHitPoint.toVector3d();
-         Network(Main.osgi.getService(name_2)).send("battle;start_fire;" + JSON.stringify(_loc4_));
+         Network(Main.osgi.getService(INetworker)).send("battle;start_fire;" + JSON.stringify(_loc4_));
       }
       
       private function getTankData(param1:ObjectRegister, param2:String) : TankData

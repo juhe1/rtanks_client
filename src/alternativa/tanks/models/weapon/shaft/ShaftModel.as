@@ -51,7 +51,7 @@ package alternativa.tanks.models.weapon.shaft
    import package_92.name_1188;
    import package_92.name_1451;
    import scpacker.networking.Network;
-   import scpacker.networking.name_2;
+   import scpacker.networking.INetworker;
    
    public class ShaftModel implements class_83, class_11, IWeaponController
    {
@@ -474,12 +474,12 @@ package alternativa.tanks.models.weapon.shaft
       
       private function method_2214(param1:ShaftShotResult) : void
       {
-         Network(Main.osgi.getService(name_2)).send("battle;quick_shot_shaft;" + param1.name_2487());
+         Network(Main.osgi.getService(INetworker)).send("battle;quick_shot_shaft;" + param1.name_2487());
       }
       
       private function method_2207() : void
       {
-         Network(Main.osgi.getService(name_2)).send("battle;start_fire");
+         Network(Main.osgi.getService(INetworker)).send("battle;start_fire");
       }
       
       private function method_2211(param1:int, param2:Vector3, param3:Array) : void
@@ -493,7 +493,7 @@ package alternativa.tanks.models.weapon.shaft
          json.targets = aims;
          json.energy = this.name_1259(this.var_11.name_165().method_923());
          json.muzzle = const_1481.name_1421;
-         Network(Main.osgi.getService(name_2)).send("battle;fire;" + JSON.stringify(json,function(param1:*, param2:*):*
+         Network(Main.osgi.getService(INetworker)).send("battle;fire;" + JSON.stringify(json,function(param1:*, param2:*):*
          {
             var _loc3_:* = undefined;
             var _loc4_:* = undefined;
@@ -924,7 +924,7 @@ package alternativa.tanks.models.weapon.shaft
       
       private function method_2209(param1:int) : void
       {
-         Network(Main.osgi.getService(name_2)).send("battle;begin_enegry_drain;" + param1);
+         Network(Main.osgi.getService(INetworker)).send("battle;begin_enegry_drain;" + param1);
       }
       
       public function name_1259(param1:Number) : Number
