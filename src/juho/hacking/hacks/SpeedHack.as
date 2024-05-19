@@ -19,9 +19,11 @@ package juho.hacking.hacks {
          super(NAME, ID);
          
          this.addProperty("Speed", 1000.0, "Number", speedChanged);
-         this.addProperty("Turn Speed", 1000.0, "Number", speedChanged);
-         this.addProperty("Turret Rotation Speed", 1000.0, "Number", speedChanged);
+         this.addProperty("Turn speed", 1000.0, "Number", speedChanged);
+         this.addProperty("Turret rotation speed", 3.0, "Number", speedChanged);
+         this.addProperty("Turret accelaration", 2.0, "Number", speedChanged);
          this.addProperty("Accelaration", 1000.0, "Number", speedChanged);
+         this.addProperty("Turn accelaration", 1000.0, "Number", speedChanged);
          HackEventDispatcher.singleton.addEventListener(LocalTankInitedEvent.LOCAL_TANK_INITED, this.localTankInited);
          HackEventDispatcher.singleton.addEventListener(LocalTankDestroyedEvent.LOCAL_TANK_DESTROYED_EVENT, this.localTankDestroyed);
          HackEventDispatcher.singleton.addEventListener(TankSpecificationsChangedEvent.TANK_SPECIFICATIONS_CHANGED_EVENT, this.tankSpecificationsChanged);
@@ -60,14 +62,18 @@ package juho.hacking.hacks {
          }
          
          var speed:Number = this.getProperty("Speed").value;
-         var turnSpeed:Number = this.getProperty("Turn Speed").value;
+         var turnSpeed:Number = this.getProperty("Turn speed").value;
          var accelaration:Number = this.getProperty("Accelaration").value;
-         var turretRotationSpeed:Number = this.getProperty("Turret Rotation Speed").value;
+         var turnAccelaration:Number = this.getProperty("Turn accelaration").value;
+         var turretRotationSpeed:Number = this.getProperty("Turret rotation speed").value;
+         var turretAccelaration:Number = this.getProperty("Turret accelaration").value;
          
          this.localTank.setMaxSpeed(speed, true);
          this.localTank.setMaxTurnSpeed(turnSpeed, true);
          this.localTank.setAcceleration(accelaration)
+         this.localTank.setTurnAccelaration(turnAccelaration)
          this.localTank.setMaxTurretTurnSpeed(turretRotationSpeed, true);
+         this.localTank.setTurretTurnAcceleration(turretAccelaration);
       }
    
    }

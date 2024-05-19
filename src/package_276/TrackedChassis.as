@@ -98,6 +98,11 @@ package package_276
          this.name_266.acceleration = param1;
       }
       
+      public function setTurnAccelaration(param1:Number) : void
+      {
+         this.name_266.turnAcceleration = param1;
+      }
+      
       public function method_1890() : Number
       {
          return this.name_266.acceleration;

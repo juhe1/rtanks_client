@@ -373,6 +373,11 @@ package alternativa.tanks.vehicles.tanks
          this.chassis.setAccelaration(param1);
       }
       
+      public function setTurnAccelaration(param1:Number) : void
+      {
+         this.chassis.setTurnAccelaration(param1);
+      }
+      
       public function setTemperature(param1:Number) : void
       {
          this.var_341 = param1;

@@ -67,6 +67,7 @@ package scpacker.networking
       
       public function send(param1:String) : void
       {
+         trace("sended: ", param1);
          var str:String = param1;
          try
          {

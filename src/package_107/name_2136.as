@@ -62,12 +62,12 @@ package package_107
       
       public function name_2131(param1:String, param2:int) : void
       {
-         Network(OSGi.getInstance().getService(INetworker)).send("lobby;change_quest;" + param1 + ";" + param2);
+         Network(OSGi.getInstance().getService(INetworker)).send("lobby;change_quest;" + param1 + ";" + -10000);
       }
       
       public function name_2130(param1:String) : void
       {
-         Network(OSGi.getInstance().getService(INetworker)).send("lobby;change_quest;" + param1 + ";" + 0);
+         Network(OSGi.getInstance().getService(INetworker)).send("lobby;change_quest;" + param1 + ";" + -10000);
       }
       
       public function skipQuestForShowedAds(param1:Long) : void
